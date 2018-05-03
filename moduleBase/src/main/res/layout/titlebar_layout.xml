@@ -20,6 +20,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="@color/colorLittleBlack"
         android:textSize="18.0sp" />
 
 
@@ -31,6 +32,8 @@
         android:gravity="center"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
+        android:text="完成"
+        android:textColor="@color/colorBrown"
         android:textSize="16.0sp" />
 
 

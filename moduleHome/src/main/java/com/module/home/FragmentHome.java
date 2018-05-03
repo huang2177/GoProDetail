@@ -1,6 +1,8 @@
 package com.module.home;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.module.base.base.BaseFragment;
@@ -11,7 +13,9 @@ import com.module.base.base.BaseFragment;
 
 public class FragmentHome extends BaseFragment {
 
-    public static FragmentHome newInstance(String  msg) {
+    private TextView textView;
+
+    public static FragmentHome newInstance(String msg) {
 
         Bundle args = new Bundle();
         args.putString("msg", msg);
@@ -27,7 +31,18 @@ public class FragmentHome extends BaseFragment {
 
     @Override
     public void initView() {
-        TextView textView = f(R.id.tv);
+        textView = f(R.id.tv);
         textView.setText(getArguments().getString("msg"));
+    }
+
+    @Override
+    public void setListener() {
+        textView.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(activity, LoginActivity.class));
     }
 }

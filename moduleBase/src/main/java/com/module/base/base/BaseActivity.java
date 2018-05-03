@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.module.base.R;
+import com.module.base.utils.StatusUtil;
 
 
 /**
@@ -30,6 +31,10 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (isUseStatusBarColor()) {
+            StatusUtil.setStatusBar(this, false, false);
+            StatusUtil.setStatusTextColor(true, this);
+        }
         setContentView(getLayoutId());
 
         initView();
@@ -85,7 +90,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
      */
     public abstract BasePresenter<V> createPresenter();
 
-    public BaseActivity titleBarBackground(int resColor) {
+    public BaseActivity background(int resColor) {
         int color = ContextCompat.getColor(this, resColor);
         titleBarContainer.setBackgroundColor(color);
         return this;
@@ -145,7 +150,6 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
 
         } else if (i == R.id.titleBar_right_text) {
             onRightClick();
-
         } else {
         }
     }
@@ -156,4 +160,12 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
     public void onRightClick() {
 
     }
+
+    /**
+     * 是否使用沉浸式状态栏
+     */
+    public boolean isUseStatusBarColor() {
+        return true;
+    }
+
 }

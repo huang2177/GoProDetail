@@ -16,7 +16,7 @@ import android.widget.EditText;
  * Huangshuang 2018/3/8 0008
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements View.OnClickListener{
     protected FragmentActivity activity;
     protected View viewRoot;
 
@@ -81,5 +81,10 @@ public abstract class BaseFragment extends Fragment {
                 }
             }
         }, 100);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

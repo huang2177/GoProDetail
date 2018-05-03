@@ -4,7 +4,10 @@
     <color name="colorPrimaryDark">@color/colorBrown</color>
     <color name="colorAccent">@color/colorBrown</color>
 
-    <color name="colorBrown" >#a0563c</color>
-    <color name="colorWhite" >#ffffff</color>
-    <color name="colorGray" >#b2b2b2</color>
+    <color name="colorBrown">#a0563c</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGray">#b2b2b2</color>
+    <color name="colorLittleBlack">#333333</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorRed">#ff0000</color>
 </resources>

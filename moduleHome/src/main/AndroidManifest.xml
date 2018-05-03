@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.module.home" />
+    package="com.module.home" >
+
+    <application>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+    </application>
+</manifest>

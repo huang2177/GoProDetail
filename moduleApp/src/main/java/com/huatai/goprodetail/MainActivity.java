@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.module.home.FragmentHome;
 import com.module.base.base.BaseActivity;
@@ -76,8 +77,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
      */
     @SuppressLint("RestrictedApi")
     private void setNagationViewMode() {
-        navigationView.setItemTextColor(ContextCompat.getColorStateList(this, R.color.nav_menu_text_color));
-        navigationView.setItemIconTintList(ContextCompat.getColorStateList(this, R.color.nav_menu_text_color));
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) navigationView.getChildAt(0);
         try {
             Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
@@ -145,5 +144,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         public int getCount() {
             return fragments.size();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
     }
 }
