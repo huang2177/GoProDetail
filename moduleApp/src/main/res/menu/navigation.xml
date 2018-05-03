@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_gray"
+        android:title="@string/title_home"/>
+
+    <item
+        android:id="@+id/navigation_mall"
+        android:icon="@drawable/ic_mall_gray"
+        android:title="@string/title_mall" />
+
+    <item
+        android:id="@+id/navigation_jewelry"
+        android:icon="@drawable/ic_diamonds_gray"
+        android:title="@string/title_jewelry" />
+
+    <item
+        android:id="@+id/navigation_hall"
+        android:icon="@drawable/ic_hourglass_gray"
+        android:title="@string/title_hall" />
+
+    <item
+        android:id="@+id/navigation_mine"
+        android:icon="@drawable/ic_mine_gray"
+        android:title="@string/title_mine" />
+
+</menu>

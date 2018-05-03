@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">拼跌</string>
+
+    <!--底部导航栏-->
+    <string name="title_home">首页</string>
+    <string name="title_mall">商城</string>
+    <string name="title_mine">我的拼跌</string>
+    <string name="title_hall">拼团大厅</string>
+    <string name="title_jewelry">0元首饰盒</string>
+</resources>

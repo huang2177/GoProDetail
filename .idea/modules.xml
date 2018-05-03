@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GoProDetail.iml" filepath="$PROJECT_DIR$/GoProDetail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleApp/app.iml" filepath="$PROJECT_DIR$/moduleApp/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleBase/moduleBase.iml" filepath="$PROJECT_DIR$/moduleBase/moduleBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleHome/moduleHome.iml" filepath="$PROJECT_DIR$/moduleHome/moduleHome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleMall/moduleMall.iml" filepath="$PROJECT_DIR$/moduleMall/moduleMall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleMine/moduleMine.iml" filepath="$PROJECT_DIR$/moduleMine/moduleMine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleUser/moduleUser.iml" filepath="$PROJECT_DIR$/moduleUser/moduleUser.iml" />
+    </modules>
+  </component>
+</project>

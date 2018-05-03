@@ -1,0 +1,29 @@
+/**
+ * 在这里单独处理统一依赖问题
+ * 注意需要在根目录的build.gradle中进行引入
+ */
+
+ext {
+    isModule = false
+    android = [
+
+            compileSdkVersion: 26,
+            minSdkVersion    : 16,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0",
+            app              : "com.huatai.goprodetail",
+    ]
+    moudleId = [
+            mine   : "com.huatai.mine",
+            source : "com.huatai.source",
+            message: "com.huatai.message",
+            login  : "com.huatai.login",
+    ]
+
+    url = [
+            "debug"  : "debugUrl",
+            "release": "releaseUrl"
+    ]
+    supportLibrary = "26.1.0"
+}

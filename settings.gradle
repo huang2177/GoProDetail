@@ -1,0 +1,6 @@
+include ':moduleApp' ,
+        ':moduleBase',
+        ':moduleHome',
+        ':moduleMall',
+        ':moduleMine',
+        ':moduleUser'
