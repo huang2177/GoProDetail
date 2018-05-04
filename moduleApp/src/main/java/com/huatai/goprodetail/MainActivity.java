@@ -122,22 +122,18 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        boolean useDart = false;
+        boolean useDart = true;
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                useDart = true;
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.navigation_mall:
-                useDart = true;
                 viewPager.setCurrentItem(1);
                 break;
             case R.id.navigation_jewelry:
-                useDart = true;
                 viewPager.setCurrentItem(2);
                 break;
             case R.id.navigation_hall:
-                useDart = true;
                 viewPager.setCurrentItem(3);
                 break;
             case R.id.navigation_mine:
