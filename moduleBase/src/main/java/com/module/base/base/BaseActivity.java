@@ -31,6 +31,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (isUseStatusBarColor()) {
             StatusUtil.setStatusBar(this, false, false);
             StatusUtil.setStatusTextColor(true, this);
@@ -46,6 +47,13 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
             presenter.attachView((V) this);
             presenter.fetch();
         }
+    }
+
+    /**
+     * 是否使用沉浸式状态栏
+     */
+    public boolean isUseStatusBarColor() {
+        return true;
     }
 
     /**
@@ -159,13 +167,6 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
      */
     public void onRightClick() {
 
-    }
-
-    /**
-     * 是否使用沉浸式状态栏
-     */
-    public boolean isUseStatusBarColor() {
-        return true;
     }
 
 }

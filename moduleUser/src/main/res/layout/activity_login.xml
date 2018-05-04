@@ -28,7 +28,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/login_sharp_gary">
+                android:background="@drawable/login_sharp_gray">
 
                 <ImageView
                     android:layout_width="22dp"
@@ -55,7 +55,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/login_sharp_gary">
+                android:background="@drawable/login_sharp_gray">
 
                 <ImageView
                     android:layout_width="22dp"

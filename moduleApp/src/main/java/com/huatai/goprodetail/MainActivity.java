@@ -14,9 +14,11 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.module.base.utils.StatusUtil;
 import com.module.home.FragmentHome;
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
+import com.module.mine.FragmentMine;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -61,7 +63,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         FragmentHome home2 = FragmentHome.newInstance("商城");
         FragmentHome home3 = FragmentHome.newInstance("0元首饰盒");
         FragmentHome home4 = FragmentHome.newInstance("拼团大厅");
-        FragmentHome home5 = FragmentHome.newInstance("我的拼跌");
+        FragmentMine home5 = FragmentMine.newInstance("我的拼跌");
 
         fragments.add(home1);
         fragments.add(home2);
@@ -107,26 +109,39 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     }
 
     @Override
+    public void onClick(View v) {
+        super.onClick(v);
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        boolean useDart = false;
         switch (item.getItemId()) {
             case R.id.navigation_home:
+                useDart = true;
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.navigation_mall:
+                useDart = true;
                 viewPager.setCurrentItem(1);
                 break;
             case R.id.navigation_jewelry:
+                useDart = true;
                 viewPager.setCurrentItem(2);
                 break;
             case R.id.navigation_hall:
+                useDart = true;
                 viewPager.setCurrentItem(3);
                 break;
             case R.id.navigation_mine:
+                useDart = false;
                 viewPager.setCurrentItem(4);
                 break;
             default:
                 break;
+
         }
+        StatusUtil.setStatusTextColor(useDart, this);
         return true;
     }
 
@@ -145,10 +160,5 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             return fragments.size();
         }
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
     }
 }

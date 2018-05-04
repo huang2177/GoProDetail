@@ -58,8 +58,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     }
 
 
-
-
     protected <T extends View> T f(int id) {
         return viewRoot.findViewById(id);
     }
