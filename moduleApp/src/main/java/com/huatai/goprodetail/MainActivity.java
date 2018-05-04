@@ -73,6 +73,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
         viewPager.setAdapter(new ViewPagerAdapter());
         //  test
+
+
     }
 
     /**
