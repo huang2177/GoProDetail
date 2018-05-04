@@ -65,7 +65,7 @@ public class FragmentHome extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-        //ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
+        ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
     }
 
 
