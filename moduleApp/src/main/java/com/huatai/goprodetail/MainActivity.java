@@ -14,6 +14,8 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.module.base.base.Constant;
 import com.module.base.utils.StatusUtil;
 import com.module.home.FragmentHome;
 import com.module.base.base.BaseActivity;
@@ -28,6 +30,8 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
+
+@Route(path = Constant.PATH_MAINACTIVITY)
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private ViewPager viewPager;
@@ -73,8 +77,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
         viewPager.setAdapter(new ViewPagerAdapter());
         //  test
-
-
 
 
     }

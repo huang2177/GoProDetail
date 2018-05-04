@@ -8,10 +8,7 @@
 
     <include layout="@layout/titlebar_layout" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorLightGray" />
+
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -27,12 +24,12 @@
                 android:layout_height="45dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="80dp"
                 android:background="@drawable/login_sharp_gray">
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="24dp"
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
                     android:src="@drawable/ic_login_user" />
@@ -40,12 +37,12 @@
                 <EditText
                     android:id="@+id/login_phone_ed"
                     android:layout_width="match_parent"
-                    android:layout_height="33dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="25dp"
                     android:background="@null"
                     android:hint="请输入手机号"
-                    android:textSize="13dp" />
+                    android:textSize="14.0sp" />
             </LinearLayout>
 
 
@@ -58,8 +55,8 @@
                 android:background="@drawable/login_sharp_gray">
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="24dp"
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
                     android:src="@drawable/ic_login_user" />
@@ -67,12 +64,12 @@
                 <EditText
                     android:id="@+id/login_password_ed"
                     android:layout_width="match_parent"
-                    android:layout_height="33dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="25dp"
                     android:background="@null"
                     android:hint="请输入密码"
-                    android:textSize="13dp" />
+                    android:textSize="14.0sp" />
             </LinearLayout>
 
             <Button
@@ -85,15 +82,15 @@
                 android:background="@drawable/bg_btn_brown"
                 android:text="登录"
                 android:textColor="@color/colorWhite"
-                android:textSize="16.0sp" />
+                android:textSize="18.0sp" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
-                android:layout_marginTop="20dp">
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/login_register_tv"
@@ -104,11 +101,11 @@
                     android:padding="5dp"
                     android:text="注册"
                     android:textColor="@color/colorBrown"
-                    android:textSize="14.0sp" />
+                    android:textSize="16.0sp" />
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="26dp"
+                    android:layout_height="23dp"
                     android:background="@color/colorDeepBrown" />
 
                 <TextView
@@ -120,8 +117,7 @@
                     android:padding="5dp"
                     android:text="忘记密码"
                     android:textColor="@color/colorBrown"
-                    android:textSize="14.0sp" />
-
+                    android:textSize="16.0sp" />
             </LinearLayout>
 
         </LinearLayout>

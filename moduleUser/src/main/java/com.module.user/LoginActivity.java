@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
 import com.module.base.base.Constant;
@@ -20,10 +21,11 @@ import com.module.base.base.Constant;
 @Route(path = Constant.PATH_LOGINACTIVITY)
 public class LoginActivity extends BaseActivity {
 
-    private EditText login_phone_ed, login_password_ed;
-    private Button login_but;
-    private TextView login_register_tv, login_forgetpass_tv;
+    private EditText edPhone, edPassword;
+    private Button btLogin;
+    private TextView tvRegister, tvForgetpass;
 
+    private String tvPhone, tvPassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,20 +41,24 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        login_phone_ed = findViewById(R.id.login_phone_ed);
-        login_password_ed = findViewById(R.id.login_password_ed);
-        login_but = findViewById(R.id.login_but);
-        login_register_tv = findViewById(R.id.login_register_tv);
-        login_forgetpass_tv = findViewById(R.id.login_forgetpass_tv);
+        edPhone = findViewById(R.id.login_phone_ed);
+        edPassword = findViewById(R.id.login_password_ed);
+        btLogin = findViewById(R.id.login_but);
+        tvRegister = findViewById(R.id.login_register_tv);
+        tvForgetpass = findViewById(R.id.login_forgetpass_tv);
+
+
+        tvPhone = edPhone.getText().toString();
+        tvPassword = edPassword.getText().toString();
 
     }
 
     @Override
     public void setListener() {
         super.setListener();
-        login_but.setOnClickListener(this);
-        login_register_tv.setOnClickListener(this);
-        login_forgetpass_tv.setOnClickListener(this);
+        btLogin.setOnClickListener(this);
+        tvRegister.setOnClickListener(this);
+        tvForgetpass.setOnClickListener(this);
     }
 
     @Override
@@ -65,11 +71,15 @@ public class LoginActivity extends BaseActivity {
         super.onClick(v);
         int i = v.getId();
         if (i == R.id.login_but) {
-
+            //登录
+            ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
+            finish();
         } else if (i == R.id.login_register_tv) {
+            //注册
             startActivity(new Intent(this, RegisterActivity.class));
         } else if (i == R.id.login_forgetpass_tv) {
-
+            //忘记密码
+            startActivity(new Intent(this, ForhetPassWordActivity.class));
         }
     }
 

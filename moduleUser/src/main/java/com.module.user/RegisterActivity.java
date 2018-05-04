@@ -1,5 +1,6 @@
 package com.module.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -7,8 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
+import com.module.base.base.Constant;
 
 /**
  * Created by shibing on 18/5/3.
@@ -16,9 +19,12 @@ import com.module.base.base.BasePresenter;
 
 public class RegisterActivity extends BaseActivity {
 
-    private EditText phone, password, code, invicode;
+    private EditText Edphone, Edpassword, Edcode, Edinvicode;
     private TextView sendcode, agreement;
     private Button register;
+
+
+    private String Tvphone, Tvpassword, Tvcode, Tvinvicode;
 
 
     @Override
@@ -34,13 +40,22 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        phone = findViewById(R.id.register_phone_ed);
-        password = findViewById(R.id.register_pwass_ed);
-        code = findViewById(R.id.registetr_code_ed);
+        Edphone = findViewById(R.id.register_phone_ed);
+        Edpassword = findViewById(R.id.register_pwass_ed);
+        Edcode = findViewById(R.id.registetr_code_ed);
+        Edinvicode = findViewById(R.id.register_invit_ed);
+
         sendcode = findViewById(R.id.register_sendcode_tv);
-        invicode = findViewById(R.id.register_invit_ed);
         register = findViewById(R.id.register_but);
         agreement = findViewById(R.id.register_agre_tv);
+
+        //
+        Tvphone = Edphone.getText().toString();
+        Tvpassword = Edpassword.getText().toString();
+        Tvcode = Edcode.getText().toString();
+        Tvinvicode = Edinvicode.getText().toString();
+
+
     }
 
     @Override
@@ -57,12 +72,33 @@ public class RegisterActivity extends BaseActivity {
     }
 
 
+    /**
+     * 监听事件
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()){
-           /* case R.id.register_but:
-                break;*/
+        int i = v.getId();
+        if (i == R.id.register_but) {
+            //注册
+            ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
+            finish();
+
+        } else if (i == R.id.registetr_code_ed) {
+            //发送验证码
+
+        } else if (i == R.id.register_agre_tv) {
+            //协议
+            startActivity(new Intent(this, AgreementActivity.class));
         }
+    }
+
+
+    @Override
+    public void onRightClick() {
+        super.onRightClick();
+        startActivity(new Intent(this, HelpActivity.class));
     }
 }
