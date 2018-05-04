@@ -43,6 +43,6 @@ public class FragmentHome extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(activity, LoginActivity.class));
+        //startActivity(new Intent(activity, LoginActivity.class));
     }
 }
