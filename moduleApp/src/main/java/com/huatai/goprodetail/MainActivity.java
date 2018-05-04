@@ -72,6 +72,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         fragments.add(home5);
 
         viewPager.setAdapter(new ViewPagerAdapter());
+        //  test
     }
 
     /**
