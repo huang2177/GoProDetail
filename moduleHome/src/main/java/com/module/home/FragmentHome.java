@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.base.BaseFragment;
+import com.module.base.base.Constant;
 
 /**
  * @author Huangshuang  2018/5/3 0003
@@ -43,6 +45,6 @@ public class FragmentHome extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-        //startActivity(new Intent(activity, LoginActivity.class));
+        ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
     }
 }

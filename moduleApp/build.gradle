@@ -27,5 +27,9 @@ android {
 }
 
 dependencies {
-   api project(':moduleHome')
+    api project(':moduleHome')
+    api project(':moduleMall')
+    api project(':moduleMine')
+    api project(':moduleUser')
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
 }

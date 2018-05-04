@@ -24,7 +24,7 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("注册");
+        title("注册").rightText("帮助");
     }
 
     @Override

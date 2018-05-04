@@ -145,9 +145,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             return fragments.size();
         }
 
-        //test
-
-        //test11111
     }
 
     @Override

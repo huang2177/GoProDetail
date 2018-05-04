@@ -18,11 +18,8 @@ public class Constant {
 
     public final static String PATH_MAINACTIVITY = "/main/mainActivity";
 
-    public final static String PATH_LOGINACTIVITY = "/login/loginActivity";
+    public final static String PATH_LOGINACTIVITY = "/user/loginActivity";
 
-    public final static String PATH_SOURCEDETAILACTIVITY= "/source/sourceDetailActivity";
-
-    public final static String PATH_COMPLETECARINFOACTIVITY= "/login/completeCarInfoActivity";
 
 
 }

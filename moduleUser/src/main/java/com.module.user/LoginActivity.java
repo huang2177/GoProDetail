@@ -8,15 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
+import com.module.base.base.Constant;
 
 /**
  * Created by shibing on 18/5/3.
  */
 
+@Route(path = Constant.PATH_LOGINACTIVITY)
 public class LoginActivity extends BaseActivity {
-
 
     private EditText login_phone_ed, login_password_ed;
     private Button login_but;
@@ -27,7 +29,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        title("登录").rightText("完成");
+        title("登录").leftImageRes(0);
     }
 
     @Override
@@ -46,16 +48,6 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    public BasePresenter createPresenter() {
-        return null;
-    }
-
-    @Override
-    public void onRightClick() {
-        startActivity(new Intent(this, RegisterActivity.class));
-    }
-
-    @Override
     public void setListener() {
         super.setListener();
         login_but.setOnClickListener(this);
@@ -63,21 +55,26 @@ public class LoginActivity extends BaseActivity {
         login_forgetpass_tv.setOnClickListener(this);
     }
 
+    @Override
+    public BasePresenter createPresenter() {
+        return null;
+    }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        int i = v.getId();
+        if (i == R.id.login_but) {
 
-        /// TODO: 18/5/4  怎么不能switch
-      /*  switch (v.getId()) {
-            case R.id.login_but:
-                break;
+        } else if (i == R.id.login_register_tv) {
+            startActivity(new Intent(this, RegisterActivity.class));
+        } else if (i == R.id.login_forgetpass_tv) {
 
-            case R.id.login_register_tv:
-                break;
+        }
+    }
 
-            case R.id.login_forgetpass_tv:
-                break;
-        }*/
+    @Override
+    public void onRightClick() {
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 }

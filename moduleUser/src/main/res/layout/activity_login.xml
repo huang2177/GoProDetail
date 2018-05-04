@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/stub_layout" />
@@ -26,9 +25,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/login_sharp_gary">
 
                 <ImageView
@@ -53,8 +52,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/login_sharp_gary">
 
@@ -79,34 +78,33 @@
             <Button
                 android:id="@+id/login_but"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/ic_login_but"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/bg_btn_brown"
                 android:text="登录"
                 android:textColor="@color/colorWhite"
-                android:textSize="16dp" />
+                android:textSize="16.0sp" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
                 android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/login_register_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:padding="5dp"
                     android:text="注册"
                     android:textColor="@color/colorBrown"
-                    android:textSize="13dp" />
+                    android:textSize="14.0sp" />
 
                 <View
                     android:layout_width="1dp"
@@ -117,12 +115,12 @@
                     android:id="@+id/login_forgetpass_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:padding="5dp"
                     android:text="忘记密码"
                     android:textColor="@color/colorBrown"
-                    android:textSize="13dp" />
+                    android:textSize="14.0sp" />
 
             </LinearLayout>
 
