@@ -10,7 +10,7 @@ import com.module.base.base.BasePresenter;
  * Created by shibing on 18/5/4.
  */
 
-public class ForhetPassWordActivity extends BaseActivity {
+public class FindPSWActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class ForhetPassWordActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_forgetpassword;
+        return R.layout.activity_find_psw;
     }
 
     @Override

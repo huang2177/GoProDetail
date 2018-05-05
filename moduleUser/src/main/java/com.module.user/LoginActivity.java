@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity {
             startActivity(new Intent(this, RegisterActivity.class));
         } else if (i == R.id.login_forgetpass_tv) {
             //忘记密码
-            startActivity(new Intent(this, ForhetPassWordActivity.class));
+            startActivity(new Intent(this, FindPSWActivity.class));
         }
     }
 

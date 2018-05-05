@@ -1,8 +1,10 @@
 package com.module.user;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,18 +14,20 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
 import com.module.base.base.Constant;
+import com.module.base.utils.VerifyCodeUtil;
 
 /**
  * Created by shibing on 18/5/3.
  */
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.CountListener {
 
     private EditText Edphone, Edpassword, Edcode, Edinvicode;
     private TextView sendcode, agreement;
     private Button register;
 
 
+    private VerifyCodeUtil util;
     private String Tvphone, Tvpassword, Tvcode, Tvinvicode;
 
 
@@ -40,6 +44,7 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
         Edphone = findViewById(R.id.register_phone_ed);
         Edpassword = findViewById(R.id.register_pwass_ed);
         Edcode = findViewById(R.id.registetr_code_ed);
@@ -55,7 +60,7 @@ public class RegisterActivity extends BaseActivity {
         Tvcode = Edcode.getText().toString();
         Tvinvicode = Edinvicode.getText().toString();
 
-
+        util = new VerifyCodeUtil(this, this);
     }
 
     @Override
@@ -86,8 +91,9 @@ public class RegisterActivity extends BaseActivity {
             ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
             finish();
 
-        } else if (i == R.id.registetr_code_ed) {
+        } else if (i == R.id.register_sendcode_tv) {
             //发送验证码
+            util.startCount();
 
         } else if (i == R.id.register_agre_tv) {
             //协议
@@ -98,7 +104,23 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void onRightClick() {
-        super.onRightClick();
         startActivity(new Intent(this, HelpActivity.class));
+    }
+
+    @Override
+    public void count(Activity activity, String count) {
+        if (TextUtils.equals(count, "0")) {
+            sendcode.setText("重新发送");
+            sendcode.setClickable(true);
+        } else {
+            sendcode.setClickable(false);
+            sendcode.setText(count + "s");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        util.setStop(true);
     }
 }
