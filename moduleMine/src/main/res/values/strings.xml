@@ -1,2 +1,5 @@
 <resources>
+
+    <string name="invi_text">您推广的用户，务必告知他在注册时，填写您的邀请码</string>
+
 </resources>
