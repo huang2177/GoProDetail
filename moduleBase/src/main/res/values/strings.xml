@@ -18,4 +18,7 @@
     <string name="text_home_pinged">
         <font color="#a0563c" size="18"><b><tt>41213</tt></b>人</font>\n拼团成功
     </string>
+
+    <string name="invi_text">您推广的用户，务必告知他在注册时，填写您的邀请码</string>
+
 </resources>
