@@ -18,6 +18,7 @@ import com.module.mine.adapter.MineAdapter;
 import com.module.mine.ui.BalanceActivity;
 import com.module.mine.ui.CardActivity;
 import com.module.mine.ui.InvitationCodeActivity;
+import com.module.mine.ui.MyOpenCoilActivity;
 import com.module.mine.ui.MyTeamActivity;
 import com.module.mine.ui.SystemMessActivity;
 import com.module.mine.ui.UserInfoActivity;
@@ -119,9 +120,12 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
                 startActivity(new Intent(activity,MyTeamActivity.class));
                 break;
             case 1:
+                startActivity(new Intent(activity,CollageReturnsActivity.class));
                 break;
             case 2:
+                startActivity(new Intent(activity,MyOpenCoilActivity.class));
                 break;
+
             case 3:
                 break;
             case 4:

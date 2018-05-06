@@ -20,5 +20,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.CardActivity" />
         <activity android:name=".ui.MyTeamActivity" />
+        <activity android:name=".ui.MyOpenCoilActivity" />
+        <activity android:name=".ui.GiveOpenCoilActivity" />
+        <activity android:name=".CollageReturnsActivity" />
     </application>
 </manifest>
