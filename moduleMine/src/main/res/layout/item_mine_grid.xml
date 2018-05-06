@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <LinearLayout
@@ -25,7 +24,7 @@
         android:id="@+id/mine_divider"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/colorLittleGray"
+        android:background="@color/colorRiceWhite"
         android:visibility="gone" />
 
 </LinearLayout>

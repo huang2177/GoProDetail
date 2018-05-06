@@ -2,6 +2,9 @@ package com.module.mine;
 
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 
 import com.module.base.base.BaseFragment;
 import com.module.base.listener.AParamListener;
+import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
 import com.module.mine.ui.BalanceActivity;
 import com.module.mine.ui.InvitationCodeActivity;
@@ -26,10 +30,11 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
         , AParamListener {
 
     private ImageView head;
-    private TextView phoneTv, mesTv, banlanceTv, inCodeTv;
     private FrameLayout messFra;
+    private RecyclerView recyclerView;
     private LinearLayout inCodeLay, banLanceLay, cardLay;
-    private GridView gridView;
+    private TextView phoneTv, mesTv, banlanceTv, inCodeTv;
+
     private MineAdapter mineAdapter;
 
 
@@ -53,10 +58,20 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
         inCodeLay = f(R.id.mine_incode_lay);
         banLanceLay = f(R.id.mine_banlance_lay);
         cardLay = f(R.id.mine_card_lay);
-        gridView = f(R.id.mine_grid);
+        recyclerView = f(R.id.mine_recycler);
+
+        initRecycle();
+    }
+
+    private void initRecycle() {
+        GridLayoutManager manager = new GridLayoutManager(activity, 3);
+        manager.setOrientation(OrientationHelper.VERTICAL);
+        recyclerView.addItemDecoration(new XItemDecoration(activity));
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setLayoutManager(manager);
 
         mineAdapter = new MineAdapter(activity, this);
-        gridView.setAdapter(mineAdapter);
+        recyclerView.setAdapter(mineAdapter);
     }
 
     @Override
@@ -67,7 +82,6 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
         inCodeLay.setOnClickListener(this);
         banLanceLay.setOnClickListener(this);
         cardLay.setOnClickListener(this);
-        gridView.setOnItemClickListener(this);
     }
 
     @Override

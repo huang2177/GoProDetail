@@ -6,15 +6,14 @@
 
     <include layout="@layout/child_fragment_mine_info" />
 
-    <GridView
-        android:id="@+id/mine_grid"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mine_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorLittleGray"
-        android:horizontalSpacing="1px"
-        android:numColumns="3"
-        android:verticalSpacing="1px">
+        android:layout_height="wrap_content" />
 
-    </GridView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorRiceWhite" />
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.module.mine.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import java.util.List;
  * Created by shibing on 18/5/5.
  */
 
-public class MineAdapter extends BaseAdapter {
+public class MineAdapter extends RecyclerView.Adapter {
 
     private AParamListener listener;
     private Activity activity;
@@ -69,14 +70,16 @@ public class MineAdapter extends BaseAdapter {
                 , 0);
     }
 
+
     @Override
-    public int getCount() {
-        return names.size();
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(activity).inflate(R.layout.item_mine_grid, null);
+        return new ViewHolder(view);
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        initView(position, (ViewHolder) holder);
     }
 
     @Override
@@ -85,19 +88,8 @@ public class MineAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(activity).inflate(R.layout.item_mine_grid, null);
-            viewHolder = new ViewHolder(convertView);
-
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-
-        initView(position, viewHolder);
-        return convertView;
+    public int getItemCount() {
+        return names.size();
     }
 
     private void initView(int position, ViewHolder viewHolder) {
@@ -115,12 +107,13 @@ public class MineAdapter extends BaseAdapter {
         }
     }
 
-    class ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv;
         View divider;
 
         ViewHolder(View view) {
+            super(view);
             tv = view.findViewById(R.id.mine_tv_item);
             divider = view.findViewById(R.id.mine_divider);
         }
