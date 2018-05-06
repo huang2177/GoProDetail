@@ -29,9 +29,8 @@ import java.util.List;
 public class FragmentHome extends BaseFragment {
 
     private Banner banner;
-    private XGridView gridView;
-    private RecyclerView recyclerView;
     private EditText editSearch;
+    private RecyclerView recyclerView;
     private TextView tvLocation, tvNewUserPoint, tvNewUser, tvPinging, tvPinged;
 
     private HomeListAdpter adpter;
@@ -53,7 +52,6 @@ public class FragmentHome extends BaseFragment {
     @Override
     public void initView() {
         banner = f(R.id.home_banner);
-        // gridView = f(R.id.home_grid);
         editSearch = f(R.id.home_ed);
         tvNewUser = f(R.id.home_new_user);
         tvPinged = f(R.id.home_pinged_num);

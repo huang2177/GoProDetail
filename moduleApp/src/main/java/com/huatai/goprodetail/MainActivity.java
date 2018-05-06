@@ -20,6 +20,7 @@ import com.module.base.utils.StatusUtil;
 import com.module.home.FragmentHome;
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
+import com.module.mall.FragmentMall;
 import com.module.mine.FragmentMine;
 
 import java.lang.reflect.Field;
@@ -64,8 +65,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
      */
     private void initFragment() {
         FragmentHome home1 = FragmentHome.newInstance("首页");
-        FragmentHome home2 = FragmentHome.newInstance("商城");
-        FragmentHome home3 = FragmentHome.newInstance("0元首饰盒");
+        FragmentMall home2 = FragmentMall.newInstance(1);
+        FragmentMall home3 = FragmentMall.newInstance(2);
         FragmentHome home4 = FragmentHome.newInstance("拼团大厅");
         FragmentMine home5 = FragmentMine.newInstance("我的拼跌");
 
