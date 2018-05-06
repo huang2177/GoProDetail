@@ -1,8 +1,10 @@
 package com.module.mall;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +16,10 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.base.BaseFragment;
 import com.module.base.base.Constant;
+import com.module.base.listener.OnItemClickListener;
 import com.module.base.widgets.XGridView;
 import com.module.mall.adpter.MallListAdpter;
+import com.module.mall.ui.ProDetailActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -28,7 +32,7 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
-public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelectedListener {
+public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelectedListener, OnItemClickListener {
 
     private TabLayout tabLayout;
     private EditText editSearch;
@@ -53,9 +57,9 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public void initView() {
-        tabLayout = f(R.id.mall_tab);
+        tabLayout = f(R.id.ping_tab);
         editSearch = f(R.id.home_ed);
-        recyclerView = f(R.id.mall_recycle);
+        recyclerView = f(R.id.ping_recycle);
         tvLocation = f(R.id.home_location_tv);
         tvNewUserPoint = f(R.id.home_new_user_tv);
 
@@ -80,6 +84,7 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
         adpter = new MallListAdpter(activity, getData());
+        adpter.addOnItemClickListener(this);
         recyclerView.setAdapter(adpter);
     }
 
@@ -120,5 +125,10 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        activity.startActivity(new Intent(activity, ProDetailActivity.class));
     }
 }

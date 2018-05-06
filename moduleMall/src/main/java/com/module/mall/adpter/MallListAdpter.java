@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.module.base.listener.OnItemClickListener;
+import com.module.mall.FragmentMall;
 import com.module.mall.R;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class MallListAdpter extends RecyclerView.Adapter {
 
     private Context context;
     private List<Integer> list;
+    private OnItemClickListener listener;
 
     public MallListAdpter(Context context, List<Integer> list) {
         this.list = list;
@@ -32,7 +35,7 @@ public class MallListAdpter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_mall_list, null);
-        return new ViewHolder(view);
+        return new ViewHolder(view, viewType);
     }
 
     @Override
@@ -61,11 +64,20 @@ public class MallListAdpter extends RecyclerView.Adapter {
         return list.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPro;
         TextView tvName, tvPirce, tvOldPirce;
 
-        ViewHolder(View view) {
+        ViewHolder(View view, final int viewType) {
             super(view);
             ivPro = view.findViewById(R.id.item_img_pro);
             tvName = view.findViewById(R.id.item_tv_name);
@@ -73,6 +85,12 @@ public class MallListAdpter extends RecyclerView.Adapter {
             tvOldPirce = view.findViewById(R.id.item_tv_old_pirce);
 
             tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(viewType);
+                }
+            });
         }
     }
 }

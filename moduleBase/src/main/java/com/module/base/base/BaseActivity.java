@@ -34,7 +34,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
 
         if (isUseStatusBarColor()) {
             StatusUtil.setStatusBar(this, false, false);
-            StatusUtil.setStatusTextColor(true, this);
+            StatusUtil.setStatusTextColor(isUseDart(), this);
         }
         setContentView(getLayoutId());
 
@@ -56,6 +56,12 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
         return true;
     }
 
+    /**
+     * 是否使用沉浸式状态栏
+     */
+    public boolean isUseDart() {
+        return true;
+    }
     /**
      * 用于实现类返回视图
      *

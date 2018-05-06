@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_pro_detail">
+
+    <com.youth.banner.Banner
+        android:id="@+id/pro_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/pro_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text="APPLE iPhone X 256G 黑白可选 5.1寸智能手机"
+        android:textColor="@color/colorLittleBlack"
+        android:textSize="16.0sp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/pro_pinged_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3120人拼团成功"
+            android:textColor="@color/colorBrown" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pro_pinged_num"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/pro_pirce"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.2"
+                android:background="@drawable/bg_btn_brown1"
+                android:gravity="center"
+                android:text="0元购"
+                android:textColor="@color/colorWhite"
+                android:textSize="18.0sp" />
+
+            <TextView
+                android:id="@+id/pro_old_pirce"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="￥4321"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@+id/pro_freight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="运费 ￥0"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@+id/pro_inventory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="库存 3件"
+                android:textSize="16.0sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/pro_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/ic_heart_brown1"
+            android:text="收藏"
+            android:textColor="@color/colorBrown" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

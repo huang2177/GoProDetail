@@ -83,6 +83,8 @@ public class PingListAdpter extends RecyclerView.Adapter {
             tvPirce = view.findViewById(R.id.item_tv_pirce);
             tvColor = view.findViewById(R.id.item_tv_color);
             tvProName = view.findViewById(R.id.item_tv_pro_name);
+
+            ivHead.setShapeType(1);
         }
     }
 }

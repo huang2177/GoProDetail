@@ -1,2 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.module.mall" />
+    package="com.module.mall">
+
+    <application>
+        <activity
+            android:name=".ui.ProDetailActivity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

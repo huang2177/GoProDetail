@@ -36,7 +36,7 @@ public class CollageReturnsActivity extends BaseActivity implements TabLayout.On
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("拼团返现").rightImageRes(0);
+        title("拼团返现");
     }
 
     @Override

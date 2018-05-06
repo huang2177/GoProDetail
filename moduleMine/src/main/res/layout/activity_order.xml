@@ -9,6 +9,6 @@
 
     <include layout="@layout/titlebar_layout" />
 
-    <include layout="@layout/child_ping" />
+    <include layout="@layout/child_ping_list" />
 
 </LinearLayout>

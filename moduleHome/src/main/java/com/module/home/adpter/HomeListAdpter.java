@@ -51,6 +51,7 @@ public class HomeListAdpter extends RecyclerView.Adapter {
 
             viewHolder.tvOldPirce.setText("￥7467");
             viewHolder.tvOldPirce.setVisibility(View.VISIBLE);
+            viewHolder.ivPro.setPadding(0, 20, 0, 0);
         }
     }
 
