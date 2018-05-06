@@ -51,11 +51,16 @@ public class XItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
-        //画水平和垂直分割线
         drawHorizontalDivider(c, parent);
         drawVerticalDivider(c, parent);
     }
 
+    /**
+     * //画垂直分割线
+     *
+     * @param c
+     * @param parent
+     */
     public void drawVerticalDivider(Canvas c, RecyclerView parent) {
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -92,12 +97,16 @@ public class XItemDecoration extends RecyclerView.ItemDecoration {
             if (mColorPaint != null) {
                 c.drawRect(left, top, right, bottom, mColorPaint);
             }
-
         }
     }
 
+    /**
+     * //画水平分割线
+     *
+     * @param c
+     * @param parent
+     */
     public void drawHorizontalDivider(Canvas c, RecyclerView parent) {
-
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
