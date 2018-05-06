@@ -231,6 +231,9 @@ public class RoundImageView extends ImageView {
      */
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
         try {
+            if (drawable == null) {
+                return null;
+            }
             Bitmap bitmap;
             if (drawable instanceof BitmapDrawable) {
                 return ((BitmapDrawable) drawable).getBitmap();
