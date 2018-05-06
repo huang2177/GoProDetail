@@ -2,9 +2,7 @@ package com.module.mall;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
@@ -14,7 +12,6 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.base.BaseFragment;
 import com.module.base.base.Constant;
-import com.module.mall.adpter.MallListAdpter;
 import com.module.mall.adpter.PingListAdpter;
 
 import java.util.Arrays;
