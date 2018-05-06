@@ -18,5 +18,7 @@
         <activity
             android:name=".ui.BalanceActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.CardActivity" />
+        <activity android:name=".ui.MyTeamActivity" />
     </application>
 </manifest>

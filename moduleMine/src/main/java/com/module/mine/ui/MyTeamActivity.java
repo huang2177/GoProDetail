@@ -4,49 +4,52 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
+import com.module.base.listener.OnItemClickListener;
 import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XListView;
 import com.module.mine.R;
-import com.module.mine.adapter.BalanceAdapter;
+import com.module.mine.adapter.MyTeamAdapter;
 
 /**
  * Created by shibing on 18/5/6.
  */
 
-public class BalanceActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class MyTeamActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
-
-    private TextView tvMoney;
-    private LinearLayout tvPut, tvRec;
+    private ImageView imageHead, imageTelPhone;
+    private TextView tvName, tvPhone;
     private XListView listView;
 
-    private BalanceAdapter balanceAdapter;
+
+    private MyTeamAdapter myTeamAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("余额").rightImageRes(0);
+        title("我的团队").rightImageRes(0);
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_balance;
+        return R.layout.activity_myteam;
     }
 
     @Override
     public void initView() {
-        tvMoney = findViewById(R.id.balance_money_tv);
-        tvPut = findViewById(R.id.balance_put_lay);
-        tvRec = findViewById(R.id.balance_rec_lay);
-        listView = findViewById(R.id.balance_listview);
+        imageHead = findViewById(R.id.myteam_item_head_img);
+        imageTelPhone = findViewById(R.id.myteam_telphone_img);
+        tvName = findViewById(R.id.myteam_name_tv);
+        tvPhone = findViewById(R.id.myteam_phone_tv);
+        listView = findViewById(R.id.myteam_list);
+
+        myTeamAdapter = new MyTeamAdapter(this);
+        listView.setAdapter(myTeamAdapter);
         listView.setOnItemClickListener(this);
-        balanceAdapter = new BalanceAdapter(this);
-        listView.setAdapter(balanceAdapter);
     }
 
     @Override
@@ -55,37 +58,22 @@ public class BalanceActivity extends BaseActivity implements AdapterView.OnItemC
     }
 
 
-
     @Override
     public void setListener() {
         super.setListener();
-        tvPut.setOnClickListener(this);
-        tvRec.setOnClickListener(this);
+        imageTelPhone.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        int i = v.getId();
-        //提现
-        if (i == R.id.balance_put_lay) {
-            ToastUtil.show(this, "提现");
-        }
-        //充值
-        else if (i == R.id.balance_rec_lay) {
-            ToastUtil.show(this, "充值");
-        }
+        ToastUtil.show(this, "打电话");
     }
+
 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ToastUtil.show(this, "监听事件");
+
     }
-
-
-
-
-
 }

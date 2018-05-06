@@ -5,12 +5,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.module.base.base.BaseFragment;
 import com.module.base.listener.OnItemClickListener;
@@ -18,7 +16,9 @@ import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
 import com.module.mine.ui.BalanceActivity;
+import com.module.mine.ui.CardActivity;
 import com.module.mine.ui.InvitationCodeActivity;
+import com.module.mine.ui.MyTeamActivity;
 import com.module.mine.ui.SystemMessActivity;
 import com.module.mine.ui.UserInfoActivity;
 
@@ -106,7 +106,7 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
         }
         //银行卡
         else if (i == R.id.mine_card_lay) {
-
+            startActivity(new Intent(activity,CardActivity.class));
         }
     }
 
@@ -116,6 +116,7 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
         ToastUtil.show(activity, position + "");
         switch (position) {
             case 0:
+                startActivity(new Intent(activity,MyTeamActivity.class));
                 break;
             case 1:
                 break;
@@ -136,8 +137,6 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
             case 9:
                 break;
             case 10:
-                break;
-            case 11:
                 break;
 
         }

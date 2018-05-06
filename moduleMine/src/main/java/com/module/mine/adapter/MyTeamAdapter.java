@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.module.mine.R;
@@ -13,12 +14,12 @@ import com.module.mine.R;
  * Created by shibing on 18/5/5.
  */
 
-public class BalanceAdapter extends BaseAdapter {
+public class MyTeamAdapter extends BaseAdapter {
 
     private Activity activity;
 
 
-    public BalanceAdapter(Activity activity) {
+    public MyTeamAdapter(Activity activity) {
         this.activity = activity;
     }
 
@@ -41,7 +42,7 @@ public class BalanceAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(activity).inflate(R.layout.item_balance_list, null);
+            convertView = LayoutInflater.from(activity).inflate(R.layout.item_myteam_list, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -53,13 +54,17 @@ public class BalanceAdapter extends BaseAdapter {
 
     class ViewHolder {
 
-        TextView title, money, time;
+        TextView tvName, tv_Phone;
+
+        ImageView imageHead, iamgeTelPhone;
 
         public ViewHolder(View view) {
 
-            title = view.findViewById(R.id.balance_title_item);
-            money = view.findViewById(R.id.balance_money_item);
-            time = view.findViewById(R.id.balance_time_item);
+            tvName = view.findViewById(R.id.myteam_item_name_tv);
+            tv_Phone = view.findViewById(R.id.myteam_item_phone_tv);
+            imageHead = view.findViewById(R.id.myteam_item_head_img);
+            iamgeTelPhone = view.findViewById(R.id.myteam_item_telphone_img);
+
         }
     }
 }
