@@ -1,22 +1,17 @@
 package com.module.mine.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.module.base.listener.AParamListener;
+import com.module.base.listener.OnItemClickListener;
 import com.module.mine.FragmentMine;
 import com.module.mine.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,13 +21,13 @@ import java.util.List;
 
 public class MineAdapter extends RecyclerView.Adapter {
 
-    private AParamListener listener;
+    private OnItemClickListener listener;
     private Activity activity;
 
     private List<String> names;
     private List<Integer> resId;
 
-    public MineAdapter(Activity activity, AParamListener listener) {
+    public MineAdapter(Activity activity, OnItemClickListener listener) {
 
         this.activity = activity;
         this.listener = listener;
@@ -74,7 +69,7 @@ public class MineAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(R.layout.item_mine_grid, null);
-        return new ViewHolder(view);
+        return new ViewHolder(view, viewType);
     }
 
     @Override
@@ -92,6 +87,11 @@ public class MineAdapter extends RecyclerView.Adapter {
         return names.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     private void initView(int position, ViewHolder viewHolder) {
         if (TextUtils.isEmpty(names.get(position))) {
             return;
@@ -107,15 +107,30 @@ public class MineAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * 添加item监听
+     *
+     * @param listener
+     */
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv;
         View divider;
 
-        ViewHolder(View view) {
+        ViewHolder(View view, final int viewType) {
             super(view);
             tv = view.findViewById(R.id.mine_tv_item);
             divider = view.findViewById(R.id.mine_divider);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(viewType);
+                }
+            });
         }
     }
 }

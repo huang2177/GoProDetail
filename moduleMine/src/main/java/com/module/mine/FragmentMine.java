@@ -1,20 +1,20 @@
 package com.module.mine;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.module.base.base.BaseFragment;
-import com.module.base.listener.AParamListener;
+import com.module.base.listener.OnItemClickListener;
+import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
 import com.module.mine.ui.BalanceActivity;
@@ -26,8 +26,7 @@ import com.module.mine.ui.UserInfoActivity;
  * @author Huangshuang  2018/5/4 0004
  */
 
-public class FragmentMine extends BaseFragment implements AdapterView.OnItemClickListener
-        , AParamListener {
+public class FragmentMine extends BaseFragment implements OnItemClickListener {
 
     private ImageView head;
     private FrameLayout messFra;
@@ -71,6 +70,7 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
         recyclerView.setLayoutManager(manager);
 
         mineAdapter = new MineAdapter(activity, this);
+        mineAdapter.addOnItemClickListener(this);
         recyclerView.setAdapter(mineAdapter);
     }
 
@@ -110,8 +110,10 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
         }
     }
 
+
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(int position) {
+        ToastUtil.show(activity, position + "");
         switch (position) {
             case 0:
                 break;
@@ -139,11 +141,5 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
                 break;
 
         }
-    }
-
-
-    @Override
-    public void callBack(Object o) {
-        //gridView.setBackgroundColor(ContextCompat.getColor(activity,R.color.colorWhite));
     }
 }
