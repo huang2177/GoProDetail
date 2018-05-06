@@ -31,6 +31,7 @@ public class PingListAdpter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        /*资源文件在base中*/
         View view = LayoutInflater.from(context).inflate(R.layout.item_ping_list, null);
         return new ViewHolder(view);
     }

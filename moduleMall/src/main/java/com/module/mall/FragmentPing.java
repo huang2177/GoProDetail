@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.base.BaseFragment;
 import com.module.base.base.Constant;
@@ -24,7 +25,7 @@ import java.util.List;
  *
  * @author Huangshuang  2018/5/3 0003
  */
-
+@Route(path = Constant.PATH_FRAGMENTPING)
 public class FragmentPing extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
@@ -45,6 +46,7 @@ public class FragmentPing extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public int getContentView() {
+        /*资源文件在base中*/
         return R.layout.fragment_ping;
     }
 

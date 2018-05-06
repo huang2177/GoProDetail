@@ -20,6 +20,9 @@ public class Constant {
 
     public final static String PATH_LOGINACTIVITY = "/user/loginActivity";
 
+    public final static String PATH_FRAGMENTPING = "/mall/FragmentPing";
+
+
 
 
 }
