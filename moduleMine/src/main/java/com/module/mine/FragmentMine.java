@@ -15,11 +15,14 @@ import com.module.base.listener.OnItemClickListener;
 import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
+import com.module.mine.ui.AddressActivity;
 import com.module.mine.ui.BalanceActivity;
 import com.module.mine.ui.CardActivity;
+import com.module.mine.ui.DepositActivity;
 import com.module.mine.ui.InvitationCodeActivity;
 import com.module.mine.ui.MyOpenCoilActivity;
 import com.module.mine.ui.MyTeamActivity;
+import com.module.mine.ui.OrderActivity;
 import com.module.mine.ui.SystemMessActivity;
 import com.module.mine.ui.UserInfoActivity;
 
@@ -107,7 +110,7 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
         }
         //银行卡
         else if (i == R.id.mine_card_lay) {
-            startActivity(new Intent(activity,CardActivity.class));
+            startActivity(new Intent(activity, CardActivity.class));
         }
     }
 
@@ -116,30 +119,43 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
     public void onItemClick(int position) {
         ToastUtil.show(activity, position + "");
         switch (position) {
+            //我的团队
             case 0:
-                startActivity(new Intent(activity,MyTeamActivity.class));
+                startActivity(new Intent(activity, MyTeamActivity.class));
                 break;
+            //拼团返现
             case 1:
-                startActivity(new Intent(activity,CollageReturnsActivity.class));
+                startActivity(new Intent(activity, CollageReturnsActivity.class));
                 break;
+            //我的开团卷
             case 2:
-                startActivity(new Intent(activity,MyOpenCoilActivity.class));
+                startActivity(new Intent(activity, MyOpenCoilActivity.class));
                 break;
-
+            //我的开团卷
             case 3:
+                startActivity(new Intent(activity, OrderActivity.class));
                 break;
+            //我的押金
             case 4:
+                startActivity(new Intent(activity, DepositActivity.class));
                 break;
+            //收货信息管理
             case 5:
+                startActivity(new Intent(activity,AddressActivity.class));
                 break;
+            //我的收藏
             case 6:
                 break;
+            //新手帮助
             case 7:
                 break;
+            //客服电话
             case 8:
                 break;
+            //投诉建议
             case 9:
                 break;
+            //系统设置
             case 10:
                 break;
 

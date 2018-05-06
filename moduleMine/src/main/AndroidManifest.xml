@@ -18,10 +18,23 @@
         <activity
             android:name=".ui.BalanceActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.CardActivity" />
-        <activity android:name=".ui.MyTeamActivity" />
-        <activity android:name=".ui.MyOpenCoilActivity" />
-        <activity android:name=".ui.GiveOpenCoilActivity" />
-        <activity android:name=".CollageReturnsActivity" />
+        <activity
+            android:name=".ui.CardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MyTeamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MyOpenCoilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.GiveOpenCoilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CollageReturnsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.OrderActivity" />
+        <activity android:name=".ui.DepositActivity" />
+        <activity android:name=".ui.AddressActivity" />
     </application>
 </manifest>

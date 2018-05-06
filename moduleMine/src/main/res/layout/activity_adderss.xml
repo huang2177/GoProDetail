@@ -8,12 +8,12 @@
 
     <include layout="@layout/titlebar_layout" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <ListView
+        android:id="@+id/address_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
-
-    <include layout="@layout/child_ping" />
+        android:layout_marginVertical="10dp"
+        android:divider="@null"
+        android:dividerHeight="10dp"></ListView>
 
 </LinearLayout>

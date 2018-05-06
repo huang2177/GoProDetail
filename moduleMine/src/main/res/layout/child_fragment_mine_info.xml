@@ -31,17 +31,17 @@
 
         <FrameLayout
             android:id="@+id/mine_mes_fra"
-            android:layout_width="35dp"
+            android:layout_width="25dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true">
 
             <TextView
                 android:id="@+id/mine_mes_tv"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_gravity="right"
-                android:background="@color/colorWhite" />
+                android:background="@drawable/sharp_oval_white" />
 
             <ImageView
                 android:id="@+id/mine_mes_img"

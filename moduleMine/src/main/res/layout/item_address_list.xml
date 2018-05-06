@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/address_item_naem_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张小萌"
+                android:textColor="@color/colorBlack"
+                android:textSize="18.0sp" />
+
+            <TextView
+                android:id="@+id/address_item_phone_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="18207182435"
+                android:textColor="@color/colorGray"
+                android:textSize="16.0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/address_item_default_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="默认地址"
+                android:textColor="@color/colorBrown"
+                android:textSize="18.0sp" />
+
+            <TextView
+                android:id="@+id/address_item_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="等到花儿也谢了"
+                android:textColor="@color/colorGray"
+                android:textSize="16.0sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:id="@+id/order_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:text="拼团订单"
+            android:textColor="@color/colorBrown"
+            android:textSize="14.0sp" />
+
+        <TextView
+            android:id="@+id/order_state_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="10dp"
+            android:text="拼团中"
+            android:textColor="@color/colorBrown"
+            android:textSize="14.0sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorRiceWhite"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/item_img_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pro" />
+
+        <TextView
+            android:id="@+id/item_tv_order_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/item_img_order"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="APPLE iPhone X 256G 黑白可选 5.1寸智能手机" />
+
+        <TextView
+            android:id="@+id/item_order_tv_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/item_img_order"
+            android:text="白色 256G" />
+
+        <TextView
+            android:id="@+id/item_order_tv_pirce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="￥6800"
+            android:textColor="@color/colorBrown" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_order_money_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|center"
+        android:padding="10dp"
+        android:text="实付 $998（运费：$0）"
+        android:textSize="14.0sp" />
+
+</LinearLayout>
