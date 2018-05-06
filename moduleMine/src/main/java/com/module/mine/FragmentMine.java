@@ -1,6 +1,7 @@
 package com.module.mine;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -75,19 +76,19 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
         int i = v.getId();
         //头像
         if (i == R.id.mine_hede_img) {
-            startActivity(new Intent(activity,UserInfoActivity.class));
+            startActivity(new Intent(activity, UserInfoActivity.class));
         }
         //消息
         else if (i == R.id.mine_mes_fra) {
-            startActivity(new Intent(activity,SystemMessActivity.class));
+            startActivity(new Intent(activity, SystemMessActivity.class));
         }
         //邀请码
         else if (i == R.id.mine_incode_lay) {
-            startActivity(new Intent(activity,InvitationCodeActivity.class));
+            startActivity(new Intent(activity, InvitationCodeActivity.class));
         }
         //余额
         else if (i == R.id.mine_banlance_lay) {
-            startActivity(new Intent(activity,BalanceActivity.class));
+            startActivity(new Intent(activity, BalanceActivity.class));
         }
         //银行卡
         else if (i == R.id.mine_card_lay) {
@@ -129,8 +130,6 @@ public class FragmentMine extends BaseFragment implements AdapterView.OnItemClic
 
     @Override
     public void callBack(Object o) {
-//        gridView.setVerticalSpacing(TextUtils.equals("5", o.toString())
-//                ? 10
-//                : 1);
+        //gridView.setBackgroundColor(ContextCompat.getColor(activity,R.color.colorWhite));
     }
 }

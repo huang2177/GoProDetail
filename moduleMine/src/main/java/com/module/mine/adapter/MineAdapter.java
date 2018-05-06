@@ -2,6 +2,7 @@ package com.module.mine.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,6 @@ public class MineAdapter extends BaseAdapter {
     }
 
     private void initList() {
-
         names = Arrays.asList("我的团队"
                 , "拼团返现"
                 , "我的开团卷"
@@ -50,7 +50,8 @@ public class MineAdapter extends BaseAdapter {
                 , "新手帮助"
                 , "客服电话"
                 , "投诉建议"
-                , "系统设置");
+                , "系统设置"
+                , null);
 
         resId = Arrays.asList(
                 R.drawable.ic_mine_team
@@ -64,18 +65,8 @@ public class MineAdapter extends BaseAdapter {
                 , R.drawable.ic_mine_problem
                 , R.drawable.ic_mine_telephone
                 , R.drawable.ic_mine_complaint
-                , R.drawable.ic_mine_set);
-//        list.add();
-//        list.add("");
-//        list.add("");
-//        list.add("我的订单");
-//        list.add("我的押金");
-//        list.add("收货信息管理");
-//        list.add("我的收藏");
-//        list.add("新手帮助");
-//        list.add("客服电话");
-//        list.add("投诉建议");
-//        list.add("系统设置");
+                , R.drawable.ic_mine_set
+                , 0);
     }
 
     @Override
@@ -104,25 +95,34 @@ public class MineAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tv.setText(names.get(position));
-        viewHolder.tv.setCompoundDrawablesWithIntrinsicBounds(0, resId.get(position), 0, 0);
 
-        if (position == 5) {
-            listener.callBack(position);
-        }
+        initView(position, viewHolder);
         return convertView;
     }
 
+    private void initView(int position, ViewHolder viewHolder) {
+        if (TextUtils.isEmpty(names.get(position))) {
+            return;
+        }
+        viewHolder.tv.setText(names.get(position));
+        viewHolder.tv.setCompoundDrawablesWithIntrinsicBounds(0
+                , resId.get(position)
+                , 0
+                , 0);
+
+        if (position == 3 || position == 4 || position == 5) {
+            viewHolder.divider.setVisibility(View.VISIBLE);
+        }
+    }
 
     class ViewHolder {
 
         TextView tv;
-        ImageView image;
+        View divider;
 
         ViewHolder(View view) {
-            image = view.findViewById(R.id.mine_img_item);
             tv = view.findViewById(R.id.mine_tv_item);
+            divider = view.findViewById(R.id.mine_divider);
         }
-
     }
 }

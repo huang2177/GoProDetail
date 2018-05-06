@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/fragment_mine_title" />
+    <include layout="@layout/child_fragment_mine_info" />
 
     <GridView
         android:id="@+id/mine_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorInGray"
+        android:background="@color/colorLittleGray"
         android:horizontalSpacing="1px"
         android:numColumns="3"
         android:verticalSpacing="1px">

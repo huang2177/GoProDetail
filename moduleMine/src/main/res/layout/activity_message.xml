@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginVertical="10dp"
-        android:background="@color/colorLightGray"
+        android:background="@color/colorRiceWhite"
         android:divider="@null"
         android:dividerHeight="10dp">
 
