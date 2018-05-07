@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/stub_layout" />
+    <include layout="@layout/space_layout" />
 
     <include layout="@layout/titlebar_layout" />
 

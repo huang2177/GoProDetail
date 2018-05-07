@@ -9,8 +9,7 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -36,8 +35,8 @@ import java.util.List;
 @Route(path = Constant.PATH_MAINACTIVITY)
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private ViewPager viewPager;
     private BottomNavigationView navigationView;
+
     private List<Fragment> fragments;
 
     @Override
@@ -54,40 +53,39 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     public void initView() {
         fragments = new ArrayList<>();
 
-        viewPager = findViewById(R.id.main_viewpager);
         navigationView = findViewById(R.id.main_navigation);
 
-        initFragment();
-        setNagationViewMode();
+        showFragment(FragmentHome.newInstance("首页"));
+        setNavigationViewMode();
     }
 
     /**
-     * 初始化Fragment
+     * 显示Fragment
      */
-    private void initFragment() {
-        FragmentHome home1 = FragmentHome.newInstance("首页");
-        FragmentMall home2 = FragmentMall.newInstance(1);
-        FragmentMall home3 = FragmentMall.newInstance(2);
-        FragmentPing home4 = FragmentPing.newInstance(1);
-        FragmentMine home5 = FragmentMine.newInstance("我的拼跌");
+    private void showFragment(Fragment fragment) {
 
-        fragments.add(home1);
-        fragments.add(home2);
-        fragments.add(home3);
-        fragments.add(home4);
-        fragments.add(home5);
+        if (fragment == null) {
+            return;
+        }
+        if (!fragments.contains(fragment)) {
+            fragments.add(fragment);
+        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        viewPager.setAdapter(new ViewPagerAdapter());
-        //  test
+        if (!fragment.isAdded()) {
+            transaction.add(R.id.main_container, fragment);
+        }
 
-
+        hideFragment(transaction);
+        transaction.show(fragment);
+        transaction.commit();
     }
 
     /**
      * 设置当item大于3的时候，ShiftingMode不改变；
      */
     @SuppressLint("RestrictedApi")
-    private void setNagationViewMode() {
+    private void setNavigationViewMode() {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) navigationView.getChildAt(0);
         try {
             Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
@@ -103,6 +101,17 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             }
         } catch (Exception e) {
 
+        }
+    }
+
+    /**
+     * 隐藏所有的fragment
+     */
+    private void hideFragment(FragmentTransaction transaction) {
+        for (int i = 0; i < fragments.size(); i++) {
+            if (fragments.get(i) != null) {
+                transaction.hide(fragments.get(i));
+            }
         }
     }
 
@@ -127,20 +136,20 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         boolean useDart = true;
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                viewPager.setCurrentItem(0);
+                showFragment(FragmentHome.newInstance("首页"));
                 break;
             case R.id.navigation_mall:
-                viewPager.setCurrentItem(1);
+                showFragment(FragmentMall.newInstance(1));
                 break;
             case R.id.navigation_jewelry:
-                viewPager.setCurrentItem(2);
+                showFragment(FragmentMall.newInstance(2));
                 break;
             case R.id.navigation_hall:
-                viewPager.setCurrentItem(3);
+                showFragment(FragmentPing.newInstance(1));
                 break;
             case R.id.navigation_mine:
                 useDart = false;
-                viewPager.setCurrentItem(4);
+                showFragment(FragmentMine.newInstance(""));
                 break;
             default:
                 break;

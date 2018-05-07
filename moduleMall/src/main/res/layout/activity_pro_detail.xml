@@ -10,11 +10,31 @@
         <!--商品基本信息-->
         <include layout="@layout/child_pro_detail_info" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorRiceWhite" />
+
         <!--最新评价信息-->
         <include layout="@layout/child_pro_detail_evaluate" />
 
-        <!--商品基本信息-->
-        <!--<include layout="@layout/child_pro_detail_info" />-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorRiceWhite" />
+
+        <!--返现说明-->
+        <include layout="@layout/child_pro_detail_introduce" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorRiceWhite" />
+
+        <!--商品简介-->
+        <include layout="@layout/child_pro_detail_image" />
+
+
     </LinearLayout>
 
 

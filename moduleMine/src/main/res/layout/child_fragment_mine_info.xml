@@ -5,7 +5,7 @@
     android:background="@drawable/min"
     android:orientation="vertical">
 
-    <include layout="@layout/stub_layout" />
+    <include layout="@layout/space_layout" />
 
     <RelativeLayout
         android:layout_width="match_parent"
