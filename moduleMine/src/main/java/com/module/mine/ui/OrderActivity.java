@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.module.base.base.BaseActivity;
 import com.module.base.base.BasePresenter;
+import com.module.base.base.Constant;
 import com.module.mine.R;
 import com.module.mine.adapter.OrderListAdpter;
 import com.module.mine.adapter.ReturnsListAdpter;
@@ -24,13 +25,16 @@ public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelect
     private TabLayout tabLayout;
     private RecyclerView recyclerView;
 
+    private String title;
+
     private OrderListAdpter adpter;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("我的订单").rightImageRes(0);
+        title = getIntent().getStringExtra(Constant.TITLE);
+        title(title);
     }
 
     @Override

@@ -21,9 +21,12 @@ public class MyOpenCoilActivity extends BaseActivity implements AdapterView.OnIt
 
     private OpenCoilAdapter openCoilAdapter;
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         title("我的开团卷").rightText("帮助说明");
     }
 

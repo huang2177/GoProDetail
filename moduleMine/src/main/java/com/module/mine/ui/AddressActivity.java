@@ -1,5 +1,6 @@
 package com.module.mine.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -39,6 +40,13 @@ public class AddressActivity extends BaseActivity implements AdapterView.OnItemC
         addressListAdapter = new AddressListAdapter(this);
         listView.setAdapter(addressListAdapter);
         listView.setOnItemClickListener(this);
+    }
+
+
+    @Override
+    public void onRightClick() {
+        super.onRightClick();
+        startActivity(new Intent(this,AdmAdderssActivity.class));
     }
 
     @Override

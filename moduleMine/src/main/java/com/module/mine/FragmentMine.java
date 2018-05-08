@@ -11,11 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.base.base.BaseFragment;
+import com.module.base.base.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
-import com.module.mine.ui.AddressActivity;
+import com.module.mine.ui.AdderAddressActivity;
 import com.module.mine.ui.BalanceActivity;
 import com.module.mine.ui.CardActivity;
 import com.module.mine.ui.DepositActivity;
@@ -117,7 +118,7 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
 
     @Override
     public void onItemClick(int position) {
-        ToastUtil.show(activity, position + "");
+        Intent intent = null;
         switch (position) {
             //我的团队
             case 0:
@@ -127,13 +128,16 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
             case 1:
                 startActivity(new Intent(activity, CollageReturnsActivity.class));
                 break;
-            //我的开团卷
+            //我的订单
             case 2:
                 startActivity(new Intent(activity, MyOpenCoilActivity.class));
                 break;
             //我的开团卷
             case 3:
-                startActivity(new Intent(activity, OrderActivity.class));
+                intent = new Intent(activity, OrderActivity.class);
+                intent.putExtra(Constant.TITLE, "我的订单");
+                startActivity(intent);
+
                 break;
             //我的押金
             case 4:
@@ -141,22 +145,28 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
                 break;
             //收货信息管理
             case 5:
-                startActivity(new Intent(activity,AddressActivity.class));
+                startActivity(new Intent(activity, AdderAddressActivity.class));
                 break;
             //我的收藏
             case 6:
+                intent = new Intent(activity, OrderActivity.class);
+                intent.putExtra(Constant.TITLE, "我的收藏");
+                startActivity(intent);
                 break;
             //新手帮助
             case 7:
                 break;
             //客服电话
             case 8:
+                startActivity(new Intent(activity, KePhoneActivity.class));
                 break;
             //投诉建议
             case 9:
+                startActivity(new Intent(activity,ComplaintActivity.class));
                 break;
             //系统设置
             case 10:
+                startActivity(new Intent(activity,SeetingActivity.class));
                 break;
 
         }

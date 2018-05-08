@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/space_layout" />
+
+    <include layout="@layout/titlebar_layout" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorRiceWhite">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/complaint_name_ed"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/sharp_gray"
+                android:hint="请输入您的称号"
+                android:paddingLeft="15dp"
+                android:textSize="14.0sp" />
+
+
+            <EditText
+                android:id="@+id/complaint_phone_ed"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/sharp_gray"
+                android:hint="请输入您的联系电话"
+                android:paddingLeft="15dp"
+                android:textSize="14.0sp" />
+
+
+            <EditText
+                android:id="@+id/complaint_content_ed"
+                android:layout_width="match_parent"
+                android:layout_height="155dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/sharp_gray"
+                android:gravity="start"
+                android:hint="感谢您的宝贵建议，如果您有投诉我们会尽快与 您取得联系！"
+                android:padding="15dp"
+                android:textSize="14.0sp" />
+
+
+            <Button
+                android:id="@+id/commit_but"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_btn_brown"
+                android:text="提交"
+                android:textColor="@color/colorWhite"
+                android:textSize="18.0sp" />
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

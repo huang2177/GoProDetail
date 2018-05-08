@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRiceWhite"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/space_layout" />
+
+    <include layout="@layout/titlebar_layout" />
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:visibility="gone"/>
+
+        <ListView
+            android:id="@+id/admress_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="10dp"></ListView>
+
+
+</LinearLayout>

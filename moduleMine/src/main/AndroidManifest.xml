@@ -36,5 +36,10 @@
         <activity android:name=".ui.OrderActivity" />
         <activity android:name=".ui.DepositActivity" />
         <activity android:name=".ui.AddressActivity" />
+        <activity android:name=".ui.AdderAddressActivity" />
+        <activity android:name=".ui.AdmAdderssActivity" />
+        <activity android:name=".KePhoneActivity" />
+        <activity android:name=".ComplaintActivity" />
+        <activity android:name=".SeetingActivity" />
     </application>
 </manifest>
