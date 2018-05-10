@@ -4,15 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
-import com.module.base.base.Constant;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
 import com.module.mine.adapter.ReturnsListAdpter;
 
 import java.util.Arrays;

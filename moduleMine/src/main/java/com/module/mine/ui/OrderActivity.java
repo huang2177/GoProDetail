@@ -6,12 +6,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
-import com.module.base.base.Constant;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.mine.R;
 import com.module.mine.adapter.OrderListAdpter;
-import com.module.mine.adapter.ReturnsListAdpter;
 
 import java.util.Arrays;
 import java.util.List;

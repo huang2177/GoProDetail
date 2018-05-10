@@ -11,10 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.module.base.base.BaseFragment;
-import com.module.base.base.Constant;
-import com.module.base.widgets.XGridView;
-import com.module.base.widgets.XItemDecoration;
+import com.module.base.BaseFragment;
+import com.module.base.app.Constant;
 import com.module.home.adpter.HomeListAdpter;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;

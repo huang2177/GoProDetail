@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
-import com.module.base.base.Constant;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 
 /**
  * Created by shibing on 18/5/3.

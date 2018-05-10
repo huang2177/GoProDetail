@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
 import com.module.base.utils.ToastUtil;
 import com.module.mine.R;
 

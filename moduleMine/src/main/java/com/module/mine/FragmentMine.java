@@ -10,10 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.module.base.base.BaseFragment;
-import com.module.base.base.Constant;
+import com.module.base.BaseFragment;
+import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
-import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
 import com.module.mine.ui.AdderAddressActivity;

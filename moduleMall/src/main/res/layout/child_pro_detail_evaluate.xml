@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
             android:drawableRight="@drawable/ic_arrow_left_brown"
-            android:text="更多" />
+            android:text="更多"
+            android:textColor="@color/colorGray" />
 
     </LinearLayout>
 
@@ -33,5 +34,57 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorLittleGray" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
+        <com.module.base.widgets.RoundImageView
+            android:id="@+id/pro_evaluate_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/pro" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pro_evaluate_name"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/pro_evaluate_time"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="2018.05.09" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pro_evaluate_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:text="没啥说的，比拼多多强多了，来的实际，不玩虚的， 现在就等拼团成功拿返现了。还差2个名额，相信很 快就能成功了"
+        android:textColor="@color/colorGray" />
+
+    <LinearLayout
+        android:id="@+id/pro_evaluate_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
 </LinearLayout>

@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ListView;
 
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
 import com.module.mine.R;
 import com.module.mine.adapter.AdmAddressListAdapter;
 

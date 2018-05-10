@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.module.base.base.BaseFragment;
-import com.module.base.base.Constant;
+import com.module.base.BaseFragment;
+import com.module.base.app.Constant;
 import com.module.mall.adpter.PingListAdpter;
 
 import java.util.Arrays;

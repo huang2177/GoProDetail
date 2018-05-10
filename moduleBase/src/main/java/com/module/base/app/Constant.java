@@ -1,4 +1,4 @@
-package com.module.base.base;
+package com.module.base.app;
 
 /**
  * @author Huangshuang  2018/3/8 0008

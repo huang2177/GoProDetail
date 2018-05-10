@@ -3,7 +3,11 @@ package com.module.base.widgets;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.CoordinatorLayout;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,14 +19,16 @@ import static com.module.base.utils.StatusUtil.getStatusBarHeight;
  * @author huangshuang
  */
 
-public abstract class MyBottomDialog extends BottomSheetDialog implements View.OnClickListener {
+public abstract class XBottomDialog extends BottomSheetDialog implements View.OnClickListener {
+    public View view;
     protected Activity activity;
 
-    public MyBottomDialog(@NonNull Activity activity) {
+    public XBottomDialog(@NonNull Activity activity) {
         super(activity);
         this.activity = activity;
 
-        setContentView(getLayoutId());
+        view = View.inflate(activity, getLayoutId(), null);
+        setContentView(view);
 
         initView();
         setListener();
@@ -34,10 +40,19 @@ public abstract class MyBottomDialog extends BottomSheetDialog implements View.O
 
     protected abstract void setListener();
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //init();
+    protected void onStart() {
+        super.onStart();
+        setPeekHeight();
+    }
+
+    /**
+     * 设置展开的默认的高度
+     */
+    private void setPeekHeight() {
+        BottomSheetBehavior mDialogBehavior = BottomSheetBehavior.from((View) view.getParent());
+        mDialogBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
     /**
@@ -54,4 +69,8 @@ public abstract class MyBottomDialog extends BottomSheetDialog implements View.O
         }
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

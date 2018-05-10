@@ -7,9 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
-import com.module.base.listener.OnItemClickListener;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
 import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XListView;
 import com.module.mine.R;

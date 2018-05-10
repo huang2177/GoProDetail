@@ -14,11 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.module.base.base.Constant;
+import com.module.base.app.Constant;
 import com.module.base.utils.StatusUtil;
 import com.module.home.FragmentHome;
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
 import com.module.mall.FragmentMall;
 import com.module.mall.FragmentPing;
 import com.module.mine.FragmentMine;

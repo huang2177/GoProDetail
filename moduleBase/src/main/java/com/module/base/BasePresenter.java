@@ -1,4 +1,4 @@
-package com.module.base.base;
+package com.module.base;
 
 /**
  * @author Huangshuang

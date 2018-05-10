@@ -2,11 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
+    android:padding="10dp"
     tools:showIn="@layout/activity_pro_detail">
 
     <LinearLayout
@@ -17,16 +15,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="0元返现说明" />
+            android:text="正在拼团中" />
 
         <TextView
-            android:id="@+id/pro_tv_introduce_more"
+            android:id="@+id/pro_tv_grouping_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
-            android:textColor="@color/colorGray"
             android:drawableRight="@drawable/ic_arrow_left_brown"
-            android:text="详细" />
+            android:text="更多"
+            android:textColor="@color/colorGray" />
 
     </LinearLayout>
 
@@ -37,10 +35,11 @@
         android:background="@color/colorLittleGray" />
 
     <com.module.base.widgets.XListView
-        android:id="@+id/pro_introduce_lv"
+        android:id="@+id/pro_grouping_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@null"
-        android:listSelector="@android:color/transparent" />
+        android:divider="@color/colorLittleGray"
+        android:dividerHeight="1px" />
+
 
 </LinearLayout>

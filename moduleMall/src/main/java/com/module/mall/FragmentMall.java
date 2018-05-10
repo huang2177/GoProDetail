@@ -1,27 +1,21 @@
 package com.module.mall;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.module.base.base.BaseFragment;
-import com.module.base.base.Constant;
+import com.module.base.BaseFragment;
+import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
-import com.module.base.widgets.XGridView;
 import com.module.mall.adpter.MallListAdpter;
 import com.module.mall.ui.ProDetailActivity;
-import com.youth.banner.Banner;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.Arrays;
 import java.util.List;

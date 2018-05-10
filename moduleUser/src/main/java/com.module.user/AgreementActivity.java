@@ -3,8 +3,8 @@ package com.module.user;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.module.base.base.BaseActivity;
-import com.module.base.base.BasePresenter;
+import com.module.base.BaseActivity;
+import com.module.base.BasePresenter;
 
 /**
  * Created by shibing on 18/5/4.
