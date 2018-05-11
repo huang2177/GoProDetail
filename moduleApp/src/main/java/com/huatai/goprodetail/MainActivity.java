@@ -1,6 +1,7 @@
 package com.huatai.goprodetail;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,8 +11,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.app.Constant;
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -55,15 +59,16 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
         navigationView = findViewById(R.id.main_navigation);
 
-        showFragment(FragmentHome.newInstance("首页"));
+        showFragment(FragmentHome.newInstance(""));
         setNavigationViewMode();
+
+
     }
 
     /**
      * 显示Fragment
      */
     private void showFragment(Fragment fragment) {
-
         if (fragment == null) {
             return;
         }
@@ -102,6 +107,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         } catch (Exception e) {
 
         }
+
     }
 
     /**
@@ -131,12 +137,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         super.onClick(v);
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         boolean useDart = true;
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                showFragment(FragmentHome.newInstance("首页"));
+                showFragment(FragmentHome.newInstance(""));
                 break;
             case R.id.navigation_mall:
                 showFragment(FragmentMall.newInstance(1));

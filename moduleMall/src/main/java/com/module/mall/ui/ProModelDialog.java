@@ -1,13 +1,12 @@
 package com.module.mall.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.util.SparseArray;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,6 +20,7 @@ import com.module.base.widgets.XGridView;
 import com.module.mall.R;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,31 +29,21 @@ import java.util.List;
 
 public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemClickListener {
 
+    private static final HashMap<Integer, ModelAdapter> adapterArray = new HashMap<>();
+
     private ImageView ivPro;
     private Button btnConfirm;
+    private Drawable drawableBrown, drawableBlack;
     private XGridView gvColor, gvCapacity, gvVersion;
     private TextView tvName, tvPrice, tvInventory, tvColor;
 
+
     private int colorBrown, colorBlack;
-    private Drawable drawableBrown, drawableBlack;
+    private String strColor, strCapacity, strVersion;
 
-    private CommonAdapter<String> colorAdapter;
-    private CommonAdapter<String> versionAdapter;
-    private CommonAdapter<String> capacityAdapter;
-
-    private SparseArray<TextView> colorViews;
-    private SparseArray<TextView> versionViews;
-    private SparseArray<TextView> capacityViews;
-
-    private SparseArray<SparseArray<TextView>> views;
 
     public ProModelDialog(@NonNull Activity activity) {
         super(activity);
-
-        views = new SparseArray<>();
-        colorViews = new SparseArray<>();
-        versionViews = new SparseArray<>();
-        capacityViews = new SparseArray<>();
 
         colorBrown = ContextCompat.getColor(activity, R.color.colorBrown);
         colorBlack = ContextCompat.getColor(activity, R.color.colorLittleBlack1);
@@ -86,64 +76,27 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
     }
 
     private void initColor() {
-        List<String> texts = Arrays.asList("白色", "黑色");
-        colorAdapter = new CommonAdapter<String>(activity, texts, R.layout.item_dialog_model_layout) {
-            @Override
-            public void convert(int position, ViewHolder holder, String data) {
-                initTextView(1, position, holder, data);
-            }
-
-            public void changeColor(int position) {
-                for (int i = 0; i < colorViews.size(); i++) {
-                    colorViews.get(i).setTextColor(colorBlack);
-                    colorViews.get(i).setBackground(drawableBlack);
-                    if (i == position) {
-                        colorViews.get(i).setTextColor(colorBrown);
-                        colorViews.get(i).setBackground(drawableBrown);
-                    }
-                }
-            }
-        };
+        List<String> colorTexts = Arrays.asList("白色", "黑色");
+        strColor = colorTexts.get(0);
+        ModelAdapter<String> colorAdapter = new ModelAdapter<>(colorTexts, R.id.model_gv_color);
         gvColor.setAdapter(colorAdapter);
     }
 
     private void initCapacity() {
-        List<String> texts = Arrays.asList("64G", "128G", "256G");
-        capacityAdapter = new CommonAdapter<String>(activity, texts, R.layout.item_dialog_model_layout) {
-            @Override
-            public void convert(int position, ViewHolder holder, String data) {
-                //initTextView(2, position, holder, data);
-            }
-        };
+        List<String> capacityTexts = Arrays.asList("64G", "128G", "256G");
+        strCapacity = capacityTexts.get(0);
+        ModelAdapter<String> capacityAdapter = new ModelAdapter<>(capacityTexts, R.id.model_gv_capacity);
         gvCapacity.setAdapter(capacityAdapter);
+
     }
 
     private void initVersion() {
-        List<String> texts = Arrays.asList("国行", "港行", "亚太行");
-        versionAdapter = new CommonAdapter<String>(activity, texts, R.layout.item_dialog_model_layout) {
-            @Override
-            public void convert(int position, ViewHolder holder, String data) {
-                //initTextView(3, position, holder, data);
-            }
-
-
-        };
+        List<String> versionTexts = Arrays.asList("国行", "港行", "亚太行");
+        strVersion = versionTexts.get(0);
+        ModelAdapter<String> versionAdapter = new ModelAdapter<>(versionTexts, R.id.model_gv_veision);
         gvVersion.setAdapter(versionAdapter);
-
     }
 
-    private void initTextView(int type, int position, ViewHolder holder, String data) {
-        TextView textView = holder.getItemView(R.id.model_dialog_tv);
-        textView.setText(data);
-        colorViews.put(position, textView);
-        if (position == 0) {
-            colorViews.get(0).setTextColor(colorBrown);
-            colorViews.get(0).setBackground(drawableBrown);
-        } else {
-            colorViews.get(position).setTextColor(colorBlack);
-            colorViews.get(position).setBackground(drawableBlack);
-        }
-    }
 
     @Override
     protected void setListener() {
@@ -156,32 +109,64 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
-        int i = v.getId();
-        if (i == R.id.model_btn) {
-
-        }
+        activity.startActivity(new Intent(activity, OrderConfirmActivity.class));
+        dismiss();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        int i = parent.getId();
-        if (i == R.id.model_gv_color) {
-            changeColor(position);
-        } else if (i == R.id.model_gv_veision) {
-
-        } else if (i == R.id.model_gv_capacity) {
-
-        }
+        adapterArray.get(parent.getId()).changeColor(position);
+        tvColor.setText(strColor + "  " + strCapacity + "  " + strVersion);
     }
 
-    public void changeColor(int position) {
-        for (int i = 0; i < colorViews.size(); i++) {
-            colorViews.get(i).setTextColor(colorBlack);
-            colorViews.get(i).setBackground(drawableBlack);
-            if (i == position) {
-                colorViews.get(i).setTextColor(colorBrown);
-                colorViews.get(i).setBackground(drawableBrown);
+    /**
+     * GridView Adapter
+     *
+     * @param <T>
+     */
+    class ModelAdapter<T> extends CommonAdapter {
+
+        private SparseArray<TextView> textViewArray;
+        private int type;
+
+        ModelAdapter(List data, int type) {
+            super(activity, data, R.layout.item_dialog_model_layout);
+
+            this.type = type;
+            textViewArray = new SparseArray<TextView>();
+            adapterArray.put(type, this);
+        }
+
+        void changeColor(int position) {
+            for (int i = 0; i < textViewArray.size(); i++) {
+                textViewArray.get(i).setTextColor(colorBlack);
+                textViewArray.get(i).setBackground(drawableBlack);
+                if (i == position) {
+                    textViewArray.get(i).setTextColor(colorBrown);
+                    textViewArray.get(i).setBackground(drawableBrown);
+                }
+            }
+
+            if (type == R.id.model_gv_color) {
+                strColor = textViewArray.get(position).getText().toString();
+            } else if (type == R.id.model_gv_capacity) {
+                strCapacity = textViewArray.get(position).getText().toString();
+            } else {
+                strVersion = textViewArray.get(position).getText().toString();
+            }
+        }
+
+        @Override
+        public void convert(int position, ViewHolder holder, Object data) {
+            TextView textView = holder.getItemView(R.id.model_dialog_tv);
+            textView.setText(data.toString());
+            textViewArray.put(position, textView);
+            if (position == 0) {
+                textViewArray.get(0).setTextColor(colorBrown);
+                textViewArray.get(0).setBackground(drawableBrown);
+            } else {
+                textViewArray.get(position).setTextColor(colorBlack);
+                textViewArray.get(position).setBackground(drawableBlack);
             }
         }
     }

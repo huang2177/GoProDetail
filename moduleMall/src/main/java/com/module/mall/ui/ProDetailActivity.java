@@ -36,6 +36,7 @@ public class ProDetailActivity extends BaseActivity {
     private TextView tvName, tvPingedNum, tvPirce, tvOldPirce, tvFreight, tvInventory, tvCollection;
 
     private boolean isCollectioned;
+    private ProModelDialog proModelDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,7 +116,10 @@ public class ProDetailActivity extends BaseActivity {
         } else if (i == R.id.pro_phone) {
 
         } else if (i == R.id.pro_buy) {
-            new ProModelDialog(this).show();
+//            if (proModelDialog == null) {
+//            }
+            proModelDialog = new ProModelDialog(this);
+            proModelDialog.show();
         } else if (i == R.id.pro_group) {
 
         }
@@ -174,7 +178,7 @@ public class ProDetailActivity extends BaseActivity {
                 , R.drawable.img_banner2);
         CommonAdapter<Integer> adapter = new CommonAdapter<Integer>(this, list, R.layout.item_pro_detail_image) {
             @Override
-            public void convert(int position,ViewHolder holder, Integer data) {
+            public void convert(int position, ViewHolder holder, Integer data) {
                 holder.setImageResource(R.id.item_pro_image, data);
             }
         };

@@ -19,19 +19,11 @@ public class ViewHolder {
      */
     private SparseArray<View> items;
 
-    private SparseArray<View> convertViews;
-
     private View convertView;
 
     public ViewHolder(Context context, int layoutId, ViewGroup parent, int position) {
         items = new SparseArray<View>();
-        convertViews = new SparseArray<View>();
-
-        if (convertViews.get(position) == null) {
-            convertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
-        } else {
-            convertView = convertViews.get(position);
-        }
+        convertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
         convertView.setTag(this);
     }
 
@@ -45,12 +37,12 @@ public class ViewHolder {
      * @param position
      * @return
      */
-//    public static ViewHolder getHolder(Context context, int layoutId, View convertView, ViewGroup parent, int position) {
-//        if ( == null) {
-//            return new ViewHolder(context, layoutId, parent, position);
-//        }
-//        return (ViewHolder) convertView.getTag();
-//    }
+    public static ViewHolder getHolder(Context context, int layoutId, View convertView, ViewGroup parent, int position) {
+        if (convertView == null) {
+            return new ViewHolder(context, layoutId, parent, position);
+        }
+        return (ViewHolder) convertView.getTag();
+    }
 
 
     /**

@@ -17,14 +17,13 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     private List<T> mData;
     private Context mContext;
     private int mLayoutId;
-    private View convertView;
-    private SparseArray<View> views;
+    private SparseArray<ViewHolder> viewHolderArray;
 
     public CommonAdapter(Context context, List<T> data, int layoutId) {
         this.mData = data;
         this.mContext = context;
         this.mLayoutId = layoutId;
-        views = new SparseArray<>();
+        viewHolderArray = new SparseArray<>();
     }
 
     @Override
@@ -44,7 +43,13 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = new ViewHolder(mContext, mLayoutId, parent, position);
+        ViewHolder holder;
+        if (viewHolderArray.get(position) == null) {
+            holder = ViewHolder.getHolder(mContext, mLayoutId, convertView, parent, position);
+            viewHolderArray.put(position, holder);
+        } else {
+            holder = viewHolderArray.get(position);
+        }
         convert(position, holder, (T) getItem(position));
         return holder.getCovertView();
     }
