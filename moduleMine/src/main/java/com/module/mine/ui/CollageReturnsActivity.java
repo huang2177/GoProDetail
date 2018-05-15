@@ -1,4 +1,4 @@
-package com.module.mine;
+package com.module.mine.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.mine.R;
 import com.module.mine.adapter.ReturnsListAdpter;
 
 import java.util.Arrays;

@@ -68,31 +68,16 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
+                <ImageView
                     android:id="@+id/mine_incode_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AB"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18.0sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/colorWhite" />
-            </LinearLayout>
+                    android:src="@drawable/ic_mine_underline"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="邀请码"
                 android:textColor="@color/colorWhite"
                 android:textSize="18.0sp" />
@@ -138,7 +123,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="16dp"
                 android:text="银行卡"
                 android:textColor="@color/colorWhite"
                 android:textSize="18.0sp" />

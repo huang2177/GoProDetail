@@ -1,13 +1,16 @@
-package com.module.mine;
+package com.module.mine.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.mine.R;
 
 /**
  * Created by shibing on 18/5/8.
@@ -43,5 +46,32 @@ public class SeetingActivity extends BaseActivity {
     @Override
     public BasePresenter createPresenter() {
         return null;
+    }
+
+    @Override
+    public void setListener() {
+        super.setListener();
+        rayPas.setOnClickListener(this);
+        rayEdition.setOnClickListener(this);
+        butOut.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        int i = v.getId();
+        //修改密码
+        if (i == R.id.psw_ray) {
+            startActivity(new Intent(this,ModifyPassActivity.class));
+        }
+        //版本信息
+        else if (i == R.id.edition_ray) {
+
+        }
+        //退出登录
+        else if (i == R.id.out_but) {
+
+        }
     }
 }

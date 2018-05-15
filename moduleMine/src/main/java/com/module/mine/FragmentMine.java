@@ -18,11 +18,15 @@ import com.module.mine.adapter.MineAdapter;
 import com.module.mine.ui.AdderAddressActivity;
 import com.module.mine.ui.BalanceActivity;
 import com.module.mine.ui.CardActivity;
+import com.module.mine.ui.CollageReturnsActivity;
+import com.module.mine.ui.ComplaintActivity;
 import com.module.mine.ui.DepositActivity;
 import com.module.mine.ui.InvitationCodeActivity;
+import com.module.mine.ui.KePhoneActivity;
 import com.module.mine.ui.MyOpenCoilActivity;
 import com.module.mine.ui.MyTeamActivity;
 import com.module.mine.ui.OrderActivity;
+import com.module.mine.ui.SeetingActivity;
 import com.module.mine.ui.SystemMessActivity;
 import com.module.mine.ui.UserInfoActivity;
 
@@ -32,11 +36,11 @@ import com.module.mine.ui.UserInfoActivity;
 
 public class FragmentMine extends BaseFragment implements OnItemClickListener {
 
-    private ImageView head;
+    private ImageView head,inCodeTv;
     private FrameLayout messFra;
     private RecyclerView recyclerView;
     private LinearLayout inCodeLay, banLanceLay, cardLay;
-    private TextView phoneTv, mesTv, banlanceTv, inCodeTv;
+    private TextView phoneTv, mesTv, banlanceTv;
 
     private MineAdapter mineAdapter;
 

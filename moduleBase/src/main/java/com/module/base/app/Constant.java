@@ -22,7 +22,7 @@ public class Constant {
 
     public final static String PATH_FRAGMENTPING = "/mall/FragmentPing";
 
-
+    public final static String PATH_MODIFYACTIVITY = "/mine/ModifyPassActivity";
 
 
 }

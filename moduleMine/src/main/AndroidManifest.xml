@@ -31,15 +31,17 @@
             android:name=".ui.GiveOpenCoilActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CollageReturnsActivity"
+            android:name=".ui.CollageReturnsActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.OrderActivity" />
         <activity android:name=".ui.DepositActivity" />
         <activity android:name=".ui.AddressActivity" />
         <activity android:name=".ui.AdderAddressActivity" />
         <activity android:name=".ui.AdmAdderssActivity" />
-        <activity android:name=".KePhoneActivity" />
-        <activity android:name=".ComplaintActivity" />
-        <activity android:name=".SeetingActivity" />
+        <activity android:name=".ui.KePhoneActivity" />
+        <activity android:name=".ui.ComplaintActivity" />
+        <activity android:name=".ui.SeetingActivity" />
+        <activity android:name=".ui.ModifyPassActivity" />
+        <activity android:name=".ui.RechDepositActivity" />
     </application>
 </manifest>

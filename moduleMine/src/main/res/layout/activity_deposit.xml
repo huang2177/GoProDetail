@@ -9,53 +9,88 @@
     <include layout="@layout/titlebar_layout" />
 
 
-    <TextView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/sharp_oval_brown"
-        android:gravity="center"
-        android:text="押金"
-        android:textColor="@color/colorWhite"
-        android:textSize="20.0sp" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/sharp_oval_brown"
+                android:gravity="center"
+                android:text="押金"
+                android:textColor="@color/colorWhite"
+                android:textSize="20.0sp" />
 
 
-    <TextView
-        android:id="@+id/order_money_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="$0.00"
-        android:textColor="@color/colorBrown"
-        android:textSize="20.0sp" />
+            <TextView
+                android:id="@+id/order_money_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="$0.00"
+                android:textColor="@color/colorBrown"
+                android:textSize="20.0sp" />
 
 
-    <TextView
-        android:id="@+id/order_shous_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="前往［0元首饰盒］"
-        android:textColor="@color/colorBlack"
-        android:textSize="20.0sp" />
+            <TextView
+                android:id="@+id/order_shous_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="前往［0元首饰盒］"
+                android:textColor="@color/colorBlack"
+                android:textSize="20.0sp" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:lineSpacingExtra="2dp"
-        android:text="@string/order_tv"
-        android:textColor="@color/colorGray"
-        android:textSize="16.0sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="20dp"
+                android:background="@color/colorLittleGray" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:lineSpacingExtra="2dp"
+                android:text="@string/order_tv"
+                android:textColor="@color/colorGray"
+                android:textSize="16.0sp" />
+
+
+            <Button
+                android:id="@+id/rec_but"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="65dp"
+                android:background="@drawable/bg_btn_brown"
+                android:text="充值押金"
+                android:textColor="@color/colorWhite"
+                android:textSize="18.0sp" />
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

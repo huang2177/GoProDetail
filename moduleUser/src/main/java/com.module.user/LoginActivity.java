@@ -20,7 +20,6 @@ import com.module.base.app.Constant;
 
 @Route(path = Constant.PATH_LOGINACTIVITY)
 public class LoginActivity extends BaseActivity {
-
     private EditText edPhone, edPassword;
     private Button btLogin;
     private TextView tvRegister, tvForgetpass;
@@ -79,7 +78,8 @@ public class LoginActivity extends BaseActivity {
             startActivity(new Intent(this, RegisterActivity.class));
         } else if (i == R.id.login_forgetpass_tv) {
             //忘记密码
-            startActivity(new Intent(this, FindPSWActivity.class));
+            ARouter.getInstance().build(Constant.PATH_MODIFYACTIVITY).navigation();
+
         }
     }
 
