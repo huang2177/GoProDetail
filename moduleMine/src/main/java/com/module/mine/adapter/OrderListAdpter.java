@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.listener.OnItemClickListener;
 import com.module.base.widgets.RoundImageView;
 import com.module.mine.R;
 
@@ -23,6 +24,8 @@ public class OrderListAdpter extends RecyclerView.Adapter {
     private Context context;
     private List<Integer> list;
 
+    private OnItemClickListener listener;
+
     public OrderListAdpter(Context context) {
         this.list = list;
         this.context = context;
@@ -32,7 +35,7 @@ public class OrderListAdpter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         /*资源文件在base中*/
         View view = LayoutInflater.from(context).inflate(R.layout.item_order_list, null);
-        return new ViewHolder(view);
+        return new ViewHolder(view, viewType);
     }
 
     @Override
@@ -61,11 +64,17 @@ public class OrderListAdpter extends RecyclerView.Adapter {
         return 10;
     }
 
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPro;
         TextView tvName, tvPirce, tvProName, tvColor, tvMoney, tvType, tvState;
 
-        ViewHolder(View view) {
+        ViewHolder(View view, final int viewType) {
             super(view);
             ivPro = view.findViewById(R.id.item_img_order);
             tvName = view.findViewById(R.id.item_tv_order_name);
@@ -75,6 +84,13 @@ public class OrderListAdpter extends RecyclerView.Adapter {
             tvMoney = view.findViewById(R.id.item_order_money_tv);
             tvType = view.findViewById(R.id.order_type_tv);
             tvState = view.findViewById(R.id.order_state_tv);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(viewType);
+                }
+            });
         }
     }
 }

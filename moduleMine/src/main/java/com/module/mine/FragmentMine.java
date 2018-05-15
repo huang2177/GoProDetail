@@ -158,6 +158,7 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
                 break;
             //新手帮助
             case 7:
+                startActivity(new Intent(activity, NoviceActivity.class));
                 break;
             //客服电话
             case 8:

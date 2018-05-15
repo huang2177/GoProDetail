@@ -7,7 +7,9 @@
 
     <include layout="@layout/space_layout" />
 
+
     <include layout="@layout/titlebar_layout" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,32 +17,30 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/invicode_tv"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1807182435"
-            android:textColor="@color/colorBlack"
-            android:textSize="25.0sp"
-            android:textStyle="bold" />
+            android:src="@drawable/ic_pay_idea" />
 
 
         <TextView
+            android:id="@+id/pay_sb_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="我的邀请码"
-            android:textColor="@color/colorBlack"
-            android:textSize="16.0sp" />
+            android:text="友情提示：交易失败"
+            android:textColor="@color/colorBrown"
+            android:textSize="18.0sp" />
+
 
         <TextView
+            android:id="@+id/pay_rs_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:drawableLeft="@drawable/ic_mine_excla"
-            android:drawablePadding="8dp"
-            android:text="@string/invi_text"
-            android:textSize="14.0sp" />
+            android:layout_marginTop="15dp"
+            android:text="请检查您的帐户余额或网络状况"
+            android:textColor="@color/colorBlack"
+            android:textSize="16.0sp" />
 
     </LinearLayout>
 

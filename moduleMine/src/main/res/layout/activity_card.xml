@@ -37,8 +37,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -52,9 +52,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:gravity="center"
                         android:hint="请输入您的银行卡号"
-                        android:padding="5dp"
+                        android:paddingLeft="25dp"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="14.0sp" />
                 </LinearLayout>
@@ -62,7 +61,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/colorGray" />
+                    android:background="@color/colorLittleGray" />
 
             </LinearLayout>
 
@@ -75,8 +74,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -90,9 +89,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:gravity="center"
+
                         android:hint="请输入您的银行卡开户名"
-                        android:padding="5dp"
+                        android:paddingLeft="25dp"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="14.0sp" />
                 </LinearLayout>
@@ -100,7 +99,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/colorGray" />
+                    android:background="@color/colorLittleGray" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,8 +111,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,9 +126,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:gravity="center"
                         android:hint="请选择您的开户行"
-                        android:padding="5dp"
+                        android:paddingLeft="25dp"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="14.0sp" />
                 </LinearLayout>
@@ -137,7 +135,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/colorGray" />
+                    android:background="@color/colorLittleGray" />
             </LinearLayout>
 
             <Button

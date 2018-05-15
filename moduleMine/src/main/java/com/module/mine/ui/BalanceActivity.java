@@ -30,7 +30,7 @@ public class BalanceActivity extends BaseActivity implements AdapterView.OnItemC
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("余额").rightImageRes(0);
+        title("余额");
     }
 
     @Override
@@ -53,7 +53,6 @@ public class BalanceActivity extends BaseActivity implements AdapterView.OnItemC
     public BasePresenter createPresenter() {
         return null;
     }
-
 
 
     @Override
@@ -83,9 +82,6 @@ public class BalanceActivity extends BaseActivity implements AdapterView.OnItemC
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ToastUtil.show(this, "监听事件");
     }
-
-
-
 
 
 }

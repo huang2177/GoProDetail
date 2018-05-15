@@ -11,14 +11,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:text="系统设置"
-            android:textColor="@color/colorGray"
-            android:textSize="16.0sp" />
+            android:textColor="@color/colorDeepGray"
+            android:textSize="18.0sp" />
 
 
         <Switch
@@ -41,14 +42,15 @@
         android:id="@+id/psw_ray"
         android:layout_width="match_parent"
         android:layout_height="45dp">
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:text="修改登录密码"
-            android:textColor="@color/colorGray"
-            android:textSize="16.0sp" />
+            android:textColor="@color/colorDeepGray"
+            android:textSize="18.0sp" />
 
 
         <ImageView
@@ -57,7 +59,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_pen" />
+            android:src="@drawable/ic_right_back" />
     </RelativeLayout>
 
 
@@ -75,12 +77,12 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:text="版本信息"
-            android:textColor="@color/colorGray"
-            android:textSize="16.0sp" />
+            android:textColor="@color/colorDeepGray"
+            android:textSize="18.0sp" />
 
 
         <ImageView
@@ -89,7 +91,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_pen" />
+            android:src="@drawable/ic_right_back" />
     </RelativeLayout>
 
 

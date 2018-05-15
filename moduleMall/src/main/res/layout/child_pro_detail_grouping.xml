@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
-            android:drawableRight="@drawable/ic_arrow_left_brown"
+            android:drawableRight="@drawable/ic_right_back"
             android:text="更多"
             android:textColor="@color/colorGray" />
 

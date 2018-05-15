@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/novice_item_image"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+
+            android:scaleType="fitXY"
+            android:src="@drawable/banner" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/novice_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新用户如何在营业厅完成手机号注 册与领取？"
+                android:textColor="@color/colorBlack"
+                android:textSize="18.0sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/novice_item_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新手帮助"
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="13.0sp" />
+
+                <TextView
+                    android:id="@+id/novice_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="2018-202-2"
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="13.0sp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="10dp"
+        android:background="@color/colorLittleGray" />
+
+</LinearLayout>

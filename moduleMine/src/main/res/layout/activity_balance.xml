@@ -40,7 +40,7 @@
                         android:id="@+id/balance_money_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$214.00"
+                        android:text="￥214.00"
                         android:textColor="@color/colorBlack"
                         android:textSize="22.0sp"
                         android:textStyle="bold" />

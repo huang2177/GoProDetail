@@ -1,14 +1,18 @@
 package com.module.mine.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.listener.OnItemClickListener;
 import com.module.mine.R;
 import com.module.mine.adapter.OrderListAdpter;
 
@@ -19,7 +23,7 @@ import java.util.List;
  * Created by shibing on 18/5/6.
  */
 
-public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
+public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,OnItemClickListener {
 
     private TabLayout tabLayout;
     private RecyclerView recyclerView;
@@ -64,6 +68,9 @@ public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelect
         recyclerView.setNestedScrollingEnabled(false);
         adpter = new OrderListAdpter(this);
         recyclerView.setAdapter(adpter);
+
+        adpter.addOnItemClickListener(this);
+
     }
 
     @Override
@@ -90,5 +97,11 @@ public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelect
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+        startActivity(new Intent(this,OrderDetalisActivity.class));
     }
 }

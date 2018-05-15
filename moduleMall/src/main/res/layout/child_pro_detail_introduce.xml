@@ -24,9 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
-            android:textColor="@color/colorGray"
-            android:drawableRight="@drawable/ic_arrow_left_brown"
-            android:text="详细" />
+            android:drawableRight="@drawable/ic_right_back"
+            android:text="详细"
+            android:textColor="@color/colorGray" />
 
     </LinearLayout>
 

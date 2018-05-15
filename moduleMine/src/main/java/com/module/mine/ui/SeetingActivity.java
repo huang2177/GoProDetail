@@ -63,11 +63,11 @@ public class SeetingActivity extends BaseActivity {
         int i = v.getId();
         //修改密码
         if (i == R.id.psw_ray) {
-            startActivity(new Intent(this,ModifyPassActivity.class));
+            startActivity(new Intent(this, ModifyPassActivity.class));
         }
         //版本信息
         else if (i == R.id.edition_ray) {
-
+            startActivity(new Intent(this, EditionActivity.class));
         }
         //退出登录
         else if (i == R.id.out_but) {

@@ -4,15 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <include layout="@layout/space_layout" />
+
 
     <include layout="@layout/titlebar_layout" />
 
-    <ListView
-        android:id="@+id/address_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="10dp"></ListView>
 
 </LinearLayout>
