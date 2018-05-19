@@ -180,6 +180,9 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (presenter == null) {
+            return;
+        }
         presenter.detachView();
     }
 }

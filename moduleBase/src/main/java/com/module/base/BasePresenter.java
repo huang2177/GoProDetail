@@ -1,5 +1,7 @@
 package com.module.base;
 
+import android.content.Context;
+
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -7,18 +9,21 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public abstract class BasePresenter<V> {
+
     public CompositeSubscription mSubscription;
 
-    public void onCreate(){
+    public void onCreate() {
         mSubscription = new CompositeSubscription();
-    };
+    }
+
+
 
     public abstract void attachView(V v);
 
 
-    public void detachView(){
+    public void detachView() {
         if (mSubscription.hasSubscriptions()) {
             mSubscription.unsubscribe();
         }
-    };
+    }
 }

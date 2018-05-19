@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:text="订单编号：12889418972921012"
             android:textColor="@color/colorDeepGray"
-            android:textSize="12.0sp" />
+            android:textSize="14.0sp" />
 
         <TextView
             android:id="@+id/order_time_tv"
@@ -138,7 +138,7 @@
             android:layout_marginTop="5dp"
             android:text="创建时间：2018-09-01 10:21:21"
             android:textColor="@color/colorDeepGray"
-            android:textSize="12.0sp" />
+            android:textSize="14.0sp" />
 
         <TextView
             android:id="@+id/order_worldpay_tv"
@@ -147,7 +147,7 @@
             android:layout_marginTop="5dp"
             android:text="实际支付：￥9688.00 "
             android:textColor="@color/colorDeepGray"
-            android:textSize="12.0sp" />
+            android:textSize="14.0sp" />
 
         <TextView
             android:id="@+id/order_type_tv"
@@ -156,7 +156,7 @@
             android:layout_marginTop="5dp"
             android:text="订单类型：拼团订单 "
             android:textColor="@color/colorDeepGray"
-            android:textSize="12.0sp" />
+            android:textSize="14.0sp" />
 
         <TextView
             android:id="@+id/order_ktj_tv"
@@ -165,7 +165,7 @@
             android:layout_marginTop="5dp"
             android:text="开团券： 否"
             android:textColor="@color/colorDeepGray"
-            android:textSize="12.0sp" />
+            android:textSize="14.0sp" />
 
         <TextView
             android:id="@+id/order_gqtime_tv"
@@ -174,7 +174,7 @@
             android:layout_marginTop="5dp"
             android:text="过期时间：2019-3-23 21:11:21"
             android:textColor="@color/colorDeepGray"
-            android:textSize="12.0sp" />
+            android:textSize="14.0sp" />
 
 
     </LinearLayout>

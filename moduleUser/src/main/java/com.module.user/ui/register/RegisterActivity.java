@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,17 +15,19 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.utils.ToastUtil;
 import com.module.base.utils.VerifyCodeUtil;
 import com.module.user.AgreementActivity;
 import com.module.user.HelpActivity;
 import com.module.user.R;
+import com.module.user.bean.RegisterBean;
 
 /**
  * Created by shibing on 18/5/3.
  */
 
 public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.CountListener
-        ,RegisterView {
+        , RegisterView {
 
     private EditText Edphone, Edpassword, Edcode, Edinvicode;
     private TextView sendcode, agreement;
@@ -32,7 +35,7 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
 
 
     private VerifyCodeUtil util;
-    private String Tvphone, Tvpassword, Tvcode, Tvinvicode;
+    private String tvPhone, tvPassword, tvCode, tvinviCode;
 
     private RegisterPresenter registerPresenter;
 
@@ -59,12 +62,6 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
         sendcode = findViewById(R.id.register_sendcode_tv);
         register = findViewById(R.id.register_but);
         agreement = findViewById(R.id.register_agre_tv);
-
-        //
-        Tvphone = Edphone.getText().toString();
-        Tvpassword = Edpassword.getText().toString();
-        Tvcode = Edcode.getText().toString();
-        Tvinvicode = Edinvicode.getText().toString();
 
         util = new VerifyCodeUtil(this, this);
     }
@@ -93,22 +90,30 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
     public void onClick(View v) {
         super.onClick(v);
         int i = v.getId();
+        getInfoFromEdit();
+        //注册
         if (i == R.id.register_but) {
-            //注册
-            registerPresenter.register();
-            ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
-            finish();
-
-        } else if (i == R.id.register_sendcode_tv) {
-            //发送验证码
+            registerPresenter.register(tvPhone, tvPassword, tvCode, tvinviCode);
+        }
+        //发送验证码
+        else if (i == R.id.register_sendcode_tv) {
             util.startCount();
+            registerPresenter.sendCode(tvPhone);
 
-        } else if (i == R.id.register_agre_tv) {
-            //协议
+        }
+        //协议
+        else if (i == R.id.register_agre_tv) {
             startActivity(new Intent(this, AgreementActivity.class));
         }
     }
 
+
+    private void getInfoFromEdit() {
+        tvPhone = Edphone.getText().toString();
+        tvPassword = Edpassword.getText().toString();
+        tvCode = Edcode.getText().toString();
+        tvinviCode = Edinvicode.getText().toString();
+    }
 
     @Override
     public void onRightClick() {
@@ -133,12 +138,24 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
     }
 
     @Override
-    public void onSuccess(String msg) {
+    public void onRegisterSuc(RegisterBean registerBean) {
 
+        ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
+        finish();
     }
 
     @Override
-    public void onError(String error) {
+    public void onRegisterErr(String error) {
+        ToastUtil.show(this, error);
+    }
 
+    @Override
+    public void onSendCodeSuc(String msg) {
+        ToastUtil.show(this, msg);
+    }
+
+    @Override
+    public void onSendCodeErr(String error) {
+        ToastUtil.show(this, error);
     }
 }

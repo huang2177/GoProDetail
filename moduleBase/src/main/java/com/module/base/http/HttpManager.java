@@ -1,5 +1,8 @@
 package com.module.base.http;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -13,7 +16,11 @@ public class HttpManager {
     private Retrofit mRetrofit;
 
     private HttpManager() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.addInterceptor(new StethoInterceptor());
+
         mRetrofit = new Retrofit.Builder()
+                .client(builder.build())
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -33,11 +40,12 @@ public class HttpManager {
 
     /**
      * 获取相应的Service
+     *
      * @param clazz
      * @param <T>
      * @return
      */
-    public <T>T getService(Class<T> clazz) {
+    public <T> T getService(Class<T> clazz) {
         return mRetrofit.create(clazz);
     }
 }

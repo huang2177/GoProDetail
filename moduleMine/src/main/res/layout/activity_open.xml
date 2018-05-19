@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/space_layout" />
+
+    <include layout="@layout/titlebar_layout" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:background="@drawable/sharp_oval_brown">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_padlock_ash" />
+
+
+                    </FrameLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="公开"
+                        android:textColor="@color/colorBrown"
+                        android:textSize="20.0sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:background="@drawable/sharp_oval_gray">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_padlock_ash" />
+                    </FrameLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="不公开"
+                        android:textSize="20.0sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorLittleGray" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="在拼团大厅参团的用户将不视为您邀请的用户， 您也不能享受他的团队奖励！" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="但公开到拼团大厅会更快的完成拼团，获得返现! 确定公开吗？" />
+
+
+            <Button
+                android:id="@+id/order_yqhy_but"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/bg_btn_brown"
+                android:text="确认"
+                android:textColor="@color/colorWhite"
+                android:textSize="18.0sp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

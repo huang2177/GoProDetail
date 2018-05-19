@@ -38,7 +38,7 @@ public class RechDepositActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title = getIntent().getStringExtra(Constant.TITLE);
+
         title(title);
     }
 
@@ -49,7 +49,8 @@ public class RechDepositActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        Log.e("1111111", "initView: " + title);
+        title = getIntent().getStringExtra(Constant.TITLE);
+
         imageReduce = findViewById(R.id.reduce_image);
         imageAdd = findViewById(R.id.add_image);
         tvMoney = findViewById(R.id.money_tv);
@@ -62,8 +63,13 @@ public class RechDepositActivity extends BaseActivity {
         tvTitle = findViewById(R.id.title_tv);
 
 
-        tvPay.setText((Html.fromHtml("实际支付 <font color= '#a0563c'>" + "￥" + "<big>" + "2000" + "</big></font> " + ".00")));
-        //setTitle();
+        tvPay.setText((Html.fromHtml("实际支付 <font color= '#a0563c'>"
+                + "￥"
+                + "<big>"
+                + "2000"
+                + "</big></font> "
+                + ".00")));
+        setTitle();
     }
 
 

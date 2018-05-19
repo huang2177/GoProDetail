@@ -81,5 +81,6 @@
         <activity
             android:name=".ui.PutForwardActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.OpenActivity" />
     </application>
 </manifest>
