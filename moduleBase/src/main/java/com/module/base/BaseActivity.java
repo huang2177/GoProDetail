@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.http.HttpManager;
+import com.module.base.http.HttpService;
 import com.module.base.utils.StatusUtil;
 
 
@@ -22,7 +24,7 @@ import com.module.base.utils.StatusUtil;
  */
 
 public abstract class BaseActivity<V, T extends BasePresenter<V>> extends FragmentActivity implements View.OnClickListener {
-    protected BasePresenter<V> presenter;
+    public BasePresenter<V> presenter;
     protected FrameLayout titleBarContainer;
     private ImageView ivLeft;
     private TextView tvTitle, tvRight;
@@ -43,8 +45,8 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
 
         presenter = createPresenter();
         if (presenter != null) {
+            presenter.onCreate();
             presenter.attachView((V) this);
-            presenter.fetch();
         }
     }
 
@@ -61,6 +63,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
     public boolean isUseDart() {
         return true;
     }
+
     /**
      * 用于实现类返回视图
      *
@@ -174,4 +177,9 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
+    }
 }

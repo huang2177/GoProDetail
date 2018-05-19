@@ -4,11 +4,11 @@
     <application>
         <!--登录-->
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait" />
         <!--注册-->
         <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.register.RegisterActivity"
             android:screenOrientation="portrait" />
         <!--协议-->
         <activity

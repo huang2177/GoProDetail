@@ -1,4 +1,4 @@
-package com.module.user;
+package com.module.user.ui.register;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +15,16 @@ import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.utils.VerifyCodeUtil;
+import com.module.user.AgreementActivity;
+import com.module.user.HelpActivity;
+import com.module.user.R;
 
 /**
  * Created by shibing on 18/5/3.
  */
 
-public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.CountListener {
+public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.CountListener
+        ,RegisterView {
 
     private EditText Edphone, Edpassword, Edcode, Edinvicode;
     private TextView sendcode, agreement;
@@ -29,6 +33,8 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
 
     private VerifyCodeUtil util;
     private String Tvphone, Tvpassword, Tvcode, Tvinvicode;
+
+    private RegisterPresenter registerPresenter;
 
 
     @Override
@@ -65,7 +71,8 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
 
     @Override
     public BasePresenter createPresenter() {
-        return null;
+        registerPresenter = new RegisterPresenter();
+        return registerPresenter;
     }
 
     @Override
@@ -88,6 +95,7 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
         int i = v.getId();
         if (i == R.id.register_but) {
             //注册
+            registerPresenter.register();
             ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
             finish();
 
@@ -122,5 +130,15 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
     protected void onDestroy() {
         super.onDestroy();
         util.setStop(true);
+    }
+
+    @Override
+    public void onSuccess(String msg) {
+
+    }
+
+    @Override
+    public void onError(String error) {
+
     }
 }

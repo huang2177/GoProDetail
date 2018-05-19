@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.http.HttpService;
+import com.module.mine.MineHttpService;
 import com.module.mine.R;
 import com.module.mine.adapter.AddressListAdapter;
 
@@ -26,7 +28,10 @@ public class AddressActivity extends BaseActivity implements AdapterView.OnItemC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("收货地址").rightText("管理");
+
     }
+
+
 
     @Override
     public int getLayoutId() {

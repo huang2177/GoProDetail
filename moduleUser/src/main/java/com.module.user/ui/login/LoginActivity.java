@@ -1,4 +1,4 @@
-package com.module.user;
+package com.module.user.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.user.R;
+import com.module.user.ui.register.RegisterActivity;
 
 /**
  * Created by shibing on 18/5/3.
