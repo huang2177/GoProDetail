@@ -1,4 +1,4 @@
-package com.module.mine;
+package com.module.mine.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
-import com.module.base.listener.OnItemClickListener;
+import com.module.mine.R;
 import com.module.mine.adapter.NoviceAdapter;
 
 /**

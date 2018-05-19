@@ -33,21 +33,53 @@
         <activity
             android:name=".ui.CollageReturnsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.OrderActivity" />
-        <activity android:name=".ui.DepositActivity" />
-        <activity android:name=".ui.AddressActivity" />
-        <activity android:name=".ui.AdderAddressActivity" />
-        <activity android:name=".ui.AdmAdderssActivity" />
-        <activity android:name=".ui.KePhoneActivity" />
-        <activity android:name=".ui.ComplaintActivity" />
-        <activity android:name=".ui.SeetingActivity" />
-        <activity android:name=".ui.ModifyPassActivity" />
-        <activity android:name=".ui.RechDepositActivity" />
-        <activity android:name=".ui.PaySuccessActivity" />
-        <activity android:name=".ui.EditionPassActivity" />
-        <activity android:name=".ui.EditionActivity" />
-        <activity android:name=".ui.OrderDetalisActivity" />
-        <activity android:name=".NoviceActivity" />
-        <activity android:name=".NoviceDetalisActivity" />
+        <activity
+            android:name=".ui.OrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.DepositActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AdderAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AdmAdderssActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.KePhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ComplaintActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SeetingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ModifyPassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.RechDepositActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PaySuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.EditionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.OrderDetalisActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.NoviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.NoviceDetalisActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PutForwardActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

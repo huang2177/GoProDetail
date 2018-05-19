@@ -1,10 +1,11 @@
-package com.module.mine;
+package com.module.mine.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.mine.R;
 
 /**
  * Created by shibing on 18/5/16.

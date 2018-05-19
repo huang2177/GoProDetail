@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.mine.R;
 
 /**
@@ -65,7 +66,9 @@ public class DepositActivity extends BaseActivity {
         }
         //去充值押金
         else if (i == R.id.rec_but) {
-            startActivity(new Intent(this,RechDepositActivity.class));
+            Intent intent = new Intent(this, RechDepositActivity.class);
+            intent.putExtra(Constant.TITLE, "支付押金");
+            startActivity(intent);
         }
     }
 }

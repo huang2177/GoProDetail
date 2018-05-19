@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,7 +12,10 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.mine.R;
+
+import java.util.Objects;
 
 /**
  * Created by shibing on 18/5/14.
@@ -24,14 +28,18 @@ public class RechDepositActivity extends BaseActivity {
 
 
     private ImageView imageReduce, imageAdd;
-    private TextView tvMoney, tvPay, tvSuerpay;
+    private TextView tvMoney, tvPay, tvSuerpay, tvContent, tvTitle;
     private RelativeLayout rayAipay, rayWeathpay, rayUnionpay;
+
+
+    private String title;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("支付押金");
+        title = getIntent().getStringExtra(Constant.TITLE);
+        title(title);
     }
 
     @Override
@@ -41,6 +49,7 @@ public class RechDepositActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        Log.e("1111111", "initView: " + title);
         imageReduce = findViewById(R.id.reduce_image);
         imageAdd = findViewById(R.id.add_image);
         tvMoney = findViewById(R.id.money_tv);
@@ -49,6 +58,23 @@ public class RechDepositActivity extends BaseActivity {
         rayAipay = findViewById(R.id.aipay_lay);
         rayWeathpay = findViewById(R.id.weathpay_ray);
         rayUnionpay = findViewById(R.id.unionpay_ray);
+        tvContent = findViewById(R.id.content_tv);
+        tvTitle = findViewById(R.id.title_tv);
+
+
+        tvPay.setText((Html.fromHtml("实际支付 <font color= '#a0563c'>" + "￥" + "<big>" + "2000" + "</big></font> " + ".00")));
+        //setTitle();
+    }
+
+
+    private void setTitle() {
+        if (title.equals("充值")) {
+            tvContent.setVisibility(View.GONE);
+            tvTitle.setText("充值到余额");
+        } else {
+            tvContent.setVisibility(View.VISIBLE);
+            tvTitle.setText("充值押金");
+        }
     }
 
     @Override
@@ -65,9 +91,6 @@ public class RechDepositActivity extends BaseActivity {
         rayAipay.setOnClickListener(this);          //支付宝支付
         rayWeathpay.setOnClickListener(this);       //微信支付
         rayUnionpay.setOnClickListener(this);       //银联支付
-
-
-        tvPay.setText((Html.fromHtml("实际支付 <font color= '#a0563c'>" +"￥" + "<big>"+"2000" +"</big></font> " +".00")));
     }
 
 
@@ -85,7 +108,7 @@ public class RechDepositActivity extends BaseActivity {
         }
         //确认支付
         else if (i == R.id.surepay_tv) {
-            startActivity(new Intent(this,PaySuccessActivity.class));
+            startActivity(new Intent(this, PaySuccessActivity.class));
         }
         //支付宝支付
         else if (i == R.id.aipay_lay) {

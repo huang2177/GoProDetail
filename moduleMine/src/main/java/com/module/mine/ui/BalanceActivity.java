@@ -1,5 +1,6 @@
 package com.module.mine.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.XListView;
 import com.module.mine.R;
@@ -70,10 +72,13 @@ public class BalanceActivity extends BaseActivity implements AdapterView.OnItemC
         //提现
         if (i == R.id.balance_put_lay) {
             ToastUtil.show(this, "提现");
+            startActivity(new Intent(this,PutForwardActivity.class));
         }
         //充值
         else if (i == R.id.balance_rec_lay) {
-            ToastUtil.show(this, "充值");
+            Intent intent = new Intent(this, RechDepositActivity.class);
+            intent.putExtra(Constant.TITLE, "充值");
+            startActivity(intent);
         }
     }
 

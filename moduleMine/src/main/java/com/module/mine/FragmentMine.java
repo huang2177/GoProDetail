@@ -25,6 +25,7 @@ import com.module.mine.ui.InvitationCodeActivity;
 import com.module.mine.ui.KePhoneActivity;
 import com.module.mine.ui.MyOpenCoilActivity;
 import com.module.mine.ui.MyTeamActivity;
+import com.module.mine.ui.NoviceActivity;
 import com.module.mine.ui.OrderActivity;
 import com.module.mine.ui.SeetingActivity;
 import com.module.mine.ui.SystemMessActivity;
@@ -131,11 +132,12 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
             case 1:
                 startActivity(new Intent(activity, CollageReturnsActivity.class));
                 break;
-            //我的订单
+
+            //我的开团卷
             case 2:
                 startActivity(new Intent(activity, MyOpenCoilActivity.class));
                 break;
-            //我的开团卷
+            //我的订单
             case 3:
                 intent = new Intent(activity, OrderActivity.class);
                 intent.putExtra(Constant.TITLE, "我的订单");

@@ -10,6 +10,7 @@ import android.widget.Switch;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.widgets.SwitchButton;
 import com.module.mine.R;
 
 /**
@@ -22,7 +23,7 @@ import com.module.mine.R;
 public class SeetingActivity extends BaseActivity {
 
     RelativeLayout rayPas, rayEdition;
-    Switch aSwitch;
+    SwitchButton aSwitch;
     Button butOut;
 
     @Override
