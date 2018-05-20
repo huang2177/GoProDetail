@@ -37,7 +37,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
     private static final String TAG = "RegisterPresenter";
 
     @Override
-    public void attachView(RegisterView registerView) {
+    public void bindView(RegisterView registerView) {
         this.mRegisterView = registerView;
         context = (Context) registerView;
         mService = HttpManager.getInstance().getService(UserHttpService.class);
@@ -51,6 +51,9 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
     public void sendCode(String mobile) {
         if (TextUtils.isEmpty(mobile)) {
             ToastUtil.show(context, "手机号码不能为空！");
+            return;
+        }
+        if (isRecycle()) {
             return;
         }
         mSubscription.add(mService.sendCode(mobile)
@@ -88,6 +91,9 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
      * 注册
      */
     public void register(String mobile, String password, String smsCode, String inviteCode) {
+        if (isRecycle()) {
+            return;
+        }
         mSubscription.add(mService.register(mobile, password, smsCode, inviteCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
