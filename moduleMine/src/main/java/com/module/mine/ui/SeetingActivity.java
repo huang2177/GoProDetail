@@ -12,6 +12,7 @@ import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.widgets.SwitchButton;
 import com.module.mine.R;
+import com.module.mine.ui.modifypaw.ModifyPassActivity;
 
 /**
  * Created by shibing on 18/5/8.

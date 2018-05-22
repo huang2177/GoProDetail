@@ -16,6 +16,13 @@ import rx.Observable;
 
 public interface UserHttpService {
 
+
+    /**
+     * 发送验证码
+     *
+     * @param mobile
+     * @return
+     */
     @GET("api/WebUser/Sms")
     Observable<ResponseBody> sendCode(@Query("mobile") String mobile);
 
@@ -34,4 +41,33 @@ public interface UserHttpService {
             , @Field("password") String password
             , @Field("smsCode") String smsCode
             , @Field("inviteCode") String inviteCode);
+
+
+    /**
+     * 登录
+     *
+     * @param mobile
+     * @param password
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/WebUser/Login")
+    Observable<RegisterBean> login(@Field("mobile") String mobile
+            , @Field("password") String password);
+
+
+    /**
+     * POST /api/WebUser/ResetPassword 忘记密码/修改密码
+     *
+     * @param mobile
+     * @param password
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/WebUser/ResetPassword")
+    Observable<ResponseBody> ModifyPsw(@Field("mobile") String mobile
+            , @Field("smsCode") String smsCode
+            , @Field("password") String password);
+
+
 }

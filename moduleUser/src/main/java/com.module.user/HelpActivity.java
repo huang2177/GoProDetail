@@ -16,7 +16,7 @@ public class HelpActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("帮助").rightImageRes(0);
+        title("帮助");
     }
 
     @Override

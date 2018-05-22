@@ -6,8 +6,11 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.base.http.HttpManager;
 import com.module.base.utils.Logger;
+import com.module.base.utils.SPUtil;
+import com.module.base.utils.TextUtil;
 import com.module.base.utils.ToastUtil;
 import com.module.user.UserHttpService;
 import com.module.user.bean.RegisterBean;
@@ -29,11 +32,11 @@ import rx.subscriptions.CompositeSubscription;
 
 public class RegisterPresenter extends BasePresenter<RegisterView> {
 
+
     private RegisterView mRegisterView;
     private UserHttpService mService;
 
     private Context context;
-
     private static final String TAG = "RegisterPresenter";
 
     @Override
@@ -42,7 +45,6 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
         context = (Context) registerView;
         mService = HttpManager.getInstance().getService(UserHttpService.class);
     }
-
     /**
      * 发送验证码
      *
@@ -53,6 +55,12 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             ToastUtil.show(context, "手机号码不能为空！");
             return;
         }
+
+        if (!TextUtil.isChinaPhoneLegal(mobile)) {
+            ToastUtil.show(context, "请输入正确手机号码！");
+            return;
+        }
+
         if (isRecycle()) {
             return;
         }
@@ -92,6 +100,19 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
      */
     public void register(String mobile, String password, String smsCode, String inviteCode) {
         if (isRecycle()) {
+            return;
+        }
+        if (TextUtils.isEmpty(mobile)) {
+            ToastUtil.show(context, "手机号码不能为空！");
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            ToastUtil.show(context, "密码不能为空！");
+            return;
+        }
+        if (TextUtils.isEmpty(smsCode)) {
+            ToastUtil.show(context, "验证码不能为空！");
             return;
         }
         mSubscription.add(mService.register(mobile, password, smsCode, inviteCode)

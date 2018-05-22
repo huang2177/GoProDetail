@@ -1,9 +1,10 @@
-package com.module.mine.ui;
+package com.module.mine.ui.modifypaw;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.utils.TextUtil;
+import com.module.base.utils.ToastUtil;
 import com.module.base.utils.VerifyCodeUtil;
 import com.module.mine.R;
 
@@ -21,22 +24,28 @@ import com.module.mine.R;
  */
 
 
-
 @Route(path = Constant.PATH_MODIFYACTIVITY)
-public class ModifyPassActivity extends BaseActivity implements VerifyCodeUtil.CountListener {
+public class ModifyPassActivity extends BaseActivity implements VerifyCodeUtil.CountListener
+        , FindView {
 
+
+    private static final String TAG = "ModifyPassActivity";
 
     private EditText edPhoneMd, edPassMd, edCodeMd;
     private TextView tvCode;
     private Button butModifty;
-
-
     private VerifyCodeUtil util;
+
+    private String phone, code, password;
+
+    private FingPswPresenter fingPswPresenter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("修改密码");
+
     }
 
     @Override
@@ -57,7 +66,8 @@ public class ModifyPassActivity extends BaseActivity implements VerifyCodeUtil.C
 
     @Override
     public BasePresenter createPresenter() {
-        return null;
+        fingPswPresenter = new FingPswPresenter();
+        return fingPswPresenter;
     }
 
 
@@ -68,18 +78,31 @@ public class ModifyPassActivity extends BaseActivity implements VerifyCodeUtil.C
         butModifty.setOnClickListener(this);
     }
 
+
+    private void getFromEdit() {
+        phone = edPhoneMd.getText().toString();
+        password = edPassMd.getText().toString();
+        code = edCodeMd.getText().toString();
+    }
+
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
-
+        getFromEdit();
         int i = v.getId();
         //发送验证码
         if (i == R.id.modify_sendcode_tv) {
+            if (!TextUtil.isChinaPhoneLegal(phone)) {
+                ToastUtil.show(this, "请输入正确手机号码！");
+                return;
+            }
             util.startCount();
+            fingPswPresenter.sendCode(phone);
         }
         //重置密码
         else if (i == R.id.modify_but) {
-
+            fingPswPresenter.ModidyPaw(phone, code, password);
         }
     }
 
@@ -98,5 +121,31 @@ public class ModifyPassActivity extends BaseActivity implements VerifyCodeUtil.C
     protected void onDestroy() {
         super.onDestroy();
         util.setStop(true);
+    }
+
+    @Override
+    public void onFindSuc() {
+        Log.e(TAG, "onFindSuc: ");
+    }
+
+    @Override
+    public void onFindErr() {
+
+    }
+
+
+    /**
+     * 发送验证码
+     *
+     * @param msg
+     */
+    @Override
+    public void onSendCodeSuc(String msg) {
+
+    }
+
+    @Override
+    public void onSendCodeErr(String error) {
+
     }
 }

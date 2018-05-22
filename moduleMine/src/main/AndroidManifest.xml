@@ -58,9 +58,6 @@
             android:name=".ui.SeetingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.ModifyPassActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.RechDepositActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -82,5 +79,6 @@
             android:name=".ui.PutForwardActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.OpenActivity" />
+        <activity android:name=".ui.modifypaw.ModifyPassActivity" />
     </application>
 </manifest>
