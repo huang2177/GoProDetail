@@ -1,6 +1,8 @@
 package com.module.mine;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.base.BaseFragment;
+import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
+import com.module.base.manager.GlideManager;
+import com.module.base.utils.Logger;
+import com.module.base.utils.SPUtil;
+import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
+import com.module.mine.bean.UserInfoBean;
 import com.module.mine.ui.AdderAddressActivity;
 import com.module.mine.ui.BalanceActivity;
 import com.module.mine.ui.CardActivity;
@@ -31,23 +39,43 @@ import com.module.mine.ui.SeetingActivity;
 import com.module.mine.ui.SystemMessActivity;
 import com.module.mine.ui.UserInfoActivity;
 
+
 /**
  * @author Huangshuang  2018/5/4 0004
  */
 
-public class FragmentMine extends BaseFragment implements OnItemClickListener {
+public class FragmentMine extends BaseFragment implements
+        OnItemClickListener, MineView {
 
-    private ImageView head,inCodeTv;
+    private ImageView inCodeTv;
     private FrameLayout messFra;
     private RecyclerView recyclerView;
+    private RoundImageView mIvHead;
     private LinearLayout inCodeLay, banLanceLay, cardLay;
     private TextView phoneTv, mesTv, banlanceTv;
 
     private MineAdapter mineAdapter;
 
+    private MinePresenter minePresenter;
+
+    private SPUtil spUtil;
+
 
     public static FragmentMine newInstance(String msg) {
         return new FragmentMine();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        minePresenter.getUserInfo(spUtil.getString(Constant.USERID));
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        minePresenter = new MinePresenter();
+        return minePresenter;
     }
 
     @Override
@@ -57,16 +85,21 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
 
     @Override
     public void initView() {
-        head = f(R.id.mine_hede_img);
-        phoneTv = f(R.id.mine_phone_tv);
-        mesTv = f(R.id.mine_mes_tv);
-        banlanceTv = f(R.id.mine_banlance_tv);
-        inCodeTv = f(R.id.mine_incode_tv);
-        messFra = f(R.id.mine_mes_fra);
-        inCodeLay = f(R.id.mine_incode_lay);
-        banLanceLay = f(R.id.mine_banlance_lay);
-        cardLay = f(R.id.mine_card_lay);
-        recyclerView = f(R.id.mine_recycler);
+        spUtil = SPUtil.getInstance(activity);
+
+        mIvHead = viewRoot.findViewById(R.id.mine_hede_img);
+        phoneTv = viewRoot.findViewById(R.id.mine_phone_tv);
+        mesTv = viewRoot.findViewById(R.id.mine_mes_tv);
+        banlanceTv = viewRoot.findViewById(R.id.mine_banlance_tv);
+        inCodeTv = viewRoot.findViewById(R.id.mine_incode_tv);
+        messFra = viewRoot.findViewById(R.id.mine_mes_fra);
+        inCodeLay = viewRoot.findViewById(R.id.mine_incode_lay);
+        banLanceLay = viewRoot.findViewById(R.id.mine_banlance_lay);
+        cardLay = viewRoot.findViewById(R.id.mine_card_lay);
+        recyclerView = viewRoot.findViewById(R.id.mine_recycler);
+
+        //设置为圆形图片
+        mIvHead.setShapeType(1);
 
         initRecycle();
     }
@@ -86,7 +119,7 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
     @Override
     public void setListener() {
         super.setListener();
-        head.setOnClickListener(this);
+        mIvHead.setOnClickListener(this);
         messFra.setOnClickListener(this);
         inCodeLay.setOnClickListener(this);
         banLanceLay.setOnClickListener(this);
@@ -168,13 +201,39 @@ public class FragmentMine extends BaseFragment implements OnItemClickListener {
                 break;
             //投诉建议
             case 9:
-                startActivity(new Intent(activity,ComplaintActivity.class));
+                startActivity(new Intent(activity, ComplaintActivity.class));
                 break;
             //系统设置
             case 10:
-                startActivity(new Intent(activity,SeetingActivity.class));
+                startActivity(new Intent(activity, SeetingActivity.class));
                 break;
 
         }
     }
+
+
+    @Override
+    public void showUserInfo(UserInfoBean userInfo) {
+
+        GlideManager.loadImage(this, R.drawable.ic_mine_head, mIvHead);
+        phoneTv.setText(userInfo.getData().getNickname());
+        banlanceTv.setText(userInfo.getData().getCardNum());
+
+    }
+
+    @Override
+    public void showLoading(String msg) {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(String error) {
+
+    }
+
 }

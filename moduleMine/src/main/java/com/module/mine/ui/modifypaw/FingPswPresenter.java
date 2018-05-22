@@ -24,10 +24,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class FingPswPresenter extends BasePresenter<FindView> {
-
-
     private static final String TAG = "FingPswPresenter";
-
     private FindView findView;
     private MineHttpService mService;
     private Context context;

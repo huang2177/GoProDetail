@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseFragment;
+import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.mall.adpter.PingListAdpter;
 
@@ -23,7 +24,7 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 @Route(path = Constant.PATH_FRAGMENTPING)
-public class FragmentPing extends BaseFragment implements TabLayout.OnTabSelectedListener {
+public class FragmentGroup extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
     private EditText editSearch;
@@ -33,27 +34,32 @@ public class FragmentPing extends BaseFragment implements TabLayout.OnTabSelecte
     private int flag;
     private PingListAdpter adpter;
 
-    public static FragmentPing newInstance(int position) {
+    public static FragmentGroup newInstance(int position) {
         Bundle args = new Bundle();
         args.putInt(Constant.FLAG, position);
-        FragmentPing fragment = new FragmentPing();
+        FragmentGroup fragment = new FragmentGroup();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
     public int getContentView() {
         /*资源文件在base中*/
-        return R.layout.fragment_ping;
+        return R.layout.fragment_group;
     }
 
     @Override
     public void initView() {
-        tabLayout = f(R.id.ping_tab);
-        editSearch = f(R.id.home_ed);
-        recyclerView = f(R.id.ping_recycle);
-        tvLocation = f(R.id.home_location_tv);
-        tvNewUserPoint = f(R.id.home_new_user_tv);
+        tabLayout = viewRoot.findViewById(R.id.ping_tab);
+        editSearch = viewRoot.findViewById(R.id.home_ed);
+        recyclerView = viewRoot.findViewById(R.id.ping_recycle);
+        tvLocation = viewRoot.findViewById(R.id.home_location_tv);
+        tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
 
         flag = getArguments().getInt(Constant.FLAG);
 

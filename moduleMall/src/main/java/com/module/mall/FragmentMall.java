@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseFragment;
+import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.mall.adpter.MallListAdpter;
@@ -45,17 +46,22 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
     public int getContentView() {
         return R.layout.fragment_mall;
     }
 
     @Override
     public void initView() {
-        tabLayout = f(R.id.ping_tab);
-        editSearch = f(R.id.home_ed);
-        recyclerView = f(R.id.ping_recycle);
-        tvLocation = f(R.id.home_location_tv);
-        tvNewUserPoint = f(R.id.home_new_user_tv);
+        tabLayout = viewRoot.findViewById(R.id.ping_tab);
+        editSearch = viewRoot.findViewById(R.id.home_ed);
+        recyclerView = viewRoot.findViewById(R.id.ping_recycle);
+        tvLocation = viewRoot.findViewById(R.id.home_location_tv);
+        tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
 
         flag = getArguments().getInt(Constant.FLAG);
 

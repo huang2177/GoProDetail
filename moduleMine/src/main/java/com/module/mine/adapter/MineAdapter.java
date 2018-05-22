@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.module.base.listener.OnItemClickListener;
-import com.module.mine.FragmentMine;
 import com.module.mine.R;
 
 import java.util.Arrays;

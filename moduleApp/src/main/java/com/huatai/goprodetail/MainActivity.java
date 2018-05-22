@@ -1,7 +1,6 @@
 package com.huatai.goprodetail;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,10 +10,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.app.Constant;
@@ -22,8 +19,8 @@ import com.module.base.utils.StatusUtil;
 import com.module.home.FragmentHome;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.mall.FragmentGroup;
 import com.module.mall.FragmentMall;
-import com.module.mall.FragmentPing;
 import com.module.mine.FragmentMine;
 
 import java.lang.reflect.Field;
@@ -152,7 +149,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 showFragment(FragmentMall.newInstance(2));
                 break;
             case R.id.navigation_hall:
-                showFragment(FragmentPing.newInstance(1));
+                showFragment(FragmentGroup.newInstance(1));
                 break;
             case R.id.navigation_mine:
                 useDart = false;

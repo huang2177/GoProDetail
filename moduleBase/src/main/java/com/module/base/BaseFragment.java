@@ -1,5 +1,6 @@
 package com.module.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,9 +17,11 @@ import android.widget.EditText;
  * Huangshuang 2018/3/8 0008
  */
 
-public abstract class BaseFragment extends Fragment implements View.OnClickListener{
+public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragment implements View.OnClickListener {
     protected FragmentActivity activity;
     protected View viewRoot;
+
+    private BasePresenter<V> presenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +32,15 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
         initView();
         setListener();
+
+        presenter = createPresenter();
+        if (presenter != null) {
+            presenter.onCreate();
+            presenter.attachView((V) this);
+        }
     }
+
+    protected abstract BasePresenter<V> createPresenter();
 
 
     @Nullable
@@ -52,14 +63,13 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public abstract void initView();
 
 
-
     public void setListener() {
 
     }
 
 
-    protected <T extends View> T f(int id) {
-        return viewRoot.findViewById(id);
+    protected <V extends View> V f(int id) {
+        return  viewRoot.findViewById(id);
     }
 
     /**
@@ -84,5 +94,14 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (presenter == null) {
+            return;
+        }
+        presenter.detachView();
     }
 }

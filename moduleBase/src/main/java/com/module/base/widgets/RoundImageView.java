@@ -285,7 +285,7 @@ public class RoundImageView extends ImageView {
     /**
      * 设置形状类型
      *
-     * @param shapeType
+     * @param shapeType 1 －－> 圆形   2 －－> 圆角
      */
     public void setShapeType(int shapeType) {
         this.shapeType = shapeType;

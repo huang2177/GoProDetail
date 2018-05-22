@@ -12,7 +12,7 @@
         android:layout_height="30dp"
         android:layout_margin="10dp">
 
-        <ImageView
+        <com.module.base.widgets.RoundImageView
             android:id="@+id/mine_hede_img"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -68,11 +68,11 @@
             android:gravity="center"
             android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/mine_incode_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_mine_underline"/>
+            <ImageView
+                android:id="@+id/mine_incode_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_mine_underline" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseFragment;
+import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.home.adpter.HomeListAdpter;
 import com.youth.banner.Banner;
@@ -43,20 +44,25 @@ public class FragmentHome extends BaseFragment {
     }
 
     @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
     public int getContentView() {
         return R.layout.fragment_home;
     }
 
     @Override
     public void initView() {
-        banner = f(R.id.home_banner);
-        editSearch = f(R.id.home_ed);
-        tvNewUser = f(R.id.home_new_user);
-        tvPinged = f(R.id.home_pinged_num);
-        recyclerView = f(R.id.home_recycle);
-        tvPinging = f(R.id.home_pinging_num);
-        tvLocation = f(R.id.home_location_tv);
-        tvNewUserPoint = f(R.id.home_new_user_tv);
+        banner = viewRoot.findViewById(R.id.home_banner);
+        editSearch = viewRoot.findViewById(R.id.home_ed);
+        tvNewUser = viewRoot.findViewById(R.id.home_new_user);
+        tvPinged = viewRoot.findViewById(R.id.home_pinged_num);
+        recyclerView = viewRoot.findViewById(R.id.home_recycle);
+        tvPinging = viewRoot.findViewById(R.id.home_pinging_num);
+        tvLocation = viewRoot.findViewById(R.id.home_location_tv);
+        tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
 
         initTable();
         initBanner();

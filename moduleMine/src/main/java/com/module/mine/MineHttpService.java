@@ -1,12 +1,14 @@
 package com.module.mine;
 
 import com.module.base.http.HttpService;
+import com.module.mine.bean.UserInfoBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 import rx.Subscriber;
@@ -26,10 +28,8 @@ public interface MineHttpService {
     @GET("api/WebUser/Sms")
     Observable<ResponseBody> sendCode(@Query("mobile") String mobile);
 
-
-
     /**
-     * POST /api/WebUser/ResetPassword 忘记密码/修改密码
+     * 忘记密码/修改密码
      *
      * @param mobile
      * @param password
@@ -41,5 +41,11 @@ public interface MineHttpService {
             , @Field("smsCode") String smsCode
             , @Field("password") String password);
 
+
+    /**
+     * 根据id获取用户详情
+     */
+    @GET("api/WebUser/{id}")
+    Observable<UserInfoBean> getUserInfo(@Path("id") String id);
 
 }

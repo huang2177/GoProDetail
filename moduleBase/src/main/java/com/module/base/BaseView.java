@@ -6,4 +6,9 @@ package com.module.base;
 
 public interface BaseView {
 
+    void showLoading(String msg);
+
+    void hideLoading();
+
+    void onError(String msg);
 }
