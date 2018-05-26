@@ -1,6 +1,6 @@
 package com.module.base;
 
-import android.content.Context;
+import com.module.base.http.HttpObserver;
 
 import java.lang.ref.WeakReference;
 
@@ -35,7 +35,9 @@ public abstract class BasePresenter<V> {
         return mReference.get() == null;
     }
 
-
+    /**
+     * 页面销毁时解除与view的绑定
+     */
     public void detachView() {
         if (mReference != null && mReference.get() != null) {
             mReference.clear();
@@ -45,4 +47,12 @@ public abstract class BasePresenter<V> {
             mSubscription.unsubscribe();
         }
     }
+
+    /**
+     * 提交请求
+     */
+    public void observer(HttpObserver httpObserver) {
+        mSubscription.add(httpObserver.mSubscription);
+    }
+
 }
