@@ -30,8 +30,9 @@ public abstract class BasePresenter<V> {
      * 判断view是否被回收
      */
     protected boolean isRecycle() {
-        if (mReference == null)
+        if (mReference == null) {
             return true;
+        }
         return mReference.get() == null;
     }
 
@@ -51,8 +52,12 @@ public abstract class BasePresenter<V> {
     /**
      * 提交请求
      */
-    public void observer(HttpObserver httpObserver) {
+    public boolean observer(HttpObserver httpObserver) {
+        if (httpObserver == null || httpObserver.mSubscription == null) {
+            return false;
+        }
         mSubscription.add(httpObserver.mSubscription);
+        return true;
     }
 
 }

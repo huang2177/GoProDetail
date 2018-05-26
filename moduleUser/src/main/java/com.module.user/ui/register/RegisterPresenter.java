@@ -45,55 +45,26 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
      *
      * @param mobile
      */
-    public void sendCode(String mobile) {
+    public boolean sendCode(String mobile) {
         if (TextUtils.isEmpty(mobile)) {
             ToastUtil.show(mContext, "手机号码不能为空！");
-            return;
+            return false;
         }
 
         if (!TextUtil.isChinaPhoneLegal(mobile)) {
             ToastUtil.show(mContext, "请输入正确手机号码！");
-            return;
+            return false;
         }
 
-        if (isRecycle()) {
-            return;
-        }
-//        mSubscription.add(mService.sendCode(mobile)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<ResponseBody>() {
-//                    @Override
-//                    public void onCompleted() {
-//                        //mRegisterView.onSuccess("1111");
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        //mRegisterView.onSendCodeErr(e.toString());
-//                    }
-//
-//                    @Override
-//                    public void onNext(ResponseBody o) {
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(o.string());
-//                            if (TextUtils.equals(jsonObject.getString("code"), "00")) {
-//                                mRegisterView.onSendCodeSuc("发送成功！");
-//                            } else {
-//                                mRegisterView.onSendCodeErr(jsonObject.getString("msg"));
-//                            }
-//                        } catch (Exception e) {
-//
-//                        }
-//                    }
-//                }));
-
-        observer(new HttpObserver(mContext
+        return observer(new HttpObserver(mContext
                 , mService.sendCode(mobile)
                 , new HttpCallBackImpl<ResponseBody>() {
             @Override
             public void onCompleted(ResponseBody responseBody) {
                 try {
+                    if (isRecycle()) {
+                        return;
+                    }
                     JSONObject jsonObject = new JSONObject(responseBody.string());
                     if (TextUtils.equals(jsonObject.getString("code"), "00")) {
                         mRegisterView.onSendCodeSuc("发送成功！");
@@ -112,9 +83,6 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
      * 注册
      */
     public void register(String mobile, String password, String smsCode, String inviteCode) {
-        if (isRecycle()) {
-            return;
-        }
         if (TextUtils.isEmpty(mobile)) {
             ToastUtil.show(mContext, "手机号码不能为空！");
             return;
@@ -128,38 +96,13 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             ToastUtil.show(mContext, "验证码不能为空！");
             return;
         }
-//        mSubscription.add(mService.register(mobile, password, smsCode, inviteCode)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<RegisterBean>() {
-//
-//                    public RegisterBean registerBean;
-//
-//                    @Override
-//                    public void onCompleted() {
-//                        if (registerBean == null) {
-//                            return;
-//                        }
-//                        mRegisterView.onRegisterSuc(registerBean);
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        mRegisterView.onRegisterErr(e.toString());
-//                    }
-//
-//                    @Override
-//                    public void onNext(RegisterBean registerBean) {
-//                        this.registerBean = registerBean;
-//                    }
-//                }));
 
         observer(new HttpObserver(mContext
                 , mService.register(mobile, password, smsCode, inviteCode)
                 , new HttpCallBackImpl<RegisterBean>() {
             @Override
             public void onCompleted(RegisterBean registerBean) {
-                if (registerBean == null) {
+                if (registerBean == null || isRecycle()) {
                     return;
                 }
                 mRegisterView.onRegisterSuc(registerBean);

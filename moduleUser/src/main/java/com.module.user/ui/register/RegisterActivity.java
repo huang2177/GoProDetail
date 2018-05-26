@@ -97,9 +97,9 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
         }
         //发送验证码
         else if (i == R.id.register_sendcode_tv) {
-            util.startCount();
-            registerPresenter.sendCode(tvPhone);
-
+            if (registerPresenter.sendCode(tvPhone)) {
+                util.startCount();
+            }
         }
         //协议
         else if (i == R.id.register_agre_tv) {

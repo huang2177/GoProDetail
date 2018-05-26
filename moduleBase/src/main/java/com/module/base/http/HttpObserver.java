@@ -2,6 +2,8 @@ package com.module.base.http;
 
 import android.content.Context;
 
+import com.module.base.utils.NetUtil;
+
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -21,9 +23,12 @@ public class HttpObserver<T> implements Observer<T> {
     public HttpObserver(Context context, Observable observable, HttpCallBackImpl callBack) {
         this.mContext = context;
         this.mIHttpCallBack = callBack;
-        mSubscription = observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this);
+
+        if (NetUtil.isNetworkStateed(context)) {
+            mSubscription = observable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this);
+        }
     }
 
     @Override
@@ -41,7 +46,7 @@ public class HttpObserver<T> implements Observer<T> {
         try {
             mIHttpCallBack.onCompleted(o);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }
