@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.module.mine.R;
+import com.module.mine.bean.BlankNumBean;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/5.
@@ -16,15 +19,23 @@ import com.module.mine.R;
 public class BalanceAdapter extends BaseAdapter {
 
     private Activity activity;
+    List<BlankNumBean.DataBean> list;
 
 
-    public BalanceAdapter(Activity activity) {
+    public BalanceAdapter(Activity activity, List<BlankNumBean.DataBean> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+
+        if (list != null) {
+            return list.size();
+
+        }
+        return 0;
+
     }
 
     @Override
@@ -48,15 +59,16 @@ public class BalanceAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        viewHolder.title.setText(list.get(position).getTitle());
+        viewHolder.time.setText(list.get(position).getCreateTime());
+        viewHolder.money.setText(list.get(position).getAmount());
         return convertView;
     }
 
     class ViewHolder {
-
         TextView title, money, time;
 
         public ViewHolder(View view) {
-
             title = view.findViewById(R.id.balance_title_item);
             money = view.findViewById(R.id.balance_money_item);
             time = view.findViewById(R.id.balance_time_item);

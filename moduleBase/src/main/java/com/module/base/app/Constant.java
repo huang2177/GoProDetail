@@ -20,6 +20,8 @@ public class Constant {
 
     public final static String FLAG = "flag";
 
+    public final static String BLANKNUM = "banlkNum";
+
 
     public final static String PATH_MAINACTIVITY = "/main/mainActivity";
 

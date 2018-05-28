@@ -8,7 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.manager.GlideManager;
+import com.module.base.widgets.RoundImageView;
 import com.module.mine.R;
+import com.module.mine.bean.TeamBean;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/5.
@@ -17,15 +22,20 @@ import com.module.mine.R;
 public class MyTeamAdapter extends BaseAdapter {
 
     private Activity activity;
+    private List<TeamBean.DataBean.TeamsBean> list;
 
-
-    public MyTeamAdapter(Activity activity) {
+    public MyTeamAdapter(Activity activity, List<TeamBean.DataBean.TeamsBean> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     @Override
@@ -49,6 +59,11 @@ public class MyTeamAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        viewHolder.tvName.setText(list.get(position).getNickname());
+        viewHolder.tv_Phone.setText(list.get(position).getMobile());
+        GlideManager.loadImage(activity
+                , list.get(position).getImgurl()
+                , viewHolder.imageHead);
         return convertView;
     }
 
@@ -56,15 +71,16 @@ public class MyTeamAdapter extends BaseAdapter {
 
         TextView tvName, tv_Phone;
 
-        ImageView imageHead, iamgeTelPhone;
+        RoundImageView imageHead;
 
         public ViewHolder(View view) {
 
             tvName = view.findViewById(R.id.myteam_item_name_tv);
             tv_Phone = view.findViewById(R.id.myteam_item_phone_tv);
             imageHead = view.findViewById(R.id.myteam_item_head_img);
-            iamgeTelPhone = view.findViewById(R.id.myteam_item_telphone_img);
 
+
+            imageHead.setShapeType(1);
         }
     }
 }

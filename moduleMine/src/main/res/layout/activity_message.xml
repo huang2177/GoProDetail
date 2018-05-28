@@ -16,9 +16,9 @@
         android:layout_marginVertical="10dp"
         android:background="@color/colorRiceWhite"
         android:divider="@null"
-        android:dividerHeight="10dp">
+        android:dividerHeight="10dp"></ListView>
 
-    </ListView>
+    <include layout="@layout/no_data_layout" />
 
 
 </LinearLayout>

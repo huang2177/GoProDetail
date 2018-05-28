@@ -27,6 +27,7 @@ public class GiveOpenCoilActivity extends BaseActivity {
     private GiveOpenCoilAdapter adapter;
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

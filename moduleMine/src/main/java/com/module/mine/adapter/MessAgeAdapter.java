@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.module.mine.R;
+import com.module.mine.bean.MessAgeBean;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/5.
@@ -17,14 +20,22 @@ public class MessAgeAdapter extends BaseAdapter {
 
     private Activity activity;
 
+    private List<MessAgeBean.DataBean> list;
 
-    public MessAgeAdapter(Activity activity) {
+
+    public MessAgeAdapter(Activity activity, List<MessAgeBean.DataBean> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 6;
+        if (list != null) {
+            return list.size();
+        }
+
+        return 0;
+
     }
 
     @Override
@@ -47,6 +58,10 @@ public class MessAgeAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        viewHolder.title.setText(list.get(position).getTitle());
+        viewHolder.content.setText(list.get(position).getContent());
+        viewHolder.time.setText(list.get(position).getCreateTime());
+
 
         return convertView;
     }
@@ -56,7 +71,6 @@ public class MessAgeAdapter extends BaseAdapter {
         TextView title, content, time;
 
         public ViewHolder(View view) {
-
             title = view.findViewById(R.id.message_title_tv);
             content = view.findViewById(R.id.message_content_tv);
             time = view.findViewById(R.id.message_time_tv);

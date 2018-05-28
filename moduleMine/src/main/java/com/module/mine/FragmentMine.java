@@ -17,26 +17,25 @@ import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.manager.GlideManager;
-import com.module.base.utils.Logger;
 import com.module.base.utils.SPUtil;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
 import com.module.mine.bean.UserInfoBean;
 import com.module.mine.ui.AdderAddressActivity;
-import com.module.mine.ui.BalanceActivity;
+import com.module.mine.ui.blanknum.BalanceActivity;
 import com.module.mine.ui.CardActivity;
 import com.module.mine.ui.CollageReturnsActivity;
 import com.module.mine.ui.ComplaintActivity;
 import com.module.mine.ui.DepositActivity;
 import com.module.mine.ui.InvitationCodeActivity;
 import com.module.mine.ui.KePhoneActivity;
-import com.module.mine.ui.MyOpenCoilActivity;
-import com.module.mine.ui.MyTeamActivity;
+import com.module.mine.ui.tuancoupon.MyOpenCoilActivity;
+import com.module.mine.ui.team.MyTeamActivity;
 import com.module.mine.ui.NoviceActivity;
 import com.module.mine.ui.OrderActivity;
 import com.module.mine.ui.SeetingActivity;
-import com.module.mine.ui.SystemMessActivity;
+import com.module.mine.ui.message.SystemMessActivity;
 import com.module.mine.ui.UserInfoActivity;
 
 
@@ -55,10 +54,9 @@ public class FragmentMine extends BaseFragment implements
     private TextView phoneTv, mesTv, banlanceTv;
 
     private MineAdapter mineAdapter;
-
     private MinePresenter minePresenter;
-
     private SPUtil spUtil;
+    private String banlkNum;
 
 
     public static FragmentMine newInstance(String msg) {
@@ -68,7 +66,6 @@ public class FragmentMine extends BaseFragment implements
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         minePresenter.getUserInfo(spUtil.getString(Constant.USERID));
     }
 
@@ -144,7 +141,10 @@ public class FragmentMine extends BaseFragment implements
         }
         //余额
         else if (i == R.id.mine_banlance_lay) {
-            startActivity(new Intent(activity, BalanceActivity.class));
+            Intent intent = new Intent(activity, BalanceActivity.class);
+            intent.putExtra(Constant.BLANKNUM, banlkNum);
+            startActivity(intent);
+
         }
         //银行卡
         else if (i == R.id.mine_card_lay) {
@@ -217,6 +217,9 @@ public class FragmentMine extends BaseFragment implements
 
         GlideManager.loadImage(this, R.drawable.ic_mine_head, mIvHead);
         phoneTv.setText(userInfo.getData().getNickname());
+
+        //银行卡余额
+        banlkNum = userInfo.getData().getCardNum();
         banlanceTv.setText(userInfo.getData().getCardNum());
 
     }
