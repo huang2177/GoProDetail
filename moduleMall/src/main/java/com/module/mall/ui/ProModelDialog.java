@@ -109,7 +109,9 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
 
     @Override
     public void onClick(View v) {
-        activity.startActivity(new Intent(activity, OrderConfirmActivity.class));
+        Intent intent = new Intent(activity, OrderConfirmActivity.class);
+        intent.putExtra("froum", "whole");    //全款购买
+        activity.startActivity(intent);
         dismiss();
     }
 

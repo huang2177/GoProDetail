@@ -61,4 +61,8 @@ dependencies {
     compile 'com.yanzhenjie:album:1.0.7'
     compile 'com.yanzhenjie:durban:1.0.1'
 
+    /*注解*/
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 }

@@ -9,7 +9,6 @@ public class Constant {
 
     public final static String USERID = "userId";
 
-
     public final static String ISGUIDED = "isGuided";
 
     public final static String ISLOGINED = "isLogined";

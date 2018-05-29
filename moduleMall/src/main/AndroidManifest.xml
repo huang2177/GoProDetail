@@ -8,5 +8,6 @@
         <activity
             android:name=".ui.OrderConfirmActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.ReturnRuleActivity" />
     </application>
 </manifest>

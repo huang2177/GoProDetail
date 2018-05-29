@@ -17,6 +17,8 @@ import com.module.base.http.HttpManager;
 import com.module.base.http.HttpService;
 import com.module.base.utils.StatusUtil;
 
+import butterknife.ButterKnife;
+
 
 /**
  * @author huangshuang
@@ -39,6 +41,8 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
         }
         setContentView(getLayoutId());
 
+
+        ButterKnife.bind(this);
         initView();
         initTitleBar();
         setListener();
