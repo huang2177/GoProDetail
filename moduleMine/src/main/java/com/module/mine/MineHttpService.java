@@ -1,6 +1,9 @@
 package com.module.mine;
 
-import com.module.base.http.HttpService;
+import com.module.mine.bean.BlankNumBean;
+import com.module.mine.bean.MessAgeBean;
+import com.module.mine.bean.TeamBean;
+import com.module.mine.bean.TuanCouponBean;
 import com.module.mine.bean.UserInfoBean;
 
 import okhttp3.ResponseBody;
@@ -11,7 +14,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by 黄双 on 2018/5/19.
@@ -47,5 +49,46 @@ public interface MineHttpService {
      */
     @GET("api/WebUser/{id}")
     Observable<UserInfoBean> getUserInfo(@Path("id") String id);
+
+
+    /**
+     * 获取系统消息
+     *
+     * @param id
+     * @return
+     */
+    @GET("api/UserMessage/List")
+    Observable<MessAgeBean> UserMessage(@Query("uid") String id);
+
+
+    /**
+     * 获取银行卡余额
+     *
+     * @param id
+     * @return
+     */
+    @GET("api/UserFeeRecord/List")
+    Observable<BlankNumBean> UserFeeRecord(@Query("uid") String id);
+
+
+    /**
+     * 获取我的团队
+     *
+     * @param id
+     * @return
+     */
+    @GET("api/UserCenter/MyTeam")
+    Observable<TeamBean> MyTeam(@Query("uid") String id);
+
+
+    /**
+     * 获取我的开团卷
+     *
+     * @param id
+     * @return
+     */
+    @GET("api/TuanCoupon/List")
+    Observable<TuanCouponBean> TuanCoupon(@Query("uid") String id);
+
 
 }

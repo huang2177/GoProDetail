@@ -9,16 +9,11 @@
     <include layout="@layout/titlebar_layout" />
 
 
-    <ListView
-        android:id="@+id/message_list"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="10dp"
-        android:background="@color/colorRiceWhite"
-        android:divider="@null"
-        android:dividerHeight="10dp"></ListView>
-
-    <include layout="@layout/no_data_layout" />
-
+        android:gravity="center"
+        android:text="返现规则"
+        android:textSize="18.0sp" />
 
 </LinearLayout>

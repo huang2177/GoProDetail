@@ -1,6 +1,7 @@
 package com.module.mall.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.base.widgets.CommonAdapter;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.ViewHolder;
@@ -103,6 +105,7 @@ public class ProDetailActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        Intent intent = null;
         int i = v.getId();
         if (i == R.id.pro_collection) {
             isCollectioned = !isCollectioned;
@@ -120,8 +123,13 @@ public class ProDetailActivity extends BaseActivity {
 //            }
             proModelDialog = new ProModelDialog(this);
             proModelDialog.show();
-        } else if (i == R.id.pro_group) {
+        }
 
+        //跳转至订单详情 0元购
+        else if (i == R.id.pro_group) {
+            intent = new Intent(this, OrderConfirmActivity.class);
+            intent.putExtra("forum", "zero");
+            startActivity(intent);
         }
     }
 

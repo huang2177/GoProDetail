@@ -9,7 +9,6 @@ public class Constant {
 
     public final static String USERID = "userId";
 
-
     public final static String ISGUIDED = "isGuided";
 
     public final static String ISLOGINED = "isLogined";
@@ -19,6 +18,8 @@ public class Constant {
     public final static String POSITION = "position";
 
     public final static String FLAG = "flag";
+
+    public final static String BLANKNUM = "banlkNum";
 
 
     public final static String PATH_MAINACTIVITY = "/main/mainActivity";

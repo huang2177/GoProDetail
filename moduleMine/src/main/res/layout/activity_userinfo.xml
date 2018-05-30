@@ -9,7 +9,7 @@
     <include layout="@layout/titlebar_layout" />
 
 
-    <ImageView
+    <com.module.base.widgets.RoundImageView
         android:id="@+id/info_head_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

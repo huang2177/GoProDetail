@@ -9,7 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.module.mine.R;
+import com.module.mine.bean.TuanCouponBean;
 import com.module.mine.ui.GiveOpenCoilActivity;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/5.
@@ -18,15 +21,21 @@ import com.module.mine.ui.GiveOpenCoilActivity;
 public class OpenCoilAdapter extends BaseAdapter {
 
     private Activity activity;
+    private List<TuanCouponBean.DataBean> list;
 
-
-    public OpenCoilAdapter(Activity activity) {
+    public OpenCoilAdapter(Activity activity, List<TuanCouponBean.DataBean> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+
+        if (list != null) {
+            return list.size();
+        }
+
+        return 0;
     }
 
     @Override
@@ -50,17 +59,25 @@ public class OpenCoilAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvTitle.setText("0元开团卷");
-        viewHolder.tvNumber.setText("KT1010100101010");
-        viewHolder.tvPople.setText("赠送人：苏州营业厅");
-        viewHolder.tvTime.setText("赠送时间：2018-9-9");
-        viewHolder.tvGift.setText("赠送");
+
+        viewHolder.tvTitle.setText(list.get(position).getTitle());
+        viewHolder.tvNumber.setText(list.get(position).getTuanNum());
+        viewHolder.tvPople.setText(list.get(position).getFromName());
+        viewHolder.tvTime.setText(list.get(position).getFromTime());
+
+        if (list.get(position).isIsSend()) {
+            viewHolder.tvGift.setText("已赠送");
+            viewHolder.tvGift.setBackgroundResource(R.drawable.bg_btn_brown1);
+        } else {
+            viewHolder.tvGift.setText("赠送");
+            viewHolder.tvGift.setBackgroundResource(R.drawable.bg_btn_brown1);
+        }
 
         viewHolder.tvGift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //赠送监听事件
-                activity.startActivity(new Intent(activity,GiveOpenCoilActivity.class));
+                activity.startActivity(new Intent(activity, GiveOpenCoilActivity.class));
             }
         });
         return convertView;
