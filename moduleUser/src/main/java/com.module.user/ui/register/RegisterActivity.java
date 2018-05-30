@@ -142,6 +142,7 @@ public class RegisterActivity extends BaseActivity implements VerifyCodeUtil.Cou
 
         ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
         finish();
+
     }
 
     @Override

@@ -25,13 +25,16 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by 黄双 on 2018/5/6.
  */
 
 public class ProDetailActivity extends BaseActivity {
 
-    private Banner banner;
+     Banner banner;
     private LinearLayout layoutEvaluate, layMoreEva;
     private XListView lvIntroduce, lvImage, lvGrouping;
     private TextView tvIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup;
@@ -39,12 +42,12 @@ public class ProDetailActivity extends BaseActivity {
 
     private boolean isCollectioned;
     private ProModelDialog proModelDialog;
-    private String forum;
+    private String from;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        forum = getIntent().getStringExtra("forum");
+        from = getIntent().getStringExtra("forum");
     }
 
     @Override

@@ -138,12 +138,12 @@
         <Button
             android:id="@+id/model_btn"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/bg_btn_brown4"
             android:text="确 定"
             android:textColor="@color/colorWhite"
-            android:textSize="16.0sp" />
+            android:textSize="18.0sp" />
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

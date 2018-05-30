@@ -20,7 +20,7 @@ public class HttpObserver<T> implements Observer<T> {
     private HttpCallBackImpl mIHttpCallBack;
     public Subscription mSubscription;
 
-    public HttpObserver(Context context, Observable observable, HttpCallBackImpl callBack) {
+    public HttpObserver(Context context, Observable<T> observable, HttpCallBackImpl callBack) {
         this.mContext = context;
         this.mIHttpCallBack = callBack;
 
