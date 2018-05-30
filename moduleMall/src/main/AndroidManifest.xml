@@ -9,5 +9,7 @@
             android:name=".ui.OrderConfirmActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.ReturnRuleActivity" />
+        <activity android:name=".ui.MoreEvaluateActivity" />
+        <activity android:name=".JewelryDetalisActivity" />
     </application>
 </manifest>

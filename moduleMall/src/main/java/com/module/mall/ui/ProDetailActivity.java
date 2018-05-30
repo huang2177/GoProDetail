@@ -32,17 +32,19 @@ import java.util.List;
 public class ProDetailActivity extends BaseActivity {
 
     private Banner banner;
-    private LinearLayout layoutEvaluate;
+    private LinearLayout layoutEvaluate, layMoreEva;
     private XListView lvIntroduce, lvImage, lvGrouping;
     private TextView tvIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup;
     private TextView tvName, tvPingedNum, tvPirce, tvOldPirce, tvFreight, tvInventory, tvCollection;
 
     private boolean isCollectioned;
     private ProModelDialog proModelDialog;
+    private String forum;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        forum = getIntent().getStringExtra("forum");
     }
 
     @Override
@@ -75,6 +77,7 @@ public class ProDetailActivity extends BaseActivity {
         tvEvaluate = findViewById(R.id.pro_tv_evaluate_more);
         tvIntroduce = findViewById(R.id.pro_tv_introduce_more);
         layoutEvaluate = findViewById(R.id.pro_evaluate_container);
+        layMoreEva = findViewById(R.id.moreeva_lay);
 
         tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
@@ -95,6 +98,7 @@ public class ProDetailActivity extends BaseActivity {
         tvEvaluate.setOnClickListener(this);
         tvIntroduce.setOnClickListener(this);
         tvCollection.setOnClickListener(this);
+        layMoreEva.setOnClickListener(this);
     }
 
     @Override
@@ -114,6 +118,10 @@ public class ProDetailActivity extends BaseActivity {
                     , isCollectioned ? R.drawable.ic_heart_brown2 : R.drawable.ic_heart_brown1
                     , 0
                     , 0);
+        }
+        //更多评价
+        else if (i == R.id.moreeva_lay) {
+            startActivity(new Intent(this, MoreEvaluateActivity.class));
         } else if (i == R.id.pro_service) {
 
         } else if (i == R.id.pro_phone) {
@@ -170,6 +178,7 @@ public class ProDetailActivity extends BaseActivity {
     }
 
     private void initProIntroduce() {
+
         List<String> list = Arrays.asList(". 发起拼团，支付商品全款即可获得商品，无需等待拼团成功。"
                 , ". 开团后，邀请指定人数参团，在规定时限内完成拼团名额， 团长即可获得商品全款返现。"
                 , ". 首次开团的用户，在开团后，需为自己的电话账户充值200 元话费，拼团成功后和手机款一起返还。"

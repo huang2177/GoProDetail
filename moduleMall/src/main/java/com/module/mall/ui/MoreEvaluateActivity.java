@@ -7,6 +7,9 @@ import android.widget.ListView;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.mall.R;
+import com.module.mall.adpter.MoreEvaluateAdapter;
+
+import butterknife.BindView;
 
 /**
  * Created by shibing on 18/5/28.
@@ -16,6 +19,7 @@ public class MoreEvaluateActivity extends BaseActivity {
 
 
     private ListView listView;
+    private MoreEvaluateAdapter adapter;
 
 
     @Override
@@ -31,7 +35,9 @@ public class MoreEvaluateActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        listView = findViewById(R.id.list_moreeval);
+        adapter = new MoreEvaluateAdapter(this);
+        listView.setAdapter(adapter);
     }
 
     @Override

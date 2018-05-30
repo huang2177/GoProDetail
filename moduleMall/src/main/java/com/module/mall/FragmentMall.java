@@ -15,6 +15,7 @@ import com.module.base.BaseFragment;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
+import com.module.mall.adpter.JewelryAdpter;
 import com.module.mall.adpter.MallListAdpter;
 import com.module.mall.ui.ProDetailActivity;
 
@@ -36,6 +37,7 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
 
     private int flag;
     private MallListAdpter adpter;
+    private JewelryAdpter jewelryAdpter;
 
     public static FragmentMall newInstance(int position) {
         Bundle args = new Bundle();
@@ -83,9 +85,17 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
         manager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
-        adpter = new MallListAdpter(activity, getData());
-        adpter.addOnItemClickListener(this);
-        recyclerView.setAdapter(adpter);
+        if (flag == 1) {
+            adpter = new MallListAdpter(activity, getData());
+            adpter.addOnItemClickListener(this);
+            recyclerView.setAdapter(adpter);
+        } else {
+            jewelryAdpter = new JewelryAdpter(activity);
+            jewelryAdpter.addOnItemClickListener(this);
+            recyclerView.setAdapter(jewelryAdpter);
+        }
+
+
     }
 
     private List<Integer> getData() {
@@ -129,6 +139,10 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public void onItemClick(int position) {
+
+
         activity.startActivity(new Intent(activity, ProDetailActivity.class));
+
+
     }
 }
