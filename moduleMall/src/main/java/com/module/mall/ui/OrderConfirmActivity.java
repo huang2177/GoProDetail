@@ -9,8 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.mall.R;
 
 import butterknife.BindView;
@@ -128,6 +131,7 @@ public class OrderConfirmActivity extends BaseActivity {
         rayWeatch.setOnClickListener(this);
         rayUnionpay.setOnClickListener(this);
         tvSure.setOnClickListener(this);
+        rayOpen.setOnClickListener(this);
     }
 
     @Override
@@ -136,7 +140,7 @@ public class OrderConfirmActivity extends BaseActivity {
         int i = v.getId();
         //选择地址
         if (i == R.id.order_adder_ray) {
-
+            ARouter.getInstance().build(Constant.ADDERS).navigation();
         }
         // 跳转商品详情
         else if (i == R.id.order_prouduct_ray) {
@@ -148,7 +152,7 @@ public class OrderConfirmActivity extends BaseActivity {
         }
         //跳转至我的开团卷
         else if (i == R.id.order_op_ray) {
-
+            ARouter.getInstance().build(Constant.OPENCOIL).navigation();
         }
         //跳转至开团卷规则
         else if (i == R.id.order_open_lay) {

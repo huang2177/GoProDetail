@@ -30,5 +30,9 @@ public class Constant {
 
     public final static String PATH_MODIFYACTIVITY = "/mine/ModifyPassActivity";
 
+    public final static String ADDERS = "/mine/AddressActivity";
+
+    public final static String OPENCOIL = "/mine/MyOpenCoilActivity";
+
 
 }

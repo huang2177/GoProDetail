@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
@@ -21,6 +22,8 @@ import java.util.List;
  * Created by shibing on 18/5/6.
  */
 
+
+@Route(path = Constant.OPENCOIL)
 public class MyOpenCoilActivity extends BaseActivity implements
         AdapterView.OnItemClickListener
         , TuanCouponView {
@@ -86,7 +89,7 @@ public class MyOpenCoilActivity extends BaseActivity implements
         }
 
         listView.setVisibility(View.VISIBLE);
-        openCoilAdapter = new OpenCoilAdapter(this,list);
+        openCoilAdapter = new OpenCoilAdapter(this, list);
         listView.setAdapter(openCoilAdapter);
     }
 

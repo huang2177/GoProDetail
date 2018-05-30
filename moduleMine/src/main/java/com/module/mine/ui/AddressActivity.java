@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.base.http.HttpService;
 import com.module.mine.MineHttpService;
 import com.module.mine.R;
@@ -18,6 +20,7 @@ import com.module.mine.adapter.AddressListAdapter;
  * Created by shibing on 18/5/6.
  */
 
+@Route(path = Constant.ADDERS)
 public class AddressActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private ListView listView;
@@ -30,7 +33,6 @@ public class AddressActivity extends BaseActivity implements AdapterView.OnItemC
         title("收货地址").rightText("管理");
 
     }
-
 
 
     @Override
@@ -51,7 +53,7 @@ public class AddressActivity extends BaseActivity implements AdapterView.OnItemC
     @Override
     public void onRightClick() {
         super.onRightClick();
-        startActivity(new Intent(this,AdmAdderssActivity.class));
+        startActivity(new Intent(this, AdmAdderssActivity.class));
     }
 
     @Override

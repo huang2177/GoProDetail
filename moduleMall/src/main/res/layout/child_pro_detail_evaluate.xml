@@ -4,25 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     tools:showIn="@layout/activity_pro_detail">
 
     <LinearLayout
+        android:id="@+id/moreeva_lay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="35dp">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="最新评价" />
 
         <TextView
             android:id="@+id/pro_tv_evaluate_more"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="5dp"
+            android:layout_height="match_parent"
+            android:drawablePadding="10dp"
             android:drawableRight="@drawable/ic_right_back"
+            android:gravity="center_vertical"
             android:text="更多"
             android:textColor="@color/colorGray" />
 
@@ -31,7 +36,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="10dp"
+
         android:background="@color/colorLittleGray" />
 
     <LinearLayout
