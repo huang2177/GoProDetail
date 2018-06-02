@@ -80,6 +80,7 @@
                     android:src="@drawable/ic_right_back" />
             </RelativeLayout>
 
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
