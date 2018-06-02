@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
-import com.module.base.app.Constant;
 import com.module.base.widgets.CommonAdapter;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.ViewHolder;
@@ -25,8 +24,6 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by 黄双 on 2018/5/6.
@@ -34,7 +31,7 @@ import butterknife.ButterKnife;
 
 public class ProDetailActivity extends BaseActivity {
 
-     Banner banner;
+    Banner banner;
     private LinearLayout layoutEvaluate, layMoreEva;
     private XListView lvIntroduce, lvImage, lvGrouping;
     private TextView tvIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup;

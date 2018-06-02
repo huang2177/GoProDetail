@@ -71,11 +71,11 @@
             android:name=".ui.OrderDetalisActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.NoviceActivity"
+            android:name=".ui.help.NoviceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.NoviceDetalisActivity"
-            android:screenOrientation="portrait" />
+            android:name=".ui.help.NoviceDetalisActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".ui.PutForwardActivity"
             android:screenOrientation="portrait" />

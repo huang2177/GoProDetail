@@ -4,11 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <include layout="@layout/space_layout" />
 
-
     <include layout="@layout/titlebar_layout" />
+
+    <com.huangbryant.mylibrary.media.HIjkPlayerView
+        android:id="@+id/ijk_player"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="190dp" />
 
 
 </LinearLayout>

@@ -61,6 +61,6 @@ dependencies {
     compile 'com.yanzhenjie:album:1.0.7'
     compile 'com.yanzhenjie:durban:1.0.1'
 
-    /*注解*/
-    compile 'com.jakewharton:butterknife:8.8.1'
+    /*IJK播放器*/
+    compile 'com.github.huangbryant210707:HIjkPlayerView:1.0.2'
 }

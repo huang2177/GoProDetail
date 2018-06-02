@@ -13,11 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.module.base.http.HttpManager;
-import com.module.base.http.HttpService;
 import com.module.base.utils.StatusUtil;
-
-import butterknife.ButterKnife;
 
 
 /**
@@ -41,8 +37,6 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
         }
         setContentView(getLayoutId());
 
-
-        ButterKnife.bind(this);
         initView();
         initTitleBar();
         setListener();
@@ -83,7 +77,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
     /**
      * 初始化titleBar
      */
-    public void initTitleBar() {
+    private void initTitleBar() {
         tvTitle = findViewById(R.id.titleBar_title);
         ivLeft = findViewById(R.id.titleBar_left_img);
         tvRight = findViewById(R.id.titleBar_right_text);

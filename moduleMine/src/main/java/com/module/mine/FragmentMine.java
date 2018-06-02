@@ -32,7 +32,7 @@ import com.module.mine.ui.InvitationCodeActivity;
 import com.module.mine.ui.KePhoneActivity;
 import com.module.mine.ui.tuancoupon.MyOpenCoilActivity;
 import com.module.mine.ui.team.MyTeamActivity;
-import com.module.mine.ui.NoviceActivity;
+import com.module.mine.ui.help.NoviceActivity;
 import com.module.mine.ui.OrderActivity;
 import com.module.mine.ui.SeetingActivity;
 import com.module.mine.ui.message.SystemMessActivity;

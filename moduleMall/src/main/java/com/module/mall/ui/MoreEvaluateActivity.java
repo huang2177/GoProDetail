@@ -9,7 +9,6 @@ import com.module.base.BasePresenter;
 import com.module.mall.R;
 import com.module.mall.adpter.MoreEvaluateAdapter;
 
-import butterknife.BindView;
 
 /**
  * Created by shibing on 18/5/28.
