@@ -26,8 +26,7 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 /**
  * Created by 黄双 on 2018/5/6.
