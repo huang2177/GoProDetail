@@ -96,12 +96,16 @@ public class OrderConfirmActivity extends BaseActivity {
         tvSure = findViewById(R.id.order_surepay_tv);
 
 
-        if (getIntent().getStringExtra("forum") != null) {
-            froum = getIntent().getStringExtra("forum");
+        if (getIntent().getStringExtra("form") != null) {
+            froum = getIntent().getStringExtra("form");
             if (froum.equals("zero")) {
                 layOrderPay.setVisibility(View.GONE);
                 tvSure.setText("确认开团");
                 tvPayMoney.setText("无需支付  ￥-");
+            } else {
+                layOrderPay.setVisibility(View.VISIBLE);
+                layOpen.setVisibility(View.GONE);
+                tvSure.setText("确认支付");
             }
         }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.listener.OnItemClickListener;
 import com.module.base.widgets.RoundImageView;
 import com.module.mall.R;
 
@@ -23,6 +24,7 @@ public class PingListAdpter extends RecyclerView.Adapter {
 
     private Context context;
     private List<Integer> list;
+    private OnItemClickListener listener;
 
     public PingListAdpter(Context context, List<Integer> list) {
         this.list = list;
@@ -33,7 +35,7 @@ public class PingListAdpter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         /*资源文件在base中*/
         View view = LayoutInflater.from(context).inflate(R.layout.item_ping_list, null);
-        return new ViewHolder(view);
+        return new ViewHolder(view, viewType);
     }
 
     @Override
@@ -54,6 +56,12 @@ public class PingListAdpter extends RecyclerView.Adapter {
         });
     }
 
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+
     private String getHtmlStr(int position) {
         return "莉莉安    <font color='#a0563c'>剩余3个名额成团</font>";
     }
@@ -73,7 +81,7 @@ public class PingListAdpter extends RecyclerView.Adapter {
         RoundImageView ivHead;
         TextView tvName, tvPirce, tvProName, tvTime, tvPing, tvColor;
 
-        ViewHolder(View view) {
+        ViewHolder(View view, final int viewType) {
             super(view);
             ivPro = view.findViewById(R.id.item_img_pro);
             tvName = view.findViewById(R.id.item_tv_name);
@@ -85,6 +93,15 @@ public class PingListAdpter extends RecyclerView.Adapter {
             tvProName = view.findViewById(R.id.item_tv_pro_name);
 
             ivHead.setShapeType(1);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onItemClick(viewType);
+                    }
+                }
+            });
         }
     }
 }

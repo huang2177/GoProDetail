@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/space_layout" />
+
+    <include layout="@layout/titlebar_layout" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorRiceWhite" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/groupdetalis_img_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pro" />
+
+                <TextView
+                    android:id="@+id/groupdetalis_tv_pro_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/groupdetalis_img_pro"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="APPLE iPhone X 256G 黑白可选 5.1寸智能手机" />
+
+                <TextView
+                    android:id="@+id/groupdetalis_tv_pirce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/groupdetalis_tv_pro_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toRightOf="@+id/groupdetalis_img_pro"
+                    android:text="￥6800"
+                    android:textColor="@color/colorBrown" />
+
+
+                <TextView
+                    android:id="@+id/groupdetalis_tv_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/groupdetalis_tv_pirce"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/groupdetalis_img_pro"
+                    android:text="白色 256G" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorRiceWhite" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:layout_width="45dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp">
+
+                    <com.module.base.widgets.RoundImageView
+                        android:id="@+id/groupdetalis_tz_iamg"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/ic_add" />
+
+                    <TextView
+                        android:id="@+id/groupdetalis_tz_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:background="@drawable/shape_brown"
+                        android:paddingBottom="1dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingTop="1dp"
+                        android:text="团长"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10.0sp" />
+
+                </FrameLayout>
+
+
+                <com.module.base.widgets.XGridView
+                    android:id="@+id/groupdetalis_gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:numColumns="6">
+
+                </com.module.base.widgets.XGridView>
+
+                <TextView
+                    android:id="@+id/groupdetalis_pople_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="还差12人成团，剩余301天21小时12分21秒"
+                    android:textSize="14.0sp" />
+
+                <Button
+                    android:id="@+id/groupdetalis_but"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:background="@drawable/bg_btn_brown"
+                    android:text="$6899 立即参团"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorRiceWhite" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/groupdetalis_recyler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

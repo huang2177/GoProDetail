@@ -12,47 +12,68 @@
         android:layout_height="match_parent"
         tools:showIn="@layout/activity_pro_detail">
 
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/pro_service"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_service"
+                android:gravity="center"
+                android:text="客服" />
+
+            <TextView
+                android:id="@+id/pro_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_phone_hollow"
+                android:gravity="center"
+                android:text="电话" />
+        </LinearLayout>
+
+
         <TextView
-            android:id="@+id/pro_service"
+            android:id="@+id/jewelry_buy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_service"
+            android:background="@drawable/bg_btn_brown2"
             android:gravity="center"
-            android:text="客服" />
-
-        <TextView
-            android:id="@+id/pro_phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/ic_phone_hollow"
-            android:gravity="center"
-            android:text="电话" />
-
+            android:text="￥9818\n支付押金"
+            android:textColor="@color/colorWhite"
+            android:visibility="gone" />
         <TextView
             android:id="@+id/pro_buy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
+            android:layout_weight="0.8"
             android:background="@drawable/bg_btn_brown3"
             android:gravity="center"
             android:text="￥9818\n土豪价购买"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/pro_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
+            android:layout_weight="0.8"
             android:background="@drawable/bg_btn_brown2"
             android:gravity="center"
             android:text="￥0元购\n12人正在拼团"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:visibility="visible" />
 
 
     </LinearLayout>

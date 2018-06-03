@@ -139,9 +139,18 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public void onItemClick(int position) {
-
-
-        activity.startActivity(new Intent(activity, ProDetailActivity.class));
+        Intent intent = new Intent(activity, ProDetailActivity.class);
+        //商品
+        if (flag == 1) {
+            intent.putExtra("form", "por");
+            startActivity(intent);
+        }
+        //首饰
+        else {
+            intent.putExtra("form", "jewelry");
+            startActivity(intent);
+        }
+        // activity.startActivity(new Intent(activity, ProDetailActivity.class));
 
 
     }

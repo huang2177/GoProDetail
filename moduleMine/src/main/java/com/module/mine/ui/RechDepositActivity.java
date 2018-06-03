@@ -26,9 +26,8 @@ import java.util.Objects;
 
 public class RechDepositActivity extends BaseActivity {
 
-
     private ImageView imageReduce, imageAdd;
-    private TextView tvMoney, tvPay, tvSuerpay, tvContent, tvTitle;
+    private TextView tvMoney, tvPay, tvSuerpay, tvContent, tvTitle, tvAipay, tvWeathPay, tvUnionpay;
     private RelativeLayout rayAipay, rayWeathpay, rayUnionpay;
 
 
@@ -54,11 +53,17 @@ public class RechDepositActivity extends BaseActivity {
         imageReduce = findViewById(R.id.reduce_image);
         imageAdd = findViewById(R.id.add_image);
         tvMoney = findViewById(R.id.money_tv);
+
         tvPay = findViewById(R.id.pay_tv);
         tvSuerpay = findViewById(R.id.surepay_tv);
+
         rayAipay = findViewById(R.id.aipay_lay);
         rayWeathpay = findViewById(R.id.weathpay_ray);
         rayUnionpay = findViewById(R.id.unionpay_ray);
+        tvAipay = findViewById(R.id.aipay_tv);
+        tvWeathPay = findViewById(R.id.weathpay_tv);
+        tvUnionpay = findViewById(R.id.unionpay_tv);
+
         tvContent = findViewById(R.id.content_tv);
         tvTitle = findViewById(R.id.title_tv);
 
@@ -70,6 +75,7 @@ public class RechDepositActivity extends BaseActivity {
                 + "</big></font> "
                 + ".00")));
         setTitle();
+        tvMoney.setText("￥1000");
     }
 
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.base.widgets.CommonAdapter;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.ViewHolder;
@@ -24,6 +26,8 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by 黄双 on 2018/5/6.
@@ -32,19 +36,19 @@ import java.util.List;
 public class ProDetailActivity extends BaseActivity {
 
     Banner banner;
-    private LinearLayout layoutEvaluate, layMoreEva;
+    private LinearLayout layoutEvaluate, layMoreEva, layPintuan, layJewelry;
     private XListView lvIntroduce, lvImage, lvGrouping;
-    private TextView tvIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup;
+    private TextView tvIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup, tvShuom, tvjewelry;
     private TextView tvName, tvPingedNum, tvPirce, tvOldPirce, tvFreight, tvInventory, tvCollection;
 
     private boolean isCollectioned;
     private ProModelDialog proModelDialog;
-    private String from;
+    private String form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        from = getIntent().getStringExtra("forum");
+
     }
 
     @Override
@@ -76,17 +80,43 @@ public class ProDetailActivity extends BaseActivity {
         lvIntroduce = findViewById(R.id.pro_introduce_lv);
         tvEvaluate = findViewById(R.id.pro_tv_evaluate_more);
         tvIntroduce = findViewById(R.id.pro_tv_introduce_more);
+        tvShuom = findViewById(R.id.order_shoum_tv);
+        tvjewelry = findViewById(R.id.jewelry_buy);
         layoutEvaluate = findViewById(R.id.pro_evaluate_container);
         layMoreEva = findViewById(R.id.moreeva_lay);
-
+        layPintuan = findViewById(R.id.order_pintuan_lay);
+        layJewelry = findViewById(R.id.order_jewelry_lay);
         tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
+
+        form = getIntent().getStringExtra("form");
+        showJewelry();
         initBanner();
         initEvaluate();
         initGrouping();
         initProIntroduce();
         initImage();
     }
+
+
+    //展示首饰
+    private void showJewelry() {
+
+        if (form.equals("jewelry")) {
+            tvPingedNum.setText("押金：$2000");
+            tvPirce.setVisibility(View.GONE);
+            tvOldPirce.setVisibility(View.GONE);
+            layPintuan.setVisibility(View.GONE);
+            tvShuom.setText("首饰盒租借说明");
+            layJewelry.setVisibility(View.VISIBLE);
+            tvjewelry.setVisibility(View.VISIBLE);
+            tvBuy.setVisibility(View.GONE);
+            tvGroup.setVisibility(View.GONE);
+
+        }
+
+    }
+
 
     @Override
     public void setListener() {
@@ -99,6 +129,8 @@ public class ProDetailActivity extends BaseActivity {
         tvIntroduce.setOnClickListener(this);
         tvCollection.setOnClickListener(this);
         layMoreEva.setOnClickListener(this);
+        //支付押金
+        tvjewelry.setOnClickListener(this);
     }
 
     @Override
@@ -136,7 +168,11 @@ public class ProDetailActivity extends BaseActivity {
         //跳转至订单详情 0元购
         else if (i == R.id.pro_group) {
             intent = new Intent(this, OrderConfirmActivity.class);
-            intent.putExtra("forum", "zero");
+            intent.putExtra("form", "zero");
+            startActivity(intent);
+        } else if (i == R.id.jewelry_buy) {
+            intent = new Intent(this, OrderConfirmActivity.class);
+            intent.putExtra("form", "whole");
             startActivity(intent);
         }
     }
@@ -179,10 +215,18 @@ public class ProDetailActivity extends BaseActivity {
 
     private void initProIntroduce() {
 
-        List<String> list = Arrays.asList(". 发起拼团，支付商品全款即可获得商品，无需等待拼团成功。"
-                , ". 开团后，邀请指定人数参团，在规定时限内完成拼团名额， 团长即可获得商品全款返现。"
-                , ". 首次开团的用户，在开团后，需为自己的电话账户充值200 元话费，拼团成功后和手机款一起返还。"
-                , " . 若在规定时限内未完成拼团人数要求，则视为拼团失败，当 次拼团费用不予以返还。");
+        List<String> list = null;
+        if (form.equals("por")) {
+            list = Arrays.asList(". 发起拼团，支付商品全款即可获得商品，无需等待拼团成功。"
+                    , ". 开团后，邀请指定人数参团，在规定时限内完成拼团名额， 团长即可获得商品全款返现。"
+                    , ". 首次开团的用户，在开团后，需为自己的电话账户充值200 元话费，拼团成功后和手机款一起返还。"
+                    , " . 若在规定时限内未完成拼团人数要求，则视为拼团失败，当 次拼团费用不予以返还。");
+        } else {
+            list = Arrays.asList(". 押金用于在平台中的【首饰盒】中租借首饰、珠宝【首饰盒】 中的商品租借无需支付租金"
+                    , ". 但需根据商品价值缴纳一定租金。"
+                    , " . 退还商品后可申请退还押金。我们会检验商品的完好度，如 有人为破损，将扣除相应的押金"
+            );
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_pro_detail_introduce, list);
         lvIntroduce.setAdapter(adapter);
     }

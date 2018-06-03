@@ -14,6 +14,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/order_shoum_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -42,6 +43,41 @@
         android:layout_height="wrap_content"
         android:divider="@null"
         android:listSelector="@android:color/transparent" />
-    
+
+
+    <LinearLayout
+        android:id="@+id/order_jewelry_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorLittleGray" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="如想购买此商品，请前往华泰珠宝官方商城"
+            android:textSize="14.0sp" />
+
+        <TextView
+            android:id="@+id/jewelry_por_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_brown"
+            android:text="前往华泰珠宝官方商城"
+            android:textColor="@color/colorWhite"
+            android:textSize="16.0sp" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

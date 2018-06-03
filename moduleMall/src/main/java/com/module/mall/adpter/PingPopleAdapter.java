@@ -1,43 +1,37 @@
-package com.module.mine.adapter;
+package com.module.mall.adpter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.widgets.RoundImageView;
-import com.module.mine.R;
+import com.module.mall.R;
 
 import java.util.List;
 
 /**
- * Created by 黄双 on 2018/5/5.
+ * Created by shibing on 18/6/3.
  */
 
-public class OrderPopreAdpter extends BaseAdapter {
+public class PingPopleAdapter extends BaseAdapter {
+
 
     private Context context;
     private List<Integer> list;
 
     private OnItemClickListener listener;
 
-    public OrderPopreAdpter(Context context) {
+    public PingPopleAdapter(Context context, List<Integer> list) {
         this.list = list;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        if (list != null) {
-            return list.size();
-        }
-        return 0;
+        return 12;
     }
 
     @Override
@@ -61,6 +55,7 @@ public class OrderPopreAdpter extends BaseAdapter {
         } else {
             viewHodler = (ViewHodler) convertView.getTag();
         }
+        viewHodler.imageView.setImageResource(list.get(position));
         return convertView;
     }
 
@@ -69,8 +64,8 @@ public class OrderPopreAdpter extends BaseAdapter {
         RoundImageView imageView;
 
         public ViewHodler(View view) {
-
             imageView = view.findViewById(R.id.pople_image);
+            imageView.setShapeType(1);
         }
 
     }

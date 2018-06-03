@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.module.base.BaseActivity;
@@ -20,6 +21,9 @@ import com.module.mine.adapter.OrderPopreAdpter;
 
 public class OrderDetalisActivity extends BaseActivity {
 
+
+    private LinearLayout layAdder;
+    //物流
     private TextView tvShzt, tvYqhy, tvWuName, tvWuPhone, tvWuAdder, tvWuType, tvHy, tvLeader;   //
     // 公开图片    团长图片
     private ImageView imageGk, imageTz;
@@ -63,6 +67,7 @@ public class OrderDetalisActivity extends BaseActivity {
         tvWuPhone = findViewById(R.id.order_wl_phone);
         tvWuAdder = findViewById(R.id.order_adder_tv);
         tvWuType = findViewById(R.id.order_wl_type);
+        layAdder = findViewById(R.id.order_detalis_adder);
 
         //邀请好友模块
         tvHy = findViewById(R.id.oredr_pople_tv);
@@ -116,9 +121,10 @@ public class OrderDetalisActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         int i = v.getId();
-
-        if (i==R.id.order_gk_image){
-            startActivity(new Intent(this,OpenActivity.class));
+        if (i == R.id.order_gk_image) {
+            startActivity(new Intent(this, OpenActivity.class));
+        } else if (i == R.id.order_detalis_adder) {
+            startActivity(new Intent(this, AddressActivity.class));
         }
     }
 }

@@ -180,6 +180,7 @@
                 android:background="@color/colorRiceWhite" />
 
             <LinearLayout
+                android:id="@+id/order_open_lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -218,7 +219,7 @@
                     android:background="@color/colorLittleGray" />
 
                 <LinearLayout
-                    android:id="@+id/order_open_lay"
+                    android:id="@+id/order_opentext_lay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -394,8 +395,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/colorDeepGray" />
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:id="@+id/order_surepay_tv"

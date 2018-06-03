@@ -11,5 +11,6 @@
         <activity android:name=".ui.ReturnRuleActivity" />
         <activity android:name=".ui.MoreEvaluateActivity" />
         <activity android:name=".JewelryDetalisActivity" />
+        <activity android:name=".ui.GroupDetalisActivity" />
     </application>
 </manifest>

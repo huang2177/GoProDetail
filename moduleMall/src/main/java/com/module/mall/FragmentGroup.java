@@ -1,5 +1,6 @@
 package com.module.mall;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +14,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseFragment;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.listener.OnItemClickListener;
 import com.module.mall.adpter.PingListAdpter;
+import com.module.mall.ui.GroupDetalisActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +27,9 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 @Route(path = Constant.PATH_FRAGMENTPING)
-public class FragmentGroup extends BaseFragment implements TabLayout.OnTabSelectedListener {
+public class FragmentGroup extends BaseFragment
+        implements TabLayout.OnTabSelectedListener
+        , OnItemClickListener {
 
     private TabLayout tabLayout;
     private EditText editSearch;
@@ -81,7 +86,9 @@ public class FragmentGroup extends BaseFragment implements TabLayout.OnTabSelect
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
         adpter = new PingListAdpter(activity, getData());
+        adpter.addOnItemClickListener(this);
         recyclerView.setAdapter(adpter);
+
     }
 
     private List<Integer> getData() {
@@ -121,5 +128,16 @@ public class FragmentGroup extends BaseFragment implements TabLayout.OnTabSelect
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+
+    /**
+     * item  监听事件
+     *
+     * @param position
+     */
+    @Override
+    public void onItemClick(int position) {
+        activity.startActivity(new Intent(activity, GroupDetalisActivity.class));
     }
 }
