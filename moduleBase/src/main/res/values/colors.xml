@@ -21,4 +21,7 @@
     <color name="colorGray">#b2b2b2</color>
     <color name="colorLittleGray">#d2d2d2</color>
     <color name="colorDeepGray">#858585</color>
+
+
+    <color name="colorBlue">#046ed8</color>
 </resources>

@@ -1,6 +1,5 @@
 package com.module.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +17,9 @@ import android.widget.EditText;
  */
 
 public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragment implements View.OnClickListener {
-    protected FragmentActivity activity;
     protected View viewRoot;
+    protected Context mContext;
+    protected FragmentActivity mActivity;
 
     private BasePresenter<V> presenter;
 
@@ -27,8 +27,9 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        activity = getActivity();
-        viewRoot = View.inflate(activity, getContentView(), null);
+        mContext = getContext();
+        mActivity = getActivity();
+        viewRoot = View.inflate(mActivity, getContentView(), null);
 
         initView();
         setListener();
@@ -69,7 +70,7 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
 
 
     protected <V extends View> V f(int id) {
-        return  viewRoot.findViewById(id);
+        return viewRoot.findViewById(id);
     }
 
     /**
@@ -83,7 +84,7 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
                     imm.showSoftInput(editText, 0);
                 }

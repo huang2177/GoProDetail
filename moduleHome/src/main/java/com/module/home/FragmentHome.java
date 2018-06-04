@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseFragment;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.widgets.CommonDialog;
 import com.module.home.adpter.HomeListAdpter;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
@@ -25,7 +26,7 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
-public class FragmentHome extends BaseFragment {
+public class FragmentHome extends BaseFragment implements CommonDialog.DialogClickListener {
 
     private Banner banner;
     private EditText editSearch;
@@ -70,11 +71,11 @@ public class FragmentHome extends BaseFragment {
     }
 
     private void initProduct() {
-        GridLayoutManager manager = new GridLayoutManager(activity, 2);
+        GridLayoutManager manager = new GridLayoutManager(mActivity, 2);
         manager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
-        adpter = new HomeListAdpter(activity, getData());
+        adpter = new HomeListAdpter(mActivity, getData());
         recyclerView.setAdapter(adpter);
     }
 
@@ -121,7 +122,14 @@ public class FragmentHome extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-        ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
+        CommonDialog dialog = new CommonDialog.Builder()
+                .context(mContext)
+                .listener(this)
+                .title("拼跌")
+                .message("您还没没有登录，请登录后操作！沽公园 狗一样规范")
+                .canceledOnTouchOutside(false)
+                .build();
+        dialog.show();
     }
 
 
@@ -135,6 +143,13 @@ public class FragmentHome extends BaseFragment {
     public void onPause() {
         super.onPause();
         banner.stopAutoPlay();
+    }
+
+    @Override
+    public void dialogClick(int flag, int type) {
+        if (flag == CommonDialog.CONFIRM) {
+            ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
+        }
     }
 
     /**

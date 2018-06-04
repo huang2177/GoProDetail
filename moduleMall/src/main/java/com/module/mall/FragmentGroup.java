@@ -77,10 +77,10 @@ public class FragmentGroup extends BaseFragment implements TabLayout.OnTabSelect
     }
 
     private void initProduct() {
-        LinearLayoutManager manager = new LinearLayoutManager(activity);
+        LinearLayoutManager manager = new LinearLayoutManager(mActivity);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
-        adpter = new PingListAdpter(activity, getData());
+        adpter = new PingListAdpter(mActivity, getData());
         recyclerView.setAdapter(adpter);
     }
 
