@@ -30,9 +30,9 @@ import com.module.mine.ui.ComplaintActivity;
 import com.module.mine.ui.DepositActivity;
 import com.module.mine.ui.InvitationCodeActivity;
 import com.module.mine.ui.KePhoneActivity;
+import com.module.mine.ui.help.NewUserHelpActivity;
 import com.module.mine.ui.tuancoupon.MyOpenCoilActivity;
 import com.module.mine.ui.team.MyTeamActivity;
-import com.module.mine.ui.help.NoviceActivity;
 import com.module.mine.ui.OrderActivity;
 import com.module.mine.ui.SeetingActivity;
 import com.module.mine.ui.message.SystemMessActivity;
@@ -193,7 +193,7 @@ public class FragmentMine extends BaseFragment implements
                 break;
             //新手帮助
             case 7:
-                startActivity(new Intent(mActivity, NoviceActivity.class));
+                startActivity(new Intent(mActivity, NewUserHelpActivity.class));
                 break;
             //客服电话
             case 8:

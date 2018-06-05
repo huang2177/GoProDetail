@@ -26,10 +26,11 @@ import com.module.mine.R;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
+ * 视频详情
  * Created by shibing on 18/5/16.
  */
 
-public class NoviceDetalisActivity extends BaseActivity implements IMediaPlayer.OnCompletionListener {
+public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.OnCompletionListener {
 
     private LinearLayout mLayout;
     private TextView tvName, tvTime;
@@ -42,20 +43,6 @@ public class NoviceDetalisActivity extends BaseActivity implements IMediaPlayer.
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("视频详情");
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            WindowManager.LayoutParams attrs = getWindow().getAttributes();
-            attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            getWindow().setAttributes(attrs);
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            WindowManager.LayoutParams attrs = getWindow().getAttributes();
-            attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getWindow().setAttributes(attrs);
-            getWindow().clearFlags(
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-
     }
 
     @Override
@@ -82,6 +69,7 @@ public class NoviceDetalisActivity extends BaseActivity implements IMediaPlayer.
 
     private void intiPlayer() {
         mPlayerView.init()
+                .setTitle("")
                 .setVideoPath(VIDEO_HD_URL)
                 .setMediaQuality(HIjkPlayerView.MEDIA_QUALITY_HIGH)
                 .setOnCompletionListener(this);

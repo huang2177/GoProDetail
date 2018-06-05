@@ -13,10 +13,11 @@ import com.module.mine.R;
 import com.module.mine.adapter.NoviceAdapter;
 
 /**
+ * 新手帮助
  * Created by shibing on 18/5/16.
  */
 
-public class NoviceActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class NewUserHelpActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
 
     private ListView listView;
@@ -53,9 +54,9 @@ public class NoviceActivity extends BaseActivity implements AdapterView.OnItemCl
      *
      * @param position
      */
-    
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        startActivity(new Intent(this,NoviceDetalisActivity.class));
+        startActivity(new Intent(this, VedioDetalisActivity.class));
     }
 }
