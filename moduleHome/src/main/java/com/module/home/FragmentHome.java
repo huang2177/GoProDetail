@@ -126,7 +126,7 @@ public class FragmentHome extends BaseFragment implements CommonDialog.DialogCli
                 .context(mContext)
                 .listener(this)
                 .title("拼跌")
-                .message("您还没没有登录，请登录后操作！沽公园 狗一样规范")
+                .message("您还没没有登录，请登录后操作！")
                 .canceledOnTouchOutside(false)
                 .build();
         dialog.show();

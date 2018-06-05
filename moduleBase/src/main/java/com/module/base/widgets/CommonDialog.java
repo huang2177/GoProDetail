@@ -71,12 +71,12 @@ public class CommonDialog extends Dialog implements View.OnClickListener
         if (window != null && wm != null) {
             DisplayMetrics outMetrics = new DisplayMetrics();
             wm.getDefaultDisplay().getMetrics(outMetrics);
-            window.setWindowAnimations(R.style.commonDialogStyle);
+//            window.setWindowAnimations(R.style.commonDialogStyle);
             int width = outMetrics.widthPixels;
             int height = outMetrics.heightPixels;
             WindowManager.LayoutParams lp = window.getAttributes();
             lp.gravity = Gravity.CENTER;
-            lp.width = (int) ((width * 2) / 2.5);
+            lp.width = (int) ((width * 2) / 2.4);
 //            lp.height = (int) (height / 3.5);
             lp.height = lp.WRAP_CONTENT;
             window.setAttributes(lp);
