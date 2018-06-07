@@ -7,6 +7,9 @@ package com.module.base.app;
 public class Constant {
 
 
+    //图片url地址
+    public final static String IMAGEURL = "http://39.106.187.244:8080/storage/";
+
     public final static String USERID = "userId";
 
     public final static String ISGUIDED = "isGuided";
@@ -20,6 +23,8 @@ public class Constant {
     public final static String FLAG = "flag";
 
     public final static String BLANKNUM = "banlkNum";
+
+    public final static String REQUESTCODE = "requestCode";
 
 
     public final static String PATH_MAINACTIVITY = "/main/mainActivity";

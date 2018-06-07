@@ -4,7 +4,7 @@
     <application>
 
         <activity
-            android:name=".ui.UserInfoActivity"
+            android:name=".ui.modifyuserinfo.UserInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity

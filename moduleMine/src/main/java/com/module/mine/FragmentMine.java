@@ -36,7 +36,7 @@ import com.module.mine.ui.team.MyTeamActivity;
 import com.module.mine.ui.OrderActivity;
 import com.module.mine.ui.SeetingActivity;
 import com.module.mine.ui.message.SystemMessActivity;
-import com.module.mine.ui.UserInfoActivity;
+import com.module.mine.ui.modifyuserinfo.UserInfoActivity;
 
 
 /**
@@ -57,6 +57,9 @@ public class FragmentMine extends BaseFragment implements
     private MinePresenter minePresenter;
     private SPUtil spUtil;
     private String banlkNum;
+    private String requestCode;
+    private String imagePath;
+    private String userName;
 
 
     public static FragmentMine newInstance(String msg) {
@@ -127,9 +130,13 @@ public class FragmentMine extends BaseFragment implements
     public void onClick(View v) {
         super.onClick(v);
         int i = v.getId();
+        Intent intent;
         //头像
         if (i == R.id.mine_hede_img) {
-            startActivity(new Intent(mActivity, UserInfoActivity.class));
+            intent = new Intent(mActivity, UserInfoActivity.class);
+            intent.putExtra("imagePath", imagePath);
+            intent.putExtra("userName", userName);
+            startActivity(intent);
         }
         //消息
         else if (i == R.id.mine_mes_fra) {
@@ -137,11 +144,13 @@ public class FragmentMine extends BaseFragment implements
         }
         //邀请码
         else if (i == R.id.mine_incode_lay) {
-            startActivity(new Intent(mActivity, InvitationCodeActivity.class));
+            intent = new Intent(mActivity, InvitationCodeActivity.class);
+            intent.putExtra(Constant.REQUESTCODE, requestCode);
+            startActivity(intent);
         }
         //余额
         else if (i == R.id.mine_banlance_lay) {
-            Intent intent = new Intent(mActivity, BalanceActivity.class);
+            intent = new Intent(mActivity, BalanceActivity.class);
             intent.putExtra(Constant.BLANKNUM, banlkNum);
             startActivity(intent);
 
@@ -175,7 +184,6 @@ public class FragmentMine extends BaseFragment implements
                 intent = new Intent(mActivity, OrderActivity.class);
                 intent.putExtra(Constant.TITLE, "我的订单");
                 startActivity(intent);
-
                 break;
             //我的押金
             case 4:
@@ -215,12 +223,17 @@ public class FragmentMine extends BaseFragment implements
     @Override
     public void showUserInfo(UserInfoBean userInfo) {
 
-        GlideManager.loadImage(this, R.drawable.ic_mine_head, mIvHead);
+        GlideManager.loadImage(this, Constant.IMAGEURL + userInfo.getData().getImgurl(), mIvHead);
         phoneTv.setText(userInfo.getData().getNickname());
 
         //银行卡余额
         banlkNum = userInfo.getData().getCardNum();
         banlanceTv.setText(userInfo.getData().getCardNum());
+        //邀请码
+        requestCode = userInfo.getData().getRequestCode();
+        //头像
+        imagePath = userInfo.getData().getImgurl();
+        userName = userInfo.getData().getNickname();
 
     }
 

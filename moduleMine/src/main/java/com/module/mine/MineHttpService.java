@@ -2,15 +2,20 @@ package com.module.mine;
 
 import com.module.mine.bean.BlankNumBean;
 import com.module.mine.bean.MessAgeBean;
+import com.module.mine.bean.ModifyUserBean;
 import com.module.mine.bean.TeamBean;
 import com.module.mine.bean.TuanCouponBean;
 import com.module.mine.bean.UserInfoBean;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -50,6 +55,13 @@ public interface MineHttpService {
     @GET("api/WebUser/{id}")
     Observable<UserInfoBean> getUserInfo(@Path("id") String id);
 
+
+    /**
+     * 修改用户基本信息
+     */
+    @Multipart
+    @PUT("api/WebUser/{id}")
+    Observable<ModifyUserBean> ModifyUser(@Part("photo") RequestBody photo);
 
     /**
      * 获取系统消息

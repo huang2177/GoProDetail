@@ -81,16 +81,16 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     private void initProduct() {
-        GridLayoutManager manager = new GridLayoutManager(activity, 2);
+        GridLayoutManager manager = new GridLayoutManager(mActivity, 2);
         manager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
         if (flag == 1) {
-            adpter = new MallListAdpter(activity, getData());
+            adpter = new MallListAdpter(mActivity, getData());
             adpter.addOnItemClickListener(this);
             recyclerView.setAdapter(adpter);
         } else {
-            jewelryAdpter = new JewelryAdpter(activity);
+            jewelryAdpter = new JewelryAdpter(mActivity);
             jewelryAdpter.addOnItemClickListener(this);
             recyclerView.setAdapter(jewelryAdpter);
         }
@@ -139,7 +139,7 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(activity, ProDetailActivity.class);
+        Intent intent = new Intent(mActivity, ProDetailActivity.class);
         //商品
         if (flag == 1) {
             intent.putExtra("form", "por");

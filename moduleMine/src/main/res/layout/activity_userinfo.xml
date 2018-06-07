@@ -11,8 +11,8 @@
 
     <com.module.base.widgets.RoundImageView
         android:id="@+id/info_head_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:src="@drawable/ic_mine_head" />
@@ -24,38 +24,29 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
-
-
-        <LinearLayout
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="昵称"
+            android:textColor="@color/colorGray"
+            android:textSize="16.0sp" />
+        <EditText
+            android:id="@+id/info_nikename_ed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="昵称"
-                android:textColor="@color/colorGray"
-                android:textSize="16.0sp" />
-
-            <EditText
-                android:id="@+id/info_nikename_ed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@null"
-                android:gravity="center"
-                android:hint="请设置您的昵称"
-                android:textSize="14.0sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/colorLittleGray" />
-
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="请设置您的昵称"
+            android:textSize="14.0sp" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/colorLittleGray" />
 
 
     <Button

@@ -1,16 +1,16 @@
 package com.module.mine.bean;
 
 /**
- * Created by shibing on 18/5/22.
+ * Created by shibing on 18/6/7.
  */
 
-public class UserInfoBean {
+public class ModifyUserBean {
 
 
     /**
      * code : 00
      * msg : SUCCESS
-     * data : {"id":6,"nickname":"你好呀","imgurl":"apache-tomcat-8.0.48/2018-06-06/11e64f5b1bb44f4c9b571632f7487f17.jpg","mobile":"18207182435","password":"","cardNum":"1234567890","cardName":"了解","cardBank":"中国建设银行","amount":0,"freezeAmount":0,"totalAmount":0,"pid":0,"childCount":0,"status":0,"requestCode":"18207182435"}
+     * data : {"id":6,"nickname":"buhaoya","imgurl":null,"mobile":null,"password":null,"cardNum":null,"cardName":null,"cardBank":null,"amount":null,"freezeAmount":null,"totalAmount":null,"pid":null,"childCount":null,"status":null,"requestCode":null}
      */
 
     private String code;
@@ -44,20 +44,20 @@ public class UserInfoBean {
     public static class DataBean {
         /**
          * id : 6
-         * nickname : 你好呀
-         * imgurl : apache-tomcat-8.0.48/2018-06-06/11e64f5b1bb44f4c9b571632f7487f17.jpg
-         * mobile : 18207182435
-         * password :
-         * cardNum : 1234567890
-         * cardName : 了解
-         * cardBank : 中国建设银行
-         * amount : 0
-         * freezeAmount : 0
-         * totalAmount : 0
-         * pid : 0
-         * childCount : 0
-         * status : 0
-         * requestCode : 18207182435
+         * nickname : buhaoya
+         * imgurl : null
+         * mobile : null
+         * password : null
+         * cardNum : null
+         * cardName : null
+         * cardBank : null
+         * amount : null
+         * freezeAmount : null
+         * totalAmount : null
+         * pid : null
+         * childCount : null
+         * status : null
+         * requestCode : null
          */
 
         private int id;
@@ -68,12 +68,12 @@ public class UserInfoBean {
         private String cardNum;
         private String cardName;
         private String cardBank;
-        private int amount;
-        private int freezeAmount;
-        private int totalAmount;
-        private int pid;
-        private int childCount;
-        private int status;
+        private String amount;
+        private String freezeAmount;
+        private String totalAmount;
+        private String pid;
+        private String childCount;
+        private String status;
         private String requestCode;
 
         public int getId() {
@@ -140,51 +140,51 @@ public class UserInfoBean {
             this.cardBank = cardBank;
         }
 
-        public int getAmount() {
+        public String getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(String amount) {
             this.amount = amount;
         }
 
-        public int getFreezeAmount() {
+        public String getFreezeAmount() {
             return freezeAmount;
         }
 
-        public void setFreezeAmount(int freezeAmount) {
+        public void setFreezeAmount(String freezeAmount) {
             this.freezeAmount = freezeAmount;
         }
 
-        public int getTotalAmount() {
+        public String getTotalAmount() {
             return totalAmount;
         }
 
-        public void setTotalAmount(int totalAmount) {
+        public void setTotalAmount(String totalAmount) {
             this.totalAmount = totalAmount;
         }
 
-        public int getPid() {
+        public String getPid() {
             return pid;
         }
 
-        public void setPid(int pid) {
+        public void setPid(String pid) {
             this.pid = pid;
         }
 
-        public int getChildCount() {
+        public String getChildCount() {
             return childCount;
         }
 
-        public void setChildCount(int childCount) {
+        public void setChildCount(String childCount) {
             this.childCount = childCount;
         }
 
-        public int getStatus() {
+        public String getStatus() {
             return status;
         }
 
-        public void setStatus(int status) {
+        public void setStatus(String status) {
             this.status = status;
         }
 

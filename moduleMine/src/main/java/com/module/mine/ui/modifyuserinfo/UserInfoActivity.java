@@ -1,4 +1,4 @@
-package com.module.mine.ui;
+package com.module.mine.ui.modifyuserinfo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.base.manager.GlideManager;
 import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.RoundImageView;
@@ -29,14 +30,14 @@ public class UserInfoActivity extends BaseActivity {
     private EditText nikeName;
     private Button save;
     private final int REQUESTCODE = 100;
-
+    private String imgaePath;
+    private String userName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("基础信息");
     }
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_userinfo;
@@ -47,8 +48,14 @@ public class UserInfoActivity extends BaseActivity {
         head = findViewById(R.id.info_head_image);
         nikeName = findViewById(R.id.info_nikename_ed);
         save = findViewById(R.id.info_save_but);
-
         head.setShapeType(1);
+        imgaePath = getIntent().getStringExtra("imagePath");
+        userName = getIntent().getStringExtra("userName");
+
+
+        GlideManager.loadImage(this, Constant.IMAGEURL + imgaePath, head);
+        nikeName.setText(userName);
+
     }
 
     @Override
@@ -95,6 +102,11 @@ public class UserInfoActivity extends BaseActivity {
 
         String imgPath = Album.parseResult(data).get(0);
         GlideManager.loadImage(this, imgPath, head);
-
     }
+
+
+
+
+
+
 }

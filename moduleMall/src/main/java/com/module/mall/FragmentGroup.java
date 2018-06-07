@@ -82,10 +82,10 @@ public class FragmentGroup extends BaseFragment
     }
 
     private void initProduct() {
-        LinearLayoutManager manager = new LinearLayoutManager(activity);
+        LinearLayoutManager manager = new LinearLayoutManager(mActivity);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
-        adpter = new PingListAdpter(activity, getData());
+        adpter = new PingListAdpter(mActivity, getData());
         adpter.addOnItemClickListener(this);
         recyclerView.setAdapter(adpter);
 
@@ -138,6 +138,6 @@ public class FragmentGroup extends BaseFragment
      */
     @Override
     public void onItemClick(int position) {
-        activity.startActivity(new Intent(activity, GroupDetalisActivity.class));
+        mActivity.startActivity(new Intent(mActivity, GroupDetalisActivity.class));
     }
 }
