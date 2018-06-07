@@ -51,15 +51,16 @@ public class MyOpenCoilActivity extends BaseActivity implements
 
     @Override
     public void initView() {
-
         spUtil = SPUtil.getInstance(this);
-
 
         layNodata = findViewById(R.id.nadata_lay);
         listView = findViewById(R.id.opencoil_list);
+    }
+
+    @Override
+    public void setListener() {
+        super.setListener();
         listView.setOnItemClickListener(this);
-
-
     }
 
     @Override

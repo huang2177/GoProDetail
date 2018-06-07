@@ -200,7 +200,7 @@ public class ProDetailActivity extends BaseActivity {
 
     private void initGrouping() {
         List<Integer> list = Arrays.asList(R.drawable.pro
-                , R.drawable.pro_detail);
+                );
         CommonAdapter<Integer> adapter = new CommonAdapter<Integer>(this, list, R.layout.child_item_ping_list1) {
             @Override
             public void convert(int position, ViewHolder holder, Integer data) {

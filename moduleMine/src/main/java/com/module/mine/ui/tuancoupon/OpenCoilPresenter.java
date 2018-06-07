@@ -31,7 +31,7 @@ public class OpenCoilPresenter extends BasePresenter<TuanCouponView> {
 
 
     public void getTuanCouponList(String userId) {
-        observer(new HttpObserver(mContext
+        observer(new HttpObserver<TuanCouponBean>(mContext
                 , mService.TuanCoupon(userId)
                 , new HttpCallBackImpl<TuanCouponBean>() {
             @Override
@@ -44,6 +44,4 @@ public class OpenCoilPresenter extends BasePresenter<TuanCouponView> {
             }
         }));
     }
-
-
 }

@@ -62,5 +62,5 @@ dependencies {
     compile 'com.yanzhenjie:durban:1.0.1'
 
     /*IJK播放器*/
-    compile 'com.github.huangbryant210707:HIjkPlayerView:1.0.2'
+    compile 'com.github.huangbryant210707:HIjkPlayerView:1.0.3'
 }

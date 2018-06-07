@@ -30,9 +30,9 @@ import com.module.mine.ui.ComplaintActivity;
 import com.module.mine.ui.DepositActivity;
 import com.module.mine.ui.InvitationCodeActivity;
 import com.module.mine.ui.KePhoneActivity;
+import com.module.mine.ui.help.NewUserHelpActivity;
 import com.module.mine.ui.tuancoupon.MyOpenCoilActivity;
 import com.module.mine.ui.team.MyTeamActivity;
-import com.module.mine.ui.help.NoviceActivity;
 import com.module.mine.ui.OrderActivity;
 import com.module.mine.ui.SeetingActivity;
 import com.module.mine.ui.message.SystemMessActivity;
@@ -82,7 +82,7 @@ public class FragmentMine extends BaseFragment implements
 
     @Override
     public void initView() {
-        spUtil = SPUtil.getInstance(activity);
+        spUtil = SPUtil.getInstance(mActivity);
 
         mIvHead = viewRoot.findViewById(R.id.mine_hede_img);
         phoneTv = viewRoot.findViewById(R.id.mine_phone_tv);
@@ -102,13 +102,13 @@ public class FragmentMine extends BaseFragment implements
     }
 
     private void initRecycle() {
-        GridLayoutManager manager = new GridLayoutManager(activity, 3);
+        GridLayoutManager manager = new GridLayoutManager(mActivity, 3);
         manager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.addItemDecoration(new XItemDecoration(activity));
+        recyclerView.addItemDecoration(new XItemDecoration(mActivity));
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(manager);
 
-        mineAdapter = new MineAdapter(activity, this);
+        mineAdapter = new MineAdapter(mActivity, this);
         mineAdapter.addOnItemClickListener(this);
         recyclerView.setAdapter(mineAdapter);
     }
@@ -129,26 +129,26 @@ public class FragmentMine extends BaseFragment implements
         int i = v.getId();
         //头像
         if (i == R.id.mine_hede_img) {
-            startActivity(new Intent(activity, UserInfoActivity.class));
+            startActivity(new Intent(mActivity, UserInfoActivity.class));
         }
         //消息
         else if (i == R.id.mine_mes_fra) {
-            startActivity(new Intent(activity, SystemMessActivity.class));
+            startActivity(new Intent(mActivity, SystemMessActivity.class));
         }
         //邀请码
         else if (i == R.id.mine_incode_lay) {
-            startActivity(new Intent(activity, InvitationCodeActivity.class));
+            startActivity(new Intent(mActivity, InvitationCodeActivity.class));
         }
         //余额
         else if (i == R.id.mine_banlance_lay) {
-            Intent intent = new Intent(activity, BalanceActivity.class);
+            Intent intent = new Intent(mActivity, BalanceActivity.class);
             intent.putExtra(Constant.BLANKNUM, banlkNum);
             startActivity(intent);
 
         }
         //银行卡
         else if (i == R.id.mine_card_lay) {
-            startActivity(new Intent(activity, CardActivity.class));
+            startActivity(new Intent(mActivity, CardActivity.class));
         }
     }
 
@@ -159,53 +159,53 @@ public class FragmentMine extends BaseFragment implements
         switch (position) {
             //我的团队
             case 0:
-                startActivity(new Intent(activity, MyTeamActivity.class));
+                startActivity(new Intent(mActivity, MyTeamActivity.class));
                 break;
             //拼团返现
             case 1:
-                startActivity(new Intent(activity, CollageReturnsActivity.class));
+                startActivity(new Intent(mActivity, CollageReturnsActivity.class));
                 break;
 
             //我的开团卷
             case 2:
-                startActivity(new Intent(activity, MyOpenCoilActivity.class));
+                startActivity(new Intent(mActivity, MyOpenCoilActivity.class));
                 break;
             //我的订单
             case 3:
-                intent = new Intent(activity, OrderActivity.class);
+                intent = new Intent(mActivity, OrderActivity.class);
                 intent.putExtra(Constant.TITLE, "我的订单");
                 startActivity(intent);
 
                 break;
             //我的押金
             case 4:
-                startActivity(new Intent(activity, DepositActivity.class));
+                startActivity(new Intent(mActivity, DepositActivity.class));
                 break;
             //收货信息管理
             case 5:
-                startActivity(new Intent(activity, AdderAddressActivity.class));
+                startActivity(new Intent(mActivity, AdderAddressActivity.class));
                 break;
             //我的收藏
             case 6:
-                intent = new Intent(activity, OrderActivity.class);
+                intent = new Intent(mActivity, OrderActivity.class);
                 intent.putExtra(Constant.TITLE, "我的收藏");
                 startActivity(intent);
                 break;
             //新手帮助
             case 7:
-                startActivity(new Intent(activity, NoviceActivity.class));
+                startActivity(new Intent(mActivity, NewUserHelpActivity.class));
                 break;
             //客服电话
             case 8:
-                startActivity(new Intent(activity, KePhoneActivity.class));
+                startActivity(new Intent(mActivity, KePhoneActivity.class));
                 break;
             //投诉建议
             case 9:
-                startActivity(new Intent(activity, ComplaintActivity.class));
+                startActivity(new Intent(mActivity, ComplaintActivity.class));
                 break;
             //系统设置
             case 10:
-                startActivity(new Intent(activity, SeetingActivity.class));
+                startActivity(new Intent(mActivity, SeetingActivity.class));
                 break;
 
         }

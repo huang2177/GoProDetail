@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/space_layout" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <include layout="@layout/titlebar_layout" />
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.huangbryant.mylibrary.media.HIjkPlayerView
-        android:id="@+id/ijk_player"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="190dp" />
+            <include layout="@layout/space_layout" />
 
+            <include layout="@layout/titlebar_layout" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <com.huangbryant.mylibrary.media.HIjkPlayerView
+            android:id="@+id/ijk_player"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:layout_marginTop="155dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ijk_player"
+            android:background="@color/colorLittleGray"
+            android:gravity="center"
+            android:text="dhduhcuihciudh" />
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>
