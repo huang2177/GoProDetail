@@ -63,4 +63,7 @@ dependencies {
 
     /*IJK播放器*/
     compile 'com.github.huangbryant210707:HIjkPlayerView:1.0.3'
+
+     /*选择器*/
+    compile 'com.contrarywind:Android-PickerView:3.2.7'
 }

@@ -7,7 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.module.base.listener.OnItemClickListener;
 import com.module.mine.R;
+import com.module.mine.bean.AddersBean;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/5.
@@ -16,15 +20,20 @@ import com.module.mine.R;
 public class AdmAddressListAdapter extends BaseAdapter {
 
     private Activity activity;
+    private List<AddersBean.DataBean> list;
+    private OnItemClickListener listener;
 
-
-    public AdmAddressListAdapter(Activity activity) {
+    public AdmAddressListAdapter(Activity activity, List<AddersBean.DataBean> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     @Override
@@ -38,7 +47,7 @@ public class AdmAddressListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(activity).inflate(R.layout.item_admaddress_list, null);
@@ -48,7 +57,51 @@ public class AdmAddressListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        viewHolder.tvDefault.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+        });
+
+        viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+        });
+        viewHolder.tvDet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+        });
+
+        viewHolder.tvName.setText(list.get(position).getName());
+        viewHolder.tvPhone.setText(list.get(position).getMobile());
+        viewHolder.tvAdderss.setText(list.get(position).getProvince() +
+                list.get(position).getCity() +
+                list.get(position).getArea());
+        if (list.get(position).isIsDefault()) {
+            viewHolder.tvDefault.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_checked_solid, 0, 0, 0);
+            viewHolder.tvDefault.setText("默认地址");
+        } else {
+            viewHolder.tvDefault.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_blank, 0, 0, 0);
+            viewHolder.tvDefault.setText("设为默认");
+        }
+
         return convertView;
+    }
+
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     class ViewHolder {

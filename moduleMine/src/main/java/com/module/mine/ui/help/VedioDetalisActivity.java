@@ -20,8 +20,13 @@ import com.bumptech.glide.Glide;
 import com.huangbryant.mylibrary.media.HIjkPlayerView;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
+import com.module.base.utils.Logger;
 import com.module.base.utils.ScreenUtils;
 import com.module.mine.R;
+import com.module.mine.bean.HelpBean;
+
+import java.util.List;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 
@@ -30,19 +35,27 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * Created by shibing on 18/5/16.
  */
 
-public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.OnCompletionListener {
+public class VedioDetalisActivity extends BaseActivity
+        implements IMediaPlayer.OnCompletionListener
+        , VedioDetalisView {
 
     private LinearLayout mLayout;
-    private TextView tvName, tvTime;
+    private TextView tvName, tvTime, tvContent;
     private HIjkPlayerView mPlayerView;
     private static final String VIDEO_HD_URL = "http://flv2.bn.netease.com/videolib3/1611/28/GbgsL3639/HD/movie_index.m3u8";
     private static final String IMAGE_URL = "http://vimg2.ws.126.net/image/snapshot/2016/11/I/M/VC62HMUIM.jpg";
 
+    private List<HelpBean.DataBean> list;
+    private VedioDetalisPresenter presenter;
+    private String imagePath;
+    private String vedioUrl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("视频详情");
+        Log.e("1212121", "onCreate: " + getIntent().getStringExtra("helpId"));
+        presenter.getHelpDetalis(getIntent().getStringExtra("helpId"));
     }
 
     @Override
@@ -59,50 +72,22 @@ public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.O
     public void initView() {
         tvName = findViewById(R.id.tv_name);
         tvTime = findViewById(R.id.tv_time);
+        tvContent = findViewById(R.id.tv_content);
         mLayout = findViewById(R.id.ll_container);
         mPlayerView = findViewById(R.id.ijk_player);
-
-        intiPlayer();
-        tvTime.setText("2017-03-05");
-        tvName.setText("新手如何在营业厅完成手机号注册与领取？");
     }
 
-    private void intiPlayer() {
-        mPlayerView.init()
-                .setTitle("")
-                .setVideoPath(VIDEO_HD_URL)
-                .setMediaQuality(HIjkPlayerView.MEDIA_QUALITY_HIGH)
-                .setOnCompletionListener(this);
-        Glide.with(this).load(IMAGE_URL).into(mPlayerView.mPlayerThumb);
-    }
 
     @Override
     public BasePresenter createPresenter() {
-        return null;
+        presenter = new VedioDetalisPresenter();
+        return presenter;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mPlayerView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mPlayerView.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPlayerView.onDestroy();
-    }
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mPlayerView.getLayoutParams();
         lp.topMargin = newConfig.orientation == 2 ? 0 : ScreenUtils.dp2px(this, 165);
         mPlayerView.setLayoutParams(lp);
@@ -132,5 +117,58 @@ public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.O
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         mPlayerView.mPlayerThumb.setVisibility(View.VISIBLE);
+    }
+
+
+
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPlayerView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPlayerView.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPlayerView.onDestroy();
+    }
+
+    @Override
+    public void showHelpDetalis(HelpBean helpBean) {
+        list = helpBean.getData();
+        tvName.setText(list.get(0).getTitle());
+        tvTime.setText(list.get(0).getCreateTime());
+        tvContent.setText(list.get(0).getContent());
+        imagePath = list.get(0).getImgurl();
+        vedioUrl = list.get(0).getVideoImgurl();
+        intiPlayer(imagePath, vedioUrl);
+    }
+
+    @Override
+    public void showHeloErr(String error) {
+
+    }
+
+
+    //视频设置
+    private void intiPlayer(String imagePath, String vedioUrl) {
+        mPlayerView.init()
+                .setTitle("")
+                //.setVideoPath(vedioUrl)
+                .setVideoPath(VIDEO_HD_URL)
+                .setMediaQuality(HIjkPlayerView.MEDIA_QUALITY_HIGH)
+                .setOnCompletionListener(this);
+        Glide.with(this).load(Constant.IMAGEURL + imagePath).into(mPlayerView.mPlayerThumb);
+
     }
 }

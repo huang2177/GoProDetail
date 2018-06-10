@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.module.mine.R;
+import com.module.mine.bean.AddersBean;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/5.
@@ -16,15 +19,20 @@ import com.module.mine.R;
 public class AddressListAdapter extends BaseAdapter {
 
     private Activity activity;
+    List<AddersBean.DataBean> list;
 
 
-    public AddressListAdapter(Activity activity) {
+    public AddressListAdapter(Activity activity, List<AddersBean.DataBean> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     @Override
@@ -47,7 +55,15 @@ public class AddressListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+        viewHolder.tvName.setText(list.get(position).getName());
+        viewHolder.tvPhone.setText(list.get(position).getMobile());
+        if (list.get(position).isIsDefault()) {
+            viewHolder.tvDefault.setText("默认地址     ");
+        } else {
+            viewHolder.tvDefault.setVisibility(View.GONE);
+        }
+        viewHolder.tvAdderss.setText(list.get(position).getProvince() + list.get(position).getCity()
+                + list.get(position).getArea() + list.get(position).getDetail());
         return convertView;
     }
 

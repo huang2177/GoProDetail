@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/admress_item_naem_tv"
@@ -33,44 +34,36 @@
                 android:textSize="16.0sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp">
 
-            <TextView
-                android:id="@+id/admress_item_xx_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="等到花儿也谢了"
-                android:textColor="@color/colorGray"
-                android:textSize="16.0sp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/admress_item_xx_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="等到花儿也谢了"
+            android:textColor="@color/colorGray"
+            android:textSize="16.0sp" />
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:background="@color/colorLittleGray" />
-
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite">
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/admarss_default_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:drawableLeft="@drawable/ic_end"
                 android:drawablePadding="10dp"
-                android:text="默认地址"
                 android:textColor="@color/colorGray"
                 android:textSize="14.0sp" />
-
 
             <TextView
                 android:id="@+id/admress_item_edit_tv"
@@ -85,7 +78,6 @@
                 android:textColor="@color/colorGray"
                 android:textSize="14.0sp" />
 
-
             <TextView
                 android:id="@+id/admress_item_det_tv"
                 android:layout_width="wrap_content"
@@ -95,16 +87,12 @@
                 android:layout_marginRight="10dp"
                 android:drawableLeft="@drawable/ic_trash"
                 android:drawablePadding="10dp"
-                android:text="编辑"
+                android:text="删除"
                 android:textColor="@color/colorGray"
                 android:textSize="14.0sp" />
-
-
         </RelativeLayout>
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

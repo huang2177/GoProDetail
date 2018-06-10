@@ -1,15 +1,21 @@
 package com.module.mine;
 
+import com.module.mine.bean.AddersBean;
 import com.module.mine.bean.BlankNumBean;
+import com.module.mine.bean.ComPlaintBean;
+import com.module.mine.bean.HelpBean;
 import com.module.mine.bean.MessAgeBean;
 import com.module.mine.bean.ModifyUserBean;
 import com.module.mine.bean.TeamBean;
 import com.module.mine.bean.TuanCouponBean;
 import com.module.mine.bean.UserInfoBean;
 
+import java.util.Map;
+
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
@@ -102,5 +108,54 @@ public interface MineHttpService {
     @GET("api/TuanCoupon/List")
     Observable<TuanCouponBean> TuanCoupon(@Query("uid") String id);
 
+
+    /**
+     * 投诉建议
+     *
+     * @param uid
+     * @param name
+     * @param mobile
+     * @param content
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/Suggest")
+    Observable<ComPlaintBean> PutSuggest(@Field("uid") String uid
+            , @Field("name") String name
+            , @Field("mobile") String mobile
+            , @Field("content") String content);
+
+
+    /**
+     * 获取新手帮助列表
+     *
+     * @return
+     */
+    @GET("api/Problem/List")
+    Observable<HelpBean> getProblemList();
+
+
+    /**
+     * 根据id获取新手帮助详情
+     *
+     * @param id
+     * @return
+     */
+    @GET("api/Problem/{id}")
+    Observable<HelpBean> getProblemDetalis(@Path("id") String id);
+
+
+    /**
+     * 获取地址列表
+     *
+     * @return
+     */
+    @GET("api/UserAddress/List")
+    Observable<AddersBean> getAddersList();
+
+
+    @FormUrlEncoded
+    @POST("api/UserAddress")
+    Observable<AddersBean> getUserAddress(@FieldMap Map<String, String> map);
 
 }

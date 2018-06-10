@@ -41,19 +41,19 @@
             android:name=".ui.DepositActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.AddressActivity"
+            android:name=".ui.adders.AddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.AdderAddressActivity"
+            android:name=".ui.adders.AdderAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.AdmAdderssActivity"
+            android:name=".ui.adders.AdmAdderssActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.KePhoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.ComplaintActivity"
+            android:name=".ui.compiaint.ComplaintActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.SeetingActivity"

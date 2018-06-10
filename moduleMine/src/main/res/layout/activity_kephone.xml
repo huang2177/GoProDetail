@@ -31,8 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:textSize="16.0sp"
-                />
+                android:textSize="16.0sp" />
 
             <TextView
                 android:id="@+id/dl_phone_tv"
@@ -77,7 +76,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
                 android:text="江苏省苏州市经开区北京东路31号 双子星大厦A座2901"
                 android:textSize="16.0sp" />
 

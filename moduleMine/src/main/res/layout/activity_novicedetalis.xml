@@ -43,6 +43,7 @@
             android:layout_marginTop="155dp" />
 
         <TextView
+            android:id="@+id/tv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/ijk_player"

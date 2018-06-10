@@ -8,7 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.app.Constant;
+import com.module.base.manager.GlideManager;
 import com.module.mine.R;
+import com.module.mine.bean.HelpBean;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/5.
@@ -17,15 +22,20 @@ import com.module.mine.R;
 public class NoviceAdapter extends BaseAdapter {
 
     private Activity activity;
+    List<HelpBean.DataBean> list;
 
 
-    public NoviceAdapter(Activity activity) {
+    public NoviceAdapter(Activity activity, List<HelpBean.DataBean> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     @Override
@@ -48,7 +58,12 @@ public class NoviceAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+        GlideManager.loadImage(activity, Constant.IMAGEURL + list.get(position).getImgurl(), viewHolder.imageView);
+        viewHolder.title.setText(list.get(position).getTitle());
+        if (list.get(position).getType() == 0) {
+            viewHolder.type.setText("新手帮助");
+        }
+        viewHolder.time.setText(list.get(position).getCreateTime());
         return convertView;
     }
 

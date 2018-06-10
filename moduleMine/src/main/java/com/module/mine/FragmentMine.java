@@ -22,11 +22,11 @@ import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XItemDecoration;
 import com.module.mine.adapter.MineAdapter;
 import com.module.mine.bean.UserInfoBean;
-import com.module.mine.ui.AdderAddressActivity;
+import com.module.mine.ui.adders.AddressActivity;
 import com.module.mine.ui.blanknum.BalanceActivity;
 import com.module.mine.ui.CardActivity;
 import com.module.mine.ui.CollageReturnsActivity;
-import com.module.mine.ui.ComplaintActivity;
+import com.module.mine.ui.compiaint.ComplaintActivity;
 import com.module.mine.ui.DepositActivity;
 import com.module.mine.ui.InvitationCodeActivity;
 import com.module.mine.ui.KePhoneActivity;
@@ -191,7 +191,7 @@ public class FragmentMine extends BaseFragment implements
                 break;
             //收货信息管理
             case 5:
-                startActivity(new Intent(mActivity, AdderAddressActivity.class));
+                startActivity(new Intent(mActivity, AddressActivity.class));
                 break;
             //我的收藏
             case 6:

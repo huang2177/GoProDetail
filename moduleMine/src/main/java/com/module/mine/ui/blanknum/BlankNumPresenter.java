@@ -35,41 +35,7 @@ public class BlankNumPresenter extends BasePresenter<BlankNumView> {
 
 
     public void getBlankList(String userId) {
-       /* if (isRecycle()) {
-            return;
-        }
-        mSubscription.add(mService.UserFeeRecord(userId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BlankNumBean>() {
-                    public BlankNumBean blankNumBean;
-
-                    @Override
-                    public void onCompleted() {
-                        try {
-                            if (blankNumBean == null || !TextUtils.equals(blankNumBean.getCode(), "00")) {
-                                return;
-                            }
-                            blankNumView.showBlankNum(blankNumBean);
-                        } catch (Exception e) {
-
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(BlankNumBean blankNumBean) {
-
-                        this.blankNumBean = blankNumBean;
-
-                    }
-                }));*/
-
-        observer(new HttpObserver(mContext, mService.UserFeeRecord(userId)
+        observer(new HttpObserver<BlankNumBean>(mContext, mService.UserFeeRecord(userId)
                 , new HttpCallBackImpl<BlankNumBean>() {
             @Override
             public void onCompleted(BlankNumBean blankNumBean) {
