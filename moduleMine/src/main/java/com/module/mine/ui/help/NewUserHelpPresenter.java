@@ -8,6 +8,7 @@ import com.module.base.http.HttpManager;
 import com.module.base.http.HttpObserver;
 import com.module.mine.MineHttpService;
 import com.module.mine.bean.HelpBean;
+import com.module.mine.bean.HelpDetalisBean;
 
 /**
  * Created by shibing on 18/6/9.
@@ -44,6 +45,21 @@ public class NewUserHelpPresenter extends BasePresenter<NewUserHelpView> {
         }));
     }
 
+
+    /**
+     * 获取新手帮助详情
+     */
+    public void getHelpDetalis(String helpId) {
+        observer(new HttpObserver<HelpDetalisBean>(mContext, mService.getProblemDetalis(helpId), new HttpCallBackImpl<HelpDetalisBean>() {
+            @Override
+            public void onCompleted(HelpDetalisBean detalisBean) {
+                if (detalisBean == null) {
+                    return;
+                }
+                helpView.showHelpDetalis(detalisBean);
+            }
+        }));
+    }
 
 
 }

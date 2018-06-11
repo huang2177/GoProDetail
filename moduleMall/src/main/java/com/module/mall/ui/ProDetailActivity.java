@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
@@ -27,11 +28,11 @@ import java.util.Arrays;
 import java.util.List;
 
 
-
 /**
  * Created by 黄双 on 2018/5/6.
  */
 
+@Route(path = Constant.PRODETAIL)
 public class ProDetailActivity extends BaseActivity {
 
     Banner banner;
@@ -200,7 +201,7 @@ public class ProDetailActivity extends BaseActivity {
 
     private void initGrouping() {
         List<Integer> list = Arrays.asList(R.drawable.pro
-                );
+        );
         CommonAdapter<Integer> adapter = new CommonAdapter<Integer>(this, list, R.layout.child_item_ping_list1) {
             @Override
             public void convert(int position, ViewHolder holder, Integer data) {

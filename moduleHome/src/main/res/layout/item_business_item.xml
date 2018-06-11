@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+
+        <ImageView
+            android:id="@+id/busin_image_item"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/pro" />
+
+        <TextView
+            android:id="@+id/busin_name_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/busin_image_item"
+            android:text="上海.浦东南路营业厅"
+            android:textColor="@color/colorBlack"
+            android:textSize="20.0sp" />
+
+
+        <TextView
+            android:id="@+id/busin_distance_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/busin_name_item"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/busin_image_item"
+            android:text="距离1.3km"
+            android:textSize="14.0sp" />
+
+
+        <TextView
+            android:id="@+id/bisin_adderss_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/busin_distance_item"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/busin_image_item"
+            android:text="上海市浦东新区浦东南路321号"
+            android:textSize="16.0sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bisin_adderss_item"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/busin_image_item">
+
+
+            <TextView
+                android:id="@+id/busin_tel_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_telephonecall"
+                android:drawablePadding="5dp"
+                android:text="021-10214412"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@+id/busin_loc_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawableLeft="@drawable/ic_placeholder"
+                android:drawablePadding="5dp"
+                android:text="导航"
+                android:textSize="16.0sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

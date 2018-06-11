@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.widgets.CommonDialog;
 import com.module.base.widgets.XGridView;
 import com.module.mine.R;
 import com.module.mine.adapter.OrderPopreAdpter;
@@ -20,7 +21,7 @@ import com.module.mine.ui.adders.AddressActivity;
  * Created by shibing on 18/5/16.
  */
 
-public class OrderDetalisActivity extends BaseActivity {
+public class OrderDetalisActivity extends BaseActivity implements CommonDialog.DialogClickListener {
 
 
     private LinearLayout layAdder;
@@ -116,6 +117,7 @@ public class OrderDetalisActivity extends BaseActivity {
     public void setListener() {
         super.setListener();
         imageGk.setOnClickListener(this);
+        tvProTrue.setOnClickListener(this);
     }
 
     @Override
@@ -126,6 +128,27 @@ public class OrderDetalisActivity extends BaseActivity {
             startActivity(new Intent(this, OpenActivity.class));
         } else if (i == R.id.order_detalis_adder) {
             startActivity(new Intent(this, AddressActivity.class));
+        } else if (i == R.id.order_sure_tv) {
+            ShowSureDialog();
+        }
+    }
+
+
+    private void ShowSureDialog() {
+        CommonDialog dialog = new CommonDialog.Builder()
+                .context(this)
+                .listener(this)
+                .title("拼跌")
+                .message("确定收货？")
+                .canceledOnTouchOutside(false)
+                .build();
+        dialog.show();
+    }
+
+    @Override
+    public void dialogClick(int flag, int type) {
+        if (flag == CommonDialog.CONFIRM) {
+            startActivity(new Intent(this, EvaluateActivity.class));
         }
     }
 }

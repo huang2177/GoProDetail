@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.module.base.utils.Logger;
 import com.module.base.utils.ScreenUtils;
 import com.module.mine.R;
 import com.module.mine.bean.HelpBean;
+import com.module.mine.bean.HelpDetalisBean;
 
 import java.util.List;
 
@@ -37,7 +39,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 public class VedioDetalisActivity extends BaseActivity
         implements IMediaPlayer.OnCompletionListener
-        , VedioDetalisView {
+        , NewUserHelpView {
 
     private LinearLayout mLayout;
     private TextView tvName, tvTime, tvContent;
@@ -46,7 +48,7 @@ public class VedioDetalisActivity extends BaseActivity
     private static final String IMAGE_URL = "http://vimg2.ws.126.net/image/snapshot/2016/11/I/M/VC62HMUIM.jpg";
 
     private List<HelpBean.DataBean> list;
-    private VedioDetalisPresenter presenter;
+    private NewUserHelpPresenter presenter;
     private String imagePath;
     private String vedioUrl;
 
@@ -54,7 +56,6 @@ public class VedioDetalisActivity extends BaseActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("视频详情");
-        Log.e("1212121", "onCreate: " + getIntent().getStringExtra("helpId"));
         presenter.getHelpDetalis(getIntent().getStringExtra("helpId"));
     }
 
@@ -75,12 +76,14 @@ public class VedioDetalisActivity extends BaseActivity
         tvContent = findViewById(R.id.tv_content);
         mLayout = findViewById(R.id.ll_container);
         mPlayerView = findViewById(R.id.ijk_player);
+
+        intiPlayer(IMAGE_URL, "");
     }
 
 
     @Override
     public BasePresenter createPresenter() {
-        presenter = new VedioDetalisPresenter();
+        presenter = new NewUserHelpPresenter();
         return presenter;
     }
 
@@ -120,11 +123,6 @@ public class VedioDetalisActivity extends BaseActivity
     }
 
 
-
-
-
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -143,19 +141,39 @@ public class VedioDetalisActivity extends BaseActivity
         mPlayerView.onDestroy();
     }
 
+
+
     @Override
-    public void showHelpDetalis(HelpBean helpBean) {
-        list = helpBean.getData();
-        tvName.setText(list.get(0).getTitle());
-        tvTime.setText(list.get(0).getCreateTime());
-        tvContent.setText(list.get(0).getContent());
-        imagePath = list.get(0).getImgurl();
-        vedioUrl = list.get(0).getVideoImgurl();
-        intiPlayer(imagePath, vedioUrl);
+    public void showHelpDetalis(HelpDetalisBean helpBean) {
+        tvName.setText(helpBean.getData().getCreateTime());
+        tvTime.setText(helpBean.getData().getTitle());
+        imagePath = helpBean.getData().getImgurl();
+        vedioUrl = helpBean.getData().getVideoImgurl();
+
+        if (Build.VERSION.SDK_INT >= 24) {
+            tvContent.setText(Html.fromHtml(helpBean.getData().getContent(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            tvContent.setText(Html.fromHtml(helpBean.getData().getContent()));
+        }
+
+
+        intiPlayer(imagePath, "");
     }
 
     @Override
     public void showHeloErr(String error) {
+
+    }
+
+
+
+    @Override
+    public void showHelp(HelpBean helpBean) {
+
+    }
+
+    @Override
+    public void onHelpErr(String error) {
 
     }
 
@@ -169,6 +187,5 @@ public class VedioDetalisActivity extends BaseActivity
                 .setMediaQuality(HIjkPlayerView.MEDIA_QUALITY_HIGH)
                 .setOnCompletionListener(this);
         Glide.with(this).load(Constant.IMAGEURL + imagePath).into(mPlayerView.mPlayerThumb);
-
     }
 }

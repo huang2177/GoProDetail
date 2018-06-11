@@ -1,6 +1,7 @@
 package com.module.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -14,8 +15,10 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseFragment;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.listener.OnItemClickListener;
 import com.module.base.widgets.CommonDialog;
 import com.module.home.adpter.HomeListAdpter;
+import com.module.home.ui.BusinessActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -26,7 +29,7 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
-public class FragmentHome extends BaseFragment implements CommonDialog.DialogClickListener {
+public class FragmentHome extends BaseFragment implements CommonDialog.DialogClickListener, OnItemClickListener {
 
     private Banner banner;
     private EditText editSearch;
@@ -77,6 +80,7 @@ public class FragmentHome extends BaseFragment implements CommonDialog.DialogCli
         recyclerView.setNestedScrollingEnabled(false);
         adpter = new HomeListAdpter(mActivity, getData());
         recyclerView.setAdapter(adpter);
+        adpter.addOnItemClickListener(this);
     }
 
     private List<Integer> getData() {
@@ -122,14 +126,24 @@ public class FragmentHome extends BaseFragment implements CommonDialog.DialogCli
 
     @Override
     public void onClick(View v) {
-        CommonDialog dialog = new CommonDialog.Builder()
+
+        int i = v.getId();
+        if (i == R.id.home_location_tv) {
+            startActivity(new Intent(getActivity(), BusinessActivity.class));
+
+        } else if (i == R.id.home_new_user_tv) {
+            ARouter.getInstance().build(Constant.NEWHELP).navigation();
+        }
+
+
+       /* CommonDialog dialog = new CommonDialog.Builder()
                 .context(mContext)
                 .listener(this)
                 .title("拼跌")
                 .message("您还没没有登录，请登录后操作！")
                 .canceledOnTouchOutside(false)
                 .build();
-        dialog.show();
+        dialog.show();*/
     }
 
 
@@ -150,6 +164,14 @@ public class FragmentHome extends BaseFragment implements CommonDialog.DialogCli
         if (flag == CommonDialog.CONFIRM) {
             ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
         }
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+        ARouter.getInstance().build(Constant.PRODETAIL)
+                .withString("form", "por")
+                .navigation();
     }
 
     /**

@@ -73,7 +73,7 @@ public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelecte
 
     private void initTab() {
         List<String> tabs = flag == 1
-                ? Arrays.asList("全部", "手机", "黄金首饰")
+                ? Arrays.asList("全部", "手机", "首饰")
                 : Arrays.asList("全部", "项链", "戒指", "耳环");
         for (int i = 0; i < tabs.size(); i++) {
             tabLayout.addTab(tabLayout.newTab().setText(tabs.get(i)));

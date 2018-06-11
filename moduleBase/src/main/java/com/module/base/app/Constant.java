@@ -40,4 +40,11 @@ public class Constant {
     public final static String OPENCOIL = "/mine/MyOpenCoilActivity";
 
 
+    //新手帮助
+    public final static String NEWHELP = "/mine/NewUserHelpActivity";
+
+    //产品详情
+    public final static String PRODETAIL = "/mall/ProDetailActivity";
+
+
 }

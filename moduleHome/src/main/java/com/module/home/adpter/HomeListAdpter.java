@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.listener.OnItemClickListener;
 import com.module.home.R;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class HomeListAdpter extends RecyclerView.Adapter {
 
     private Context context;
     private List<Integer> list;
+    private OnItemClickListener listener;
 
     public HomeListAdpter(Context context, List<Integer> list) {
         this.list = list;
@@ -35,7 +37,19 @@ public class HomeListAdpter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+        });
+
+
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.ivPro.setImageResource(list.get(position));
         if (position == 0 || position == 6) {
@@ -64,6 +78,12 @@ public class HomeListAdpter extends RecyclerView.Adapter {
     public int getItemCount() {
         return list.size();
     }
+
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

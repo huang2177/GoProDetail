@@ -8,11 +8,14 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.mine.R;
 import com.module.mine.adapter.NoviceAdapter;
 import com.module.mine.bean.HelpBean;
+import com.module.mine.bean.HelpDetalisBean;
 
 import java.util.List;
 
@@ -21,6 +24,7 @@ import java.util.List;
  * Created by shibing on 18/5/16.
  */
 
+@Route(path = Constant.NEWHELP)
 public class NewUserHelpActivity extends BaseActivity implements
         AdapterView.OnItemClickListener
         , NewUserHelpView {
@@ -88,6 +92,16 @@ public class NewUserHelpActivity extends BaseActivity implements
 
     @Override
     public void onHelpErr(String error) {
+
+    }
+
+    @Override
+    public void showHelpDetalis(HelpDetalisBean helpBean) {
+
+    }
+
+    @Override
+    public void showHeloErr(String error) {
 
     }
 

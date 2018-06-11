@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.module.home" >
 
-    <application></application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <application>
+        <activity android:name=".ui.BusinessActivity" />
+    </application>
 </manifest>

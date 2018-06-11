@@ -85,6 +85,7 @@
         <activity
             android:name=".ui.modifypaw.ModifyPassActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.EvaluateActivity" />
 
     </application>
 </manifest>

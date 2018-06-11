@@ -14,7 +14,7 @@
         android:drawablePadding="5dp"
         android:gravity="center"
         android:padding="10dp"
-        android:text="定位"
+        android:text="营业厅"
         android:textColor="@color/colorBrown"
         android:textSize="16.0sp" />
 
