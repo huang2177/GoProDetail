@@ -58,7 +58,7 @@ public class NoviceAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        GlideManager.loadImage(activity, Constant.IMAGEURL + list.get(position).getImgurl(), viewHolder.imageView);
+        GlideManager.loadImage(activity, Constant.IMAGE_HOST + list.get(position).getImgurl(), viewHolder.imageView);
         viewHolder.title.setText(list.get(position).getTitle());
         if (list.get(position).getType() == 0) {
             viewHolder.type.setText("新手帮助");

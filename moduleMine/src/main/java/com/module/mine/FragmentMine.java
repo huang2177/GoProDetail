@@ -223,7 +223,7 @@ public class FragmentMine extends BaseFragment implements
     @Override
     public void showUserInfo(UserInfoBean userInfo) {
 
-        GlideManager.loadImage(this, Constant.IMAGEURL + userInfo.getData().getImgurl(), mIvHead);
+        GlideManager.loadImage(this, Constant.IMAGE_HOST + userInfo.getData().getImgurl(), mIvHead);
         phoneTv.setText(userInfo.getData().getNickname());
 
         //银行卡余额

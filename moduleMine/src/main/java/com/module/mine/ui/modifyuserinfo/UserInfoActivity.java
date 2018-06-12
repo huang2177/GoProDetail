@@ -8,13 +8,11 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.manager.GlideManager;
-import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.RoundImageView;
 import com.module.mine.R;
 import com.yanzhenjie.album.Album;
@@ -53,7 +51,7 @@ public class UserInfoActivity extends BaseActivity {
         userName = getIntent().getStringExtra("userName");
 
 
-        GlideManager.loadImage(this, Constant.IMAGEURL + imgaePath, head);
+        GlideManager.loadImage(this, Constant.IMAGE_HOST + imgaePath, head);
         nikeName.setText(userName);
 
     }

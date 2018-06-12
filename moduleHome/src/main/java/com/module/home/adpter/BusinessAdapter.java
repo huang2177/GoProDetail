@@ -12,7 +12,6 @@ import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.manager.GlideManager;
 import com.module.base.utils.TextUtil;
-import com.module.base.widgets.CommonDialog;
 import com.module.home.R;
 import com.module.home.bean.BusinBean;
 
@@ -53,7 +52,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         });
 
         GlideManager.loadImage(mActivity
-                , Constant.IMAGEURL + list.get(position).getImgurl()
+                , Constant.IMAGE_HOST + list.get(position).getImgurl()
                 , ((ViewHodler) holder).imageView);
         ((ViewHodler) holder).tvName.setText(list.get(position).getCity()
                 + "." + list.get(position).getShopName());

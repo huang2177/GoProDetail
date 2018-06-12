@@ -4,15 +4,10 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.text.Html;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,7 +17,6 @@ import com.huangbryant.mylibrary.media.HIjkPlayerView;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
-import com.module.base.utils.Logger;
 import com.module.base.utils.ScreenUtils;
 import com.module.mine.R;
 import com.module.mine.bean.HelpBean;
@@ -186,6 +180,6 @@ public class VedioDetalisActivity extends BaseActivity
                 .setVideoPath(VIDEO_HD_URL)
                 .setMediaQuality(HIjkPlayerView.MEDIA_QUALITY_HIGH)
                 .setOnCompletionListener(this);
-        Glide.with(this).load(Constant.IMAGEURL + imagePath).into(mPlayerView.mPlayerThumb);
+        Glide.with(this).load(Constant.IMAGE_HOST + imagePath).into(mPlayerView.mPlayerThumb);
     }
 }

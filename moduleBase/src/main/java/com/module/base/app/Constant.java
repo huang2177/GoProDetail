@@ -8,7 +8,7 @@ public class Constant {
 
 
     //图片url地址
-    public final static String IMAGEURL = "http://39.106.187.244:8080/storage/";
+    public final static String IMAGE_HOST = "http://39.106.187.244:8080/storage/";
 
     public final static String USERID = "userId";
 

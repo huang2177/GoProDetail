@@ -1,5 +1,9 @@
 package com.module.base;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+
 import com.module.base.http.HttpObserver;
 
 import java.lang.ref.WeakReference;
@@ -14,6 +18,7 @@ public abstract class BasePresenter<V> {
 
     private WeakReference<V> mReference;
     public CompositeSubscription mSubscription;
+    public Context mContext;
 
     public void onCreate() {
         mSubscription = new CompositeSubscription();
@@ -22,6 +27,12 @@ public abstract class BasePresenter<V> {
     public void attachView(V v) {
         mReference = new WeakReference<V>(v);
         bindView(mReference.get());
+
+        if (v instanceof BaseActivity){
+            mContext = (Context) v;
+        }else if (v instanceof BaseFragment){
+            mContext = ((BaseFragment) v).mContext;
+        }
     }
 
     protected abstract void bindView(V v);
