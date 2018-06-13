@@ -22,24 +22,20 @@ import java.util.List;
  * Created by 黄双 on 2018/5/5.
  */
 
-public class HomeListAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HomeListgGlodAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context mContext;
-    //private List<ProductBean.DataBean> list;
-    private List<Integer> list;
+    private Context context;
+    private List<ProductBean.DataBean> list;
     private OnItemClickListener listener;
 
-    private static final int PHONE = 0;
-    private static final int GOLD = 1;
-
-    public HomeListAdpter(Context context, List<Integer> list) {
+    public HomeListgGlodAdpter(Context context, List<ProductBean.DataBean> list) {
         this.list = list;
-        this.mContext = context;
+        this.context = context;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_home_list, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_list, null);
         return new ViewHolder(view);
     }
 
@@ -54,22 +50,21 @@ public class HomeListAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         });
 
-
         ViewHolder viewHolder = (ViewHolder) holder;
 
-       /* if (list.get(position).getCatagory().equals("1")) {
-            GlideManager.loadImage(mContext,
+        if (list.get(position).getCatagory().equals("2")) {
+            viewHolder.tvPirce.setVisibility(View.VISIBLE);
+            viewHolder.tvName.setVisibility(View.VISIBLE);
+            viewHolder.ivPro.setVisibility(View.VISIBLE);
+            viewHolder.tvOldPirce.setVisibility(View.VISIBLE);
+            GlideManager.loadImage(context,
                     Constant.IMAGE_HOST + list.get(position).getImgurl()
                     , viewHolder.ivPro);
-            viewHolder.ivPro.setPadding(0, 20, 0, 0);
-            viewHolder.tvName.setVisibility(View.VISIBLE);
-            viewHolder.tvPirce.setVisibility(View.VISIBLE);
-            viewHolder.tvOldPirce.setVisibility(View.VISIBLE);
             viewHolder.tvName.setText(list.get(position).getTitle());
-            viewHolder.tvOldPirce.setText(list.get(position).getAmount() + "");
-        }*/
-        viewHolder.ivPro.setImageResource(list.get(position));
-        if (position == 0 || position == 6) {
+            viewHolder.tvPirce.setText(list.get(position).getAmount() + "");
+        }
+        //viewHolder.ivPro.setImageResource(list.get(position));
+        /*if (position == 0 || position == 6) {
             viewHolder.ivPro.setPadding(0, 0, 0, 20);
         } else if (position == 5 || position == 11) {
             viewHolder.ivPro.setPadding(0, 20, 0, 0);
@@ -81,7 +76,7 @@ public class HomeListAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             viewHolder.tvOldPirce.setText("￥7467");
             viewHolder.tvOldPirce.setVisibility(View.VISIBLE);
             viewHolder.ivPro.setPadding(0, 20, 0, 0);
-        }
+        }*/
     }
 
     @Override
@@ -98,15 +93,15 @@ public class HomeListAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-
     public void addOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
 
-    @Override
+   /* @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+
         RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
         if (manager instanceof GridLayoutManager) {
             final GridLayoutManager gridManager = ((GridLayoutManager) manager);
@@ -114,17 +109,16 @@ public class HomeListAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 @Override
                 public int getSpanSize(int position) {
                     int type = getItemViewType(position);
-                    return HomeListAdpter.this.getSpanSize(position);
+                    return HomeListgGlodAdpter.this.getSpanSize(position);
                 }
             });
         }
-    }
+    }*/
 
     /**
-     * @param position
      * @return
      */
-    private int getSpanSize(int position) {
+   /* private int getSpanSize(int position) {
         switch (position) {
             case 0:
             case 5:
@@ -134,7 +128,7 @@ public class HomeListAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             default:
                 return 1;
         }
-    }
+    }*/
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPro;
@@ -146,7 +140,7 @@ public class HomeListAdpter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             tvName = view.findViewById(R.id.item_tv_name);
             tvPirce = view.findViewById(R.id.item_tv_pirce);
             tvOldPirce = view.findViewById(R.id.item_tv_old_pirce);
-            tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            // tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }
     }
 }

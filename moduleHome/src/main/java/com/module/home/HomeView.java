@@ -13,10 +13,8 @@ public interface HomeView {
 
     void showIndexData(IndexDataBean indexDataBean);
 
-    void OnIndexErr(String err);
 
 
     void shouProduct(ProductBean productBean);
 
-    void OnProductErr(String err);
 }

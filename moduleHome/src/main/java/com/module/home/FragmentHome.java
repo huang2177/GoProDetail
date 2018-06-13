@@ -26,6 +26,7 @@ import com.module.base.pouduct.ProductPresenter;
 import com.module.base.utils.Logger;
 import com.module.base.widgets.CommonDialog;
 import com.module.home.adpter.HomeListAdpter;
+import com.module.home.adpter.HomeListgGlodAdpter;
 import com.module.home.bean.BannerBean;
 import com.module.home.bean.IndexDataBean;
 import com.module.home.ui.BusinessActivity;
@@ -52,16 +53,27 @@ public class FragmentHome extends BaseFragment
     private RecyclerView recyclerView;
     private TextView tvLocation, tvNewUserPoint, tvNewUser, tvPinging, tvPinged;
 
+    private RecyclerView home_xlist_phone;   //手机
+    private RecyclerView home_xlist_gold;    //珠宝
+
+    private GridLayoutManager manager, manager1;
     private HomeListAdpter adpter;
     private List<BannerBean.DataBean> bannerList;
     private HomePresenter presenter;
     private List<ProductBean.DataBean> proList;
+    private List<ProductBean.DataBean> phoneList;
+
+    private HomeListgGlodAdpter glodAdpter;
+
+    private static FragmentHome fragment;
 
 
     public static FragmentHome newInstance(String msg) {
         Bundle args = new Bundle();
         args.putString("msg", msg);
-        FragmentHome fragment = new FragmentHome();
+        if (fragment == null) {
+            fragment = new FragmentHome();
+        }
         fragment.setArguments(args);
         return fragment;
     }
@@ -98,20 +110,11 @@ public class FragmentHome extends BaseFragment
         tvLocation = viewRoot.findViewById(R.id.home_location_tv);
         tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
 
-        initTable();
-        initBanner();
-        initProduct();
+
+        home_xlist_phone = viewRoot.findViewById(R.id.home_xlist_phone);
+        home_xlist_gold = viewRoot.findViewById(R.id.home_xlist_gold);
     }
 
-    private void initProduct() {
-        GridLayoutManager manager = new GridLayoutManager(mActivity, 2);
-        manager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setNestedScrollingEnabled(false);
-        adpter = new HomeListAdpter(mActivity, getData());
-        recyclerView.setAdapter(adpter);
-        adpter.addOnItemClickListener(this);
-    }
 
     private List<Integer> getData() {
         return Arrays.asList(R.drawable.img_banner1
@@ -134,18 +137,9 @@ public class FragmentHome extends BaseFragment
         tvNewUserPoint.setOnClickListener(this);
     }
 
-    private void initTable() {
-
-    }
-
-    private void initBanner() {
-
-
-    }
 
     @Override
     public void onClick(View v) {
-
         int i = v.getId();
         if (i == R.id.home_location_tv) {
             startActivity(new Intent(getActivity(), BusinessActivity.class));
@@ -153,16 +147,6 @@ public class FragmentHome extends BaseFragment
         } else if (i == R.id.home_new_user_tv) {
             ARouter.getInstance().build(Constant.NEWHELP).navigation();
         }
-
-
-       /* CommonDialog dialog = new CommonDialog.Builder()
-                .context(mContext)
-                .listener(this)
-                .title("拼跌")
-                .message("您还没没有登录，请登录后操作！")
-                .canceledOnTouchOutside(false)
-                .build();
-        dialog.show();*/
     }
 
 
@@ -207,50 +191,76 @@ public class FragmentHome extends BaseFragment
 
     }
 
-    @SuppressLint("StringFormatInvalid")
+    @SuppressLint("SetTextI18n")
     @Override
     public void showIndexData(IndexDataBean indexDataBean) {
-        String str1 = getResources().getString(R.string.text_home_new_user);
-        String result1 = String.format(str1, indexDataBean.getData().getRegsterCount() + "");
-        tvNewUser.setText(Html.fromHtml(result1));
-
-        String str2 = getResources().getString(R.string.text_home_pinging);
-        String result2 = String.format(str2, indexDataBean.getData().getPintuanCount() + "");
-        tvPinging.setText(Html.fromHtml(result2));
-
-//        <font color="#a0563c" size="18"><b><tt></tt></b>笔</font>\n拼团中
-//        "实际支付 <font color= '#a0563c'>" + "￥" + "<big>" + "2000" + "</big></font> " + ".00")
-        String str3 = getResources().getString(R.string.text_home_pinged);
-        String result3 = String.format(str3, indexDataBean.getData().getSuccessCount() + "");
-        tvPinged.setText(Html.fromHtml(
-                " <font color= '#a0563c'><big>"
-                        + indexDataBean.getData().getSuccessCount()
-                        + "</big></font>" + "笔" + "\n" + "拼团成功"));
-
-
-//        tvPinged.setText(Html.fromHtml(
-//                "<font color=#a0563c size=18><b><tt>"
-//                        + indexDataBean.getData().getSuccessCount()
-//                        + "</tt></b>笔</font>" + "\n拼团成功"));
-    }
-
-    @Override
-    public void OnIndexErr(String err) {
-
+        tvNewUser.setText(indexDataBean.getData().getRegsterCount() + "人" + "\n注册");
+        tvPinging.setText(indexDataBean.getData().getPintuanCount() + "笔" + "\n拼团");
+        tvPinged.setText(indexDataBean.getData().getSuccessCount() + "笔" + "\n拼团成功");
     }
 
 
     //产品
     @Override
     public void shouProduct(ProductBean productBean) {
-        proList = productBean.getData();
+
+        initProduct(productBean);
+        //initGoldProduct(productBean);
         Logger.e("----111-----", proList.size() + "");
     }
 
-    @Override
-    public void OnProductErr(String err) {
+    //手机专区
+    private void initProduct(ProductBean productBean) {
+        proList = productBean.getData();
+        manager = new GridLayoutManager(mActivity, 2);
+        manager.setOrientation(OrientationHelper.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setNestedScrollingEnabled(false);
 
+       /* phoneList = new ArrayList<>();
+        for (int i = 0; i < proList.size(); i++) {
+            if (proList.get(i).getType() == 0) {
+                phoneList.add(new ProductBean.DataBean(
+                        proList.get(i).getId()
+                        , proList.get(i).getImgurl()
+                        , proList.get(i).getBannerImgurl()
+                        , proList.get(i).getTitle()
+                        , proList.get(i).getAmount()
+                        , proList.get(i).getTuanAmount()
+                        , proList.get(i).getStarCount()
+                        , proList.get(i).getFreight()
+                        , proList.get(i).getStockCount()
+                        , proList.get(i).getContent()
+                        , proList.get(i).getTuanCount()
+                        , proList.get(i).getTuanDay()
+                        , proList.get(i).getType()
+                        , proList.get(i).getCatagory()
+                        , proList.get(i).isCollection()
+                        , proList.get(i).getLoginUid()
+                        , proList.get(i).getCommission()
+                        , true
+                        , proList.get(i).getDeposit()
+                        , proList.get(i).getNorms()
+                ));
+            }
+        }*/
+
+        adpter = new HomeListAdpter(mActivity, getData());
+        recyclerView.setAdapter(adpter);
+        adpter.addOnItemClickListener(this);
     }
+
+    //黄金专区
+   /* private void initGoldProduct(ProductBean productBean) {
+        proList = productBean.getData();
+        manager1 = new GridLayoutManager(mActivity, 2);
+        manager1.setOrientation(OrientationHelper.VERTICAL);
+        home_xlist_gold.setLayoutManager(manager1);
+        home_xlist_gold.setNestedScrollingEnabled(false);
+        glodAdpter = new HomeListgGlodAdpter(mActivity, proList);
+        home_xlist_gold.setAdapter(glodAdpter);
+    }*/
+
 
     @Override
     public void OnBannerClick(int position) {

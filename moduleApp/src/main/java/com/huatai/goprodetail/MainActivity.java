@@ -163,33 +163,4 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         return true;
     }
 
-    /**
-     * 获取Fragment
-     *
-     * @param position
-     * @return
-     */
-    public Fragment getFragment(int position) {
-        if (fragments == null || fragments.size() == 0) {
-            return null;
-        }
-        return fragments.get(position);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        ViewPagerAdapter() {
-            super(getSupportFragmentManager());
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-    }
 }
