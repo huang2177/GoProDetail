@@ -36,47 +36,25 @@ public class HomeListgGlodAdpter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_home_list, null);
-        return new ViewHolder(view);
+        return new ViewHolder(view, viewType);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    listener.onItemClick(position);
-                }
-            }
-        });
-
         ViewHolder viewHolder = (ViewHolder) holder;
-
         if (list.get(position).getCatagory().equals("2")) {
             viewHolder.tvPirce.setVisibility(View.VISIBLE);
             viewHolder.tvName.setVisibility(View.VISIBLE);
             viewHolder.ivPro.setVisibility(View.VISIBLE);
             viewHolder.tvOldPirce.setVisibility(View.VISIBLE);
+            viewHolder.ivPro.setPadding(0, 20, 0, 0);
             GlideManager.loadImage(context,
                     Constant.IMAGE_HOST + list.get(position).getImgurl()
                     , viewHolder.ivPro);
+            viewHolder.tvPirce.setText("¥0元购");
             viewHolder.tvName.setText(list.get(position).getTitle());
-            viewHolder.tvPirce.setText(list.get(position).getAmount() + "");
+            viewHolder.tvOldPirce.setText("¥" + list.get(position).getAmount());
         }
-        //viewHolder.ivPro.setImageResource(list.get(position));
-        /*if (position == 0 || position == 6) {
-            viewHolder.ivPro.setPadding(0, 0, 0, 20);
-        } else if (position == 5 || position == 11) {
-            viewHolder.ivPro.setPadding(0, 20, 0, 0);
-        } else {
-            viewHolder.tvPirce.setText("￥0元购");
-            viewHolder.tvPirce.setVisibility(View.VISIBLE);
-            viewHolder.tvName.setVisibility(View.VISIBLE);
-            viewHolder.tvName.setText("Apple iPhone X 256G");
-            viewHolder.tvOldPirce.setText("￥7467");
-            viewHolder.tvOldPirce.setVisibility(View.VISIBLE);
-            viewHolder.ivPro.setPadding(0, 20, 0, 0);
-        }*/
     }
 
     @Override
@@ -98,7 +76,7 @@ public class HomeListgGlodAdpter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-   /* @Override
+    @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
 
@@ -113,34 +91,35 @@ public class HomeListgGlodAdpter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
         }
-    }*/
+    }
 
     /**
      * @return
      */
-   /* private int getSpanSize(int position) {
-        switch (position) {
-            case 0:
-            case 5:
-            case 6:
-            case 11:
-                return 2;
-            default:
-                return 1;
-        }
-    }*/
+    private int getSpanSize(int position) {
+        return 1;
+
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPro;
         TextView tvName, tvPirce, tvOldPirce;
 
-        ViewHolder(View view) {
+        ViewHolder(View view, final int postion) {
             super(view);
             ivPro = view.findViewById(R.id.item_img_pro);
             tvName = view.findViewById(R.id.item_tv_name);
             tvPirce = view.findViewById(R.id.item_tv_pirce);
             tvOldPirce = view.findViewById(R.id.item_tv_old_pirce);
-            // tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onItemClick(postion);
+                    }
+                }
+            });
         }
     }
 }

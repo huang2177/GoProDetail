@@ -1,5 +1,6 @@
 package com.module.base.manager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
@@ -21,8 +22,8 @@ public class GlideManager {
         Glide.with(fragment).load(url).into(imageView);
     }
 
-    public static void loadImage(Fragment fragment, int resId, ImageView imageView) {
-        Glide.with(fragment).load(resId).into(imageView);
+    public static void loadImage(Context context, int resId, ImageView imageView) {
+        Glide.with(context).load(resId).into(imageView);
     }
 
     public static void loadImage(Context context, String url, ImageView imageView, int placeHolder) {

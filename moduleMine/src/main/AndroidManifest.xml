@@ -41,13 +41,10 @@
             android:name=".ui.DepositActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.adders.AddressActivity"
+            android:name="com.module.mine.ui.adders.AddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.adders.AdderAddressActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.adders.AdmAdderssActivity"
+            android:name="com.module.mine.ui.adders.AdderAddressActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.KePhoneActivity"
@@ -85,7 +82,12 @@
         <activity
             android:name=".ui.modifypaw.ModifyPassActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.EvaluateActivity" />
+        <activity
+            android:name=".ui.EvaluateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.module.mine.ui.adders.AdmAdderssActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

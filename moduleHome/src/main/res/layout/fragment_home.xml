@@ -25,45 +25,52 @@
             <include layout="@layout/child_fragment_home_table" />
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorRiceWhite" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_banner1"
-                android:visibility="gone"/>
+                android:visibility="visible" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/home_xlist_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:background="@color/colorWhite"
+                android:visibility="visible" />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img1"
-                android:visibility="gone"/>
+                android:visibility="visible" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_banner2"
-                android:visibility="gone"/>
+                android:visibility="visible" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/home_xlist_gold"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"/>
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:visibility="visible" />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img1"
-                android:visibility="gone"/>
+                android:visibility="visible" />
 
 
             <android.support.v7.widget.RecyclerView
@@ -72,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </LinearLayout>
 

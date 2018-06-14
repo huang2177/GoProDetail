@@ -15,6 +15,6 @@ public interface HomeView {
 
 
 
-    void shouProduct(ProductBean productBean);
+    void showProduct(ProductBean productBean);
 
 }

@@ -46,5 +46,7 @@ public class Constant {
     //产品详情
     public final static String PRODETAIL = "/mall/ProDetailActivity";
 
+    public final static String LOCATION = "/home/BusinessActivity";
+
 
 }

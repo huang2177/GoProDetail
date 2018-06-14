@@ -51,9 +51,10 @@ public class AddressActivity extends BaseActivity
     public void initView() {
         listView = findViewById(R.id.address_list);
         layout = findViewById(R.id.nadata_lay);
-
-
     }
+
+
+
 
 
     @Override

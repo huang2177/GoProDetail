@@ -61,9 +61,14 @@ public class FragmentMine extends BaseFragment implements
     private String imagePath;
     private String userName;
 
+    private static FragmentMine fragment;
+
 
     public static FragmentMine newInstance(String msg) {
-        return new FragmentMine();
+        if (fragment == null) {
+            fragment = new FragmentMine();
+        }
+        return fragment;
     }
 
     @Override

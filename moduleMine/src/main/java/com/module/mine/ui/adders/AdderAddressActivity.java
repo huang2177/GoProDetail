@@ -18,6 +18,7 @@ import com.module.base.app.Constant;
 import com.module.base.utils.SPUtil;
 import com.module.base.utils.ToastUtil;
 import com.module.mine.R;
+import com.module.mine.bean.AddersBean;
 import com.module.mine.ui.adders.AddressActivity;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.Map;
  * Created by shibing on 18/5/8.
  */
 
-public class AdderAddressActivity extends BaseActivity {
+public class AdderAddressActivity extends BaseActivity implements AddersView {
 
 
     EditText edName, edPhone, edDetailed;
@@ -59,7 +60,7 @@ public class AdderAddressActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("收货信息管理").rightImageRes(0);
+        title("收货信息管理");
     }
 
     @Override
@@ -75,8 +76,6 @@ public class AdderAddressActivity extends BaseActivity {
         tvCity = findViewById(R.id.address_city_tv);
         butSave = findViewById(R.id.address_save);
         rayCity = findViewById(R.id.address_city_ray);
-
-
         uid = SPUtil.getInstance(this).getString(Constant.USERID);
     }
 
@@ -139,8 +138,7 @@ public class AdderAddressActivity extends BaseActivity {
         provinceList.add("qweqwe");
         provinceList.add("qweqwe");
         provinceList.add("qweqwe");
-        cityList=new ArrayList<ArrayList<String>>();
-
+        cityList = new ArrayList<ArrayList<String>>();
 
 
         pickerView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
@@ -158,4 +156,13 @@ public class AdderAddressActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void showAdders(AddersBean addersBean) {
+
+    }
+
+    @Override
+    public void OnAddersErr(String err) {
+
+    }
 }

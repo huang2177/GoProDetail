@@ -53,8 +53,8 @@ public class FragmentHome extends BaseFragment
     private RecyclerView recyclerView;
     private TextView tvLocation, tvNewUserPoint, tvNewUser, tvPinging, tvPinged;
 
-    private RecyclerView home_xlist_phone;   //手机
-    private RecyclerView home_xlist_gold;    //珠宝
+    private RecyclerView recyPhone;   //手机
+    private RecyclerView recyGold;    //珠宝
 
     private GridLayoutManager manager, manager1;
     private HomeListAdpter adpter;
@@ -111,25 +111,29 @@ public class FragmentHome extends BaseFragment
         tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
 
 
-        home_xlist_phone = viewRoot.findViewById(R.id.home_xlist_phone);
-        home_xlist_gold = viewRoot.findViewById(R.id.home_xlist_gold);
+        recyPhone = viewRoot.findViewById(R.id.home_xlist_phone);
+        recyGold = viewRoot.findViewById(R.id.home_xlist_gold);
+
+        initPhonreRecycle();
+        initGoldRecycle();
+    }
+
+    /**
+     * 初始化recycleview
+     */
+    private void initPhonreRecycle() {
+        manager = new GridLayoutManager(mActivity, 2);
+        recyPhone.setLayoutManager(manager);
+        recyPhone.setNestedScrollingEnabled(false);
     }
 
 
-    private List<Integer> getData() {
-        return Arrays.asList(R.drawable.img_banner1
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.img1
-                , R.drawable.img_banner2
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.img1);
+    private void initGoldRecycle() {
+        manager1 = new GridLayoutManager(mActivity, 2);
+        recyGold.setLayoutManager(manager1);
+        recyGold.setNestedScrollingEnabled(false);
     }
+
 
     @Override
     public void setListener() {
@@ -202,64 +206,16 @@ public class FragmentHome extends BaseFragment
 
     //产品
     @Override
-    public void shouProduct(ProductBean productBean) {
-
-        initProduct(productBean);
-        //initGoldProduct(productBean);
-        Logger.e("----111-----", proList.size() + "");
-    }
-
-    //手机专区
-    private void initProduct(ProductBean productBean) {
+    public void showProduct(ProductBean productBean) {
         proList = productBean.getData();
-        manager = new GridLayoutManager(mActivity, 2);
-        manager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setNestedScrollingEnabled(false);
-
-       /* phoneList = new ArrayList<>();
-        for (int i = 0; i < proList.size(); i++) {
-            if (proList.get(i).getType() == 0) {
-                phoneList.add(new ProductBean.DataBean(
-                        proList.get(i).getId()
-                        , proList.get(i).getImgurl()
-                        , proList.get(i).getBannerImgurl()
-                        , proList.get(i).getTitle()
-                        , proList.get(i).getAmount()
-                        , proList.get(i).getTuanAmount()
-                        , proList.get(i).getStarCount()
-                        , proList.get(i).getFreight()
-                        , proList.get(i).getStockCount()
-                        , proList.get(i).getContent()
-                        , proList.get(i).getTuanCount()
-                        , proList.get(i).getTuanDay()
-                        , proList.get(i).getType()
-                        , proList.get(i).getCatagory()
-                        , proList.get(i).isCollection()
-                        , proList.get(i).getLoginUid()
-                        , proList.get(i).getCommission()
-                        , true
-                        , proList.get(i).getDeposit()
-                        , proList.get(i).getNorms()
-                ));
-            }
-        }*/
-
-        adpter = new HomeListAdpter(mActivity, getData());
-        recyclerView.setAdapter(adpter);
+        adpter = new HomeListAdpter(mActivity, productBean.getData());
+        recyPhone.setAdapter(adpter);
         adpter.addOnItemClickListener(this);
-    }
 
-    //黄金专区
-   /* private void initGoldProduct(ProductBean productBean) {
-        proList = productBean.getData();
-        manager1 = new GridLayoutManager(mActivity, 2);
-        manager1.setOrientation(OrientationHelper.VERTICAL);
-        home_xlist_gold.setLayoutManager(manager1);
-        home_xlist_gold.setNestedScrollingEnabled(false);
-        glodAdpter = new HomeListgGlodAdpter(mActivity, proList);
-        home_xlist_gold.setAdapter(glodAdpter);
-    }*/
+
+        glodAdpter = new HomeListgGlodAdpter(mActivity, productBean.getData());
+        recyGold.setAdapter(glodAdpter);
+    }
 
 
     @Override

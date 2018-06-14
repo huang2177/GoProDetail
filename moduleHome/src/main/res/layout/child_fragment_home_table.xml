@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="95dp"
+    android:background="@color/colorWhite"
     android:orientation="horizontal">
 
     <TextView
@@ -9,31 +10,42 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
         android:drawablePadding="5dp"
         android:drawableTop="@drawable/ic_new_user"
-        android:padding="10dp"
-        android:text="@string/text_home_new_user" />
+        android:gravity="center"
+        android:padding="10dp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorLittleGray" />
 
     <TextView
         android:id="@+id/home_pinging_num"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
         android:drawablePadding="5dp"
         android:drawableTop="@drawable/ic_clock"
-        android:padding="10dp"
-        android:text="@string/text_home_pinging" />
+        android:gravity="center"
+        android:padding="10dp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorLittleGray" />
 
     <TextView
         android:id="@+id/home_pinged_num"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
         android:drawablePadding="5dp"
         android:drawableTop="@drawable/ic_end"
-        android:padding="10dp"
-        android:text="@string/text_home_pinged" />
+        android:gravity="center"
+        android:padding="10dp" />
 </LinearLayout>

@@ -38,11 +38,14 @@ public class FragmentGroup extends BaseFragment
 
     private int flag;
     private PingListAdpter adpter;
+    private static FragmentGroup fragment;
 
     public static FragmentGroup newInstance(int position) {
         Bundle args = new Bundle();
         args.putInt(Constant.FLAG, position);
-        FragmentGroup fragment = new FragmentGroup();
+        if (fragment == null) {
+            fragment = new FragmentGroup();
+        }
         fragment.setArguments(args);
         return fragment;
     }
@@ -112,7 +115,16 @@ public class FragmentGroup extends BaseFragment
 
     @Override
     public void onClick(View v) {
-        ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
+        int i = v.getId();
+        //新手帮助
+        if (i == R.id.home_new_user_tv) {
+            ARouter.getInstance().build(Constant.NEWHELP).navigation();
+        }
+        //营业厅
+        else if (i == R.id.home_location_tv) {
+            ARouter.getInstance().build(Constant.LOCATION).navigation();
+        }
+
     }
 
     @Override

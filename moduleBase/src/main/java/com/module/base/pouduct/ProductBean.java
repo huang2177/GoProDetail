@@ -71,7 +71,7 @@ public class ProductBean {
         private String imgurl;
         private String bannerImgurl;
         private String title;
-        private int amount;
+        private String amount;
         private int tuanAmount;
         private double starCount;
         private double freight;
@@ -88,33 +88,6 @@ public class ProductBean {
         private int deposit;
         private List<NormsBean> norms;
 
-
-        public DataBean(int id, String imgurl, String bannerImgurl, String title, int amount
-                , int tuanAmount, double starCount, double freight
-                , int stockCount, String content, int tuanCount
-                , int tuanDay, int type, String catagory, boolean collection
-                , Object loginUid, int commission, boolean toIndex, int deposit, List<NormsBean> norms) {
-            this.id = id;
-            this.imgurl = imgurl;
-            this.bannerImgurl = bannerImgurl;
-            this.title = title;
-            this.amount = amount;
-            this.tuanAmount = tuanAmount;
-            this.starCount = starCount;
-            this.freight = freight;
-            this.stockCount = stockCount;
-            this.content = content;
-            this.tuanCount = tuanCount;
-            this.tuanDay = tuanDay;
-            this.type = type;
-            this.catagory = catagory;
-            this.collection = collection;
-            this.loginUid = loginUid;
-            this.commission = commission;
-            this.toIndex = toIndex;
-            this.deposit = deposit;
-            this.norms = norms;
-        }
 
         public int getId() {
             return id;
@@ -148,11 +121,11 @@ public class ProductBean {
             this.title = title;
         }
 
-        public int getAmount() {
+        public String getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(String amount) {
             this.amount = amount;
         }
 

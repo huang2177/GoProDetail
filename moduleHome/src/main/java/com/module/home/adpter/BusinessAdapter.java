@@ -26,7 +26,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Activity mActivity;
     private List<BusinBean.DataBean> list;
-    private OnItemClickListener listener;
+    private OnItemClickListener listener, listener1;
 
     public BusinessAdapter(Activity mActivity, List<BusinBean.DataBean> list) {
         this.mActivity = mActivity;
@@ -70,7 +70,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(position);
+                    listener1.onItemClick(position);
                 }
             }
         });
@@ -79,7 +79,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public void TelOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+        this.listener1 = listener;
     }
 
 
