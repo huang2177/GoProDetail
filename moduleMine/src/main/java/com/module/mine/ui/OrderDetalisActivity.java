@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
-import com.module.base.widgets.CommonDialog;
 import com.module.base.widgets.XGridView;
+import com.module.base.widgets.dialog.CommonDialog;
 import com.module.mine.R;
 import com.module.mine.adapter.OrderPopreAdpter;
 import com.module.mine.ui.adders.AddressActivity;

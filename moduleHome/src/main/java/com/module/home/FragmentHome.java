@@ -9,7 +9,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,9 +21,8 @@ import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.manager.GlideManager;
 import com.module.base.pouduct.ProductBean;
-import com.module.base.pouduct.ProductPresenter;
 import com.module.base.utils.Logger;
-import com.module.base.widgets.CommonDialog;
+import com.module.base.widgets.dialog.CommonDialog;
 import com.module.home.adpter.HomeListAdpter;
 import com.module.home.adpter.HomeListgGlodAdpter;
 import com.module.home.bean.BannerBean;
@@ -34,7 +32,6 @@ import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

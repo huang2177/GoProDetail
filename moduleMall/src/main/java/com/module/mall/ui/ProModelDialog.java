@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 
 import com.module.base.widgets.CommonAdapter;
 import com.module.base.widgets.ViewHolder;
-import com.module.base.widgets.XBottomDialog;
+import com.module.base.widgets.dialog.XBottomDialog;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
 

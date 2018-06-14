@@ -9,22 +9,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.utils.ToastUtil;
-import com.module.base.widgets.CommonDialog;
 import com.module.base.widgets.XItemDecoration;
+import com.module.base.widgets.dialog.CommonDialog;
 import com.module.home.R;
 import com.module.home.adpter.BusinessAdapter;
 import com.module.home.bean.BusinBean;
@@ -37,8 +35,11 @@ import java.util.List;
  * Created by shibing on 18/6/10.
  */
 
-@Route(path = Constant.LOCATION)
-public class BusinessActivity extends BaseActivity implements BusinView, OnItemClickListener, CommonDialog.DialogClickListener {
+public class BusinessActivity extends BaseActivity implements BusinView
+        , OnItemClickListener
+        , CommonDialog.DialogClickListener {
+
+
     private TextView tvCity;
     private LinearLayout layQiehuan;
     private RecyclerView recyclerView;
@@ -67,15 +68,7 @@ public class BusinessActivity extends BaseActivity implements BusinView, OnItemC
         layQiehuan = findViewById(R.id.busin_qiehun_lay);
         recyclerView = findViewById(R.id.busin_recyler);
         layout = findViewById(R.id.nadata_lay);
-
         initRecy();
-    }
-
-
-    public BusinessActivity background(int resColor) {
-        int color = ContextCompat.getColor(this, resColor);
-        titleBarContainer.setBackgroundColor(color);
-        return this;
     }
 
 

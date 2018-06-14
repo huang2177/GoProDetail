@@ -1,4 +1,4 @@
-package com.module.base.widgets;
+package com.module.base.widgets.dialog;
 
 import android.app.Activity;
 import android.os.Bundle;

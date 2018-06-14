@@ -1,9 +1,8 @@
-package com.module.base.widgets;
+package com.module.base.widgets.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
