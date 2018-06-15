@@ -5,17 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.ui.ImageGridActivity;
+import com.lzy.imagepicker.view.CropImageView;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.manager.GlideManager;
+import com.module.base.utils.GlideImageLoader;
 import com.module.base.widgets.RoundImageView;
 import com.module.mine.R;
-import com.yanzhenjie.album.Album;
+
+import java.util.ArrayList;
 
 /**
  * Created by shibing on 18/5/5.
@@ -27,15 +34,19 @@ public class UserInfoActivity extends BaseActivity {
     private RoundImageView head;
     private EditText nikeName;
     private Button save;
-    private final int REQUESTCODE = 100;
     private String imgaePath;
     private String userName;
+    public static final int REQUEST_CODE_SELECT = 100;
+    public static final int IMAGE_PICKER = 101;
+    private ArrayList<ImageItem> images;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("基础信息");
+        initPicker();
     }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_userinfo;
@@ -53,6 +64,7 @@ public class UserInfoActivity extends BaseActivity {
 
         GlideManager.loadImage(this, Constant.IMAGE_HOST + imgaePath, head);
         nikeName.setText(userName);
+
 
     }
 
@@ -75,11 +87,8 @@ public class UserInfoActivity extends BaseActivity {
         int i = v.getId();
         //选择图片
         if (i == R.id.info_head_image) {
-            Album.albumRadio(this)
-                    .camera(true)
-                    .toolBarColor(ContextCompat.getColor(this, R.color.colorBrown))
-                    .statusBarColor(ContextCompat.getColor(this, R.color.colorBrown))
-                    .start(REQUESTCODE);
+            Intent intent = new Intent(this, ImageGridActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_SELECT);
         }
         //保存
         else if (i == R.id.info_save_but) {
@@ -92,19 +101,27 @@ public class UserInfoActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode != REQUESTCODE
-                && resultCode != Activity.RESULT_OK
-                || Album.parseResult(data).size() == 0) {
-            return;
-        }
+        /*if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+            if (data != null&&) {
+                images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                Log.e("12121212", "onActivityResult: " + images.size());
+                // ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
 
-        String imgPath = Album.parseResult(data).get(0);
-        GlideManager.loadImage(this, imgPath, head);
+            }
+        }*/
     }
 
 
-
-
+    private void initPicker() {
+        ImagePicker imagePicker = ImagePicker.getInstance();
+        imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
+        imagePicker.setShowCamera(true);                      //显示拍照按钮
+        imagePicker.setMultiMode(true);                       //设置单选
+        imagePicker.setCrop(true);                            //允许裁剪（单选才有效）
+        imagePicker.setSelectLimit(1);                        //数量
+        imagePicker.setSaveRectangle(true);                   //是否按矩形区域保存
+        imagePicker.setStyle(CropImageView.Style.CIRCLE);     //裁剪框的形状
+    }
 
 
 }

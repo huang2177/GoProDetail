@@ -171,12 +171,7 @@ public class FragmentHome extends BaseFragment
     }
 
 
-    @Override
-    public void onItemClick(int position) {
-        ARouter.getInstance().build(Constant.PRODETAIL)
-                .withString("form", "por")
-                .navigation();
-    }
+
 
     @Override
     public void showBanner(BannerBean bannerBean) {
@@ -209,10 +204,27 @@ public class FragmentHome extends BaseFragment
         recyPhone.setAdapter(adpter);
         adpter.addOnItemClickListener(this);
 
-
         glodAdpter = new HomeListgGlodAdpter(mActivity, productBean.getData());
         recyGold.setAdapter(glodAdpter);
+        glodAdpter.addHoldOnItemClickListener(this);
     }
+
+
+
+    @Override
+    public void onItemClick(int position) {
+        if (proList.get(position).getType()==0) {
+            ARouter.getInstance().build(Constant.PRODETAIL)
+                    .withString("form", "por")
+                    .navigation();
+        }else if (proList.get(position).getType()==1){
+            ARouter.getInstance().build(Constant.PRODETAIL)
+                    .withString("form", "jewelry")
+                    .navigation();
+        }
+    }
+
+
 
 
     @Override
