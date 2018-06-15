@@ -102,7 +102,7 @@ public class ProDetailActivity extends BaseActivity {
     //展示首饰
     private void showJewelry() {
 
-        if (form.equals("jewelry")) {
+        if ("jewelry".equals(form)) {
             tvPingedNum.setText("押金：$2000");
             tvPirce.setVisibility(View.GONE);
             tvOldPirce.setVisibility(View.GONE);
