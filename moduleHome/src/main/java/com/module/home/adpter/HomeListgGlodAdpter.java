@@ -71,7 +71,7 @@ public class HomeListgGlodAdpter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    public void addOnItemClickListener(OnItemClickListener listener) {
+    public void addHoldOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 

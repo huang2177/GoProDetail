@@ -155,6 +155,12 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
         }, 100);
     }
 
+
+    public void initImagePicker() {
+
+    }
+
+
     @CallSuper
     @Override
     public void onClick(View v) {

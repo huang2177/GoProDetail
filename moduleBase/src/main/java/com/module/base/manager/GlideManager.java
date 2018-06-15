@@ -31,6 +31,7 @@ public class GlideManager {
     }
 
     public static void loadImage(Context context, String url, ImageView imageView, int placeHolder, int error) {
-        GlideApp.with(context).load(url).placeholder(placeHolder).error(error).into(imageView);
+        // GlideApp.with(context).load(url).placeholder(placeHolder).error(error).into(imageView);
+
     }
 }

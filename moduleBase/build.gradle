@@ -58,8 +58,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
     /*选择图片*/
-    compile 'com.yanzhenjie:album:1.0.7'
-    compile 'com.yanzhenjie:durban:1.0.1'
+    compile 'com.lzy.widget:imagepicker:0.6.1'
 
     /*IJK播放器*/
     compile 'com.github.huangbryant210707:HIjkPlayerView:1.0.3'
