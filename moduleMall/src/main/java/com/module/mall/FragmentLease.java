@@ -33,7 +33,7 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
-public class FragmentMall extends BaseFragment
+public class FragmentLease extends BaseFragment
         implements TabLayout.OnTabSelectedListener
         , OnItemClickListener
         , MallView {
@@ -42,19 +42,19 @@ public class FragmentMall extends BaseFragment
     private EditText editSearch;
     private RecyclerView recyclerView;
     private TextView tvLocation, tvNewUserPoint;
-    private MallListAdpter adpter;
-    private static FragmentMall fragment;
+    private JewelryAdpter jewelryAdpter;
+
+    private static FragmentLease fragment;
+    private MallPresenter presenter;
+    private List<ProductTypeBean.DataBean> typeList;
     private String catagory;
     private List<ProductBean.DataBean> list;
 
-    private MallPresenter presenter;
-    private List<ProductTypeBean.DataBean> typeList;
-
-    public static FragmentMall newInstance(int position) {
+    public static FragmentLease newInstance(int position) {
         Bundle args = new Bundle();
         args.putInt(Constant.FLAG, position);
         if (fragment == null) {
-            fragment = new FragmentMall();
+            fragment = new FragmentLease();
         }
         fragment.setArguments(args);
         return fragment;
@@ -64,8 +64,9 @@ public class FragmentMall extends BaseFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter.getProductType("0");
-        presenter.getProductList("0", catagory);
+        presenter.getProductType("1");
+        presenter.getProductList("1", catagory);
+
     }
 
     @Override
@@ -76,7 +77,7 @@ public class FragmentMall extends BaseFragment
 
     @Override
     public int getContentView() {
-        return R.layout.fragment_mall;
+        return R.layout.fragment_lease;
     }
 
     @Override
@@ -95,6 +96,7 @@ public class FragmentMall extends BaseFragment
         manager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
+
     }
 
 
@@ -120,9 +122,9 @@ public class FragmentMall extends BaseFragment
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         if (tab.getPosition() == 0) {
-            presenter.getProductList("0", catagory);
+            presenter.getProductList("1", catagory);
         } else {
-            presenter.getProductList("0", typeList.get(tab.getPosition() - 1).getId() + "");
+            presenter.getProductList("1", typeList.get(tab.getPosition() - 1).getId() + "");
         }
     }
 
@@ -147,13 +149,16 @@ public class FragmentMall extends BaseFragment
         }
     }
 
+
+
+
     //产品列表
     @Override
     public void showProduct(List<ProductBean.DataBean> productBean) {
         list = productBean;
-        adpter = new MallListAdpter(mActivity, productBean);
-        adpter.addOnItemClickListener(this);
-        recyclerView.setAdapter(adpter);
+        jewelryAdpter = new JewelryAdpter(mActivity, productBean);
+        jewelryAdpter.addOnItemClickListener(this);
+        recyclerView.setAdapter(jewelryAdpter);
     }
 
     @Override
@@ -161,5 +166,6 @@ public class FragmentMall extends BaseFragment
         Intent intent = new Intent(mActivity, ProDetailActivity.class);
         intent.putExtra(Constant.PORDUCTID, list.get(position).getId() + "");
         startActivity(intent);
+
     }
 }

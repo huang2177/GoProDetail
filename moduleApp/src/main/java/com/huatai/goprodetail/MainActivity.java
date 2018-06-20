@@ -20,6 +20,7 @@ import com.module.home.FragmentHome;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.mall.FragmentGroup;
+import com.module.mall.FragmentLease;
 import com.module.mall.FragmentMall;
 import com.module.mine.FragmentMine;
 
@@ -146,7 +147,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 showFragment(FragmentMall.newInstance(1));
                 break;
             case R.id.navigation_jewelry:
-                showFragment(FragmentMall.newInstance(2));
+                showFragment(FragmentLease.newInstance(2));
                 break;
             case R.id.navigation_hall:
                 showFragment(FragmentGroup.newInstance(1));

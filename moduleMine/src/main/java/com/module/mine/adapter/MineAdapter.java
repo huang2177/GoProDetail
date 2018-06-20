@@ -128,7 +128,7 @@ public class MineAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {
-                        listener.onItemClick(viewType);
+                        listener.onItemClick(viewType, -1);
                     }
                 }
             });

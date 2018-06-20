@@ -46,7 +46,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(position);
+                    listener.onItemClick(position, -1);
                 }
             }
         });
@@ -70,7 +70,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener1.onItemClick(position);
+                    listener1.onItemClick(position, -1);
                 }
             }
         });

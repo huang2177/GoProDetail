@@ -19,6 +19,7 @@ import com.module.base.widgets.XGridView;
 import com.module.mall.R;
 import com.module.mall.adpter.MallListAdpter;
 import com.module.mall.adpter.PingPopleAdapter;
+import com.module.mall.ui.prodetails.ProDetailActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -92,7 +93,7 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
 
-        porductAdapter = new MallListAdpter(this, getData());
+        porductAdapter = new MallListAdpter(this, null);
         porductAdapter.addOnItemClickListener(this);
         recyclerView.setAdapter(porductAdapter);
     }
@@ -142,9 +143,10 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
      * 商品监听事件
      *
      * @param position
+     * @param type
      */
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, int type) {
         startActivity(new Intent(this, ProDetailActivity.class));
     }
 }

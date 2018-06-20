@@ -7,6 +7,8 @@ import com.module.base.http.HttpObserver;
 import com.module.base.pouduct.ProductBean;
 import com.module.base.pouduct.ProductTypeBean;
 
+import java.util.List;
+
 public class MallPresenter extends BasePresenter<MallView> {
 
 
@@ -44,15 +46,15 @@ public class MallPresenter extends BasePresenter<MallView> {
      *
      * @param catagory
      */
-    public void getProductList(String catagory) {
-        observer(new HttpObserver<ProductBean>(mContext, mService.getMallPorList(catagory)
+    public void getProductList(String type, String catagory) {
+        observer(new HttpObserver<ProductBean>(mContext, mService.getMallPorList(type, false, catagory)
                 , new HttpCallBackImpl<ProductBean>() {
             @Override
             public void onCompleted(ProductBean productBean) {
                 if (productBean == null) {
                     return;
                 }
-                mallView.showProduct(productBean);
+                mallView.showProduct(productBean.getData());
             }
         }));
 

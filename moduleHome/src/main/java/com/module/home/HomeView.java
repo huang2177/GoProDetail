@@ -4,6 +4,8 @@ import com.module.base.pouduct.ProductBean;
 import com.module.home.bean.BannerBean;
 import com.module.home.bean.IndexDataBean;
 
+import java.util.List;
+
 public interface HomeView {
 
 
@@ -15,6 +17,6 @@ public interface HomeView {
 
 
 
-    void showProduct(ProductBean productBean);
+    void showProduct(List<ProductBean.DataBean> phoneList,List<ProductBean.DataBean> goldList);
 
 }

@@ -68,17 +68,12 @@ public class FragmentGroup extends BaseFragment
         recyclerView = viewRoot.findViewById(R.id.ping_recycle);
         tvLocation = viewRoot.findViewById(R.id.home_location_tv);
         tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
-
-        flag = getArguments().getInt(Constant.FLAG);
-
         initTab();
         initProduct();
     }
 
     private void initTab() {
-        List<String> tabs = flag == 1
-                ? Arrays.asList("全部", "手机", "黄金首饰")
-                : Arrays.asList("有效订单", "完成订单", "失败订单");
+        List<String> tabs = Arrays.asList("全部", "手机", "黄金珠宝");
         for (int i = 0; i < tabs.size(); i++) {
             tabLayout.addTab(tabLayout.newTab().setText(tabs.get(i)));
         }
@@ -147,9 +142,10 @@ public class FragmentGroup extends BaseFragment
      * item  监听事件
      *
      * @param position
+     * @param type
      */
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, int type) {
         mActivity.startActivity(new Intent(mActivity, GroupDetalisActivity.class));
     }
 }

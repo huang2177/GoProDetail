@@ -15,6 +15,14 @@
         android:text="商品简介" />
 
 
+    <TextView
+        android:id="@+id/pro_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+
+
     <com.module.base.widgets.XListView
         android:id="@+id/pro_image_lv"
         android:layout_width="match_parent"
@@ -22,6 +30,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:divider="@color/colorWhite"
-        android:dividerHeight="5dp" />
+        android:dividerHeight="5dp"
+        android:visibility="gone" />
 
 </LinearLayout>

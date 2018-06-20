@@ -15,7 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 public class GlideManager {
 
     public static void loadImage(Context context, String url, ImageView imageView) {
-        loadImage(context, url, imageView, 0);
+        Glide.with(context).load(url).into(imageView);
+       // loadImage(context, url, imageView);
     }
 
     public static void loadImage(Fragment fragment, String url, ImageView imageView) {

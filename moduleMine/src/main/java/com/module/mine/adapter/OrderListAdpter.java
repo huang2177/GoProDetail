@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.module.base.listener.OnItemClickListener;
-import com.module.base.widgets.RoundImageView;
 import com.module.mine.R;
 
 import java.util.List;
@@ -88,7 +87,7 @@ public class OrderListAdpter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(viewType);
+                    listener.onItemClick(viewType, -1);
                 }
             });
         }

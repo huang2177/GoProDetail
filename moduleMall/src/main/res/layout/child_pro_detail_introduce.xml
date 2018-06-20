@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
+    android:padding="10dp"
     tools:showIn="@layout/activity_pro_detail">
 
     <LinearLayout
@@ -37,12 +35,23 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorLittleGray" />
 
+
+    <TextView
+        android:id="@+id/introduce_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:lineSpacingExtra="3dp"
+        android:textSize="14.0sp" />
+
+
     <com.module.base.widgets.XListView
         android:id="@+id/pro_introduce_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
-        android:listSelector="@android:color/transparent" />
+        android:listSelector="@android:color/transparent"
+        android:visibility="gone" />
 
 
     <LinearLayout
@@ -51,16 +60,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginTop="10dp"
             android:background="@color/colorLittleGray" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="如想购买此商品，请前往华泰珠宝官方商城"
             android:textSize="14.0sp" />
 
@@ -70,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:gravity="center"
             android:background="@drawable/bg_btn_brown"
+            android:gravity="center"
             android:text="前往华泰珠宝官方商城"
             android:textColor="@color/colorWhite"
             android:textSize="16.0sp" />

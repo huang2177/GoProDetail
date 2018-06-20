@@ -1,7 +1,6 @@
 package com.module.mall.adpter;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -98,7 +97,7 @@ public class PingListAdpter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        listener.onItemClick(viewType);
+                        listener.onItemClick(viewType, -1);
                     }
                 }
             });

@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
+import com.module.mall.bean.ProductEvaBean;
+
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/30.
@@ -20,14 +23,26 @@ public class MoreEvaluateAdapter extends BaseAdapter {
 
     private Activity activity;
     private MoreEvaluatePicAdapter adapter;
+    private List<ProductEvaBean.DataBean> list;
+    private String from;
 
-    public MoreEvaluateAdapter(Activity activity) {
+    public MoreEvaluateAdapter(Activity activity, List<ProductEvaBean.DataBean> list, String from) {
         this.activity = activity;
+        this.list = list;
+        this.from = from;
     }
 
     @Override
     public int getCount() {
-        return 8;
+
+        if (list != null) {
+            if ((from.equals("prodetailsEva"))) {
+                return 2;
+            } else {
+                return list.size();
+            }
+        }
+        return 0;
     }
 
     @Override
