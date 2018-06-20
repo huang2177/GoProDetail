@@ -1,11 +1,12 @@
-package com.module.mall.ui;
+package com.module.mall.ui.prodetails;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.text.Html;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -16,11 +17,23 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.utils.SPUtil;
+import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.CommonAdapter;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.ViewHolder;
 import com.module.base.widgets.XListView;
 import com.module.mall.R;
+import com.module.mall.adpter.MoreEvaluateAdapter;
+import com.module.mall.adpter.ProductTuanAdapter;
+import com.module.mall.bean.PintuanRuleBean;
+import com.module.mall.bean.ProDetailsBean;
+import com.module.mall.bean.ProductEvaBean;
+import com.module.mall.bean.ProductTuanBean;
+import com.module.mall.ui.moreevalvate.MoreEvaluateActivity;
+import com.module.mall.ui.OrderConfirmActivity;
+import com.module.mall.ui.ProModelDialog;
+import com.module.mall.ui.moretuan.MoreTuanActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -33,21 +46,34 @@ import java.util.List;
  */
 
 @Route(path = Constant.PRODETAIL)
-public class ProDetailActivity extends BaseActivity {
+public class ProDetailActivity extends BaseActivity implements ProDetailsView {
 
     Banner banner;
-    private LinearLayout layoutEvaluate, layMoreEva, layPintuan, layJewelry;
-    private XListView lvIntroduce, lvImage, lvGrouping;
-    private TextView tvIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup, tvShuom, tvjewelry;
-    private TextView tvName, tvPingedNum, tvPirce, tvOldPirce, tvFreight, tvInventory, tvCollection;
-
+    private LinearLayout layoutEvaluate, layMoreEva, layPintuan, layJewelry, layTuanTitle;
+    private XListView lvIntroduce, lvImage, lvGrouping, lvEvaluate;
+    private TextView tvMoreIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup, tvShuom, tvjewelry;
+    private TextView tvName, tvPingedNum, tvPirce, tvOldPirce, tvFreight, tvInventory, tvCollection, tvNoEvaluate;
+    private TextView tvContent, tvIntroduce;
     private boolean isCollectioned;
     private ProModelDialog proModelDialog;
     private String form;
+    private ProDetailsPresenter presenter;
+    private String pid, uid;
+    //评价适配器
+    private MoreEvaluateAdapter evaluateAdapter;
+    //商品团适配器
+    private ProductTuanAdapter tuanAdapter;
+    private int typeRule;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pid = getIntent().getStringExtra(Constant.PORDUCTID);
+        uid = SPUtil.getInstance(this).getString(Constant.USERID);
+        presenter.ProDetails(pid);
+        presenter.productEvaList(pid, uid);
+        presenter.productTuan(uid, pid);
 
     }
 
@@ -68,6 +94,9 @@ public class ProDetailActivity extends BaseActivity {
         tvPhone = findViewById(R.id.pro_phone);
         tvGroup = findViewById(R.id.pro_group);
         tvPirce = findViewById(R.id.pro_pirce);
+        tvContent = findViewById(R.id.pro_content);
+        tvIntroduce = findViewById(R.id.introduce_tv);
+
         banner = findViewById(R.id.pro_banner);
         lvImage = findViewById(R.id.pro_image_lv);
         tvService = findViewById(R.id.pro_service);
@@ -78,32 +107,123 @@ public class ProDetailActivity extends BaseActivity {
         lvGrouping = findViewById(R.id.pro_grouping_lv);
         tvCollection = findViewById(R.id.pro_collection);
         lvIntroduce = findViewById(R.id.pro_introduce_lv);
+        lvEvaluate = findViewById(R.id.evaluate_list);
+
+
         tvEvaluate = findViewById(R.id.pro_tv_evaluate_more);
-        tvIntroduce = findViewById(R.id.pro_tv_introduce_more);
+        tvNoEvaluate = findViewById(R.id.no_evaluate);
+        tvMoreIntroduce = findViewById(R.id.pro_tv_introduce_more);
         tvShuom = findViewById(R.id.order_shoum_tv);
         tvjewelry = findViewById(R.id.jewelry_buy);
-        layoutEvaluate = findViewById(R.id.pro_evaluate_container);
         layMoreEva = findViewById(R.id.moreeva_lay);
         layPintuan = findViewById(R.id.order_pintuan_lay);
         layJewelry = findViewById(R.id.order_jewelry_lay);
+        layTuanTitle = findViewById(R.id.produtc_tuan_lay);
         tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-        form = getIntent().getStringExtra("form");
-        showJewelry();
-        initBanner();
-        initEvaluate();
-        initGrouping();
-        initProIntroduce();
-        initImage();
+        }
+
+
+        @Override
+        public void setListener() {
+            super.setListener();
+            tvBuy.setOnClickListener(this);
+            tvPhone.setOnClickListener(this);
+            tvGroup.setOnClickListener(this);
+            tvService.setOnClickListener(this);
+            tvEvaluate.setOnClickListener(this);
+            tvMoreIntroduce.setOnClickListener(this);
+            tvCollection.setOnClickListener(this);
+            layMoreEva.setOnClickListener(this);
+            layPintuan.setOnClickListener(this);
+            layTuanTitle.setOnClickListener(this);
+            //支付押金
+            tvjewelry.setOnClickListener(this);
+        }
+
+        @Override
+        public BasePresenter createPresenter() {
+            presenter = new ProDetailsPresenter();
+            return presenter;
+        }
+
+        @Override
+        public void onClick(View v) {
+            super.onClick(v);
+            Intent intent = null;
+            int i = v.getId();
+            if (i == R.id.pro_collection) {
+                presenter.ProCollection(uid, pid);
+            }
+            //更多评价
+            else if (i == R.id.moreeva_lay) {
+                intent = new Intent(this, MoreEvaluateActivity.class);
+                intent.putExtra("pid", pid);
+                startActivity(intent);
+            }
+            //更多拼团
+            else if (i == R.id.produtc_tuan_lay) {
+                intent = new Intent(this, MoreTuanActivity.class);
+                intent.putExtra("pid", pid);
+                startActivity(intent);
+            }
+            //客服
+            else if (i == R.id.pro_service) {
+
+            }
+            //电话
+            else if (i == R.id.pro_phone) {
+
+            }
+            //支付
+            else if (i == R.id.pro_buy) {
+                proModelDialog = new ProModelDialog(this);
+                proModelDialog.show();
+            }
+            //跳转至订单详情 0元购
+            else if (i == R.id.pro_group) {
+                intent = new Intent(this, OrderConfirmActivity.class);
+                intent.putExtra("form", "zero");
+                startActivity(intent);
+            } else if (i == R.id.jewelry_buy) {
+                intent = new Intent(this, OrderConfirmActivity.class);
+                intent.putExtra("form", "whole");
+                startActivity(intent);
+            }
+        }
+
+    private void initBanner() {
+        banner.setImages(Arrays.asList("123", "123"))
+                .setImageLoader(new GlideImageLoader())
+                .start();
     }
 
 
-    //展示首饰
-    private void showJewelry() {
+    //详情
+    @Override
+    public void showDetails(ProDetailsBean proDetailsBean) {
+        tvName.setText(proDetailsBean.getData().getTitle());
+        tvPingedNum.setText(proDetailsBean.getData().getTuanCount() + "人拼团成功");
+        tvPirce.setText(proDetailsBean.getData().getTuanAmount() + "元购");
+        tvOldPirce.setText(proDetailsBean.getData().getAmount());
+        tvFreight.setText("运费¥" + proDetailsBean.getData().getFreight());
+        tvInventory.setText("库存" + proDetailsBean.getData().getStockCount() + "件");
+        if (Build.VERSION.SDK_INT >= 24) {
+            tvContent.setText(Html.fromHtml(proDetailsBean.getData().getContent(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            tvContent.setText(Html.fromHtml(proDetailsBean.getData().getContent()));
+        }
+        //是否收藏
+        isCollectioned = proDetailsBean.getData().isCollection();
+        tvCollection.setCompoundDrawablesWithIntrinsicBounds(0
+                , isCollectioned ? R.drawable.ic_heart_brown2 : R.drawable.ic_heart_brown1
+                , 0
+                , 0);
 
-        if (form.equals("jewelry")) {
-            tvPingedNum.setText("押金：$2000");
+        typeRule = proDetailsBean.getData().getType();
+        if (typeRule == 1) {
+            tvPingedNum.setText("押金：¥2000");
             tvPirce.setVisibility(View.GONE);
             tvOldPirce.setVisibility(View.GONE);
             layPintuan.setVisibility(View.GONE);
@@ -112,151 +232,66 @@ public class ProDetailActivity extends BaseActivity {
             tvjewelry.setVisibility(View.VISIBLE);
             tvBuy.setVisibility(View.GONE);
             tvGroup.setVisibility(View.GONE);
-
         }
 
-    }
-
-
-    @Override
-    public void setListener() {
-        super.setListener();
-        tvBuy.setOnClickListener(this);
-        tvPhone.setOnClickListener(this);
-        tvGroup.setOnClickListener(this);
-        tvService.setOnClickListener(this);
-        tvEvaluate.setOnClickListener(this);
-        tvIntroduce.setOnClickListener(this);
-        tvCollection.setOnClickListener(this);
-        layMoreEva.setOnClickListener(this);
-        //支付押金
-        tvjewelry.setOnClickListener(this);
-    }
-
-    @Override
-    public BasePresenter createPresenter() {
-        return null;
-    }
-
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        Intent intent = null;
-        int i = v.getId();
-        if (i == R.id.pro_collection) {
-            isCollectioned = !isCollectioned;
-            //tvCollection.setText(isCollectioned ? "已收藏" : "收藏");
-            tvCollection.setCompoundDrawablesWithIntrinsicBounds(0
-                    , isCollectioned ? R.drawable.ic_heart_brown2 : R.drawable.ic_heart_brown1
-                    , 0
-                    , 0);
-        }
-        //更多评价
-        else if (i == R.id.moreeva_lay) {
-            startActivity(new Intent(this, MoreEvaluateActivity.class));
-        } else if (i == R.id.pro_service) {
-
-        } else if (i == R.id.pro_phone) {
-
-        } else if (i == R.id.pro_buy) {
-//            if (proModelDialog == null) {
-//            }
-            proModelDialog = new ProModelDialog(this);
-            proModelDialog.show();
-        }
-
-        //跳转至订单详情 0元购
-        else if (i == R.id.pro_group) {
-            intent = new Intent(this, OrderConfirmActivity.class);
-            intent.putExtra("form", "zero");
-            startActivity(intent);
-        } else if (i == R.id.jewelry_buy) {
-            intent = new Intent(this, OrderConfirmActivity.class);
-            intent.putExtra("form", "whole");
-            startActivity(intent);
-        }
-    }
-
-    private void initBanner() {
-        banner.setImages(Arrays.asList("123", "123"))
-                .setImageLoader(new GlideImageLoader())
-                .start();
-    }
-
-    private void initEvaluate() {
-        layoutEvaluate.removeAllViews();
-        List<Integer> list = Arrays.asList(R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro);
-        for (int i = 0; i < list.size(); i++) {
-            ImageView imageView = new ImageView(this);
-            imageView.setImageResource(list.get(i));
-            layoutEvaluate.addView(imageView);
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) imageView.getLayoutParams();
-            lp.weight = 1;
-            imageView.setLayoutParams(lp);
-        }
-
-    }
-
-    private void initGrouping() {
-        List<Integer> list = Arrays.asList(R.drawable.pro
-        );
-        CommonAdapter<Integer> adapter = new CommonAdapter<Integer>(this, list, R.layout.child_item_ping_list1) {
-            @Override
-            public void convert(int position, ViewHolder holder, Integer data) {
-                RoundImageView imageView = holder.getItemView(R.id.item_img_head);
-                imageView.setShapeType(1);
-
-            }
-        };
-        lvGrouping.setAdapter(adapter);
-    }
-
-    private void initProIntroduce() {
-
-        List<String> list = null;
-        if (form.equals("por")) {
-            list = Arrays.asList(". 发起拼团，支付商品全款即可获得商品，无需等待拼团成功。"
-                    , ". 开团后，邀请指定人数参团，在规定时限内完成拼团名额， 团长即可获得商品全款返现。"
-                    , ". 首次开团的用户，在开团后，需为自己的电话账户充值200 元话费，拼团成功后和手机款一起返还。"
-                    , " . 若在规定时限内未完成拼团人数要求，则视为拼团失败，当 次拼团费用不予以返还。");
+        //判断是拼团还是租凭
+        if (typeRule == 0) {
+            presenter.PintuanRule(pid);
         } else {
-            list = Arrays.asList(". 押金用于在平台中的【首饰盒】中租借首饰、珠宝【首饰盒】 中的商品租借无需支付租金"
-                    , ". 但需根据商品价值缴纳一定租金。"
-                    , " . 退还商品后可申请退还押金。我们会检验商品的完好度，如 有人为破损，将扣除相应的押金"
-            );
+            presenter.ZulinRule(pid);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_pro_detail_introduce, list);
-        lvIntroduce.setAdapter(adapter);
     }
 
-    private void initImage() {
-        List<Integer> list = Arrays.asList(R.drawable.pro
-                , R.drawable.pro_detail
-                , R.drawable.img_banner1
-                , R.drawable.banner
-                , R.drawable.img_banner2);
-        CommonAdapter<Integer> adapter = new CommonAdapter<Integer>(this, list, R.layout.item_pro_detail_image) {
-            @Override
-            public void convert(int position, ViewHolder holder, Integer data) {
-                holder.setImageResource(R.id.item_pro_image, data);
-            }
-        };
-        lvImage.setAdapter(adapter);
+
+    //收藏产品
+    @Override
+    public void showCollection(ProDetailsBean proDetailsBean) {
+        tvCollection.setCompoundDrawablesWithIntrinsicBounds(0
+                , isCollectioned ? R.drawable.ic_heart_brown2 : R.drawable.ic_heart_brown1
+                , 0
+                , 0);
     }
+
+
+    /**
+     * 最新评价
+     */
 
     @Override
-    public void onPause() {
-        super.onPause();
-        banner.stopAutoPlay();
+    public void showProductEva(List<ProductEvaBean.DataBean> productEva) {
+        evaluateAdapter = new MoreEvaluateAdapter(this, productEva, "prodetailsEva");
+        lvEvaluate.setAdapter(evaluateAdapter);
+
     }
 
+    /**
+     * 暂无评价
+     */
     @Override
-    public void onStart() {
-        super.onStart();
-        banner.startAutoPlay();
+    public void showProductEvaEmpty() {
+        tvNoEvaluate.setVisibility(View.VISIBLE);
+        lvEvaluate.setVisibility(View.GONE);
     }
+
+
+    //拼团list
+    @Override
+    public void showTuanList(List<ProductTuanBean.DataBean> productTuan) {
+        if (productTuan.size() == 0) {
+            layPintuan.setVisibility(View.GONE);
+            return;
+        }
+        tuanAdapter = new ProductTuanAdapter(this, productTuan, "detailsTuan");
+        lvGrouping.setAdapter(tuanAdapter);
+    }
+
+
+    //说明
+    @Override
+    public void showRule(PintuanRuleBean ruleBean) {
+        tvIntroduce.setText(ruleBean.getData().getTitle());
+    }
+
 
     /**
      * 重写图片加载器
@@ -268,5 +303,18 @@ public class ProDetailActivity extends BaseActivity {
             imageView.setImageResource(R.drawable.pro_detail);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         }
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        banner.stopAutoPlay();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        banner.startAutoPlay();
     }
 }

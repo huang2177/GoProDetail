@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,11 +20,9 @@ import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.manager.GlideManager;
 import com.module.base.pouduct.ProductBean;
-import com.module.base.pouduct.ProductPresenter;
 import com.module.base.utils.Logger;
-import com.module.base.widgets.CommonDialog;
+import com.module.base.widgets.dialog.CommonDialog;
 import com.module.home.adpter.HomeListAdpter;
-import com.module.home.adpter.HomeListgGlodAdpter;
 import com.module.home.bean.BannerBean;
 import com.module.home.bean.IndexDataBean;
 import com.module.home.ui.BusinessActivity;
@@ -34,8 +30,6 @@ import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -57,14 +51,8 @@ public class FragmentHome extends BaseFragment
     private RecyclerView recyGold;    //珠宝
 
     private GridLayoutManager manager, manager1;
-    private HomeListAdpter adpter;
-    private List<BannerBean.DataBean> bannerList;
+    private HomeListAdpter mPhoneAdapter, mGoldAdapter;
     private HomePresenter presenter;
-    private List<ProductBean.DataBean> proList;
-    private List<ProductBean.DataBean> phoneList;
-
-    private HomeListgGlodAdpter glodAdpter;
-
     private static FragmentHome fragment;
 
 
@@ -125,6 +113,7 @@ public class FragmentHome extends BaseFragment
         manager = new GridLayoutManager(mActivity, 2);
         recyPhone.setLayoutManager(manager);
         recyPhone.setNestedScrollingEnabled(false);
+
     }
 
 
@@ -132,6 +121,7 @@ public class FragmentHome extends BaseFragment
         manager1 = new GridLayoutManager(mActivity, 2);
         recyGold.setLayoutManager(manager1);
         recyGold.setNestedScrollingEnabled(false);
+
     }
 
 
@@ -174,11 +164,8 @@ public class FragmentHome extends BaseFragment
     }
 
 
-
-
     @Override
     public void showBanner(BannerBean bannerBean) {
-        bannerList = bannerBean.getData();
         banner.setImages(bannerBean.getData())
                 .setImageLoader(new GlideImageLoader())
                 .setOnBannerListener(this)
@@ -201,33 +188,25 @@ public class FragmentHome extends BaseFragment
 
     //产品
     @Override
-    public void showProduct(ProductBean productBean) {
-        proList = productBean.getData();
-        adpter = new HomeListAdpter(mActivity, productBean.getData());
-        recyPhone.setAdapter(adpter);
-        adpter.addOnItemClickListener(this);
+    public void showProduct(List<ProductBean.DataBean> phoneList, List<ProductBean.DataBean> goldList) {
+        mPhoneAdapter = new HomeListAdpter(mActivity, phoneList);
+        recyPhone.setAdapter(mPhoneAdapter);
+        mPhoneAdapter.addOnItemClickListener(this, 1);
 
-        glodAdpter = new HomeListgGlodAdpter(mActivity, productBean.getData());
-        recyGold.setAdapter(glodAdpter);
-        glodAdpter.addHoldOnItemClickListener(this);
+        mGoldAdapter = new HomeListAdpter(mActivity, goldList);
+        recyGold.setAdapter(mGoldAdapter);
+        mGoldAdapter.addOnItemClickListener(this, 2);
     }
-
 
 
     @Override
-    public void onItemClick(int position) {
-        if (proList.get(position).getType()==0) {
-            ARouter.getInstance().build(Constant.PRODETAIL)
-                    .withString("form", "por")
-                    .navigation();
-        }else if (proList.get(position).getType()==1){
-            ARouter.getInstance().build(Constant.PRODETAIL)
-                    .withString("form", "jewelry")
-                    .navigation();
-        }
+    public void onItemClick(int id, int type) {
+        //String from = type == 1 ? "por" : "jewelry";
+        ARouter.getInstance().build(Constant.PRODETAIL)
+                .withString(Constant.PORDUCTID, id + "")
+                .navigation();
+
     }
-
-
 
 
     @Override

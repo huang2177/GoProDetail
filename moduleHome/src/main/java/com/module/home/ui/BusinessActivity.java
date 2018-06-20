@@ -18,8 +18,8 @@ import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.utils.ToastUtil;
-import com.module.base.widgets.CommonDialog;
 import com.module.base.widgets.XItemDecoration;
+import com.module.base.widgets.dialog.CommonDialog;
 import com.module.home.R;
 import com.module.home.adpter.BusinessAdapter;
 import com.module.home.bean.BusinBean;
@@ -150,6 +150,3 @@ public class BusinessActivity extends BaseActivity implements BusinView, OnItemC
         startActivity(intent);
     }
 }
-
-
-
