@@ -269,11 +269,11 @@ public class ProductTuanBean {
             private int commission;
             private String content;
             private int deposit;
-            private int freight;
+            private double freight;
             private int id;
             private String imgurl;
             private int loginUid;
-            private int starCount;
+            private double starCount;
             private int stockCount;
             private String title;
             private boolean toIndex;
@@ -339,11 +339,11 @@ public class ProductTuanBean {
                 this.deposit = deposit;
             }
 
-            public int getFreight() {
+            public double getFreight() {
                 return freight;
             }
 
-            public void setFreight(int freight) {
+            public void setFreight(double freight) {
                 this.freight = freight;
             }
 
@@ -371,11 +371,11 @@ public class ProductTuanBean {
                 this.loginUid = loginUid;
             }
 
-            public int getStarCount() {
+            public double getStarCount() {
                 return starCount;
             }
 
-            public void setStarCount(int starCount) {
+            public void setStarCount(double starCount) {
                 this.starCount = starCount;
             }
 

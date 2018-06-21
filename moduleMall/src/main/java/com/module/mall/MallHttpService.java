@@ -86,7 +86,12 @@ public interface MallHttpService {
     @GET("api/Tuan/List")
     Observable<ProductTuanBean> ProductTuanList(@Query("pid") String pid
             , @Query("uid") String uid
-            , @Query("isPublic") boolean isPublic);
+            , @Query("isPublic") boolean isPublic
+            , @Query("catagory") String catagory);
+
+
+    @GET("api/Tuan/List")
+    Observable<ProductTuanBean> ProductTuanListGorp(@Query("catagory") String catagory);
 
 
     /**

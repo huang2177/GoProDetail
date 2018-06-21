@@ -36,9 +36,9 @@ public class ProTuanPresenter extends BasePresenter<ProTuanView> {
      * @param uid
      * @param pid
      */
-    public void productTuan(String uid, String pid) {
+    public void productTuan(String uid, String pid, boolean isPublic, String catagory) {
         observer(new HttpObserver<ProductTuanBean>(mContext, mService.ProductTuanList(
-                uid, pid, true), new HttpCallBackImpl<ProductTuanBean>() {
+                uid, pid, isPublic, catagory), new HttpCallBackImpl<ProductTuanBean>() {
             @Override
             public void onCompleted(ProductTuanBean productTuan) {
                 if (productTuan == null) {

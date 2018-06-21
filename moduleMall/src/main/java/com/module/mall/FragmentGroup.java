@@ -2,6 +2,7 @@ package com.module.mall;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +16,11 @@ import com.module.base.BaseFragment;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
+import com.module.base.pouduct.ProductBean;
+import com.module.base.pouduct.ProductTypeBean;
+import com.module.base.utils.Logger;
 import com.module.mall.adpter.PingListAdpter;
+import com.module.mall.bean.ProductTuanBean;
 import com.module.mall.ui.GroupDetalisActivity;
 
 import java.util.Arrays;
@@ -29,16 +34,18 @@ import java.util.List;
 @Route(path = Constant.PATH_FRAGMENTPING)
 public class FragmentGroup extends BaseFragment
         implements TabLayout.OnTabSelectedListener
-        , OnItemClickListener {
+        , OnItemClickListener, MallView {
 
     private TabLayout tabLayout;
     private EditText editSearch;
     private RecyclerView recyclerView;
     private TextView tvLocation, tvNewUserPoint;
-
-    private int flag;
     private PingListAdpter adpter;
     private static FragmentGroup fragment;
+    private MallPresenter presenter;
+    private List<ProductTypeBean.DataBean> typeList;
+    private List<ProductTuanBean.DataBean> tuanList;
+    private String uid, pid, catagory;
 
     public static FragmentGroup newInstance(int position) {
         Bundle args = new Bundle();
@@ -50,14 +57,21 @@ public class FragmentGroup extends BaseFragment
         return fragment;
     }
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter.getProductType("0");
+    }
+
     @Override
     protected BasePresenter createPresenter() {
-        return null;
+        presenter = new MallPresenter();
+        return presenter;
     }
 
     @Override
     public int getContentView() {
-        /*资源文件在base中*/
         return R.layout.fragment_group;
     }
 
@@ -68,37 +82,18 @@ public class FragmentGroup extends BaseFragment
         recyclerView = viewRoot.findViewById(R.id.ping_recycle);
         tvLocation = viewRoot.findViewById(R.id.home_location_tv);
         tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
-        initTab();
         initProduct();
     }
 
-    private void initTab() {
-        List<String> tabs = Arrays.asList("全部", "手机", "黄金珠宝");
-        for (int i = 0; i < tabs.size(); i++) {
-            tabLayout.addTab(tabLayout.newTab().setText(tabs.get(i)));
-        }
-    }
 
     private void initProduct() {
         LinearLayoutManager manager = new LinearLayoutManager(mActivity);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
-        adpter = new PingListAdpter(mActivity, getData());
-        adpter.addOnItemClickListener(this);
-        recyclerView.setAdapter(adpter);
+
 
     }
 
-    private List<Integer> getData() {
-        return Arrays.asList(R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro);
-    }
 
     @Override
     public void setListener() {
@@ -122,9 +117,48 @@ public class FragmentGroup extends BaseFragment
 
     }
 
+
+    @Override
+    public void showProductType(ProductTypeBean typeBean) {
+        typeList = typeBean.getData();
+        tabLayout.addTab(tabLayout.newTab().setText("全部"), 0, true);
+        for (int i = 0; i < typeBean.getData().size(); i++) {
+            tabLayout.addTab(tabLayout.newTab().setText(typeBean.getData().get(i).getCatagory()));
+        }
+        presenter.productTuan(uid, pid, false, catagory);
+    }
+
+
+    //商城列表
+    @Override
+    public void showProduct(List<ProductBean.DataBean> productBean) {
+
+    }
+
+
+    //拼团列表
+    @Override
+    public void showTuanList(List<ProductTuanBean.DataBean> productTuan) {
+        tuanList = productTuan;
+        adpter = new PingListAdpter(mActivity, productTuan);
+        adpter.addOnItemClickListener(this);
+        recyclerView.setAdapter(adpter);
+    }
+
+
+    /**
+     * tab  监听事件
+     *
+     * @param tab
+     */
+
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        if (tab.getPosition() == 0) {
+            presenter.productTuan(uid, pid, false, catagory);
+        } else {
+            presenter.productTuan(uid, pid, false, typeList.get(tab.getPosition() - 1).getId() + "");
+        }
     }
 
     @Override

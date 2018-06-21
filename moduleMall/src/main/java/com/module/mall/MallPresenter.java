@@ -6,6 +6,7 @@ import com.module.base.http.HttpManager;
 import com.module.base.http.HttpObserver;
 import com.module.base.pouduct.ProductBean;
 import com.module.base.pouduct.ProductTypeBean;
+import com.module.mall.bean.ProductTuanBean;
 
 import java.util.List;
 
@@ -59,4 +60,25 @@ public class MallPresenter extends BasePresenter<MallView> {
         }));
 
     }
+
+
+    /**
+     * 获取拼团列表
+     *
+     * @param uid
+     * @param pid
+     */
+    public void productTuan(String uid, String pid, boolean isPublic, String catagory) {
+        observer(new HttpObserver<ProductTuanBean>(mContext, mService.ProductTuanList(
+                uid, pid, isPublic, catagory), new HttpCallBackImpl<ProductTuanBean>() {
+            @Override
+            public void onCompleted(ProductTuanBean productTuan) {
+                if (productTuan == null) {
+                    return;
+                }
+                mallView.showTuanList(productTuan.getData());
+            }
+        }));
+    }
+
 }

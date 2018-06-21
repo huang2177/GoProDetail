@@ -28,7 +28,7 @@ public class MoreTuanActivity extends BaseActivity implements ProTuanView, Adapt
     private LinearLayout layout;
     private ProductTuanAdapter tuanAdapter;
     private ProTuanPresenter presenter;
-    private String uid, pid;
+    private String uid, pid, catagory;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class MoreTuanActivity extends BaseActivity implements ProTuanView, Adapt
 
         uid = SPUtil.getInstance(this).getString(Constant.USERID);
         pid = getIntent().getStringExtra("pid");
-        presenter.productTuan(uid, pid);
+        presenter.productTuan(uid, pid, false, catagory);
     }
 
     @Override

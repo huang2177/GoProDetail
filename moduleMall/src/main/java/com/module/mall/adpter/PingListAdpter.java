@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
+import com.module.base.manager.GlideManager;
 import com.module.base.widgets.RoundImageView;
 import com.module.mall.R;
+import com.module.mall.bean.ProductTuanBean;
 
 import java.util.List;
 
@@ -22,17 +25,16 @@ import java.util.List;
 public class PingListAdpter extends RecyclerView.Adapter {
 
     private Context context;
-    private List<Integer> list;
+    private List<ProductTuanBean.DataBean> list;
     private OnItemClickListener listener;
 
-    public PingListAdpter(Context context, List<Integer> list) {
+    public PingListAdpter(Context context, List<ProductTuanBean.DataBean> list) {
         this.list = list;
         this.context = context;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /*资源文件在base中*/
         View view = LayoutInflater.from(context).inflate(R.layout.item_ping_list, null);
         return new ViewHolder(view, viewType);
     }
@@ -40,19 +42,19 @@ public class PingListAdpter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-//        viewHolder.ivPro.setImageResource(list.get(position));
-//
-//        viewHolder.tvPirce.setText("￥0元购");
-//        viewHolder.tvPirce.setVisibility(View.VISIBLE);
-//
+
+
+        GlideManager.loadImage(context, Constant.IMAGE_HOST + list.get(position).getImgurl()
+                , viewHolder.ivHead);
+
+
         viewHolder.tvName.setText(Html.fromHtml(getHtmlStr(position)));
-
-        viewHolder.tvPing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        viewHolder.tvTime.setText("剩余时间：" + list.get(position).getEndTime());
+        GlideManager.loadImage(context, Constant.IMAGE_HOST + list.get(position).getProduct().getImgurl()
+                , viewHolder.ivPro);
+        viewHolder.tvProName.setText(list.get(position).getProduct().getTitle());
+        viewHolder.tvColor.setText(list.get(position).getNormstr());
+        viewHolder.tvPirce.setText("￥" + list.get(position).getAmount());
     }
 
 
@@ -62,7 +64,11 @@ public class PingListAdpter extends RecyclerView.Adapter {
 
 
     private String getHtmlStr(int position) {
-        return "莉莉安    <font color='#a0563c'>剩余3个名额成团</font>";
+
+        return list.get(position).getNickname() + "<font color='#a0563c'>"
+                +"      "
+                + "剩余" + list.get(position).getNeedOrderNum() + "个名额成团"
+                + "</font>";
     }
 
     @Override
@@ -72,7 +78,10 @@ public class PingListAdpter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 10;
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

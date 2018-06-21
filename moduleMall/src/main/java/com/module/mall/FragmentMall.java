@@ -22,6 +22,7 @@ import com.module.base.pouduct.ProductTypeBean;
 import com.module.base.utils.Logger;
 import com.module.mall.adpter.JewelryAdpter;
 import com.module.mall.adpter.MallListAdpter;
+import com.module.mall.bean.ProductTuanBean;
 import com.module.mall.ui.prodetails.ProDetailActivity;
 
 import java.util.Arrays;
@@ -65,7 +66,7 @@ public class FragmentMall extends BaseFragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.getProductType("0");
-        presenter.getProductList("0", catagory);
+
     }
 
     @Override
@@ -145,6 +146,7 @@ public class FragmentMall extends BaseFragment
         for (int i = 0; i < typeBean.getData().size(); i++) {
             tabLayout.addTab(tabLayout.newTab().setText(typeBean.getData().get(i).getCatagory()));
         }
+        presenter.getProductList("0", catagory);
     }
 
     //产品列表
@@ -154,6 +156,12 @@ public class FragmentMall extends BaseFragment
         adpter = new MallListAdpter(mActivity, productBean);
         adpter.addOnItemClickListener(this);
         recyclerView.setAdapter(adpter);
+    }
+
+    //拼团列表
+    @Override
+    public void showTuanList(List<ProductTuanBean.DataBean> productTuan) {
+
     }
 
     @Override

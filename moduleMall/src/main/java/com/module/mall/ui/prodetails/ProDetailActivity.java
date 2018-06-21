@@ -64,6 +64,7 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
     //商品团适配器
     private ProductTuanAdapter tuanAdapter;
     private int typeRule;
+    private String catagory;
 
 
     @Override
@@ -73,7 +74,7 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         uid = SPUtil.getInstance(this).getString(Constant.USERID);
         presenter.ProDetails(pid);
         presenter.productEvaList(pid, uid);
-        presenter.productTuan(uid, pid);
+        presenter.productTuan(uid, pid, true, catagory);
 
     }
 
@@ -122,76 +123,76 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
 
+    }
+
+
+    @Override
+    public void setListener() {
+        super.setListener();
+        tvBuy.setOnClickListener(this);
+        tvPhone.setOnClickListener(this);
+        tvGroup.setOnClickListener(this);
+        tvService.setOnClickListener(this);
+        tvEvaluate.setOnClickListener(this);
+        tvMoreIntroduce.setOnClickListener(this);
+        tvCollection.setOnClickListener(this);
+        layMoreEva.setOnClickListener(this);
+        layPintuan.setOnClickListener(this);
+        layTuanTitle.setOnClickListener(this);
+        //支付押金
+        tvjewelry.setOnClickListener(this);
+    }
+
+    @Override
+    public BasePresenter createPresenter() {
+        presenter = new ProDetailsPresenter();
+        return presenter;
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        Intent intent = null;
+        int i = v.getId();
+        if (i == R.id.pro_collection) {
+            presenter.ProCollection(uid, pid);
         }
-
-
-        @Override
-        public void setListener() {
-            super.setListener();
-            tvBuy.setOnClickListener(this);
-            tvPhone.setOnClickListener(this);
-            tvGroup.setOnClickListener(this);
-            tvService.setOnClickListener(this);
-            tvEvaluate.setOnClickListener(this);
-            tvMoreIntroduce.setOnClickListener(this);
-            tvCollection.setOnClickListener(this);
-            layMoreEva.setOnClickListener(this);
-            layPintuan.setOnClickListener(this);
-            layTuanTitle.setOnClickListener(this);
-            //支付押金
-            tvjewelry.setOnClickListener(this);
+        //更多评价
+        else if (i == R.id.moreeva_lay) {
+            intent = new Intent(this, MoreEvaluateActivity.class);
+            intent.putExtra("pid", pid);
+            startActivity(intent);
         }
-
-        @Override
-        public BasePresenter createPresenter() {
-            presenter = new ProDetailsPresenter();
-            return presenter;
+        //更多拼团
+        else if (i == R.id.produtc_tuan_lay) {
+            intent = new Intent(this, MoreTuanActivity.class);
+            intent.putExtra("pid", pid);
+            startActivity(intent);
         }
+        //客服
+        else if (i == R.id.pro_service) {
 
-        @Override
-        public void onClick(View v) {
-            super.onClick(v);
-            Intent intent = null;
-            int i = v.getId();
-            if (i == R.id.pro_collection) {
-                presenter.ProCollection(uid, pid);
-            }
-            //更多评价
-            else if (i == R.id.moreeva_lay) {
-                intent = new Intent(this, MoreEvaluateActivity.class);
-                intent.putExtra("pid", pid);
-                startActivity(intent);
-            }
-            //更多拼团
-            else if (i == R.id.produtc_tuan_lay) {
-                intent = new Intent(this, MoreTuanActivity.class);
-                intent.putExtra("pid", pid);
-                startActivity(intent);
-            }
-            //客服
-            else if (i == R.id.pro_service) {
-
-            }
-            //电话
-            else if (i == R.id.pro_phone) {
-
-            }
-            //支付
-            else if (i == R.id.pro_buy) {
-                proModelDialog = new ProModelDialog(this);
-                proModelDialog.show();
-            }
-            //跳转至订单详情 0元购
-            else if (i == R.id.pro_group) {
-                intent = new Intent(this, OrderConfirmActivity.class);
-                intent.putExtra("form", "zero");
-                startActivity(intent);
-            } else if (i == R.id.jewelry_buy) {
-                intent = new Intent(this, OrderConfirmActivity.class);
-                intent.putExtra("form", "whole");
-                startActivity(intent);
-            }
         }
+        //电话
+        else if (i == R.id.pro_phone) {
+
+        }
+        //支付
+        else if (i == R.id.pro_buy) {
+            proModelDialog = new ProModelDialog(this);
+            proModelDialog.show();
+        }
+        //跳转至订单详情 0元购
+        else if (i == R.id.pro_group) {
+            intent = new Intent(this, OrderConfirmActivity.class);
+            intent.putExtra("form", "zero");
+            startActivity(intent);
+        } else if (i == R.id.jewelry_buy) {
+            intent = new Intent(this, OrderConfirmActivity.class);
+            intent.putExtra("form", "whole");
+            startActivity(intent);
+        }
+    }
 
     private void initBanner() {
         banner.setImages(Arrays.asList("123", "123"))

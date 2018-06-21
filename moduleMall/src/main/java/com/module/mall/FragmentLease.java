@@ -22,6 +22,7 @@ import com.module.base.pouduct.ProductTypeBean;
 import com.module.base.utils.Logger;
 import com.module.mall.adpter.JewelryAdpter;
 import com.module.mall.adpter.MallListAdpter;
+import com.module.mall.bean.ProductTuanBean;
 import com.module.mall.ui.prodetails.ProDetailActivity;
 
 import java.util.Arrays;
@@ -150,8 +151,6 @@ public class FragmentLease extends BaseFragment
     }
 
 
-
-
     //产品列表
     @Override
     public void showProduct(List<ProductBean.DataBean> productBean) {
@@ -159,6 +158,13 @@ public class FragmentLease extends BaseFragment
         jewelryAdpter = new JewelryAdpter(mActivity, productBean);
         jewelryAdpter.addOnItemClickListener(this);
         recyclerView.setAdapter(jewelryAdpter);
+    }
+
+
+    //拼团列表
+    @Override
+    public void showTuanList(List<ProductTuanBean.DataBean> productTuan) {
+
     }
 
     @Override
