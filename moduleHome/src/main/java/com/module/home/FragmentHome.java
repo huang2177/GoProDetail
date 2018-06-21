@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,7 +30,6 @@ import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -171,8 +168,6 @@ public class FragmentHome extends BaseFragment
     }
 
 
-
-
     @Override
     public void showBanner(BannerBean bannerBean) {
         bannerList = bannerBean.getData();
@@ -210,21 +205,18 @@ public class FragmentHome extends BaseFragment
     }
 
 
-
     @Override
     public void onItemClick(int position) {
-        if (proList.get(position).getType()==0) {
+        if (proList.get(position).getType() == 0) {
             ARouter.getInstance().build(Constant.PRODETAIL)
                     .withString("form", "por")
                     .navigation();
-        }else if (proList.get(position).getType()==1){
+        } else if (proList.get(position).getType() == 1) {
             ARouter.getInstance().build(Constant.PRODETAIL)
                     .withString("form", "jewelry")
                     .navigation();
         }
     }
-
-
 
 
     @Override

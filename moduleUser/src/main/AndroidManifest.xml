@@ -3,12 +3,6 @@
 
     <application>
 
-        <activity
-            android:name="com.yanzhenjie.album.AlbumActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
-
         <!--登录-->
         <activity
             android:name=".ui.login.LoginActivity"

@@ -15,7 +15,7 @@ import com.module.base.app.Constant;
 import com.module.mine.R;
 import com.module.mine.adapter.NoviceAdapter;
 import com.module.mine.bean.HelpBean;
-import com.module.mine.bean.HelpDetalisBean;
+import com.module.mine.bean.HelpDetailBean;
 
 import java.util.List;
 
@@ -25,8 +25,7 @@ import java.util.List;
  */
 
 @Route(path = Constant.NEWHELP)
-public class NewUserHelpActivity extends BaseActivity implements
-        AdapterView.OnItemClickListener
+public class NewUserHelpActivity extends BaseActivity implements AdapterView.OnItemClickListener
         , NewUserHelpView {
 
     private ListView listView;
@@ -91,17 +90,7 @@ public class NewUserHelpActivity extends BaseActivity implements
     }
 
     @Override
-    public void onHelpErr(String error) {
-
-    }
-
-    @Override
-    public void showHelpDetalis(HelpDetalisBean helpBean) {
-
-    }
-
-    @Override
-    public void showHeloErr(String error) {
+    public void showHelpDetail(HelpDetailBean.DataBean helpBean) {
 
     }
 

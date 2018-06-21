@@ -4,7 +4,6 @@ def config = rootProject.ext.android
 
 android {
     compileSdkVersion config.compileSdkVersion
-
     defaultConfig {
         minSdkVersion config.minSdkVersion
         targetSdkVersion config.targetSdkVersion
@@ -18,17 +17,17 @@ android {
             }
         }
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
     api project(':moduleBase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+
 }

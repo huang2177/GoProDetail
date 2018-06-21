@@ -20,12 +20,14 @@ public class Constant {
 
     public final static String POSITION = "position";
 
+    public final static String URL="url";
+
     public final static String FLAG = "flag";
 
     public final static String BLANKNUM = "banlkNum";
 
-    public final static String REQUESTCODE = "requestCode";
 
+    public final static String REQUESTCODE = "requestCode";
 
     public final static String PATH_MAINACTIVITY = "/main/mainActivity";
 
@@ -37,8 +39,8 @@ public class Constant {
 
     public final static String ADDERS = "/mine/AddressActivity";
 
-    public final static String OPENCOIL = "/mine/MyOpenCoilActivity";
 
+    public final static String OPENCOIL = "/mine/MyOpenCoilActivity";
 
     //新手帮助
     public final static String NEWHELP = "/mine/NewUserHelpActivity";
@@ -46,7 +48,6 @@ public class Constant {
     //产品详情
     public final static String PRODETAIL = "/mall/ProDetailActivity";
 
+
     public final static String LOCATION = "/home/BusinessActivity";
-
-
 }

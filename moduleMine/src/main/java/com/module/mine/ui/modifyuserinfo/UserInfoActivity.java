@@ -29,8 +29,6 @@ import java.util.ArrayList;
  */
 
 public class UserInfoActivity extends BaseActivity {
-
-
     private RoundImageView head;
     private EditText nikeName;
     private Button save;
@@ -114,7 +112,7 @@ public class UserInfoActivity extends BaseActivity {
 
     private void initPicker() {
         ImagePicker imagePicker = ImagePicker.getInstance();
-        imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
+       // imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
         imagePicker.setShowCamera(true);                      //显示拍照按钮
         imagePicker.setMultiMode(true);                       //设置单选
         imagePicker.setCrop(true);                            //允许裁剪（单选才有效）

@@ -4,7 +4,7 @@ package com.module.mine.bean;
  * Created by shibing on 18/6/11.
  */
 
-public class HelpDetalisBean {
+public class HelpDetailBean {
 
 
     /**

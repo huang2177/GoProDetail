@@ -1,11 +1,11 @@
 package com.module.mine.ui.help;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -18,9 +18,12 @@ import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.utils.ScreenUtils;
+import com.module.base.widgets.X5WebView;
 import com.module.mine.R;
 import com.module.mine.bean.HelpBean;
-import com.module.mine.bean.HelpDetalisBean;
+import com.module.mine.bean.HelpDetailBean;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import java.util.List;
 
@@ -31,12 +34,12 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * Created by shibing on 18/5/16.
  */
 
-public class VedioDetalisActivity extends BaseActivity
-        implements IMediaPlayer.OnCompletionListener
+public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.OnCompletionListener
         , NewUserHelpView {
 
+    private X5WebView mX5WebView;
     private LinearLayout mLayout;
-    private TextView tvName, tvTime, tvContent;
+    private TextView tvName, tvTime;
     private HIjkPlayerView mPlayerView;
     private static final String VIDEO_HD_URL = "http://flv2.bn.netease.com/videolib3/1611/28/GbgsL3639/HD/movie_index.m3u8";
     private static final String IMAGE_URL = "http://vimg2.ws.126.net/image/snapshot/2016/11/I/M/VC62HMUIM.jpg";
@@ -49,13 +52,17 @@ public class VedioDetalisActivity extends BaseActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initHardwareAccelerate();
         title("视频详情");
         presenter.getHelpDetalis(getIntent().getStringExtra("helpId"));
     }
 
-    @Override
-    public boolean isUseStatusBarColor() {
-        return true;
+    /**
+     * 启用硬件加速(WebView)
+     */
+    private void initHardwareAccelerate() {
+        getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED
+                , android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
     }
 
     @Override
@@ -67,9 +74,11 @@ public class VedioDetalisActivity extends BaseActivity
     public void initView() {
         tvName = findViewById(R.id.tv_name);
         tvTime = findViewById(R.id.tv_time);
-        tvContent = findViewById(R.id.tv_content);
         mLayout = findViewById(R.id.ll_container);
+        mX5WebView = findViewById(R.id.tv_content);
         mPlayerView = findViewById(R.id.ijk_player);
+
+        mX5WebView.setWebViewClient(new MyX5WebClient());
 
         intiPlayer(IMAGE_URL, "");
     }
@@ -108,6 +117,11 @@ public class VedioDetalisActivity extends BaseActivity
         super.onBackPressed();
     }
 
+    /**
+     * 视频播放完成
+     *
+     * @param iMediaPlayer
+     */
     @Override
     public void onCompletion(IMediaPlayer iMediaPlayer) {
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -131,46 +145,29 @@ public class VedioDetalisActivity extends BaseActivity
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mPlayerView.onDestroy();
+        if (mX5WebView != null) {
+            mX5WebView.destroy();
+        }
+        super.onDestroy();
     }
 
 
-
     @Override
-    public void showHelpDetalis(HelpDetalisBean helpBean) {
-        tvName.setText(helpBean.getData().getCreateTime());
-        tvTime.setText(helpBean.getData().getTitle());
-        imagePath = helpBean.getData().getImgurl();
-        vedioUrl = helpBean.getData().getVideoImgurl();
+    public void showHelpDetail(HelpDetailBean.DataBean dataBean) {
+        imagePath = dataBean.getImgurl();
+        tvName.setText(dataBean.getTitle());
+        vedioUrl = dataBean.getVideoImgurl();
+        tvTime.setText(dataBean.getCreateTime());
 
-        if (Build.VERSION.SDK_INT >= 24) {
-            tvContent.setText(Html.fromHtml(helpBean.getData().getContent(), Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            tvContent.setText(Html.fromHtml(helpBean.getData().getContent()));
-        }
-
-
+        mX5WebView.loadData(dataBean.getContent(), "text/html;charset=UTF-8", null);
         intiPlayer(imagePath, "");
     }
-
-    @Override
-    public void showHeloErr(String error) {
-
-    }
-
-
 
     @Override
     public void showHelp(HelpBean helpBean) {
 
     }
-
-    @Override
-    public void onHelpErr(String error) {
-
-    }
-
 
     //视频设置
     private void intiPlayer(String imagePath, String vedioUrl) {
@@ -181,5 +178,18 @@ public class VedioDetalisActivity extends BaseActivity
                 .setMediaQuality(HIjkPlayerView.MEDIA_QUALITY_HIGH)
                 .setOnCompletionListener(this);
         Glide.with(this).load(Constant.IMAGE_HOST + imagePath).into(mPlayerView.mPlayerThumb);
+    }
+
+    private class MyX5WebClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView webView, String url) {
+            if (!url.startsWith("http")) {
+                return true;
+            }
+            Intent intent = new Intent(VedioDetalisActivity.this, WebViewActivity.class);
+            intent.putExtra(Constant.URL, url);
+            startActivity(intent);
+            return true;
+        }
     }
 }

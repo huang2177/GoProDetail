@@ -4,7 +4,7 @@ import com.module.mine.bean.AddersBean;
 import com.module.mine.bean.BlankNumBean;
 import com.module.mine.bean.ComPlaintBean;
 import com.module.mine.bean.HelpBean;
-import com.module.mine.bean.HelpDetalisBean;
+import com.module.mine.bean.HelpDetailBean;
 import com.module.mine.bean.MessAgeBean;
 import com.module.mine.bean.ModifyUserBean;
 import com.module.mine.bean.TeamBean;
@@ -143,7 +143,7 @@ public interface MineHttpService {
      * @return
      */
     @GET("api/Problem/{id}")
-    Observable<HelpDetalisBean> getProblemDetalis(@Path("id") String id);
+    Observable<HelpDetailBean> getProblemDetalis(@Path("id") String id);
 
 
     /**
