@@ -1,4 +1,4 @@
-package com.module.mall.ui;
+package com.module.mall.ui.tuanhall;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,18 @@ import android.widget.TextView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
+import com.module.base.manager.GlideManager;
+import com.module.base.pouduct.ProductBean;
+import com.module.base.utils.Logger;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
 import com.module.mall.adpter.MallListAdpter;
 import com.module.mall.adpter.PingPopleAdapter;
+import com.module.mall.bean.TuanDetalisBean;
+import com.module.mall.ui.OrderConfirmActivity;
 import com.module.mall.ui.prodetails.ProDetailActivity;
 
 import java.util.Arrays;
@@ -30,7 +36,7 @@ import java.util.List;
  * 拼团大厅详情
  */
 
-public class GroupDetalisActivity extends BaseActivity implements OnItemClickListener {
+public class GroupDetalisActivity extends BaseActivity implements OnItemClickListener, TuanDetalisView {
 
 
     //商品模块
@@ -45,23 +51,43 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
 
 
     //  开团适配器
-    PingPopleAdapter popleAdapter;
+    private PingPopleAdapter popleAdapter;
+    private TuanDetalisPresenter presenter;
 
     //商品适配器
     private MallListAdpter porductAdapter;
+
+    private String pid;
+    private List<ProductBean.DataBean> dataBeanList;
+    private String type;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         title("拼团详情");
+
+        pid = getIntent().getStringExtra(Constant.PORDUCTID);
+        presenter.TuanDetalis(pid);
+
+
         initPople();
         initPorduct();
+
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_groupdetalis;
+    }
+
+
+    @Override
+    public BasePresenter createPresenter() {
+        presenter = new TuanDetalisPresenter();
+        return presenter;
     }
 
     @Override
@@ -93,9 +119,7 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
 
-        porductAdapter = new MallListAdpter(this, null);
-        porductAdapter.addOnItemClickListener(this);
-        recyclerView.setAdapter(porductAdapter);
+
     }
 
 
@@ -112,12 +136,6 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
                 , R.drawable.pro
                 , R.drawable.pro
                 , R.drawable.pro);
-    }
-
-
-    @Override
-    public BasePresenter createPresenter() {
-        return null;
     }
 
 
@@ -139,6 +157,33 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
     }
 
 
+    //团详情
+    @Override
+    public void showTuanDetalis(TuanDetalisBean tuanDetalisBean) {
+        GlideManager.loadImage(this
+                , Constant.IMAGE_HOST + tuanDetalisBean.getData().getProduct().getImgurl()
+                , imagePor);
+        tvPorName.setText(tuanDetalisBean.getData().getProduct().getTitle());
+        tvPorPicre.setText("¥" + tuanDetalisBean.getData().getProduct().getAmount());
+        tvPorColor.setText(tuanDetalisBean.getData().getNormstr());
+        tvPople.setText("还差" + tuanDetalisBean.getData().getNeedOrderNum() + "人成团"
+                + ",剩余" + tuanDetalisBean.getData().getEndTime());
+        button.setText("¥" + tuanDetalisBean.getData().getProduct().getAmount() + "立即参团");
+
+        Logger.e("-------444444", tuanDetalisBean.getData().getCatagory() + "");
+
+        presenter.TuanDetalisProduct(type, tuanDetalisBean.getData().getCatagory());
+    }
+
+    @Override
+    public void showTuanDetalisProduct(List<ProductBean.DataBean> productBean) {
+        dataBeanList = productBean;
+        porductAdapter = new MallListAdpter(this, productBean);
+        porductAdapter.addOnItemClickListener(this);
+        recyclerView.setAdapter(porductAdapter);
+    }
+
+
     /**
      * 商品监听事件
      *
@@ -147,6 +192,8 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
      */
     @Override
     public void onItemClick(int position, int type) {
-        startActivity(new Intent(this, ProDetailActivity.class));
+        Intent intent = new Intent(this, ProDetailActivity.class);
+        intent.putExtra(Constant.PORDUCTID, dataBeanList.get(position).getId() + "");
+        startActivity(intent);
     }
 }

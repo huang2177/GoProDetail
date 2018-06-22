@@ -7,17 +7,18 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/ssh_img_item"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="160dp"
             android:padding="10dp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/img_banner2" />
 
         <TextView
             android:id="@+id/ssh_name_tv"
@@ -25,6 +26,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:textColor="@color/colorBlack"
             android:textSize="16.0sp" />
 
@@ -37,6 +40,8 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:lines="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:textColor="@color/colorBrown"
             android:textSize="16.0sp" />
     </LinearLayout>

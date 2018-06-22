@@ -10,6 +10,7 @@
         android:id="@+id/moreeva_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:padding="10dp">
 
         <TextView
@@ -40,7 +41,9 @@
     <com.module.base.widgets.XListView
         android:id="@+id/evaluate_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:divider="@color/colorLittleGray"
+        android:dividerHeight="1px" />
 
 
     <TextView

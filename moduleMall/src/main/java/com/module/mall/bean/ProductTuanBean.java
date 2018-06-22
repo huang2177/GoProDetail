@@ -71,7 +71,7 @@ public class ProductTuanBean {
         private int commission;
         private int couponId;
         private String endTime;
-        private int id;
+        private String id;
         private String imgurl;
         private boolean isPublic;
         private int joinCount;
@@ -126,11 +126,11 @@ public class ProductTuanBean {
             this.endTime = endTime;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 

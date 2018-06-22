@@ -18,12 +18,11 @@ import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.pouduct.ProductBean;
 import com.module.base.pouduct.ProductTypeBean;
-import com.module.base.utils.Logger;
 import com.module.mall.adpter.PingListAdpter;
 import com.module.mall.bean.ProductTuanBean;
-import com.module.mall.ui.GroupDetalisActivity;
+import com.module.mall.ui.prodetails.ProDetailActivity;
+import com.module.mall.ui.tuanhall.GroupDetalisActivity;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -145,7 +144,6 @@ public class FragmentGroup extends BaseFragment
         recyclerView.setAdapter(adpter);
     }
 
-
     /**
      * tab  监听事件
      *
@@ -180,6 +178,8 @@ public class FragmentGroup extends BaseFragment
      */
     @Override
     public void onItemClick(int position, int type) {
-        mActivity.startActivity(new Intent(mActivity, GroupDetalisActivity.class));
+        Intent intent = new Intent(mActivity, GroupDetalisActivity.class);
+        intent.putExtra(Constant.PORDUCTID, tuanList.get(position).getId());
+        startActivity(intent);
     }
 }

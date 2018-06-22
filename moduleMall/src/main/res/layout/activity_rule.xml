@@ -10,11 +10,10 @@
 
 
     <ListView
-        android:id="@+id/moretuan_list"
+        android:id="@+id/rule_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/colorLittleGray"
         android:dividerHeight="1px" />
 
-    <include layout="@layout/no_data_layout" />
 </LinearLayout>

@@ -6,6 +6,7 @@ import com.module.mall.bean.PintuanRuleBean;
 import com.module.mall.bean.ProDetailsBean;
 import com.module.mall.bean.ProductEvaBean;
 import com.module.mall.bean.ProductTuanBean;
+import com.module.mall.bean.TuanDetalisBean;
 
 import java.util.List;
 
@@ -37,8 +38,7 @@ public interface MallHttpService {
      */
 
     @GET("api/Product/List")
-    Observable<ProductBean> getMallPorList(@Query("type") String type
-            , @Query("toIndex") boolean toIndex
+    Observable<ProductBean> getMallPorList(@Query("type") String type, @Query("toIndex") boolean toIndex
             , @Query("catagory") String catagory
     );
 
@@ -90,8 +90,8 @@ public interface MallHttpService {
             , @Query("catagory") String catagory);
 
 
-    @GET("api/Tuan/List")
-    Observable<ProductTuanBean> ProductTuanListGorp(@Query("catagory") String catagory);
+    @GET("api/Tuan/{id}")
+    Observable<TuanDetalisBean> TuanDetalis(@Path("id") String id);
 
 
     /**

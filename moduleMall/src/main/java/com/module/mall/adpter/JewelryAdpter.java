@@ -35,7 +35,6 @@ public class JewelryAdpter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /*资源文件在base中*/
         View view = LayoutInflater.from(context).inflate(R.layout.jewelry_list, null);
         return new ViewHolder(view, viewType);
     }
@@ -56,10 +55,6 @@ public class JewelryAdpter extends RecyclerView.Adapter {
         this.listener = listener;
     }
 
-
-    private String getHtmlStr(int position) {
-        return "莉莉安    <font color='#a0563c'>剩余3个名额成团</font>";
-    }
 
     @Override
     public long getItemId(int i) {
@@ -83,7 +78,6 @@ public class JewelryAdpter extends RecyclerView.Adapter {
             ivPro = view.findViewById(R.id.ssh_img_item);
             tvName = view.findViewById(R.id.ssh_name_tv);
             tvPirce = view.findViewById(R.id.ssh_yj_tv);
-
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

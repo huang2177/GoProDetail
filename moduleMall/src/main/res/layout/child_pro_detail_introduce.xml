@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:showIn="@layout/activity_pro_detail">
 
     <LinearLayout
+        android:id="@+id/rule_lay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/order_shoum_tv"
@@ -32,7 +34,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="10dp"
         android:background="@color/colorLittleGray" />
 
 
@@ -42,6 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:lineSpacingExtra="3dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:textSize="14.0sp" />
 
 
@@ -86,8 +90,6 @@
             android:text="前往华泰珠宝官方商城"
             android:textColor="@color/colorWhite"
             android:textSize="16.0sp" />
-
-
     </LinearLayout>
 
 

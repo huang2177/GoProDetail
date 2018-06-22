@@ -12,7 +12,8 @@
         android:id="@+id/list_moreeval"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null" />
+        android:divider="@color/colorLittleGray"
+        android:dividerHeight="1px" />
 
     <include layout="@layout/no_data_layout" />
 

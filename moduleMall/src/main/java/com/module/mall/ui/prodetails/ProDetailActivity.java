@@ -17,6 +17,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.manager.GlideManager;
+import com.module.base.utils.Logger;
 import com.module.base.utils.SPUtil;
 import com.module.base.utils.ToastUtil;
 import com.module.base.widgets.CommonAdapter;
@@ -37,6 +39,7 @@ import com.module.mall.ui.moretuan.MoreTuanActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,7 +52,7 @@ import java.util.List;
 public class ProDetailActivity extends BaseActivity implements ProDetailsView {
 
     Banner banner;
-    private LinearLayout layoutEvaluate, layMoreEva, layPintuan, layJewelry, layTuanTitle;
+    private LinearLayout layoutEvaluate, layMoreEva, layPintuan, layJewelry, layTuanTitle, layRule;
     private XListView lvIntroduce, lvImage, lvGrouping, lvEvaluate;
     private TextView tvMoreIntroduce, tvEvaluate, tvService, tvPhone, tvBuy, tvGroup, tvShuom, tvjewelry;
     private TextView tvName, tvPingedNum, tvPirce, tvOldPirce, tvFreight, tvInventory, tvCollection, tvNoEvaluate;
@@ -65,6 +68,9 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
     private ProductTuanAdapter tuanAdapter;
     private int typeRule;
     private String catagory;
+    private List<String> bannerList;
+    //说明id
+    private String ruleId;
 
 
     @Override
@@ -120,8 +126,12 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         layPintuan = findViewById(R.id.order_pintuan_lay);
         layJewelry = findViewById(R.id.order_jewelry_lay);
         layTuanTitle = findViewById(R.id.produtc_tuan_lay);
+        layRule = findViewById(R.id.rule_lay);
+
         tvOldPirce.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
+        //benner
+        bannerList = new ArrayList<>();
 
     }
 
@@ -139,6 +149,7 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         layMoreEva.setOnClickListener(this);
         layPintuan.setOnClickListener(this);
         layTuanTitle.setOnClickListener(this);
+        layRule.setOnClickListener(this);
         //支付押金
         tvjewelry.setOnClickListener(this);
     }
@@ -169,6 +180,12 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
             intent.putExtra("pid", pid);
             startActivity(intent);
         }
+        //说明详细
+        else if (i == R.id.rule_lay) {
+            intent = new Intent(this, RuleDetalisActivity.class);
+            intent.putExtra("ruleId", ruleId);
+            startActivity(intent);
+        }
         //客服
         else if (i == R.id.pro_service) {
 
@@ -194,12 +211,6 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         }
     }
 
-    private void initBanner() {
-        banner.setImages(Arrays.asList("123", "123"))
-                .setImageLoader(new GlideImageLoader())
-                .start();
-    }
-
 
     //详情
     @Override
@@ -207,7 +218,7 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         tvName.setText(proDetailsBean.getData().getTitle());
         tvPingedNum.setText(proDetailsBean.getData().getTuanCount() + "人拼团成功");
         tvPirce.setText(proDetailsBean.getData().getTuanAmount() + "元购");
-        tvOldPirce.setText(proDetailsBean.getData().getAmount());
+        tvOldPirce.setText("¥" + proDetailsBean.getData().getAmount());
         tvFreight.setText("运费¥" + proDetailsBean.getData().getFreight());
         tvInventory.setText("库存" + proDetailsBean.getData().getStockCount() + "件");
         if (Build.VERSION.SDK_INT >= 24) {
@@ -241,6 +252,20 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         } else {
             presenter.ZulinRule(pid);
         }
+
+        String str[] = proDetailsBean.getData().getBannerImgurl().split(",");
+        bannerList = Arrays.asList(str);
+        initBanner();
+    }
+
+
+    /**
+     * banner 图
+     */
+    private void initBanner() {
+        banner.setImages(bannerList)
+                .setImageLoader(new GlideImageLoader())
+                .start();
     }
 
 
@@ -291,21 +316,29 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
     @Override
     public void showRule(PintuanRuleBean ruleBean) {
         tvIntroduce.setText(ruleBean.getData().getTitle());
+        ruleId = ruleBean.getData().getId();
     }
 
+
+
+
+
+
+   /* */
 
     /**
      * 重写图片加载器
      */
     class GlideImageLoader extends ImageLoader {
         @Override
-        public void displayImage(Context context, Object path, ImageView imageView) {
-            //Glide.with(context).load(path).into(imageView);
-            imageView.setImageResource(R.drawable.pro_detail);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        public void displayImage(Context context, Object o, ImageView imageView) {
+            String imgurl = null;
+            for (int i = 0; i < bannerList.size(); i++) {
+                imgurl = bannerList.get(i);
+            }
+            GlideManager.loadImage(context, Constant.IMAGE_HOST + imgurl, imageView);
         }
     }
-
 
     @Override
     public void onPause() {
