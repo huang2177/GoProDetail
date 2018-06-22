@@ -29,6 +29,9 @@ public class Constant {
 
     public final static String REQUESTCODE = "requestCode";
 
+    public final static String PORDUCTID = "porductid";
+
+
     public final static String PATH_MAINACTIVITY = "/main/mainActivity";
 
     public final static String PATH_LOGINACTIVITY = "/user/loginActivity";

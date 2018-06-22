@@ -168,7 +168,7 @@ public class FragmentMine extends BaseFragment implements
 
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, int type) {
         Intent intent = null;
         switch (position) {
             //我的团队

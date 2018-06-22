@@ -1,20 +1,16 @@
 package com.module.mine.ui.adders;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+
 import android.widget.TextView;
 
-import com.lljjcoder.citywheel.CityConfig;
-import com.lljjcoder.style.citylist.CityListSelectActivity;
-import com.lljjcoder.style.citylist.utils.CityListLoader;
-import com.lljjcoder.style.citypickerview.CityPickerView;
-import com.lljjcoder.style.citythreelist.ProvinceActivity;
+
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+
+        <com.module.base.widgets.RoundImageView
+            android:id="@+id/item_tuan_head"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_mine_head" />
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/item_tuan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="丽丽安"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@+id/item_tuan_numer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="剩余3个名额拼团"
+                android:textColor="@color/colorBrown" />
+
+
+            <TextView
+                android:id="@+id/item_tuan_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_tuan_name"
+                android:layout_marginTop="5dp"
+                android:text="剩余时间：12小时11分21秒" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_btn_brown1"
+            android:drawableRight="@drawable/ic_right_back"
+            android:gravity="center"
+            android:text="去拼团"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+</LinearLayout>

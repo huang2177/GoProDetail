@@ -72,7 +72,7 @@ public class ProductBean {
         private String bannerImgurl;
         private String title;
         private String amount;
-        private int tuanAmount;
+        private String tuanAmount;
         private double starCount;
         private double freight;
         private int stockCount;
@@ -129,11 +129,11 @@ public class ProductBean {
             this.amount = amount;
         }
 
-        public int getTuanAmount() {
+        public String getTuanAmount() {
             return tuanAmount;
         }
 
-        public void setTuanAmount(int tuanAmount) {
+        public void setTuanAmount(String tuanAmount) {
             this.tuanAmount = tuanAmount;
         }
 

@@ -22,7 +22,8 @@ import com.module.base.pouduct.ProductTypeBean;
 import com.module.base.utils.Logger;
 import com.module.mall.adpter.JewelryAdpter;
 import com.module.mall.adpter.MallListAdpter;
-import com.module.mall.ui.ProDetailActivity;
+import com.module.mall.bean.ProductTuanBean;
+import com.module.mall.ui.prodetails.ProDetailActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,12 +43,11 @@ public class FragmentMall extends BaseFragment
     private EditText editSearch;
     private RecyclerView recyclerView;
     private TextView tvLocation, tvNewUserPoint;
-
-    private int flag;
     private MallListAdpter adpter;
-    private JewelryAdpter jewelryAdpter;
-
     private static FragmentMall fragment;
+    private String catagory;
+    private List<ProductBean.DataBean> list;
+
     private MallPresenter presenter;
     private List<ProductTypeBean.DataBean> typeList;
 
@@ -65,12 +65,8 @@ public class FragmentMall extends BaseFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter.getProductList("");   //默认加载全部
-        if (flag == 1) {
-            presenter.getProductType("0");
-        } else {
-            presenter.getProductType("1");
-        }
+        presenter.getProductType("0");
+
     }
 
     @Override
@@ -91,45 +87,17 @@ public class FragmentMall extends BaseFragment
         recyclerView = viewRoot.findViewById(R.id.ping_recycle);
         tvLocation = viewRoot.findViewById(R.id.home_location_tv);
         tvNewUserPoint = viewRoot.findViewById(R.id.home_new_user_tv);
-
-        flag = getArguments().getInt(Constant.FLAG);
-
-        initTab();
         initProduct();
     }
 
-    private void initTab() {
-
-    }
 
     private void initProduct() {
         GridLayoutManager manager = new GridLayoutManager(mActivity, 2);
         manager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
-        if (flag == 1) {
-            adpter = new MallListAdpter(mActivity, getData());
-            adpter.addOnItemClickListener(this);
-            recyclerView.setAdapter(adpter);
-        } else {
-            jewelryAdpter = new JewelryAdpter(mActivity);
-            jewelryAdpter.addOnItemClickListener(this);
-            recyclerView.setAdapter(jewelryAdpter);
-        }
-
-
     }
 
-    private List<Integer> getData() {
-        return Arrays.asList(R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro
-                , R.drawable.pro);
-    }
 
     @Override
     public void setListener() {
@@ -153,9 +121,9 @@ public class FragmentMall extends BaseFragment
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         if (tab.getPosition() == 0) {
-            presenter.getProductList("");
+            presenter.getProductList("0", catagory);
         } else {
-            presenter.getProductList(typeList.get(tab.getPosition() - 1).getCatagory());
+            presenter.getProductList("0", typeList.get(tab.getPosition() - 1).getId() + "");
         }
     }
 
@@ -169,38 +137,37 @@ public class FragmentMall extends BaseFragment
 
     }
 
-    @Override
-    public void onItemClick(int position) {
-        Intent intent;
-        //商品
-        if (flag == 1) {
-            intent = new Intent(mActivity, ProDetailActivity.class);
-            intent.putExtra("form", "por");
-            startActivity(intent);
-        }
-        //首饰
-        else {
-            intent = new Intent(mActivity, ProDetailActivity.class);
-            intent.putExtra("form", "jewelry");
-            startActivity(intent);
-        }
-    }
-
 
     //产品类别列表
     @Override
     public void showProductType(ProductTypeBean typeBean) {
         typeList = typeBean.getData();
         tabLayout.addTab(tabLayout.newTab().setText("全部"), 0, true);
-        Log.e("2-----2222-----222", typeBean.getData().size() + "");
         for (int i = 0; i < typeBean.getData().size(); i++) {
             tabLayout.addTab(tabLayout.newTab().setText(typeBean.getData().get(i).getCatagory()));
         }
+        presenter.getProductList("0", catagory);
     }
 
     //产品列表
     @Override
-    public void showProduct(ProductBean productBean) {
-        Log.e("1------111----11", "showProduct: " + productBean.getData().size());
+    public void showProduct(List<ProductBean.DataBean> productBean) {
+        list = productBean;
+        adpter = new MallListAdpter(mActivity, productBean);
+        adpter.addOnItemClickListener(this);
+        recyclerView.setAdapter(adpter);
+    }
+
+    //拼团列表
+    @Override
+    public void showTuanList(List<ProductTuanBean.DataBean> productTuan) {
+
+    }
+
+    @Override
+    public void onItemClick(int position, int type) {
+        Intent intent = new Intent(mActivity, ProDetailActivity.class);
+        intent.putExtra(Constant.PORDUCTID, list.get(position).getId() + "");
+        startActivity(intent);
     }
 }

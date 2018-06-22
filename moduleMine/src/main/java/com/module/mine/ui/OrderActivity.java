@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
@@ -101,7 +99,7 @@ public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelect
 
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, int type) {
         startActivity(new Intent(this,OrderDetalisActivity.class));
     }
 }

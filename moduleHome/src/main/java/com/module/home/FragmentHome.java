@@ -22,7 +22,6 @@ import com.module.base.pouduct.ProductBean;
 import com.module.base.utils.Logger;
 import com.module.base.widgets.dialog.CommonDialog;
 import com.module.home.adpter.HomeListAdpter;
-import com.module.home.adpter.HomeListgGlodAdpter;
 import com.module.home.bean.BannerBean;
 import com.module.home.bean.IndexDataBean;
 import com.module.home.ui.BusinessActivity;
@@ -37,8 +36,7 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
-public class FragmentHome extends BaseFragment
-        implements CommonDialog.DialogClickListener
+public class FragmentHome extends BaseFragment implements CommonDialog.DialogClickListener
         , OnItemClickListener
         , HomeView, OnBannerListener {
 
@@ -51,14 +49,8 @@ public class FragmentHome extends BaseFragment
     private RecyclerView recyGold;    //珠宝
 
     private GridLayoutManager manager, manager1;
-    private HomeListAdpter adpter;
-    private List<BannerBean.DataBean> bannerList;
+    private HomeListAdpter mPhoneAdapter, mGoldAdapter;
     private HomePresenter presenter;
-    private List<ProductBean.DataBean> proList;
-    private List<ProductBean.DataBean> phoneList;
-
-    private HomeListgGlodAdpter glodAdpter;
-
     private static FragmentHome fragment;
 
 
@@ -119,6 +111,7 @@ public class FragmentHome extends BaseFragment
         manager = new GridLayoutManager(mActivity, 2);
         recyPhone.setLayoutManager(manager);
         recyPhone.setNestedScrollingEnabled(false);
+
     }
 
 
@@ -126,6 +119,7 @@ public class FragmentHome extends BaseFragment
         manager1 = new GridLayoutManager(mActivity, 2);
         recyGold.setLayoutManager(manager1);
         recyGold.setNestedScrollingEnabled(false);
+
     }
 
 
@@ -170,7 +164,6 @@ public class FragmentHome extends BaseFragment
 
     @Override
     public void showBanner(BannerBean bannerBean) {
-        bannerList = bannerBean.getData();
         banner.setImages(bannerBean.getData())
                 .setImageLoader(new GlideImageLoader())
                 .setOnBannerListener(this)
@@ -190,22 +183,25 @@ public class FragmentHome extends BaseFragment
         tvPinged.setText(indexDataBean.getData().getSuccessCount() + "笔" + "\n拼团成功");
     }
 
-
-    //产品
     @Override
     public void showProduct(ProductBean productBean) {
-        proList = productBean.getData();
-        adpter = new HomeListAdpter(mActivity, productBean.getData());
-        recyPhone.setAdapter(adpter);
-        adpter.addOnItemClickListener(this);
 
-        glodAdpter = new HomeListgGlodAdpter(mActivity, productBean.getData());
-        recyGold.setAdapter(glodAdpter);
-        glodAdpter.addHoldOnItemClickListener(this);
     }
 
 
+    //产品
     @Override
+    public void showProduct(List<ProductBean.DataBean> phoneList, List<ProductBean.DataBean> goldList) {
+        mPhoneAdapter = new HomeListAdpter(mActivity, phoneList);
+        recyPhone.setAdapter(mPhoneAdapter);
+        mPhoneAdapter.addOnItemClickListener(this, 1);
+
+        mGoldAdapter = new HomeListAdpter(mActivity, goldList);
+        recyGold.setAdapter(mGoldAdapter);
+        mGoldAdapter.addOnItemClickListener(this, 2);
+    }
+
+
     public void onItemClick(int position) {
         if (proList.get(position).getType() == 0) {
             ARouter.getInstance().build(Constant.PRODETAIL)
@@ -216,6 +212,8 @@ public class FragmentHome extends BaseFragment
                     .withString("form", "jewelry")
                     .navigation();
         }
+    }
+
     }
 
 

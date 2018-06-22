@@ -5,5 +5,5 @@ package com.module.base.listener;
  */
 
 public interface OnItemClickListener {
-    void onItemClick(int position);
+    void onItemClick(int position, int type);
 }

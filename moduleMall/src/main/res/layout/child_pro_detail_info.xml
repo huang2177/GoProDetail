@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     tools:showIn="@layout/activity_pro_detail">
 
@@ -23,79 +24,87 @@
         android:textColor="@color/colorLittleBlack"
         android:textSize="16.0sp" />
 
+
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-        <TextView
-            android:id="@+id/pro_pinged_num"
+        <RelativeLayout
+            android:id="@+id/title_ray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3120人拼团成功"
-            android:textColor="@color/colorBrown" />
+            android:layout_marginTop="5dp">
 
-        <RatingBar
-            android:id="@+id/ratingbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/pro_pinged_num"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/pro_pinged_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3120人拼团成功"
+                android:textColor="@color/colorBrown" />
 
-        <LinearLayout
+            <RatingBar
+                android:id="@+id/ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/pro_pinged_num"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pro_pinged_num"
-            android:layout_marginRight="50dp"
-            android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:paddingTop="5dp">
+            android:layout_below="@+id/title_ray"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/pro_pirce"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1.2"
+                android:layout_centerVertical="true"
                 android:background="@drawable/bg_btn_brown1"
                 android:gravity="center"
                 android:text="0元购"
                 android:textColor="@color/colorWhite"
-                android:textSize="18.0sp" />
+                android:textSize="16.0sp" />
 
             <TextView
                 android:id="@+id/pro_old_pirce"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/pro_pirce"
                 android:text="￥4321"
                 android:textSize="16.0sp" />
 
             <TextView
                 android:id="@+id/pro_freight"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/pro_old_pirce"
                 android:text="运费 ￥0"
                 android:textSize="16.0sp" />
 
             <TextView
                 android:id="@+id/pro_inventory"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/pro_freight"
                 android:gravity="center"
                 android:text="库存 3件"
                 android:textSize="16.0sp" />
-
-        </LinearLayout>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/pro_collection"

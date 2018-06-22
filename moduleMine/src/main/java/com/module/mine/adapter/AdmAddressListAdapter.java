@@ -61,7 +61,7 @@ public class AdmAddressListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(position);
+                    listener.onItemClick(position, -1);
                 }
             }
         });
@@ -70,7 +70,7 @@ public class AdmAddressListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(position);
+                    listener.onItemClick(position, -1);
                 }
             }
         });
@@ -78,7 +78,7 @@ public class AdmAddressListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(position);
+                    listener.onItemClick(position, -1);
                 }
             }
         });

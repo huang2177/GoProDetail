@@ -2,7 +2,6 @@ package com.module.mall.adpter;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
-import com.module.mall.FragmentMall;
+import com.module.base.manager.GlideManager;
+import com.module.base.pouduct.ProductBean;
 import com.module.mall.R;
 
 import java.util.List;
@@ -24,10 +25,10 @@ import java.util.List;
 public class MallListAdpter extends RecyclerView.Adapter {
 
     private Context context;
-    private List<Integer> list;
+    private List<ProductBean.DataBean> list;
     private OnItemClickListener listener;
 
-    public MallListAdpter(Context context, List<Integer> list) {
+    public MallListAdpter(Context context, List<ProductBean.DataBean> list) {
         this.list = list;
         this.context = context;
     }
@@ -41,15 +42,20 @@ public class MallListAdpter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.ivPro.setImageResource(list.get(position));
 
-        viewHolder.tvPirce.setText("￥0元购");
+
+        GlideManager.loadImage(context
+                , Constant.IMAGE_HOST + list.get(position).getImgurl()
+                , viewHolder.ivPro);
+
+
+        viewHolder.tvPirce.setText(list.get(position).getTuanAmount() + "元购");
         viewHolder.tvPirce.setVisibility(View.VISIBLE);
 
         viewHolder.tvName.setVisibility(View.VISIBLE);
-        viewHolder.tvName.setText("Apple iPhone X 256G");
+        viewHolder.tvName.setText(list.get(position).getTitle());
 
-        viewHolder.tvOldPirce.setText("￥7467");
+        viewHolder.tvOldPirce.setText(list.get(position).getAmount());
         viewHolder.tvOldPirce.setVisibility(View.VISIBLE);
 
     }
@@ -61,7 +67,10 @@ public class MallListAdpter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     @Override
@@ -88,7 +97,7 @@ public class MallListAdpter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(viewType);
+                    listener.onItemClick(viewType, -1);
                 }
             });
         }

@@ -1,42 +1,40 @@
-package com.module.mall.ui;
+package com.module.mall.ui.prodetails;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
-import android.widget.ListView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.utils.Logger;
 import com.module.mall.R;
-import com.module.mall.adpter.MoreEvaluateAdapter;
-
 
 /**
- * Created by shibing on 18/5/28.
+ * Created by shibing on 18/6/21.
  */
 
-public class MoreEvaluateActivity extends BaseActivity {
+public class RuleDetalisActivity extends BaseActivity {
 
 
-    private ListView listView;
-    private MoreEvaluateAdapter adapter;
+    private String ruleId;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title("全部评价");
+        title("详细说明");
+        ruleId = getIntent().getStringExtra("ruleId");
+        Logger.e("<<<<<<<", ruleId);
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_moreeval;
+        return R.layout.activity_rule;
     }
 
     @Override
     public void initView() {
-        listView = findViewById(R.id.list_moreeval);
-        adapter = new MoreEvaluateAdapter(this);
-        listView.setAdapter(adapter);
+
     }
 
     @Override

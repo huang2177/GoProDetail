@@ -30,8 +30,7 @@
                 android:background="@color/colorRiceWhite" />
 
             <!--正在拼团-->
-            <include layout="@layout/child_pro_detail_grouping"
-                />
+            <include layout="@layout/child_pro_detail_grouping" />
 
             <View
                 android:layout_width="match_parent"

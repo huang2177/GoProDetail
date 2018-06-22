@@ -1,21 +1,18 @@
 package com.module.home.ui;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
@@ -35,11 +32,8 @@ import java.util.List;
  * Created by shibing on 18/6/10.
  */
 
-public class BusinessActivity extends BaseActivity implements BusinView
-        , OnItemClickListener
-        , CommonDialog.DialogClickListener {
-
-
+@Route(path = Constant.LOCATION)
+public class BusinessActivity extends BaseActivity implements BusinView, OnItemClickListener, CommonDialog.DialogClickListener {
     private TextView tvCity;
     private LinearLayout layQiehuan;
     private RecyclerView recyclerView;
@@ -68,7 +62,15 @@ public class BusinessActivity extends BaseActivity implements BusinView
         layQiehuan = findViewById(R.id.busin_qiehun_lay);
         recyclerView = findViewById(R.id.busin_recyler);
         layout = findViewById(R.id.nadata_lay);
+
         initRecy();
+    }
+
+
+    public BusinessActivity background(int resColor) {
+        int color = ContextCompat.getColor(this, resColor);
+        titleBarContainer.setBackgroundColor(color);
+        return this;
     }
 
 
@@ -101,7 +103,7 @@ public class BusinessActivity extends BaseActivity implements BusinView
         adapter.addOnItemClickListener(this);
         adapter.TelOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(int position, int type) {
                 tel = list.get(position).getTel();
                 showDialog();
             }
@@ -127,7 +129,7 @@ public class BusinessActivity extends BaseActivity implements BusinView
 
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, int type) {
         ToastUtil.show(this, "营业厅详情");
     }
 
@@ -148,6 +150,3 @@ public class BusinessActivity extends BaseActivity implements BusinView
         startActivity(intent);
     }
 }
-
-
-

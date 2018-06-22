@@ -3,14 +3,16 @@
 
     <application>
         <activity
-            android:name=".ui.ProDetailActivity"
+            android:name=".ui.prodetails.ProDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.OrderConfirmActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.ReturnRuleActivity" />
-        <activity android:name=".ui.MoreEvaluateActivity" />
+        <activity android:name=".ui.moreevalvate.MoreEvaluateActivity" />
         <activity android:name=".JewelryDetalisActivity" />
-        <activity android:name=".ui.GroupDetalisActivity" />
+        <activity android:name=".ui.tuanhall.GroupDetalisActivity" />
+        <activity android:name=".ui.moretuan.MoreTuanActivity" />
+        <activity android:name=".ui.prodetails.RuleDetalisActivity" />
     </application>
 </manifest>
