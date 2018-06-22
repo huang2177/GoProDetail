@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,7 +37,8 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
-public class FragmentHome extends BaseFragment implements CommonDialog.DialogClickListener
+public class FragmentHome extends BaseFragment
+        implements CommonDialog.DialogClickListener
         , OnItemClickListener
         , HomeView, OnBannerListener {
 
@@ -183,11 +185,6 @@ public class FragmentHome extends BaseFragment implements CommonDialog.DialogCli
         tvPinged.setText(indexDataBean.getData().getSuccessCount() + "笔" + "\n拼团成功");
     }
 
-    @Override
-    public void showProduct(ProductBean productBean) {
-
-    }
-
 
     //产品
     @Override
@@ -202,17 +199,12 @@ public class FragmentHome extends BaseFragment implements CommonDialog.DialogCli
     }
 
 
-    public void onItemClick(int position) {
-        if (proList.get(position).getType() == 0) {
-            ARouter.getInstance().build(Constant.PRODETAIL)
-                    .withString("form", "por")
-                    .navigation();
-        } else if (proList.get(position).getType() == 1) {
-            ARouter.getInstance().build(Constant.PRODETAIL)
-                    .withString("form", "jewelry")
-                    .navigation();
-        }
-    }
+    @Override
+    public void onItemClick(int id, int type) {
+        //String from = type == 1 ? "por" : "jewelry";
+        ARouter.getInstance().build(Constant.PRODETAIL)
+                .withString(Constant.PORDUCTID, id + "")
+                .navigation();
 
     }
 
