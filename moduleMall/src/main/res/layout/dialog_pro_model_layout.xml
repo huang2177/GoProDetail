@@ -1,149 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp">
-
-            <ImageView
-                android:id="@+id/model_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/pro" />
-
-            <TextView
-                android:id="@+id/model_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/model_img"
-                android:text="APPLE iPhone X 256G 黑白可选 5.1寸智能手机"
-                android:textColor="@color/colorLittleBlack1"
-                android:textSize="16.0sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/model_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/model_name"
-                android:layout_toRightOf="@+id/model_img"
-                android:text="￥0"
-                android:textColor="@color/colorBrown"
-                android:textSize="16.0sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/model_inventory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/model_price"
-                android:layout_toRightOf="@+id/model_img"
-                android:text="库存 12件" />
-
-            <TextView
-                android:id="@+id/model_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/model_inventory"
-                android:layout_toRightOf="@+id/model_img"
-                android:text="选择颜色 规格" />
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_margin="10dp"
-            android:background="@color/colorLittleGray" />
-
-        <TextView
+        <ImageView
+            android:id="@+id/model_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:text="颜色" />
-
-        <com.module.base.widgets.XGridView
-            android:id="@+id/model_gv_color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:horizontalSpacing="10dp"
-            android:numColumns="3"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:verticalSpacing="10dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_margin="10dp"
-            android:background="@color/colorLittleGray" />
+            android:src="@drawable/pro" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="容量" />
-
-        <com.module.base.widgets.XGridView
-            android:id="@+id/model_gv_capacity"
+            android:id="@+id/model_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:horizontalSpacing="10dp"
-            android:numColumns="3"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:verticalSpacing="10dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_margin="10dp"
-            android:background="@color/colorLittleGray" />
+            android:layout_toRightOf="@+id/model_img"
+            android:text="APPLE iPhone X 256G 黑白可选 5.1寸智能手机"
+            android:textColor="@color/colorLittleBlack1"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="版本" />
-
-        <com.module.base.widgets.XGridView
-            android:id="@+id/model_gv_veision"
+            android:id="@+id/model_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:horizontalSpacing="10dp"
-            android:numColumns="3"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:verticalSpacing="10dp" />
+            android:layout_below="@+id/model_name"
+            android:layout_toRightOf="@+id/model_img"
+            android:text="￥0"
+            android:textColor="@color/colorBrown"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/model_btn"
+        <TextView
+            android:id="@+id/model_inventory"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bg_btn_brown4"
-            android:text="确 定"
-            android:textColor="@color/colorWhite"
-            android:textSize="18.0sp" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/model_price"
+            android:layout_toRightOf="@+id/model_img"
+            android:text="库存 12件" />
 
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+        <TextView
+            android:id="@+id/model_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/model_inventory"
+            android:layout_toRightOf="@+id/model_img"
+            android:text="选择颜色 规格" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_margin="10dp"
+        android:background="@color/colorLittleGray" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dialog_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/model_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_btn_brown4"
+        android:text="确 定"
+        android:textColor="@color/colorWhite"
+        android:textSize="18.0sp" />
+
+</LinearLayout>

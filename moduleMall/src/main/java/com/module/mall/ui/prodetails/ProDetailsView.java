@@ -1,6 +1,5 @@
 package com.module.mall.ui.prodetails;
 
-import com.module.base.pouduct.ProductBean;
 import com.module.mall.bean.PintuanRuleBean;
 import com.module.mall.bean.ProDetailsBean;
 import com.module.mall.bean.ProductEvaBean;
@@ -14,15 +13,13 @@ import java.util.List;
 
 public interface ProDetailsView {
 
-    void showDetails(ProDetailsBean proDetailsBean);
-
+    void showDetails(ProDetailsBean.DataBean proDetailsBean);
 
     void showCollection(ProDetailsBean proDetailsBean);
 
     void showProductEva(List<ProductEvaBean.DataBean> productEva);
 
     void showProductEvaEmpty();
-
 
     void showTuanList(List<ProductTuanBean.DataBean> productTuan);
 

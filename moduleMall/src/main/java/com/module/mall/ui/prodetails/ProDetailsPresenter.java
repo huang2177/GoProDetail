@@ -30,7 +30,6 @@ public class ProDetailsPresenter extends BasePresenter<ProDetailsView> {
         mService = HttpManager.getInstance().getService(MallHttpService.class);
     }
 
-
     /**
      * 获取产品详情
      *
@@ -44,7 +43,7 @@ public class ProDetailsPresenter extends BasePresenter<ProDetailsView> {
                 if (proDetailsBean == null) {
                     return;
                 }
-                proDetailsView.showDetails(proDetailsBean);
+                proDetailsView.showDetails(proDetailsBean.getData());
             }
         }));
     }
@@ -143,5 +142,4 @@ public class ProDetailsPresenter extends BasePresenter<ProDetailsView> {
             }
         }));
     }
-
 }

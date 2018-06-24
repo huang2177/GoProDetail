@@ -5,16 +5,20 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.module.base.utils.Logger;
 import com.module.base.widgets.CommonAdapter;
 import com.module.base.widgets.ViewHolder;
+import com.module.base.widgets.XListView;
 import com.module.base.widgets.dialog.XBottomDialog;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
@@ -30,35 +34,20 @@ import java.util.List;
  */
 
 public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemClickListener {
-
-    private static final HashMap<Integer, ModelAdapter> adapterArray = new HashMap<>();
-
     private ImageView ivPro;
     private Button btnConfirm;
-    private Drawable drawableBrown, drawableBlack;
-    private XGridView gvColor, gvCapacity, gvVersion;
+    private RecyclerView mListView;
     private TextView tvName, tvPrice, tvInventory, tvColor;
 
-
-    private int colorBrown, colorBlack;
-    private String strColor, strCapacity, strVersion;
-
-    //规格
-    private List<ProDetailsBean.DataBean.NormsBean> normsBean;
     private String from;
 
 
-    public ProModelDialog(@NonNull Activity activity, List<ProDetailsBean.DataBean.NormsBean> normsBean, String from) {
+    public ProModelDialog(@NonNull Activity activity, ProDetailsBean.DataBean dataBean, String from) {
         super(activity);
-        this.normsBean = normsBean;
         this.from = from;
 
-        Logger.e("--------", normsBean.size() + "");
-
-        colorBrown = ContextCompat.getColor(activity, R.color.colorBrown);
-        colorBlack = ContextCompat.getColor(activity, R.color.colorLittleBlack1);
-        drawableBrown = ContextCompat.getDrawable(activity, R.drawable.shape_brown);
-        drawableBlack = ContextCompat.getDrawable(activity, R.drawable.shape_gray0);
+        mListView.setLayoutManager(new LinearLayoutManager(activity));
+        mListView.setAdapter(new ModeDialogAdapter(activity, dataBean.getNorms()));
     }
 
     @Override
@@ -70,81 +59,16 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
     protected void initView() {
         ivPro = findViewById(R.id.model_img);
         tvName = findViewById(R.id.model_name);
+        mListView = findViewById(R.id.dialog_lv);
         tvPrice = findViewById(R.id.model_price);
         tvColor = findViewById(R.id.model_color);
         btnConfirm = findViewById(R.id.model_btn);
         tvInventory = findViewById(R.id.model_inventory);
-
-        gvColor = findViewById(R.id.model_gv_color);
-        gvVersion = findViewById(R.id.model_gv_veision);
-        gvCapacity = findViewById(R.id.model_gv_capacity);
-
-        initColor();
-        initCapacity();
-        initVersion();
-
     }
-
-    private void initColor() {
-
-
-        List<String> colorTexts = new ArrayList<>();
-
-        for (int i = 0; i < normsBean.size(); i++) {
-            for (int j = 0; j < normsBean.get(j).getItems().size(); j++) {
-                colorTexts.add(normsBean.get(j).getName());
-            }
-        }
-
-
-        // List<String> colorTexts = Arrays.asList("白色", "黑色");
-        /*if (normsBean.size() > 0) {
-            for (int i = 0; i < normsBean.size(); i++) {
-                if (normsBean.get(i).getName().equals("颜色")) {
-                    colorTexts.add(normsBean.get(i).getItems().get(i).getItemName());
-                }
-
-
-            }
-        }*/
-        strColor = colorTexts.get(0);
-        ModelAdapter<String> colorAdapter = new ModelAdapter<>(colorTexts, R.id.model_gv_color);
-        gvColor.setAdapter(colorAdapter);
-    }
-
-    private void initCapacity() {
-        List<String> capacityTexts = Arrays.asList("64G", "128G", "256G");
-       /* List<String> capacityTexts = new ArrayList<>();
-
-        if (normsBean.size() > 0) {
-            for (int i = 0; i < normsBean.size(); i++) {
-                if (normsBean.get(i).getName().equals("手机")) {
-                    capacityTexts.add(normsBean.get(i).getItems().get(i).getItemName());
-                }
-            }
-        }*/
-
-        strCapacity = capacityTexts.get(0);
-        ModelAdapter<String> capacityAdapter = new ModelAdapter<>(capacityTexts, R.id.model_gv_capacity);
-        gvCapacity.setAdapter(capacityAdapter);
-
-    }
-
-    private void initVersion() {
-        List<String> versionTexts = Arrays.asList("国行", "港行", "亚太行");
-        strVersion = versionTexts.get(0);
-        ModelAdapter<String> versionAdapter = new ModelAdapter<>(versionTexts, R.id.model_gv_veision);
-        gvVersion.setAdapter(versionAdapter);
-    }
-
 
     @Override
     protected void setListener() {
         btnConfirm.setOnClickListener(this);
-
-        gvColor.setOnItemClickListener(this);
-        gvVersion.setOnItemClickListener(this);
-        gvCapacity.setOnItemClickListener(this);
     }
 
     @Override
@@ -164,59 +88,8 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        adapterArray.get(parent.getId()).changeColor(position);
-        tvColor.setText(strColor + "  " + strCapacity + "  " + strVersion);
+//        adapterArray.get(parent.getId()).changeColor(position);
+//        tvColor.setText(strColor + "  " + strCapacity + "  " + strVersion);
     }
 
-    /**
-     * GridView Adapter
-     *
-     * @param <T>
-     */
-    class ModelAdapter<T> extends CommonAdapter {
-
-        private SparseArray<TextView> textViewArray;
-        private int type;
-
-        ModelAdapter(List data, int type) {
-            super(activity, data, R.layout.item_dialog_model_layout);
-
-            this.type = type;
-            textViewArray = new SparseArray<TextView>();
-            adapterArray.put(type, this);
-        }
-
-        void changeColor(int position) {
-            for (int i = 0; i < textViewArray.size(); i++) {
-                textViewArray.get(i).setTextColor(colorBlack);
-                textViewArray.get(i).setBackground(drawableBlack);
-                if (i == position) {
-                    textViewArray.get(i).setTextColor(colorBrown);
-                    textViewArray.get(i).setBackground(drawableBrown);
-                }
-            }
-
-            if (type == R.id.model_gv_color) {
-                strColor = textViewArray.get(position).getText().toString();
-            } else if (type == R.id.model_gv_capacity) {
-                strCapacity = textViewArray.get(position).getText().toString();
-            } else {
-                strVersion = textViewArray.get(position).getText().toString();
-            }
-        }
-
-        @Override
-        public void convert(int position, ViewHolder holder, Object data) {
-            TextView textView = holder.getItemView(R.id.model_dialog_tv);
-            textView.setText(data.toString());
-            textViewArray.put(position, textView);
-            if (position == 0) {
-                textViewArray.get(0).setTextColor(colorBrown);
-                textViewArray.get(0).setBackground(drawableBrown);
-            } else {
-                textViewArray.get(position).setTextColor(colorBlack);
-                textViewArray.get(position).setBackground(drawableBlack);
-            }
-        }
-    }
 }

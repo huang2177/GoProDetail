@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class CommonAdapter<T> extends BaseAdapter {
 
     private List<T> mData;
-    private Context mContext;
+    protected Context mContext;
     private int mLayoutId;
     private SparseArray<ViewHolder> viewHolderArray;
 
@@ -47,10 +47,11 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         if (viewHolderArray.get(position) == null) {
             holder = ViewHolder.getHolder(mContext, mLayoutId, convertView, parent, position);
             viewHolderArray.put(position, holder);
+            convert(position, holder, (T) getItem(position));
         } else {
             holder = viewHolderArray.get(position);
         }
-        convert(position, holder, (T) getItem(position));
+
         return holder.getCovertView();
     }
 

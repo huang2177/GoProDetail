@@ -177,7 +177,6 @@ public class FragmentHome extends BaseFragment
 
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void showIndexData(IndexDataBean indexDataBean) {
         tvNewUser.setText(indexDataBean.getData().getRegsterCount() + "人" + "\n注册");

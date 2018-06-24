@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,12 +17,7 @@ import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.manager.GlideManager;
-import com.module.base.utils.Logger;
 import com.module.base.utils.SPUtil;
-import com.module.base.utils.ToastUtil;
-import com.module.base.widgets.CommonAdapter;
-import com.module.base.widgets.RoundImageView;
-import com.module.base.widgets.ViewHolder;
 import com.module.base.widgets.XListView;
 import com.module.mall.R;
 import com.module.mall.adpter.MoreEvaluateAdapter;
@@ -73,7 +67,7 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
     private String ruleId;
 
     //规格
-    private List<ProDetailsBean.DataBean.NormsBean> normsBean;
+    private ProDetailsBean.DataBean mDataBean;
 
 
     @Override
@@ -199,12 +193,12 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         }
         //支付
         else if (i == R.id.pro_buy) {
-            proModelDialog = new ProModelDialog(this, normsBean, "Wholeprice");
+            proModelDialog = new ProModelDialog(this, mDataBean, "Wholeprice");
             proModelDialog.show();
         }
         //跳转至订单详情 0元购
         else if (i == R.id.pro_group) {
-            proModelDialog = new ProModelDialog(this, normsBean, "Zeroprice");
+            proModelDialog = new ProModelDialog(this, mDataBean, "Zeroprice");
             proModelDialog.show();
         }
         //0元首饰盒  支付押金
@@ -218,26 +212,29 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
 
     //详情
     @Override
-    public void showDetails(ProDetailsBean proDetailsBean) {
-        tvName.setText(proDetailsBean.getData().getTitle());
-        tvPingedNum.setText(proDetailsBean.getData().getTuanCount() + "人拼团成功");
-        tvPirce.setText(proDetailsBean.getData().getTuanAmount() + "元购");
-        tvOldPirce.setText("¥" + proDetailsBean.getData().getAmount());
-        tvFreight.setText("运费¥" + proDetailsBean.getData().getFreight());
-        tvInventory.setText("库存" + proDetailsBean.getData().getStockCount() + "件");
+    public void showDetails(ProDetailsBean.DataBean dataBean) {
+        //规格
+        this.mDataBean = dataBean;
+
+        tvName.setText(dataBean.getTitle());
+        tvPingedNum.setText(dataBean.getTuanCount() + "人拼团成功");
+        tvPirce.setText(dataBean.getTuanAmount() + "元购");
+        tvOldPirce.setText("¥" + dataBean.getAmount());
+        tvFreight.setText("运费¥" + dataBean.getFreight());
+        tvInventory.setText("库存" + dataBean.getStockCount() + "件");
         if (Build.VERSION.SDK_INT >= 24) {
-            tvContent.setText(Html.fromHtml(proDetailsBean.getData().getContent(), Html.FROM_HTML_MODE_COMPACT));
+            tvContent.setText(Html.fromHtml(dataBean.getContent(), Html.FROM_HTML_MODE_COMPACT));
         } else {
-            tvContent.setText(Html.fromHtml(proDetailsBean.getData().getContent()));
+            tvContent.setText(Html.fromHtml(dataBean.getContent()));
         }
         //是否收藏
-        isCollectioned = proDetailsBean.getData().isCollection();
+        isCollectioned = dataBean.isCollection();
         tvCollection.setCompoundDrawablesWithIntrinsicBounds(0
                 , isCollectioned ? R.drawable.ic_heart_brown2 : R.drawable.ic_heart_brown1
                 , 0
                 , 0);
 
-        typeRule = proDetailsBean.getData().getType();
+        typeRule = dataBean.getType();
         if (typeRule == 1) {
             tvPingedNum.setText("押金：¥2000");
             tvPirce.setVisibility(View.GONE);
@@ -257,11 +254,9 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
             presenter.ZulinRule(pid);
         }
         //banner图
-        String str[] = proDetailsBean.getData().getBannerImgurl().split(",");
+        String str[] = dataBean.getBannerImgurl().split(",");
         bannerList = Arrays.asList(str);
         initBanner();
-        //规格
-        normsBean = proDetailsBean.getData().getNorms();
     }
 
 
