@@ -37,8 +37,15 @@ public class ProductTuanAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (list != null) {
-            if ("".equals(from)) {
-                return 2;
+            if ("detailsTuan".equals(from)) {
+                if (list.size() > 2) {
+                    return 2;
+
+                } else {
+                    return list.size();
+                }
+
+
             } else {
                 return list.size();
             }

@@ -107,12 +107,6 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
     }
 
 
-    private void initPople() {
-        popleAdapter = new PingPopleAdapter(this, getData());
-        gridView.setAdapter(popleAdapter);
-    }
-
-
     private void initPorduct() {
         GridLayoutManager manager = new GridLayoutManager(this, 2);
         manager.setOrientation(OrientationHelper.VERTICAL);
@@ -169,11 +163,15 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
         tvPople.setText("还差" + tuanDetalisBean.getData().getNeedOrderNum() + "人成团"
                 + ",剩余" + tuanDetalisBean.getData().getEndTime());
         button.setText("¥" + tuanDetalisBean.getData().getProduct().getAmount() + "立即参团");
-
-        Logger.e("-------444444", tuanDetalisBean.getData().getCatagory() + "");
-
         presenter.TuanDetalisProduct(type, tuanDetalisBean.getData().getCatagory());
     }
+
+
+    private void initPople() {
+        popleAdapter = new PingPopleAdapter(this, getData());
+        gridView.setAdapter(popleAdapter);
+    }
+
 
     @Override
     public void showTuanDetalisProduct(List<ProductBean.DataBean> productBean) {

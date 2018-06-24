@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.utils.Logger;
 import com.module.base.widgets.CommonAdapter;
 import com.module.base.widgets.ViewHolder;
 import com.module.base.widgets.dialog.XBottomDialog;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
+import com.module.mall.bean.ProDetailsBean;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -40,9 +43,17 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
     private int colorBrown, colorBlack;
     private String strColor, strCapacity, strVersion;
 
+    //规格
+    private List<ProDetailsBean.DataBean.NormsBean> normsBean;
+    private String from;
 
-    public ProModelDialog(@NonNull Activity activity) {
+
+    public ProModelDialog(@NonNull Activity activity, List<ProDetailsBean.DataBean.NormsBean> normsBean, String from) {
         super(activity);
+        this.normsBean = normsBean;
+        this.from = from;
+
+        Logger.e("--------", normsBean.size() + "");
 
         colorBrown = ContextCompat.getColor(activity, R.color.colorBrown);
         colorBlack = ContextCompat.getColor(activity, R.color.colorLittleBlack1);
@@ -75,7 +86,27 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
     }
 
     private void initColor() {
-        List<String> colorTexts = Arrays.asList("白色", "黑色");
+
+
+        List<String> colorTexts = new ArrayList<>();
+
+        for (int i = 0; i < normsBean.size(); i++) {
+            for (int j = 0; j < normsBean.get(j).getItems().size(); j++) {
+                colorTexts.add(normsBean.get(j).getName());
+            }
+        }
+
+
+        // List<String> colorTexts = Arrays.asList("白色", "黑色");
+        /*if (normsBean.size() > 0) {
+            for (int i = 0; i < normsBean.size(); i++) {
+                if (normsBean.get(i).getName().equals("颜色")) {
+                    colorTexts.add(normsBean.get(i).getItems().get(i).getItemName());
+                }
+
+
+            }
+        }*/
         strColor = colorTexts.get(0);
         ModelAdapter<String> colorAdapter = new ModelAdapter<>(colorTexts, R.id.model_gv_color);
         gvColor.setAdapter(colorAdapter);
@@ -83,6 +114,16 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
 
     private void initCapacity() {
         List<String> capacityTexts = Arrays.asList("64G", "128G", "256G");
+       /* List<String> capacityTexts = new ArrayList<>();
+
+        if (normsBean.size() > 0) {
+            for (int i = 0; i < normsBean.size(); i++) {
+                if (normsBean.get(i).getName().equals("手机")) {
+                    capacityTexts.add(normsBean.get(i).getItems().get(i).getItemName());
+                }
+            }
+        }*/
+
         strCapacity = capacityTexts.get(0);
         ModelAdapter<String> capacityAdapter = new ModelAdapter<>(capacityTexts, R.id.model_gv_capacity);
         gvCapacity.setAdapter(capacityAdapter);
@@ -108,9 +149,16 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(activity, OrderConfirmActivity.class);
-        intent.putExtra("form", "whole");    //全款购买
-        activity.startActivity(intent);
+        Intent intent;
+        if (from.equals("Wholeprice")) {
+            intent = new Intent(activity, OrderConfirmActivity.class);
+            intent.putExtra("from", "whole");    //全款购买
+            activity.startActivity(intent);
+        } else {
+            intent = new Intent(activity, OrderConfirmActivity.class);
+            intent.putExtra("from", "zero");
+            activity.startActivity(intent);
+        }
         dismiss();
     }
 

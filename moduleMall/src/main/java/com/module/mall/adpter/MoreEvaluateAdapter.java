@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.module.base.app.Constant;
+import com.module.base.manager.GlideManager;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
@@ -34,15 +36,15 @@ public class MoreEvaluateAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-
-        if (list != null) {
-            if ((from.equals("prodetailsEva"))) {
+        if ((from.equals("prodetailsEva"))) {
+            if (list.size() > 2) {
                 return 2;
             } else {
                 return list.size();
             }
+        } else {
+            return list.size();
         }
-        return 0;
     }
 
     @Override
@@ -67,8 +69,12 @@ public class MoreEvaluateAdapter extends BaseAdapter {
             viewHodler = (ViewHodler) convertView.getTag();
         }
 
+        GlideManager.loadImage(activity, Constant.IMAGE_HOST + list.get(position).getImgurl(), viewHodler.imageView);
+        viewHodler.tvName.setText(list.get(position).getNickname());
+        viewHodler.tvTime.setText(list.get(position).getEvaTime());
+        viewHodler.tvDetalis.setText(list.get(position).getContent());
         //添加图片
-        adapter = new MoreEvaluatePicAdapter(activity);
+        adapter = new MoreEvaluatePicAdapter(activity, list);
         viewHodler.gridView.setAdapter(adapter);
         return convertView;
     }

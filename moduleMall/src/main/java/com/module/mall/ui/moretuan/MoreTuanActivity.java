@@ -34,7 +34,6 @@ public class MoreTuanActivity extends BaseActivity implements ProTuanView, Adapt
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("更多开团");
-
         uid = SPUtil.getInstance(this).getString(Constant.USERID);
         pid = getIntent().getStringExtra("pid");
         presenter.productTuan(uid, pid, false, catagory);

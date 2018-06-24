@@ -72,6 +72,9 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
     //说明id
     private String ruleId;
 
+    //规格
+    private List<ProDetailsBean.DataBean.NormsBean> normsBean;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -196,15 +199,16 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         }
         //支付
         else if (i == R.id.pro_buy) {
-            proModelDialog = new ProModelDialog(this);
+            proModelDialog = new ProModelDialog(this, normsBean, "Wholeprice");
             proModelDialog.show();
         }
         //跳转至订单详情 0元购
         else if (i == R.id.pro_group) {
-            intent = new Intent(this, OrderConfirmActivity.class);
-            intent.putExtra("form", "zero");
-            startActivity(intent);
-        } else if (i == R.id.jewelry_buy) {
+            proModelDialog = new ProModelDialog(this, normsBean, "Zeroprice");
+            proModelDialog.show();
+        }
+        //0元首饰盒  支付押金
+        else if (i == R.id.jewelry_buy) {
             intent = new Intent(this, OrderConfirmActivity.class);
             intent.putExtra("form", "whole");
             startActivity(intent);
@@ -252,10 +256,12 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         } else {
             presenter.ZulinRule(pid);
         }
-
+        //banner图
         String str[] = proDetailsBean.getData().getBannerImgurl().split(",");
         bannerList = Arrays.asList(str);
         initBanner();
+        //规格
+        normsBean = proDetailsBean.getData().getNorms();
     }
 
 
@@ -285,9 +291,13 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
 
     @Override
     public void showProductEva(List<ProductEvaBean.DataBean> productEva) {
+        if (productEva.size() == 0) {
+            lvEvaluate.setVisibility(View.GONE);
+            tvNoEvaluate.setVisibility(View.VISIBLE);
+            return;
+        }
         evaluateAdapter = new MoreEvaluateAdapter(this, productEva, "prodetailsEva");
         lvEvaluate.setAdapter(evaluateAdapter);
-
     }
 
     /**
@@ -295,8 +305,8 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
      */
     @Override
     public void showProductEvaEmpty() {
-        tvNoEvaluate.setVisibility(View.VISIBLE);
-        lvEvaluate.setVisibility(View.GONE);
+
+
     }
 
 

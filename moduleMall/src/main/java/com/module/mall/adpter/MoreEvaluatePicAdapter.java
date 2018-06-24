@@ -8,9 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.app.Constant;
+import com.module.base.manager.GlideManager;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
+import com.module.mall.bean.ProductEvaBean;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by shibing on 18/5/30.
@@ -20,14 +27,22 @@ public class MoreEvaluatePicAdapter extends BaseAdapter {
 
 
     private Activity activity;
+    private List<ProductEvaBean.DataBean> list;
+    private List<String> listEvaPic;
 
-    public MoreEvaluatePicAdapter(Activity activity) {
+    public MoreEvaluatePicAdapter(Activity activity, List<ProductEvaBean.DataBean> list) {
         this.activity = activity;
+        this.list = list;
+        listEvaPic = new ArrayList<>();
     }
 
     @Override
     public int getCount() {
-        return 3;
+        if (listEvaPic.size() > 2) {
+            return 3;
+        } else {
+            return list.size();
+        }
     }
 
     @Override
@@ -51,6 +66,13 @@ public class MoreEvaluatePicAdapter extends BaseAdapter {
         } else {
             viewHodler = (ViewHodler) convertView.getTag();
         }
+
+        String str[] = list.get(position).getImgurls().split(",");
+        listEvaPic = Arrays.asList(str);
+        for (int i = 0; i < listEvaPic.size(); i++) {
+            GlideManager.loadImage(activity, Constant.IMAGE_HOST + listEvaPic.get(i), viewHodler.imageView);
+        }
+
 
         return convertView;
     }
