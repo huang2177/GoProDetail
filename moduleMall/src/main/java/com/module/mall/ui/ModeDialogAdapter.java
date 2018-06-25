@@ -8,6 +8,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.module.base.widgets.CommonAdapter;
@@ -29,29 +30,17 @@ public class ModeDialogAdapter extends RecyclerView.Adapter<ModeDialogAdapter.My
     private final List<ProDetailsBean.DataBean.NormsBean> data;
     private int colorBrown, colorBlack;
     private Drawable drawableBrown, drawableBlack;
-
     private Context mContext;
 
 
     public ModeDialogAdapter(Context context, List<ProDetailsBean.DataBean.NormsBean> data) {
-//        super(context, data, R.layout.item_dialog_model_lv_layout);
         this.mContext = context;
         this.data = data;
         colorBrown = ContextCompat.getColor(context, R.color.colorBrown);
         colorBlack = ContextCompat.getColor(context, R.color.colorLittleBlack1);
-
         drawableBrown = ContextCompat.getDrawable(context, R.drawable.shape_brown);
         drawableBlack = ContextCompat.getDrawable(context, R.drawable.shape_gray0);
     }
-
-//    @Override
-//    public void convert(int position, ViewHolder holder, ProDetailsBean.DataBean.NormsBean data) {
-//        TextView tvName = holder.getItemView(R.id.tv_name);
-//        XGridView xGridView = holder.getItemView(R.id.item_gv);
-//
-//        tvName.setText(data.getName());
-//        xGridView.setAdapter(new ModelAdapter(this.mContext, data.getItems(), position));
-//    }
 
 
     @Override
@@ -68,15 +57,16 @@ public class ModeDialogAdapter extends RecyclerView.Adapter<ModeDialogAdapter.My
 
     @Override
     public int getItemCount() {
-        return data.size();
+        if (data != null) {
+            return data.size();
+        }
+        return 0;
     }
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-
         public TextView tvName;
         public XGridView xGridView;
-
         public MyViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);

@@ -45,7 +45,6 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
     public ProModelDialog(@NonNull Activity activity, ProDetailsBean.DataBean dataBean, String from) {
         super(activity);
         this.from = from;
-
         mListView.setLayoutManager(new LinearLayoutManager(activity));
         mListView.setAdapter(new ModeDialogAdapter(activity, dataBean.getNorms()));
     }
