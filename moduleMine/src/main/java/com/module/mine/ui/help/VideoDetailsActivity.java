@@ -3,13 +3,14 @@ package com.module.mine.ui.help;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,13 +18,9 @@ import com.huangbryant.mylibrary.media.HIjkPlayerView;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
-import com.module.base.utils.ScreenUtils;
-import com.module.base.widgets.X5WebView;
 import com.module.mine.R;
 import com.module.mine.bean.HelpBean;
 import com.module.mine.bean.HelpDetailBean;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 
 import java.util.List;
 
@@ -34,35 +31,25 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * Created by shibing on 18/5/16.
  */
 
-public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.OnCompletionListener
+public class VideoDetailsActivity extends BaseActivity implements IMediaPlayer.OnCompletionListener
         , NewUserHelpView {
 
-    private X5WebView mX5WebView;
+    private WebView mWebView;
     private LinearLayout mLayout;
     private TextView tvName, tvTime;
+    private LinearLayout mLayoutTitle;
     private HIjkPlayerView mPlayerView;
+
     private static final String VIDEO_HD_URL = "http://flv2.bn.netease.com/videolib3/1611/28/GbgsL3639/HD/movie_index.m3u8";
     private static final String IMAGE_URL = "http://vimg2.ws.126.net/image/snapshot/2016/11/I/M/VC62HMUIM.jpg";
 
-    private List<HelpBean.DataBean> list;
     private NewUserHelpPresenter presenter;
-    private String imagePath;
-    private String vedioUrl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initHardwareAccelerate();
         title("视频详情");
         presenter.getHelpDetalis(getIntent().getStringExtra("helpId"));
-    }
-
-    /**
-     * 启用硬件加速(WebView)
-     */
-    private void initHardwareAccelerate() {
-        getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED
-                , android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
     }
 
     @Override
@@ -74,15 +61,20 @@ public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.O
     public void initView() {
         tvName = findViewById(R.id.tv_name);
         tvTime = findViewById(R.id.tv_time);
+        mWebView = findViewById(R.id.tv_content);
         mLayout = findViewById(R.id.ll_container);
-        mX5WebView = findViewById(R.id.tv_content);
+        mLayoutTitle = findViewById(R.id.ll_title);
         mPlayerView = findViewById(R.id.ijk_player);
 
-        mX5WebView.setWebViewClient(new MyX5WebClient());
+        mWebView.setWebViewClient(new MyX5WebClient());
 
         intiPlayer(IMAGE_URL, "");
     }
 
+    @Override
+    public void setListener() {
+        super.setListener();
+    }
 
     @Override
     public BasePresenter createPresenter() {
@@ -94,10 +86,25 @@ public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.O
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mPlayerView.getLayoutParams();
-        lp.topMargin = newConfig.orientation == 2 ? 0 : ScreenUtils.dp2px(this, 165);
-        mPlayerView.setLayoutParams(lp);
-        mPlayerView.setLayoutParams(lp);
+//        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mPlayerView.getLayoutParams();
+
+//        scrollEnable = newConfig.orientation == 2;
+//        mLayout.setVisibility(newConfig.orientation == 2 ? View.GONE : View.VISIBLE);
+//        mSpace.setVisibility(newConfig.orientation == 2 ? View.GONE : View.VISIBLE);
+//        titleBarContainer.setVisibility(newConfig.orientation == 2 ? View.GONE : View.VISIBLE);
+//        lp.topMargin = newConfig.orientation == 2 ? 0 : ScreenUtils.dp2px(this,95);
+        ViewGroup rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+        if (newConfig.orientation == 2) {
+            rootView.removeAllViews();
+            mLayoutTitle.removeView(mPlayerView);
+            rootView.addView(mPlayerView);
+        } else {
+            rootView.removeAllViews();
+            mLayoutTitle.addView(mPlayerView, 2);
+            rootView.addView(mLayout);
+        }
+
+//        mPlayerView.setLayoutParams(lp);
         mPlayerView.configurationChanged(newConfig);
     }
 
@@ -146,8 +153,8 @@ public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.O
     @Override
     protected void onDestroy() {
         mPlayerView.onDestroy();
-        if (mX5WebView != null) {
-            mX5WebView.destroy();
+        if (mWebView != null) {
+            mWebView.destroy();
         }
         super.onDestroy();
     }
@@ -155,13 +162,11 @@ public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.O
 
     @Override
     public void showHelpDetail(HelpDetailBean.DataBean dataBean) {
-        imagePath = dataBean.getImgurl();
         tvName.setText(dataBean.getTitle());
-        vedioUrl = dataBean.getVideoImgurl();
         tvTime.setText(dataBean.getCreateTime());
 
-        mX5WebView.loadData(dataBean.getContent(), "text/html;charset=UTF-8", null);
-        intiPlayer(imagePath, "");
+        mWebView.loadData(dataBean.getContent(), "text/html;charset=UTF-8", null);
+        intiPlayer(dataBean.getImgurl(), dataBean.getVideoImgurl());
     }
 
     @Override
@@ -186,7 +191,7 @@ public class VedioDetalisActivity extends BaseActivity implements IMediaPlayer.O
             if (!url.startsWith("http")) {
                 return true;
             }
-            Intent intent = new Intent(VedioDetalisActivity.this, WebViewActivity.class);
+            Intent intent = new Intent(VideoDetailsActivity.this, WebViewActivity.class);
             intent.putExtra(Constant.URL, url);
             startActivity(intent);
             return true;

@@ -87,26 +87,26 @@ public class StatusUtil {
 
     /**
      * @param activity
-     * @param useThemestatusBarColor   是否要状态栏的颜色，不设置则为透明色
+     * @param useThemeStatusBarColor   是否要状态栏的颜色，不设置则为透明色
      * @param withoutUseStatusBarColor 是否不需要使用状态栏为暗色调
      */
-    public static void setStatusBar(Activity activity, boolean useThemestatusBarColor, boolean withoutUseStatusBarColor) {
-        setStatusBar(activity.getWindow(), useThemestatusBarColor, withoutUseStatusBarColor);
+    public static void setStatusBar(Activity activity, boolean useThemeStatusBarColor, boolean withoutUseStatusBarColor) {
+        setStatusBar(activity.getWindow(), useThemeStatusBarColor, withoutUseStatusBarColor);
     }
 
     /**
      * @param window
-     * @param useThemestatusBarColor   是否要状态栏的颜色，不设置则为透明色
+     * @param useThemeStatusBarColor   是否要状态栏的颜色，不设置则为透明色
      * @param withoutUseStatusBarColor 是否不需要使用状态栏为暗色调
      */
-    public static void setStatusBar(Window window, boolean useThemestatusBarColor, boolean withoutUseStatusBarColor) {
+    public static void setStatusBar(Window window, boolean useThemeStatusBarColor, boolean withoutUseStatusBarColor) {
         //5.0及以上
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View decorView = window.getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
-            if (useThemestatusBarColor) {
+            if (useThemeStatusBarColor) {
                 window.setStatusBarColor(ContextCompat.getColor(window.getContext(), R.color.colorWhite));
             } else {
                 window.setStatusBarColor(Color.TRANSPARENT);
@@ -114,25 +114,13 @@ public class StatusUtil {
             //4.4到5.0
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WindowManager.LayoutParams localLayoutParams = window.getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | localLayoutParams.flags);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !withoutUseStatusBarColor) {
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
-    }
-
-    public static void reMeasure(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        mMetrics = new DisplayMetrics();
-
-        if (Build.VERSION.SDK_INT >= 17) {
-            display.getRealMetrics(mMetrics);
-        } else {
-            display.getMetrics(mMetrics);
-        }
-
-        screenWidth = mMetrics.widthPixels;
-        screenHeight = mMetrics.heightPixels;
     }
 
     /**
@@ -240,4 +228,5 @@ public class StatusUtil {
             window.getDecorView().findViewById(android.R.id.content).setPadding(0, 0, 0, StatusUtil.navigationHeight);
         }
     }
+
 }

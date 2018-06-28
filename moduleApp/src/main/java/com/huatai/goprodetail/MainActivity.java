@@ -43,7 +43,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
+    @SuppressLint("MissingSuperCall")
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
     }
 
     @Override
@@ -59,8 +63,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
         showFragment(FragmentHome.newInstance(""));
         setNavigationViewMode();
-
-
     }
 
     /**

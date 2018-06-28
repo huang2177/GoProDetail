@@ -67,7 +67,7 @@ public class NewUserHelpActivity extends BaseActivity implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(this, VedioDetalisActivity.class);
+        Intent intent = new Intent(this, VideoDetailsActivity.class);
         intent.putExtra("helpId", list.get(position).getId());
         startActivity(intent);
     }

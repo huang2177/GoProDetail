@@ -34,8 +34,7 @@ import java.util.List;
  * @author Huangshuang  2018/5/3 0003
  */
 
-public class FragmentMall extends BaseFragment
-        implements TabLayout.OnTabSelectedListener
+public class FragmentMall extends BaseFragment implements TabLayout.OnTabSelectedListener
         , OnItemClickListener
         , MallView {
 

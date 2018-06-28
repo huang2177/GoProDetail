@@ -1,64 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <include layout="@layout/space_layout" />
 
     <include layout="@layout/titlebar_layout" />
 
-
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/ll_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/ll_container"
+            <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="16.0sp" />
 
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="16.0sp" />
-
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_margin="10dp"
-                    android:gravity="center" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:gravity="center" />
 
             <com.huangbryant.mylibrary.media.HIjkPlayerView
                 android:id="@+id/ijk_player"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="95dp" />
+                android:layout_height="200dp" />
 
-            <com.module.base.widgets.X5WebView
+            <WebView
                 android:id="@+id/tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/ijk_player"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:textSize="16.0sp" />
-        </RelativeLayout>
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 

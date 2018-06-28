@@ -23,7 +23,6 @@ import java.util.List;
 
 public class MoreTuanActivity extends BaseActivity implements ProTuanView, AdapterView.OnItemClickListener {
 
-
     private ListView listView;
     private LinearLayout layout;
     private ProductTuanAdapter tuanAdapter;

@@ -72,7 +72,7 @@
             android:name=".ui.help.NewUserHelpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.help.VedioDetalisActivity"
+            android:name=".ui.help.VideoDetailsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".ui.PutForwardActivity"
