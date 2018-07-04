@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseFragment;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
@@ -62,6 +63,7 @@ public class FragmentMine extends BaseFragment implements
     private String userName;
 
     private static FragmentMine fragment;
+    private boolean isLogin;
 
 
     public static FragmentMine newInstance(String msg) {
@@ -92,6 +94,7 @@ public class FragmentMine extends BaseFragment implements
     public void initView() {
         spUtil = SPUtil.getInstance(mActivity);
 
+
         mIvHead = viewRoot.findViewById(R.id.mine_hede_img);
         phoneTv = viewRoot.findViewById(R.id.mine_phone_tv);
         mesTv = viewRoot.findViewById(R.id.mine_mes_tv);
@@ -107,6 +110,15 @@ public class FragmentMine extends BaseFragment implements
         mIvHead.setShapeType(1);
 
         initRecycle();
+
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isLogin = spUtil.getBoolean(Constant.IS_LOGIN);
     }
 
     private void initRecycle() {
@@ -135,6 +147,10 @@ public class FragmentMine extends BaseFragment implements
     public void onClick(View v) {
         super.onClick(v);
         int i = v.getId();
+        if (!isLogin) {
+            ARouter.getInstance().build(Constant.PATH_LOGINACTIVITY).navigation();
+            return;
+        }
         Intent intent;
         //头像
         if (i == R.id.mine_hede_img) {
@@ -227,7 +243,12 @@ public class FragmentMine extends BaseFragment implements
 
     @Override
     public void showUserInfo(UserInfoBean userInfo) {
-
+        if (!isLogin) {
+            mIvHead.setImageResource(R.drawable.ic_mine_head);
+            banlanceTv.setText("0.00");
+            phoneTv.setText("你还未登录");
+            return;
+        }
         GlideManager.loadImage(this, Constant.IMAGE_HOST + userInfo.getData().getImgurl(), mIvHead);
         phoneTv.setText(userInfo.getData().getNickname());
 

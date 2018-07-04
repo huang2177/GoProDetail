@@ -24,6 +24,19 @@
                 android:layout_height="10dp"
                 android:background="@color/colorRiceWhite" />
 
+
+            <TextView
+                android:id="@+id/no_adderss"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="您尚未设置收货地址，立即设置"
+                android:visibility="gone" />
+
+
             <RelativeLayout
                 android:id="@+id/order_adder_ray"
                 android:layout_width="wrap_content"
@@ -100,10 +113,11 @@
 
                     <ImageView
                         android:id="@+id/order_confirm_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/pro" />
 
                     <LinearLayout
@@ -207,8 +221,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
                         android:drawablePadding="10dp"
-                        android:drawableRight="@drawable/ic_right_back"
-                        android:text="0元开团 ｜  KT0123011412214" />
+                        android:drawableRight="@drawable/ic_right_back" />
                 </RelativeLayout>
 
                 <View
@@ -224,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="10dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="wrap_content"

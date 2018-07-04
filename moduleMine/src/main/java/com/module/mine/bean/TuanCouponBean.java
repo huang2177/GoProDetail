@@ -64,7 +64,7 @@ public class TuanCouponBean {
         private int fromId;
         private String fromName;
         private String fromTime;
-        private int id;
+        private String id;
         private boolean isSend;
         private boolean isUse;
         private int orderId;
@@ -100,11 +100,11 @@ public class TuanCouponBean {
             this.fromTime = fromTime;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 

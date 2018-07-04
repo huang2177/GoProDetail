@@ -1,8 +1,9 @@
-package com.module.mall.ui;
+package com.module.mall.ui.confirmorder;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,18 +14,25 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.manager.GlideManager;
+import com.module.base.utils.Logger;
+import com.module.base.utils.SPUtil;
+import com.module.base.utils.ToastUtil;
 import com.module.mall.R;
+import com.module.mall.bean.DefaultAddressBean;
+import com.module.mall.bean.OpenTuanBean;
+import com.module.mall.ui.ReturnRuleActivity;
 
 
 /**
  * @author Huangshuang  2018/5/11 0011
  */
 
-public class OrderConfirmActivity extends BaseActivity {
+public class OrderConfirmActivity extends BaseActivity implements PorOrderView {
 
 
     //地址
-    private TextView tvAdderName, tvAdderPhone, tvAdder;
+    private TextView tvAdderName, tvAdderPhone, tvAdder, noAddress;
     private RelativeLayout layAdder;
 
     //商品
@@ -43,16 +51,23 @@ public class OrderConfirmActivity extends BaseActivity {
 
     //开团卷
     private RelativeLayout rayOpen;
-    private LinearLayout layOpen;   //开团卷说明
+    private LinearLayout layOpen, layOpenText;   //开团卷说明
     private TextView tvOpen;
 
 
-    private String froum;
+    private String userId, froum, porTitle, porIamgeUrl, porId, porPic, porTuanPic, porColr;
+
+    //开团卷
+    private String openTuanNumer, openTuanTitle, openTuanId;
+
+    private ProOrderPresenter presenter;
+    private SPUtil spUtil;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title("支付拼团订单");
+        presenter.ProDefaultAddress(userId);
     }
 
     @Override
@@ -62,11 +77,16 @@ public class OrderConfirmActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        spUtil = SPUtil.getInstance(this);
+        userId = spUtil.getString(Constant.USERID);
+
+
         //地址
         tvAdderName = findViewById(R.id.order_confirm_name);
         tvAdderPhone = findViewById(R.id.order_confirm_phone);
         tvAdder = findViewById(R.id.order_confirm_adder_tv);
         layAdder = findViewById(R.id.order_adder_ray);
+        noAddress = findViewById(R.id.no_adderss);
 
         //商品
         imageProduct = findViewById(R.id.order_confirm_img);
@@ -81,6 +101,7 @@ public class OrderConfirmActivity extends BaseActivity {
         rayOpen = findViewById(R.id.order_op_ray);
         layOpen = findViewById(R.id.order_open_lay);
         tvOpen = findViewById(R.id.order_open_tv);
+        layOpenText = findViewById(R.id.order_opentext_lay);
 
         //支付
         rayAipay = findViewById(R.id.order_aipay_ray);
@@ -108,6 +129,29 @@ public class OrderConfirmActivity extends BaseActivity {
                 tvSure.setText("确认支付");
             }
         }
+        setPorduct();
+
+    }
+
+
+    private void setPorduct() {
+        porTitle = getIntent().getStringExtra(Constant.PORDUCT_TITLE);
+        porIamgeUrl = getIntent().getStringExtra(Constant.PORDUCT_IMAGR);
+        porPic = getIntent().getStringExtra(Constant.PORDUCT_PIC);
+        porTuanPic = getIntent().getStringExtra(Constant.PORDUCT_TUAN_PIC);
+        porId = getIntent().getStringExtra(Constant.PORDUCTID);
+        porColr = getIntent().getStringExtra(Constant.PORDUCT_CLORO);
+
+        Logger.e("11111", porTitle);
+        Logger.e("22222", porIamgeUrl);
+        Logger.e("33333", porPic);
+        Logger.e("44444", porTuanPic);
+        Logger.e("55555", porId);
+
+        tvProductName.setText(porTitle);
+        tvProductPic.setText("￥" + porPic);
+        tvProductCon.setText(porColr);
+        GlideManager.loadImage(this, Constant.IMAGE_HOST + porIamgeUrl, imageProduct);
 
 
     }
@@ -115,7 +159,8 @@ public class OrderConfirmActivity extends BaseActivity {
 
     @Override
     public BasePresenter createPresenter() {
-        return null;
+        presenter = new ProOrderPresenter();
+        return presenter;
     }
 
 
@@ -151,7 +196,7 @@ public class OrderConfirmActivity extends BaseActivity {
         }
         //跳转至我的开团卷
         else if (i == R.id.order_op_ray) {
-            ARouter.getInstance().build(Constant.OPENCOIL).navigation();
+            ARouter.getInstance().build(Constant.OPENCOIL).navigation(this, 10);
         }
         //跳转至开团卷规则
         else if (i == R.id.order_open_lay) {
@@ -173,8 +218,66 @@ public class OrderConfirmActivity extends BaseActivity {
         }
         //确认支付
         else if (i == R.id.order_surepay_tv) {
-
+            //开团卷不为空时  使用开团卷开团
+            if (TextUtils.isEmpty(openTuanNumer)) {
+                ToastUtil.show(this, "开团卷为空");
+                return;
+            }
+            presenter.ProOpenTuan(userId, porId, openTuanId);
         }
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 100) {
+            openTuanNumer = data.getStringExtra(Constant.OPEN_TUAN_NUMER);
+            openTuanTitle = data.getStringExtra(Constant.OPEN_TUAN_NAME);
+            openTuanId = data.getStringExtra(Constant.OPEN_TUAN_ID);
+            if (TextUtils.isEmpty(openTuanNumer) && TextUtils.isEmpty(openTuanTitle)) {
+                tvOpen.setVisibility(View.GONE);
+                layOpenText.setVisibility(View.GONE);
+                return;
+            }
+            tvOpen.setText(openTuanTitle + " | " + openTuanNumer);
+            layOpenText.setVisibility(View.VISIBLE);
+
+            Logger.e("-------openTuanId", openTuanId);
+        }
+
+    }
+
+    /**
+     * 获取默认地址
+     *
+     * @param dataBean
+     */
+    @Override
+    public void showDefaultAddress(DefaultAddressBean.DataBean dataBean) {
+        tvAdderName.setText(dataBean.getName());
+        tvAdderPhone.setText(dataBean.getMobile());
+        tvAdder.setText(dataBean.getProvince()
+                + dataBean.getCity() + dataBean.getArea() + dataBean.getDetail());
+    }
+
+    @Override
+    public void showError() {
+        noAddress.setVisibility(View.VISIBLE);
+        layAdder.setVisibility(View.GONE);
+    }
+
+    //使用开团卷开团
+    @Override
+    public void showOpenTuan(OpenTuanBean.DataBean dataBean) {
+        ToastUtil.show(this, "开团成功");
+    }
+
+
+    //返回错误的消息
+    @Override
+    public void showOpenError(String msg) {
+        ToastUtil.show(this, msg);
     }
 }

@@ -56,7 +56,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             return false;
         }
 
-        return observer(new HttpObserver(mContext
+        return observer(new HttpObserver<ResponseBody>(mContext
                 , mService.sendCode(mobile)
                 , new HttpCallBackImpl<ResponseBody>() {
             @Override
@@ -97,7 +97,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             return;
         }
 
-        observer(new HttpObserver(mContext
+        observer(new HttpObserver<RegisterBean>(mContext
                 , mService.register(mobile, password, smsCode, inviteCode)
                 , new HttpCallBackImpl<RegisterBean>() {
             @Override

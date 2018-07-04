@@ -15,6 +15,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.app.Constant;
+import com.module.base.utils.Logger;
 import com.module.base.utils.StatusUtil;
 import com.module.home.FragmentHome;
 import com.module.base.BaseActivity;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private List<Fragment> fragments;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +60,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     public void initView() {
         fragments = new ArrayList<>();
-
         navigationView = findViewById(R.id.main_navigation);
 
         showFragment(FragmentHome.newInstance(""));
         setNavigationViewMode();
+        Logger.e("-------", Constant.IS_LOGIN);
     }
 
     /**

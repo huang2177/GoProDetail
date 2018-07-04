@@ -1,5 +1,6 @@
 package com.module.mine.ui.tuancoupon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -71,7 +72,12 @@ public class MyOpenCoilActivity extends BaseActivity implements
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Intent intent = new Intent();
+        intent.putExtra(Constant.OPEN_TUAN_NUMER, list.get(position).getTuanNum());
+        intent.putExtra(Constant.OPEN_TUAN_NAME, list.get(position).getTitle());
+        intent.putExtra(Constant.OPEN_TUAN_ID, list.get(position).getId());
+        setResult(100, intent);
+        finish();
     }
 
 

@@ -200,7 +200,7 @@ public class FragmentHome extends BaseFragment
 
     @Override
     public void onItemClick(int id, int type) {
-        //String from = type == 1 ? "por" : "jewelry";
+        String from = type == 1 ? "por" : "jewelry";
         ARouter.getInstance().build(Constant.PRODETAIL)
                 .withString(Constant.PORDUCTID, id + "")
                 .navigation();

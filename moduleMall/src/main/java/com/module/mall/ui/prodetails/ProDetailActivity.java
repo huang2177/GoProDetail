@@ -27,7 +27,7 @@ import com.module.mall.bean.ProDetailsBean;
 import com.module.mall.bean.ProductEvaBean;
 import com.module.mall.bean.ProductTuanBean;
 import com.module.mall.ui.moreevalvate.MoreEvaluateActivity;
-import com.module.mall.ui.OrderConfirmActivity;
+import com.module.mall.ui.confirmorder.OrderConfirmActivity;
 import com.module.mall.ui.ProModelDialog;
 import com.module.mall.ui.moretuan.MoreTuanActivity;
 import com.youth.banner.Banner;

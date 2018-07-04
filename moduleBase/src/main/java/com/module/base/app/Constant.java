@@ -12,6 +12,8 @@ public class Constant {
 
     public final static String USERID = "userId";
 
+    public final static String IS_LOGIN = "isLogin";
+
     public final static String ISGUIDED = "isGuided";
 
     public final static String ISLOGINED = "isLogined";
@@ -20,7 +22,7 @@ public class Constant {
 
     public final static String POSITION = "position";
 
-    public final static String URL="url";
+    public final static String URL = "url";
 
     public final static String FLAG = "flag";
 
@@ -29,7 +31,23 @@ public class Constant {
 
     public final static String REQUESTCODE = "requestCode";
 
-    public final static String PORDUCTID = "porductid";
+    public final static String PORDUCTID = "porduct_Id";
+
+    public final static String PORDUCT_TITLE = "porduct_title";
+
+    public final static String PORDUCT_PIC = "porduct_pic";
+
+    public final static String PORDUCT_IMAGR = "porduct_image";
+
+    public final static String PORDUCT_TUAN_PIC = "porduct_tuan_pic";
+
+    public final static String PORDUCT_CLORO = "porduct_color";
+
+
+    //开团卷
+    public final static String OPEN_TUAN_NUMER = "openTuan_Numer";
+    public final static String OPEN_TUAN_NAME = "openTuan_Name";
+    public final static String OPEN_TUAN_ID = "openTuan_Id";
 
 
     public final static String PATH_MAINACTIVITY = "/main/mainActivity";
@@ -39,6 +57,7 @@ public class Constant {
     public final static String PATH_FRAGMENTPING = "/mall/FragmentPing";
 
     public final static String PATH_MODIFYACTIVITY = "/mine/ModifyPassActivity";
+
 
     public final static String ADDERS = "/mine/AddressActivity";
 

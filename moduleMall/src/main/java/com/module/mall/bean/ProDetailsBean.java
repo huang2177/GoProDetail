@@ -1,12 +1,13 @@
 package com.module.mall.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by shibing on 18/6/15.
  */
 
-public class ProDetailsBean {
+public class ProDetailsBean implements Serializable {
 
 
     /**
@@ -43,7 +44,7 @@ public class ProDetailsBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * id : 4
          * imgurl : /usr/local/tomcat/apache-tomcat-8.0.48/2018-05-30/0152cfcf8a254ef2af05a9991691d303.jpg
@@ -248,7 +249,7 @@ public class ProDetailsBean {
             this.norms = norms;
         }
 
-        public static class NormsBean {
+        public static class NormsBean implements Serializable {
             /**
              * id : 5
              * pid : 4

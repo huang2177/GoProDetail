@@ -117,6 +117,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         //保存用户id
         spUtil.setString(Constant.USERID, registerBean.getData().getId());
+        spUtil.setBooloean(Constant.IS_LOGIN, true);
         ARouter.getInstance().build(Constant.PATH_MAINACTIVITY).navigation();
         finish();
     }

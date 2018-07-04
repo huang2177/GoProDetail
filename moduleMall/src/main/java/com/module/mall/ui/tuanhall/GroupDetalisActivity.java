@@ -17,14 +17,13 @@ import com.module.base.app.Constant;
 import com.module.base.listener.OnItemClickListener;
 import com.module.base.manager.GlideManager;
 import com.module.base.pouduct.ProductBean;
-import com.module.base.utils.Logger;
 import com.module.base.widgets.RoundImageView;
 import com.module.base.widgets.XGridView;
 import com.module.mall.R;
 import com.module.mall.adpter.MallListAdpter;
 import com.module.mall.adpter.PingPopleAdapter;
 import com.module.mall.bean.TuanDetalisBean;
-import com.module.mall.ui.OrderConfirmActivity;
+import com.module.mall.ui.confirmorder.OrderConfirmActivity;
 import com.module.mall.ui.prodetails.ProDetailActivity;
 
 import java.util.Arrays;
@@ -60,7 +59,7 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
     private String pid;
     private List<ProductBean.DataBean> dataBeanList;
     private String type;
-
+    private TuanDetalisBean.DataBean dataBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -146,6 +145,12 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
         if (i == R.id.groupdetalis_but) {
             Intent intent = new Intent(this, OrderConfirmActivity.class);
             intent.putExtra("form", "whole");
+            intent.putExtra(Constant.PORDUCT_TITLE, dataBean.getProduct().getTitle());
+            intent.putExtra(Constant.PORDUCT_IMAGR, dataBean.getProduct().getImgurl());
+            intent.putExtra(Constant.PORDUCT_PIC, dataBean.getProduct().getAmount() + "");
+            intent.putExtra(Constant.PORDUCT_TUAN_PIC, dataBean.getProduct().getTuanAmount() + "");
+            intent.putExtra(Constant.PORDUCTID, dataBean.getProduct().getId() + "");
+            intent.putExtra(Constant.PORDUCT_CLORO, dataBean.getNormstr());
             startActivity(intent);
         }
     }
@@ -154,6 +159,9 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
     //团详情
     @Override
     public void showTuanDetalis(TuanDetalisBean tuanDetalisBean) {
+        dataBean = tuanDetalisBean.getData();
+
+
         GlideManager.loadImage(this
                 , Constant.IMAGE_HOST + tuanDetalisBean.getData().getProduct().getImgurl()
                 , imagePor);
@@ -164,6 +172,7 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
                 + ",剩余" + tuanDetalisBean.getData().getEndTime());
         button.setText("¥" + tuanDetalisBean.getData().getProduct().getAmount() + "立即参团");
         presenter.TuanDetalisProduct(type, tuanDetalisBean.getData().getCatagory());
+
     }
 
 

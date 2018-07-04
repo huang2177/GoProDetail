@@ -2,6 +2,8 @@ package com.module.mall;
 
 import com.module.base.pouduct.ProductBean;
 import com.module.base.pouduct.ProductTypeBean;
+import com.module.mall.bean.DefaultAddressBean;
+import com.module.mall.bean.OpenTuanBean;
 import com.module.mall.bean.PintuanRuleBean;
 import com.module.mall.bean.ProDetailsBean;
 import com.module.mall.bean.ProductEvaBean;
@@ -112,4 +114,26 @@ public interface MallHttpService {
      */
     @GET("api/ZulinRule/{id}")
     Observable<PintuanRuleBean> ZulinRule(@Path("id") String id);
+
+
+    /**
+     * 获取默认地址
+     *
+     * @param id
+     * @return
+     */
+    @GET("api/UserAddress/Default")
+    Observable<DefaultAddressBean> getDefaultAddress(@Query("id") String id);
+
+
+    @FormUrlEncoded
+    @POST("api/Tuan")
+    Observable<OpenTuanBean> getOpenTua(@Field("uid") String uid
+            , @Field("pid") String pid
+            , @Field("isPublic") boolean isPublic
+            , @Field("couponId") String couponId);
+
+
 }
+
+
