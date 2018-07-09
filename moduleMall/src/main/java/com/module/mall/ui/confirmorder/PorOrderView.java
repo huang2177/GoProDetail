@@ -29,5 +29,16 @@ public interface PorOrderView {
     void showOpenError(String msg);
 
 
+    //原价开团
+    void showBuyTuan(OpenTuanBean.DataBean dataBean);
+
+    void showBuyError(String msg);
+
+
+    //参团
+    void showJoinTuan(OpenTuanBean.DataBean dataBean);
+
+    void showJoinTuanErr(String msg);
+
 
 }

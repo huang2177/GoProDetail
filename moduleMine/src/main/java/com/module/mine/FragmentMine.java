@@ -254,12 +254,15 @@ public class FragmentMine extends BaseFragment implements
 
         //银行卡余额
         banlkNum = userInfo.getData().getCardNum();
-        banlanceTv.setText(userInfo.getData().getCardNum());
+        banlanceTv.setText("￥" + userInfo.getData().getAmount());
         //邀请码
         requestCode = userInfo.getData().getRequestCode();
         //头像
         imagePath = userInfo.getData().getImgurl();
         userName = userInfo.getData().getNickname();
+        //保存用户余额
+        spUtil.setInt(Constant.USER_AMOUNT, userInfo.getData().getAmount());
+
 
     }
 

@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.module.base.BasePresenter;
+
 import static com.module.base.utils.ScreenUtils.getScreenHeight;
 import static com.module.base.utils.StatusUtil.getStatusBarHeight;
 
@@ -19,9 +21,11 @@ import static com.module.base.utils.StatusUtil.getStatusBarHeight;
  * @author huangshuang
  */
 
-public abstract class XBottomDialog extends BottomSheetDialog implements View.OnClickListener {
+public abstract class XBottomDialog<V, T extends BasePresenter<V>> extends BottomSheetDialog implements View.OnClickListener {
     public View view;
     protected Activity activity;
+
+    public BasePresenter<V> presenter;
 
     public XBottomDialog(@NonNull Activity activity) {
         super(activity);
@@ -32,6 +36,11 @@ public abstract class XBottomDialog extends BottomSheetDialog implements View.On
 
         initView();
         setListener();
+        presenter = createPresenter();
+        if (presenter != null) {
+            presenter.onCreate();
+            presenter.attachView((V) this);
+        }
     }
 
     protected abstract int getLayoutId();
@@ -73,4 +82,12 @@ public abstract class XBottomDialog extends BottomSheetDialog implements View.On
     public void onClick(View v) {
 
     }
+
+
+    /**
+     * 用于实现类创建presenter
+     *
+     * @return
+     */
+    public abstract BasePresenter<V> createPresenter();
 }

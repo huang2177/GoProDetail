@@ -3,6 +3,7 @@ package com.module.mine.ui.adders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -12,9 +13,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.bean.AddersBean;
 import com.module.mine.R;
 import com.module.mine.adapter.AddressListAdapter;
-import com.module.mine.bean.AddersBean;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by shibing on 18/5/6.
  */
 
-@Route(path = Constant.ADDERS)
+@Route(path = Constant.PATH_ADDERS)
 public class AddressActivity extends BaseActivity
         implements AdapterView.OnItemClickListener
         , AddersView {
@@ -33,6 +34,7 @@ public class AddressActivity extends BaseActivity
     private AddressListAdapter addressListAdapter;
     private AdderPresenter presenter;
     private List<AddersBean.DataBean> list;
+    private String from;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,9 +56,6 @@ public class AddressActivity extends BaseActivity
     }
 
 
-
-
-
     @Override
     public void onRightClick() {
         super.onRightClick();
@@ -71,6 +70,14 @@ public class AddressActivity extends BaseActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //不等于空的时候
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.ORDER_ADDER, list.get(position));
+        intent.putExtra("bundle", bundle);
+        setResult(200, intent);
+        finish();
+
 
     }
 
@@ -83,7 +90,7 @@ public class AddressActivity extends BaseActivity
             return;
         }
         listView.setVisibility(View.VISIBLE);
-        addressListAdapter = new AddressListAdapter(this,list);
+        addressListAdapter = new AddressListAdapter(this, list);
         listView.setAdapter(addressListAdapter);
         listView.setOnItemClickListener(this);
     }

@@ -1,5 +1,6 @@
-package com.module.mine.bean;
+package com.module.base.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -43,7 +44,7 @@ public class AddersBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * id : 2
          * uid : 1
@@ -56,7 +57,7 @@ public class AddersBean {
          * isDefault : true
          */
 
-        private int id;
+        private String id;
         private int uid;
         private String name;
         private String mobile;
@@ -66,11 +67,11 @@ public class AddersBean {
         private String detail;
         private boolean isDefault;
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 

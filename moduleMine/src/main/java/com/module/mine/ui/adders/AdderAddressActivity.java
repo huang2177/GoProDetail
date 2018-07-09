@@ -14,12 +14,11 @@ import android.widget.TextView;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
+import com.module.base.bean.AddersBean;
 import com.module.base.utils.SPUtil;
 import com.module.base.utils.ToastUtil;
 import com.module.mine.R;
-import com.module.mine.bean.AddersBean;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

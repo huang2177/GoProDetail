@@ -193,19 +193,18 @@ public class ProDetailActivity extends BaseActivity implements ProDetailsView {
         }
         //支付
         else if (i == R.id.pro_buy) {
-            proModelDialog = new ProModelDialog(this, mDataBean, "Wholeprice");
+            proModelDialog = new ProModelDialog(this, mDataBean, "Wholeprice");  //土豪购买
             proModelDialog.show();
         }
         //跳转至订单详情 0元购
         else if (i == R.id.pro_group) {
-            proModelDialog = new ProModelDialog(this, mDataBean, "Zeroprice");
+            proModelDialog = new ProModelDialog(this, mDataBean, "openTuan");    //去开团
             proModelDialog.show();
         }
         //0元首饰盒  支付押金
         else if (i == R.id.jewelry_buy) {
-            intent = new Intent(this, OrderConfirmActivity.class);
-            intent.putExtra("form", "whole");
-            startActivity(intent);
+            proModelDialog = new ProModelDialog(this, mDataBean, "lease");  //产品租赁
+            proModelDialog.show();
         }
     }
 

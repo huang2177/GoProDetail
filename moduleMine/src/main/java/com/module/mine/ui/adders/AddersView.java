@@ -1,6 +1,6 @@
 package com.module.mine.ui.adders;
 
-import com.module.mine.bean.AddersBean;
+import com.module.base.bean.AddersBean;
 
 /**
  * Created by shibing on 18/6/9.

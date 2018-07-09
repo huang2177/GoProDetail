@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 
-@Route(path = Constant.OPENCOIL)
+@Route(path = Constant.OPENCOIL_PATH)
 public class MyOpenCoilActivity extends BaseActivity implements
         AdapterView.OnItemClickListener
         , TuanCouponView {

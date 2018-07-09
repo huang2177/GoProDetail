@@ -54,7 +54,7 @@ public class DefaultAddressBean {
          * isDefault : true
          */
 
-        private int id;
+        private String id;
         private int uid;
         private String name;
         private String mobile;
@@ -64,11 +64,11 @@ public class DefaultAddressBean {
         private String detail;
         private boolean isDefault;
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 

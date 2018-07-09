@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.module.base.bean.AddersBean;
 import com.module.mine.R;
-import com.module.mine.bean.AddersBean;
 
 import java.util.List;
 

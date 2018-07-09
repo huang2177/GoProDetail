@@ -76,7 +76,7 @@ public class TuanDetalisBean {
         private int needOrderNum;
         private int joinCount;
         private boolean success;
-        private int type;
+        private String type;
         private boolean isPublic;
         private int couponId;
         private int amount;
@@ -166,11 +166,11 @@ public class TuanDetalisBean {
             this.success = success;
         }
 
-        public int getType() {
+        public String getType() {
             return type;
         }
 
-        public void setType(int type) {
+        public void setType(String type) {
             this.type = type;
         }
 

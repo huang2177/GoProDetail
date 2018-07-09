@@ -3,16 +3,23 @@ package com.module.mine.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.app.Constant;
+import com.module.base.utils.Logger;
 import com.module.base.widgets.XGridView;
 import com.module.base.widgets.dialog.CommonDialog;
+import com.module.base.widgets.dialog.ShareDialog;
 import com.module.mine.R;
 import com.module.mine.adapter.OrderPopreAdpter;
 import com.module.mine.ui.adders.AddressActivity;
@@ -22,7 +29,7 @@ import com.module.mine.ui.adders.AddressActivity;
  */
 
 
-
+@Route(path = Constant.PATH_ORDERDETALIS)
 public class OrderDetalisActivity extends BaseActivity implements CommonDialog.DialogClickListener {
 
 
@@ -47,6 +54,8 @@ public class OrderDetalisActivity extends BaseActivity implements CommonDialog.D
     private TextView tvNumber, tvTime, tvWordPay, tvOrderType, tvKtj, tvGqTime;
 
     private OrderPopreAdpter adpter;
+    private String from;
+    private ShareDialog shareDialog;
 
 
     @Override
@@ -54,6 +63,7 @@ public class OrderDetalisActivity extends BaseActivity implements CommonDialog.D
         super.onCreate(savedInstanceState);
         // TODO: 18/5/16  需要添加一张图片
         title("订单详情").rightText("已公开");
+
     }
 
     @Override
@@ -99,8 +109,19 @@ public class OrderDetalisActivity extends BaseActivity implements CommonDialog.D
         tvKtj = findViewById(R.id.order_ktj_tv);
         tvGqTime = findViewById(R.id.order_gqtime_tv);
 
-
+        from = getIntent().getStringExtra("from");
+        Logger.e("---from----", from);
         setAdapter();
+        if (!TextUtils.isEmpty(from)) {
+            showShareDialog();
+        }
+
+    }
+
+
+    private void showShareDialog() {
+        shareDialog = new ShareDialog(this);
+        shareDialog.show();
     }
 
 

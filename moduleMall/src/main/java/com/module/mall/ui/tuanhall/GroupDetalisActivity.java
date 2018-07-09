@@ -64,14 +64,9 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         title("拼团详情");
-
         pid = getIntent().getStringExtra(Constant.PORDUCTID);
         presenter.TuanDetalis(pid);
-
-
         initPople();
         initPorduct();
 
@@ -144,13 +139,15 @@ public class GroupDetalisActivity extends BaseActivity implements OnItemClickLis
         int i = v.getId();
         if (i == R.id.groupdetalis_but) {
             Intent intent = new Intent(this, OrderConfirmActivity.class);
-            intent.putExtra("form", "whole");
+            intent.putExtra(Constant.PORDUCT_TUAN_TYPE, "JoinTuan");             //参团
             intent.putExtra(Constant.PORDUCT_TITLE, dataBean.getProduct().getTitle());
             intent.putExtra(Constant.PORDUCT_IMAGR, dataBean.getProduct().getImgurl());
             intent.putExtra(Constant.PORDUCT_PIC, dataBean.getProduct().getAmount() + "");
             intent.putExtra(Constant.PORDUCT_TUAN_PIC, dataBean.getProduct().getTuanAmount() + "");
             intent.putExtra(Constant.PORDUCTID, dataBean.getProduct().getId() + "");
             intent.putExtra(Constant.PORDUCT_CLORO, dataBean.getNormstr());
+            intent.putExtra(Constant.PORDUCT_TYPE, dataBean.getType());
+            intent.putExtra(Constant.TUAN_ID,dataBean.getJoinCount());
             startActivity(intent);
         }
     }

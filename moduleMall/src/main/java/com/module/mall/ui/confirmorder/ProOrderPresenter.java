@@ -73,4 +73,58 @@ public class ProOrderPresenter extends BasePresenter<PorOrderView> {
         }));
     }
 
+
+    /**
+     * 原价开团
+     *
+     * @param uid
+     * @param pid
+     * @param addressId
+     * @param normstr
+     * @param payType
+     */
+    public void BuyTuan(String uid, String pid, String addressId, String normstr, String payType) {
+        observer(new HttpObserver<OpenTuanBean>(mContext, mService.getBuyTuan(uid, pid, addressId, normstr, payType)
+                , new HttpCallBackImpl<OpenTuanBean>() {
+            @Override
+            public void onCompleted(OpenTuanBean tuanBean) {
+                if (tuanBean == null) {
+                    return;
+                }
+                if (tuanBean.getCode().equals("00") && tuanBean.getMsg().equals("SUCCESS")) {
+                    porOrderView.showBuyTuan(tuanBean.getData());
+                } else {
+                    porOrderView.showBuyError(tuanBean.getMsg());
+                }
+            }
+        }));
+    }
+
+
+    /**
+     * 参团
+     *
+     * @param uid
+     * @param addressId
+     * @param normstr
+     * @param payType
+     */
+    public void getTuanJoin(String uid, String joinType, String tuanId, String addressId, String normstr, String payType) {
+        observer(new HttpObserver<OpenTuanBean>(mContext, mService.getTuanJoin(uid, joinType, tuanId, addressId, normstr, payType)
+                , new HttpCallBackImpl<OpenTuanBean>() {
+            @Override
+            public void onCompleted(OpenTuanBean tuanBean) {
+                if (tuanBean == null) {
+                    return;
+                }
+                if (tuanBean.getCode().equals("00") && tuanBean.getMsg().equals("SUCCESS")) {
+                    porOrderView.showBuyTuan(tuanBean.getData());
+                } else {
+                    porOrderView.showBuyError(tuanBean.getMsg());
+                }
+            }
+        }));
+    }
+
+
 }

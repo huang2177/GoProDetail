@@ -2,6 +2,7 @@ package com.module.mall.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.base.widgets.dialog.XBottomDialog;
 import com.module.mall.R;
@@ -62,29 +64,35 @@ public class ProModelDialog extends XBottomDialog implements AdapterView.OnItemC
     @Override
     public void onClick(View v) {
         Intent intent;
-        if (from.equals("Wholeprice")) {
-            intent = new Intent(activity, OrderConfirmActivity.class);
-            intent.putExtra("from", "whole");    //全款购买
-            intent.putExtra(Constant.PORDUCTID, dataBean.getId() + "");
-            intent.putExtra(Constant.PORDUCT_IMAGR, dataBean.getImgurl());
-            intent.putExtra(Constant.PORDUCT_TITLE, dataBean.getTitle());
-            intent.putExtra(Constant.PORDUCT_PIC, dataBean.getAmount());
-            intent.putExtra(Constant.PORDUCT_TUAN_PIC, dataBean.getTuanAmount());
-            intent.putExtra(Constant.PORDUCT_CLORO, "");
-
-            activity.startActivity(intent);
-        } else {
-            intent = new Intent(activity, OrderConfirmActivity.class);
-            intent.putExtra(Constant.PORDUCTID, dataBean.getId() + "");
-            intent.putExtra(Constant.PORDUCT_IMAGR, dataBean.getImgurl());
-            intent.putExtra(Constant.PORDUCT_TITLE, dataBean.getTitle());
-            intent.putExtra(Constant.PORDUCT_PIC, dataBean.getAmount());
-            intent.putExtra(Constant.PORDUCT_TUAN_PIC, dataBean.getTuanAmount());
-            intent.putExtra(Constant.PORDUCT_CLORO, "");
-            intent.putExtra("from", "zero");
-            activity.startActivity(intent);
+        intent = new Intent(activity, OrderConfirmActivity.class);
+        intent.putExtra(Constant.PORDUCTID, dataBean.getId() + "");
+        intent.putExtra(Constant.PORDUCT_IMAGR, dataBean.getImgurl());
+        intent.putExtra(Constant.PORDUCT_TITLE, dataBean.getTitle());
+        intent.putExtra(Constant.PORDUCT_PIC, dataBean.getAmount());
+        intent.putExtra(Constant.PORDUCT_TUAN_PIC, dataBean.getTuanAmount());
+        intent.putExtra(Constant.PORDUCT_CLORO, "");
+        intent.putExtra(Constant.PORDUCT_TYPE, dataBean.getType() + "");
+        switch (from) {
+            case "Wholeprice":
+                intent.putExtra(Constant.PORDUCT_TUAN_TYPE, "Wholeprice");     //土豪购买 既不是开团 也不是参团
+                activity.startActivity(intent);
+                break;
+            case "openTuan":
+                intent.putExtra(Constant.PORDUCT_TUAN_TYPE, "openTuan");        //去开团
+                activity.startActivity(intent);
+                break;
+            case "lease":
+                intent.putExtra(Constant.PORDUCT_TUAN_TYPE, "porLease");        //产品租赁
+                activity.startActivity(intent);
+                break;
         }
         dismiss();
+    }
+
+
+    @Override
+    public BasePresenter createPresenter() {
+        return null;
     }
 
     @Override

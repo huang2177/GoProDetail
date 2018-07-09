@@ -79,7 +79,7 @@ public class OpenTuanBean {
         private int couponId;
         private int amount;
         private int commission;
-        private int orderId;
+        private String orderId;
         private Object joins;
         private Object product;
         private String normstr;
@@ -204,11 +204,11 @@ public class OpenTuanBean {
             this.commission = commission;
         }
 
-        public int getOrderId() {
+        public String getOrderId() {
             return orderId;
         }
 
-        public void setOrderId(int orderId) {
+        public void setOrderId(String orderId) {
             this.orderId = orderId;
         }
 

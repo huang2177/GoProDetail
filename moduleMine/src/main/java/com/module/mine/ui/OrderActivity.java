@@ -21,7 +21,7 @@ import java.util.List;
  * Created by shibing on 18/5/6.
  */
 
-public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,OnItemClickListener {
+public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelectedListener, OnItemClickListener {
 
     private TabLayout tabLayout;
     private RecyclerView recyclerView;
@@ -100,6 +100,8 @@ public class OrderActivity extends BaseActivity implements TabLayout.OnTabSelect
 
     @Override
     public void onItemClick(int position, int type) {
-        startActivity(new Intent(this,OrderDetalisActivity.class));
+        Intent intent = new Intent(this, OrderDetalisActivity.class);
+        intent.putExtra("from", "");
+        startActivity(intent);
     }
 }

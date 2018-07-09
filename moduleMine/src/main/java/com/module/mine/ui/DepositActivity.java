@@ -7,10 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
 import com.module.base.app.Constant;
 import com.module.mine.R;
+
+import retrofit2.http.Path;
 
 /**
  * Created by shibing on 18/5/6.
@@ -18,6 +21,8 @@ import com.module.mine.R;
  * 我的押金
  */
 
+
+@Route(path = Constant.PATH_DEPOSIT)
 public class DepositActivity extends BaseActivity {
 
     private TextView tvMoney, tvShous;

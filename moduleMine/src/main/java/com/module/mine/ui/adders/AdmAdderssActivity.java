@@ -10,9 +10,9 @@ import android.widget.ListView;
 
 import com.module.base.BaseActivity;
 import com.module.base.BasePresenter;
+import com.module.base.bean.AddersBean;
 import com.module.mine.R;
 import com.module.mine.adapter.AdmAddressListAdapter;
-import com.module.mine.bean.AddersBean;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.module.mine;
 
-import com.module.mine.bean.AddersBean;
+import com.module.base.bean.AddersBean;
 import com.module.mine.bean.BlankNumBean;
 import com.module.mine.bean.ComPlaintBean;
 import com.module.mine.bean.HelpBean;

@@ -3,11 +3,11 @@ package com.module.mine.ui.adders;
 import android.content.Context;
 
 import com.module.base.BasePresenter;
+import com.module.base.bean.AddersBean;
 import com.module.base.http.HttpCallBackImpl;
 import com.module.base.http.HttpManager;
 import com.module.base.http.HttpObserver;
 import com.module.mine.MineHttpService;
-import com.module.mine.bean.AddersBean;
 
 import java.util.Map;
 

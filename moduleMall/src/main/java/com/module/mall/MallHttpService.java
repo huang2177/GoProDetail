@@ -126,12 +126,50 @@ public interface MallHttpService {
     Observable<DefaultAddressBean> getDefaultAddress(@Query("id") String id);
 
 
+    /**
+     * 使用开团卷开团
+     *
+     * @param uid
+     * @param pid
+     * @param isPublic
+     * @param couponId
+     * @return
+     */
     @FormUrlEncoded
     @POST("api/Tuan")
     Observable<OpenTuanBean> getOpenTua(@Field("uid") String uid
             , @Field("pid") String pid
             , @Field("isPublic") boolean isPublic
             , @Field("couponId") String couponId);
+
+
+    /**
+     * 原价开团
+     *
+     * @param uid
+     * @param pid
+     * @param addressId
+     * @param normstr
+     * @param payType
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/Tuan/Buy")
+    Observable<OpenTuanBean> getBuyTuan(@Field("uid") String uid
+            , @Field("pid") String pid
+            , @Field("addressId") String addressId
+            , @Field("normstr") String normstr
+            , @Field("payType") String payType);
+
+
+    @FormUrlEncoded
+    @POST("api/TuanJoin")
+    Observable<OpenTuanBean> getTuanJoin(@Field("uid") String uid
+            , @Field("joinType") String joinType
+            , @Field("tuanId") String tuanId
+            , @Field("addressId") String addressId
+            , @Field("normstr") String normstr
+            , @Field("payType") String payType);
 
 
 }
